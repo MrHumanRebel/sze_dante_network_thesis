@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.12.28)  28 DEC 2023 15:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.12.28)  3 JAN 2024 10:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -578,7 +578,7 @@ Package: multicol 2021/10/28 v1.9b multicolumn formatting (FMi)
 \mc@col@check@num=\count324
 ))
 
-LaTeX Warning: \include should only be used after \begin{document} on input line 35.
+LaTeX Warning: \include should only be used after \begin{document} on input line 36.
 
 (./include/variables.tex) (./include/thesis-hu.tex) (./include/preamble.tex
 Package hyperref Info: Option `unicode' set `true' on input line 39.
@@ -594,34 +594,34 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 39.
 \c@endtheoremctr=\count332
 \c@theorem=\count333
 )
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 50.
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 51.
  (/usr/share/texmf/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count334
 \l__pdf_internal_box=\box101
-) (./thesis.aux (./include/outercover.aux) (./include/titlepage.aux) (./include/project.aux) (./include/declaration.aux) (./content/abstract.aux) (./content/introduction.aux) (./content/thesis-format.aux) (./content/latex-tools.aux) (./content/template-usage.aux) (./content/acknowledgement.aux) (./content/appendices.aux))
+) (./thesis.aux (./include/outercover.aux) (./include/titlepage.aux) (./include/project.aux) (./include/declaration.aux) (./content/abstract.aux) (./content/introduction.aux) (./content/audio_over_ip_systems.aux) (./content/system_desing.aux) (./content/system_deployment.aux) (./content/further_development.aux) (./content/acknowledgement.aux) (./content/appendices.aux))
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count335
@@ -652,7 +652,7 @@ LaTeX Warning: Please use \usepackage[latin2]{inputenc}
                or \usepackage[utf8]{inputenc}
                with \usepackage[magyar]{babel}.
 
-Package hyperref Info: Link coloring ON on input line 50.
+Package hyperref Info: Link coloring ON on input line 51.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
@@ -662,9 +662,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count341
 )
-LaTeX Info: Redefining \ref on input line 50.
-LaTeX Info: Redefining \pageref on input line 50.
-LaTeX Info: Redefining \nameref on input line 50.
+LaTeX Info: Redefining \ref on input line 51.
+LaTeX Info: Redefining \pageref on input line 51.
+LaTeX Info: Redefining \nameref on input line 51.
  (./thesis.out) (./thesis.out)
 \@outlinefile=\write3
 \openout3 = `thesis.out'.
@@ -690,12 +690,12 @@ Package hyperref Info: Option `pageanchor' set `false' on input line 22.
 
  (./include/titlepage.tex
 Package hyperref Info: Option `pageanchor' set `false' on input line 1.
-<figures/sze_logo_wide.pdf, id=139, 1159.33125pt x 301.125pt>
+<figures/sze_logo_wide.pdf, id=95, 1159.33125pt x 301.125pt>
 File: figures/sze_logo_wide.pdf Graphic file (type pdf)
 <use figures/sze_logo_wide.pdf>
 Package pdftex.def Info: figures/sze_logo_wide.pdf  used on input line 13.
 (pdftex.def)             Requested size: 164.30423pt x 42.67912pt.
-<figures/dept_it_logo.png, id=140, 217.31187pt x 52.195pt>
+<figures/dept_it_logo.png, id=96, 217.31187pt x 52.195pt>
 File: figures/dept_it_logo.png Graphic file (type png)
 <use figures/dept_it_logo.png>
 Package pdftex.def Info: figures/dept_it_logo.png  used on input line 13.
@@ -725,47 +725,47 @@ Package hyperref Info: Option `pageanchor' set `false' on input line 32.
 ])
 \openout2 = `content/abstract.aux'.
 
- (./content/abstract.tex
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 13.
- (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
-File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 13.
- (/usr/share/texmf/tex/latex/lm/omllmm.fd
-File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 13.
- (/usr/share/texmf/tex/latex/lm/omslmsy.fd
-File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 13.
- (/usr/share/texmf/tex/latex/lm/omxlmex.fd
-File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 13.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 13.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 13.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 13.
- (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 13.
- (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 16.
- (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [1
+ (./content/abstract.tex [1
 
 
 
 
 
 ]
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 27.
+ (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
+File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 27.
+ (/usr/share/texmf/tex/latex/lm/omllmm.fd
+File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 27.
+ (/usr/share/texmf/tex/latex/lm/omslmsy.fd
+File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 27.
+ (/usr/share/texmf/tex/latex/lm/omxlmex.fd
+File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10.95> on input line 27.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 27.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 27.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 27.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 27.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 29.
+ (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
 \c@romanPage=\count343
 ) [2
 
@@ -785,212 +785,98 @@ File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 
 
 ]) [3]
-\openout2 = `content/thesis-format.aux'.
+\openout2 = `content/audio_over_ip_systems.aux'.
 
- (./content/thesis-format.tex
+ (./content/audio_over_ip_systems.tex
 2. fejezet.
-[4
+) [4
 
 
 
 
-]) [5]
-\openout2 = `content/latex-tools.aux'.
+]
+\openout2 = `content/system_desing.aux'.
 
- (./content/latex-tools.tex
+ (./content/system_desing.tex
 3. fejezet.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <24.88> on input line 2.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <20.74> on input line 2.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <17.28> on input line 2.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 7.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 7.
-<figures/TeXstudio.png, id=232, 1002.74625pt x 799.98875pt>
-File: figures/TeXstudio.png Graphic file (type png)
-<use figures/TeXstudio.png>
-Package pdftex.def Info: figures/TeXstudio.png  used on input line 11.
-(pdftex.def)             Requested size: 426.79134pt x 340.4973pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 16--17
-[]\T1/lmr/m/n/10.95 A TeX-s-tu-dio te-le-pí-té-se után ér-de-mes még le-töl-te-ni a ma-gyar nyel-v¶
- []
-
-
-Underfull \hbox (badness 4132) in paragraph at lines 16--17
-\T1/lmr/m/n/10.95 helyesírásellen®rz®-szótárakat hoz-zá. A TeX-s-tu-dio az OpenOffice-hoz hasz-ná-la-tos
- []
-
-[6
+) [5
 
 
 
 
- <./figures/TeXstudio.png (PNG copy)>]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 23.
- (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
-File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-<figures/overleaf.png, id=243, 1927.2pt x 1204.5pt>
-File: figures/overleaf.png Graphic file (type png)
-<use figures/overleaf.png>
-Package pdftex.def Info: figures/overleaf.png  used on input line 39.
-(pdftex.def)             Requested size: 426.79135pt x 266.73683pt.
- [7 <./figures/overleaf.png>] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2020/03/24 1.8d listings language file
-) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2020/03/24 1.8d listings language file
-)
-Underfull \hbox (badness 3271) in paragraph at lines 61--62
-[]\T1/lmr/m/n/10.95 A PDF-L[]T[]X hasz-ná-la-ta ese-tén a ge-ne-rált do-ku-men-tum köz-vet-le-nül PDF-
- []
+]
+\openout2 = `content/system_deployment.aux'.
 
-LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <8> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 69.
-[8]) [9]
-\openout2 = `content/template-usage.aux'.
-
- (./content/template-usage.tex
+ (./content/system_deployment.tex
 4. fejezet.
-[10
+) [6
 
 
 
 
-] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2020/03/24 1.8d listings language file
-) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang2.sty
-File: lstlang2.sty 2020/03/24 1.8d listings language file
-) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang3.sty
-File: lstlang3.sty 2020/03/24 1.8d listings language file
-) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2020/03/24 1.8d listings language file
-) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang2.sty
-File: lstlang2.sty 2020/03/24 1.8d listings language file
-) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang3.sty
-File: lstlang3.sty 2020/03/24 1.8d listings language file
-) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2020/03/24 1.8d listings language file
-) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang2.sty
-File: lstlang2.sty 2020/03/24 1.8d listings language file
-) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang3.sty
-File: lstlang3.sty 2020/03/24 1.8d listings language file
-) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
-)
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 49.
- [11]
-<figures/james-clerk-maxwell.jpg, id=295, 482.80376pt x 602.25pt>
-File: figures/james-clerk-maxwell.jpg Graphic file (type jpg)
-<use figures/james-clerk-maxwell.jpg>
-Package pdftex.def Info: figures/james-clerk-maxwell.jpg  used on input line 61.
-(pdftex.def)             Requested size: 190.63345pt x 237.79883pt.
-File: figures/TeXstudio.png Graphic file (type png)
-<use figures/TeXstudio.png>
-Package pdftex.def Info: figures/TeXstudio.png  used on input line 69.
-(pdftex.def)             Requested size: 190.63345pt x 152.08488pt.
-File: figures/TeXstudio.png Graphic file (type png)
-<use figures/TeXstudio.png>
-Package pdftex.def Info: figures/TeXstudio.png  used on input line 70.
-(pdftex.def)             Requested size: 190.63345pt x 152.08488pt.
-File: figures/TeXstudio.png Graphic file (type png)
-<use figures/TeXstudio.png>
-Package pdftex.def Info: figures/TeXstudio.png  used on input line 71.
-(pdftex.def)             Requested size: 190.63345pt x 152.08488pt.
-File: figures/TeXstudio.png Graphic file (type png)
-<use figures/TeXstudio.png>
-Package pdftex.def Info: figures/TeXstudio.png  used on input line 72.
-(pdftex.def)             Requested size: 190.63345pt x 152.08488pt.
- [12 <./figures/james-clerk-maxwell.jpg>]
-Underfull \hbox (badness 1917) in paragraph at lines 117--118
-[]\T1/lmr/m/n/10.95 Listákban a dol-go-zat szö-ve-gé-t®l el-kü-lö-ní-ten-d® kód-rész-le-te-ket, prog-ram-so-ro-kat,
- []
+]
+\openout2 = `content/further_development.aux'.
 
-[13]
-Underfull \hbox (badness 10000) in paragraph at lines 159--166
-[][][]$\T1/lmtt/m/n/10.95 http : / / www . ctan . org / tex-[]archive / info / symbols / comprehensive / symbols-[]a4 .
- []
-
-[14] [15]
-Underfull \hbox (badness 2111) in paragraph at lines 258--260
-[][]\T1/lmtt/m/n/10.95 \cite{Lee87}[]\T1/lmr/m/n/10.95 , [][]\T1/lmtt/m/n/10.95 \cite{KissPhD}[]\T1/lmr/m/n/10.95 , [][]\T1/lmtt/m/n/10.95 \cite{Schreirer00}[]\T1/lmr/m/n/10.95 , [][]\T1/lmtt/m/n/10.95 \cite{Mkrtychev:1997} []\T1/lmr/m/n/10.95 és
- []
-
-[16]
-Underfull \hbox (badness 1681) in paragraph at lines 267--268
-[]\T1/lmr/m/n/10.95 Megjegyzend®, hogy az éke-ze-tes ma-gyar be-t¶-ket is tar-tal-ma-zó [][]\T1/lmtt/m/n/10.95 .bib []\T1/lmr/m/n/10.95 fájl az
- []
+ (./content/further_development.tex
+5. fejezet.
+) [7
 
 
-Underfull \hbox (badness 3977) in paragraph at lines 267--268
-[][]\T1/lmtt/m/n/10.95 inputenc []\T1/lmr/m/n/10.95 cso-mag-gal be-töl-tött [][]\T1/lmtt/m/n/10.95 latin2 []\T1/lmr/m/n/10.95 be-t¶-kész-let mi-att for-dít-ha-tó. Ugyan-ez a
- []
 
-[17] [18]
-Package hyperref Info: bookmark level for unknown definition defaults to 0 on input line 326.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 328.
-Package hyperref Info: bookmark level for unknown example defaults to 0 on input line 331.
-Package hyperref Info: bookmark level for unknown theorem defaults to 0 on input line 334.
-) [19]
+
+]
 \openout2 = `content/acknowledgement.aux'.
 
- (./content/acknowledgement.tex) [20
+ (./content/acknowledgement.tex) [8
 
 
 
 
-] (./thesis.lof
-Overfull \hbox (2.18091pt too wide) detected at line 10
-\T1/lmr/m/n/10.95 F.1.1. 
- []
-
-)
+] (./thesis.lof)
 \tf@lof=\write5
 \openout5 = `thesis.lof'.
 
- (./thesis.bbl [21
+ (./thesis.bbl [9
 
 
-]) [22
+]
+
+Package natbib Warning: Empty `thebibliography' environment on input line 96.
+
+) [10
 
 ]
 \openout2 = `content/appendices.aux'.
 
- (./content/appendices.tex
-File: figures/TeXstudio.png Graphic file (type png)
-<use figures/TeXstudio.png>
-Package pdftex.def Info: figures/TeXstudio.png  used on input line 17.
-(pdftex.def)             Requested size: 426.79134pt x 340.4973pt.
- [23
+ (./content/appendices.tex) [11
 
-
-]) [24
 
 ]
 \tf@thm=\write6
 \openout6 = `thesis.thm'.
 
- (./thesis.aux (./include/outercover.aux) (./include/titlepage.aux) (./include/project.aux) (./include/declaration.aux) (./content/abstract.aux) (./content/introduction.aux) (./content/thesis-format.aux) (./content/latex-tools.aux) (./content/template-usage.aux) (./content/acknowledgement.aux) (./content/appendices.aux))
+
+
+Package caption Warning: Unused \captionsetup[figure] on input line 110.
+See the caption package documentation for explanation.
+
+(./thesis.aux (./include/outercover.aux) (./include/titlepage.aux) (./include/project.aux) (./include/declaration.aux) (./content/abstract.aux) (./content/introduction.aux) (./content/audio_over_ip_systems.aux) (./content/system_desing.aux) (./content/system_deployment.aux) (./content/further_development.aux) (./content/acknowledgement.aux) (./content/appendices.aux))
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 5F4191889341B83A9ECACAEB3503ACAF;5438.
+(rerunfilecheck)             Checksum: 5381B08026DBB350B542E4C05D169338;3828.
  ) 
 Here is how much of TeX's memory you used:
- 22520 strings out of 478287
- 382153 string characters out of 5849288
- 1186928 words of memory out of 5000000
- 40058 multiletter control sequences out of 15000+600000
- 576505 words of font info for 103 fonts, out of 8000000 for 9000
+ 20387 strings out of 478287
+ 355743 string characters out of 5849288
+ 660582 words of memory out of 5000000
+ 38156 multiletter control sequences out of 15000+600000
+ 520163 words of font info for 59 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
- 75i,16n,129p,1603b,2858s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx8.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmri8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtl10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on thesis.pdf (30 pages, 1031773 bytes).
+ 75i,5n,81p,671b,393s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtl10.pfb>
+Output written on thesis.pdf (17 pages, 190904 bytes).
 PDF statistics:
- 668 PDF objects out of 1000 (max. 8388607)
- 583 compressed objects within 6 object streams
- 205 named destinations out of 1000 (max. 500000)
- 290 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 223 PDF objects out of 1000 (max. 8388607)
+ 186 compressed objects within 2 object streams
+ 25 named destinations out of 1000 (max. 500000)
+ 187 words of extra memory for PDF output out of 10000 (max. 10000000)
 
