@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.12.28)  4 JAN 2024 10:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.12.28)  4 JAN 2024 16:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -690,12 +690,12 @@ Package hyperref Info: Option `pageanchor' set `false' on input line 22.
 
  (./include/titlepage.tex
 Package hyperref Info: Option `pageanchor' set `false' on input line 1.
-<figures/sze_logo_wide.pdf, id=175, 1159.33125pt x 301.125pt>
+<figures/sze_logo_wide.pdf, id=187, 1159.33125pt x 301.125pt>
 File: figures/sze_logo_wide.pdf Graphic file (type pdf)
 <use figures/sze_logo_wide.pdf>
 Package pdftex.def Info: figures/sze_logo_wide.pdf  used on input line 13.
 (pdftex.def)             Requested size: 164.30423pt x 42.67912pt.
-<figures/dept_it_logo.png, id=176, 217.31187pt x 52.195pt>
+<figures/dept_it_logo.png, id=188, 217.31187pt x 52.195pt>
 File: figures/dept_it_logo.png Graphic file (type png)
 <use figures/dept_it_logo.png>
 Package pdftex.def Info: figures/dept_it_logo.png  used on input line 13.
@@ -799,27 +799,30 @@ File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 
  (./content/system_desing.tex
 3. fejezet.
-<figures/Dante_IPs.png, id=274, 1247.41031pt x 569.12625pt>
-File: figures/Dante_IPs.png Graphic file (type png)
-<use figures/Dante_IPs.png>
-Package pdftex.def Info: figures/Dante_IPs.png  used on input line 94.
-(pdftex.def)             Requested size: 426.79134pt x 194.71614pt.
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 64.
 [6
 
 
 
 
 ]
-
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 120.
-
-) [7 <./figures/Dante_IPs.png>]
+<figures/ambrose_email.png, id=302, 880.03781pt x 210.03468pt>
+File: figures/ambrose_email.png Graphic file (type png)
+<use figures/ambrose_email.png>
+Package pdftex.def Info: figures/ambrose_email.png  used on input line 82.
+(pdftex.def)             Requested size: 426.79134pt x 101.86028pt.
+ [7 <./figures/ambrose_email.png>]
+<figures/dante_ips.png, id=313, 1322.69156pt x 567.62062pt>
+File: figures/dante_ips.png Graphic file (type png)
+<use figures/dante_ips.png>
+Package pdftex.def Info: figures/dante_ips.png  used on input line 164.
+(pdftex.def)             Requested size: 426.79134pt x 183.14934pt.
+) [8 <./figures/dante_ips.png>]
 \openout2 = `content/further_development.aux'.
 
  (./content/further_development.tex
 4. fejezet.
-) [8
+) [9
 
 
 
@@ -827,7 +830,7 @@ Package hyperref Warning: Difference (2) between bookmark levels is greater
 ]
 \openout2 = `content/acknowledgement.aux'.
 
- (./content/acknowledgement.tex) [9
+ (./content/acknowledgement.tex) [10
 
 
 
@@ -836,15 +839,15 @@ Package hyperref Warning: Difference (2) between bookmark levels is greater
 \tf@lof=\write5
 \openout5 = `thesis.lof'.
 
- (./thesis.bbl [10
+ (./thesis.bbl [11
 
 
-]) [11
+]) [12
 
 ]
 \openout2 = `content/appendices.aux'.
 
- (./content/appendices.tex) [12
+ (./content/appendices.tex) [13
 
 
 ]
@@ -853,21 +856,21 @@ Package hyperref Warning: Difference (2) between bookmark levels is greater
 
  (./thesis.aux (./include/outercover.aux) (./include/titlepage.aux) (./include/project.aux) (./include/declaration.aux) (./content/abstract.aux) (./content/introduction.aux) (./content/audio_over_ip_systems.aux) (./content/system_desing.aux) (./content/further_development.aux) (./content/acknowledgement.aux) (./content/appendices.aux))
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: ABABC8E3EB95D3B773B5889082F9CC87;8419.
+(rerunfilecheck)             Checksum: FB070F68E695DF8E4E4516CED6F2E825;9144.
  ) 
 Here is how much of TeX's memory you used:
- 20426 strings out of 478287
- 355805 string characters out of 5849288
- 664911 words of memory out of 5000000
- 38178 multiletter control sequences out of 15000+600000
- 520163 words of font info for 59 fonts, out of 8000000 for 9000
+ 20735 strings out of 478287
+ 358504 string characters out of 5849288
+ 738097 words of memory out of 5000000
+ 38469 multiletter control sequences out of 15000+600000
+ 520482 words of font info for 60 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
- 75i,6n,81p,671b,519s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 75i,6n,81p,671b,1947s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtl10.pfb>
-Output written on thesis.pdf (19 pages, 278768 bytes).
+Output written on thesis.pdf (20 pages, 311811 bytes).
 PDF statistics:
- 345 PDF objects out of 1000 (max. 8388607)
- 302 compressed objects within 4 object streams
- 48 named destinations out of 1000 (max. 500000)
- 352 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 383 PDF objects out of 1000 (max. 8388607)
+ 337 compressed objects within 4 object streams
+ 65 named destinations out of 1000 (max. 500000)
+ 381 words of extra memory for PDF output out of 10000 (max. 10000000)
 

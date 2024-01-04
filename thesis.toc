@@ -19,24 +19,27 @@
 \select@language {magyar} \contentsline {section}{\numberline {3.1}Követelmények}{6}{section.3.1}%
 \select@language {magyar} \contentsline {section}{\numberline {3.2}Rendszerterv}{6}{section.3.2}%
 \select@language {magyar} \contentsline {subsection}{\numberline {3.2.1}Martin Audio Wavefront Precision hangrendszer}{6}{subsection.3.2.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.2.2}Allen \& Heath digitális keverőrendszer}{6}{subsection.3.2.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.2.3}Shure ULXD digitális vezeték nélküli mikrofonrendszer}{6}{subsection.3.2.3}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.2.4}Dante audio szerver}{6}{subsection.3.2.4}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.2.5}Dante hálózat kialakítása és optimalizálása}{6}{subsection.3.2.5}%
-\select@language {magyar} \contentsline {subsubsection}{\numberline {3.2.5.1}Dante Controller: Hálózati mátrix}{6}{subsubsection.3.2.5.1}%
-\select@language {magyar} \contentsline {subsubsection}{\numberline {3.2.5.2}Dante Controller: Eszköz nézet}{6}{subsubsection.3.2.5.2}%
-\select@language {magyar} \contentsline {subsubsection}{\numberline {3.2.5.3}Dante Controller: Órajel nézet}{7}{subsubsection.3.2.5.3}%
-\select@language {magyar} \contentsline {section}{\numberline {3.3}Rendszermérések és monitorozás}{7}{section.3.3}%
-\select@language {magyar} \contentsline {subsubsection}{\numberline {3.3.0.1}Dante Controller: Hálózati állapot nézet}{7}{subsubsection.3.3.0.1}%
-\select@language {magyar} \contentsline {subsubsection}{\numberline {3.3.0.2}Dante Controller: Események nézet}{7}{subsubsection.3.3.0.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.3.1}Cardioid mélyláda rendszer mérése}{7}{subsection.3.3.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.3.2}Mélyláda és Line Array fázishelyesség}{7}{subsection.3.3.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.3.3}Rendszer hangnyomás szint és frekvencia átvitel mérése}{7}{subsection.3.3.3}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.3.4}Dante rendszer monitorozása}{7}{subsection.3.3.4}%
-\select@language {magyar} \contentsline {chapter}{\numberline {4}Üzemeltetési tapasztalatok és továbbfejlesztési lehetőségek}{8}{chapter.4}%
-\select@language {magyar} \contentsline {section}{\numberline {4.1}További eszközök integrálása}{8}{section.4.1}%
-\select@language {magyar} \contentsline {section}{\numberline {4.2}Bővítés nagyobb interfészre}{8}{section.4.2}%
-\select@language {magyar} \contentsline {chapter}{Köszönetnyilvánítás}{9}{chapter*.5}%
-\select@language {magyar} \contentsline {chapter}{\'Abr\'ak jegyz\'eke}{10}{chapter*.5}%
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{10}{chapter*.5}%
-\select@language {magyar} \contentsline {chapter}{Függelék}{12}{appendix*.7}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.2.1.1}Martin Audio Display 2.3.4 b1 tervező szoftver}{6}{subsubsection.3.2.1.1}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.2.1.2}Martin Audio VU-NET rendszer szoftver}{7}{subsubsection.3.2.1.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.2.2}Allen \& Heath digitális keverőrendszer}{7}{subsection.3.2.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.2.3}Shure ULXD digitális vezeték nélküli mikrofonrendszer}{7}{subsection.3.2.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.2.4}Dante audio szerver}{7}{subsection.3.2.4}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.2.5}Dante hálózat kialakítása és optimalizálása}{7}{subsection.3.2.5}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.2.5.1}Dante Controller: Hálózati mátrix}{7}{subsubsection.3.2.5.1}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.2.5.2}Dante Controller: Eszköz nézet}{7}{subsubsection.3.2.5.2}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.2.5.3}IP kiosztás}{8}{subsubsection.3.2.5.3}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.2.5.4}Dante Controller: Órajel nézet}{8}{subsubsection.3.2.5.4}%
+\select@language {magyar} \contentsline {section}{\numberline {3.3}Rendszermérések és monitorozás}{8}{section.3.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.1}Dante rendszer monitorozása}{8}{subsection.3.3.1}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.3.1.1}Dante Controller: Hálózati állapot nézet}{8}{subsubsection.3.3.1.1}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.3.1.2}Dante Controller: Események nézet}{8}{subsubsection.3.3.1.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.2}Cardioid mélyláda rendszer mérése}{8}{subsection.3.3.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.3}Mélyláda és Line Array fázishelyesség}{8}{subsection.3.3.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.4}Rendszer hangnyomás szint és frekvencia átvitel mérése}{8}{subsection.3.3.4}%
+\select@language {magyar} \contentsline {chapter}{\numberline {4}Üzemeltetési tapasztalatok és továbbfejlesztési lehetőségek}{9}{chapter.4}%
+\select@language {magyar} \contentsline {section}{\numberline {4.1}További eszközök integrálása}{9}{section.4.1}%
+\select@language {magyar} \contentsline {section}{\numberline {4.2}Bővítés nagyobb interfészre}{9}{section.4.2}%
+\select@language {magyar} \contentsline {chapter}{Köszönetnyilvánítás}{10}{chapter*.6}%
+\select@language {magyar} \contentsline {chapter}{\'Abr\'ak jegyz\'eke}{11}{chapter*.6}%
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{11}{chapter*.6}%
+\select@language {magyar} \contentsline {chapter}{Függelék}{13}{appendix*.8}%
