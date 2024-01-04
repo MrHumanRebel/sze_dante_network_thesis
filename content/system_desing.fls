@@ -1,0 +1,7 @@
+PWD /home/g14/sze_dante_network_thesis/content
+INPUT /etc/texmf/web2c/texmf.cnf
+INPUT /usr/share/texmf/web2c/texmf.cnf
+INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
+INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
+INPUT /home/g14/sze_dante_network_thesis/content/system_desing.tex
+OUTPUT system_desing.log

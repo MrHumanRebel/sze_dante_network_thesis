@@ -1,21 +1,95 @@
 %----------------------------------------------------------------------------
 \chapter{\AudioOverIp}
 %----------------------------------------------------------------------------
+% https://broadmax.hu/wp-content/uploads/2016/10/three-pillars-audio-networking-whitepaper-audinate.pdf
+% https://broadmax.hu/wp-content/uploads/2016/10/rise-of-audio-networking-audinate-wp.pdf
+% https://broadmax.hu/blog/audio-over-ip/
+% https://rhconsulting.uk/blog/networked-audio-products-2023/
+% Sound Reinforcement for Audio Engineers from page 308 to 346
+
+%----------------------------------------------------------------------------
+\section{Bevezetés az Audio over IP világába} \cite{AHNERT2023} \cite{MCCARTHY2016}
+%----------------------------------------------------------------------------
+
+Az 1990-es évek óta az informatika és a hálózatok robbanásszerű fejlődésével együtt a professzionális audio ipar is elkezdett változni.
+A `pontról pontra' elvű (minden eszközt külön-külön kell fizikailag összekapcsolni kábellel amely digitális információt hordoz) digitális audió átvitel helyett, mint például
+az AES/EBU vagy a MADI, az IP alapú rendszerek felé kezdett el elmozdulni. 
+Mivel ezek az IP rendszerek csomagalapúak, hatalmas rugalmasságot és továbbfejlesztési lehetőségeket biztosítanak a hagyományos rendszerekkel szemben.
+Ezek az előnyök mind hardveres, mind szoftveres szinten megjelennek, és lehetővé teszik a rendszerek könnyebb kezelhetőségét, valamint a hálózatok egyszerűbb kiépítését és karbantartását.
+
+%----------------------------------------------------------------------------
+\subsection{Előnyök}
+%----------------------------------------------------------------------------
+
+Nincsen szükség fizikai kábelekre a különböző végpontok között. Egyetlen egy CAT kábelre van szükségünk a rendszerbe kapcsoláshoz, majd egy 
+szoftveres kezelőfelületen keresztül bármikor megváltoztathatóak a jelek útjai. (Ez alól kivételt képeznek a redundáns rendszerek amelyek két CAT kábelt igényelnek a redundancia biztosítása végett)
+A megfelelően megtervezett rendszerünk modulárissá válik, és a hálózat bármely pontján könnyen bővíthető, illetve a hálózat bármely pontjáról elérhetővé válik a rendszer. 
+Egyes eszközökre a gyártó akár olyan fundamentális frissítéseket is kiadhat, amely nagymértékben képes lehet az adott eszköz funkcionalitását javítani, 
+vagy új funkciók hozzáadásával tovább növelni a komponens értékét.
+
+%----------------------------------------------------------------------------
+\subsection{Hátrányok}
+%----------------------------------------------------------------------------
+
+A digitális hangfeldolgozás nagy flexibilitást és helytakarékosságot hozott el
+magával ebben az iparágban, de mindez nem teljes mértékben jött hátrány nélkül.
+Még a legmodernebb és legjobb A-D (analog to digital) konverterek sem tudták
+teljes mértékben visszaadni azt a tipikus analog hangot, amire egy analog
+hangrendszer képes. Ez elsősorban abból fakad, hogy egy átlagos digitális
+keverővel és végfokrendszerrel ellátott új generációs hangrendszerben sok A-D és
+D-A konverzió történik, és minden egyes konverzi-óval, hiába veszünk sok mintát
+(96 kHz 24 bit 3000+kbps), a hang akkor is veszt egy kicsit a
+karakterisztikájából.
 
 
+%----------------------------------------------------------------------------
+\subsection{Fázishelyesség}
+%----------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------
+\subsection{Időszinkronizáció}
+%----------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------
+\subsection{Mintavételi frekvencia és bitmélység}
+%----------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------
+\subsection{Késleltetés és bufferek}
+%----------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------
+\subsection{IP címek és maszkok}
+%----------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------
+\subsection{Unicast és Multicast}
+%----------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------
+\subsection{Redundancia}
+%----------------------------------------------------------------------------
+
+ 
 
 %----------------------------------------------------------------------------
 \section{AES67}
 %----------------------------------------------------------------------------
 
 
+%----------------------------------------------------------------------------
+\section{Waves SoundGrid} 
+%----------------------------------------------------------------------------
+% https://www.soundonsound.com/reviews/wavesdigico-digigrid
+% https://www.waves.com/support/soundgrid-system-design-guidelines
+% https://www.fullcompass.com/common/files/12568-WhitePaper.pdf
+
 
 %----------------------------------------------------------------------------
-\section{Waves}
+\section{Audinate Dante}
 %----------------------------------------------------------------------------
 
 
-
-%----------------------------------------------------------------------------
-\section{Dante}
-%----------------------------------------------------------------------------

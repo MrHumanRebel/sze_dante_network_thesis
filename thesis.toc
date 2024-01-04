@@ -2,21 +2,41 @@
 \select@language {magyar} \contentsline {section}{\numberline {1.1}A kezdetek}{2}{section.1.1}%
 \select@language {magyar} \contentsline {subsection}{\numberline {1.1.1}Téma választás}{2}{subsection.1.1.1}%
 \select@language {magyar} \contentsline {chapter}{\numberline {2}Audio over IP rendszerek bemutatása}{4}{chapter.2}%
-\select@language {magyar} \contentsline {section}{\numberline {2.1}AES67}{4}{section.2.1}%
-\select@language {magyar} \contentsline {section}{\numberline {2.2}Waves}{4}{section.2.2}%
-\select@language {magyar} \contentsline {section}{\numberline {2.3}Dante}{4}{section.2.3}%
-\select@language {magyar} \contentsline {chapter}{\numberline {3}Rendszertervezés}{5}{chapter.3}%
-\select@language {magyar} \contentsline {section}{\numberline {3.1}Követelmények}{5}{section.3.1}%
-\select@language {magyar} \contentsline {section}{\numberline {3.2}Rendszerterv}{5}{section.3.2}%
-\select@language {magyar} \contentsline {chapter}{\numberline {4}Rendszer telepítése elő környezetben}{6}{chapter.4}%
-\select@language {magyar} \contentsline {section}{\numberline {4.1}Martin Audio Wavefront Precision hangrendszer telepítése}{6}{section.4.1}%
-\select@language {magyar} \contentsline {section}{\numberline {4.2}Allen \& Heath digitális keverőrendszer telepítése}{6}{section.4.2}%
-\select@language {magyar} \contentsline {section}{\numberline {4.3}Dante audio szerver telepítése}{6}{section.4.3}%
-\select@language {magyar} \contentsline {section}{\numberline {4.4}Dante rendszer konfigurálása}{6}{section.4.4}%
-\select@language {magyar} \contentsline {chapter}{\numberline {5}Üzemeltetési tapasztalatok és továbbfejlesztési lehetőségek}{7}{chapter.5}%
-\select@language {magyar} \contentsline {section}{\numberline {5.1}További eszközök integrálása}{7}{section.5.1}%
-\select@language {magyar} \contentsline {section}{\numberline {5.2}Bővítés nagyobb interfészre}{7}{section.5.2}%
-\select@language {magyar} \contentsline {chapter}{Köszönetnyilvánítás}{8}{chapter*.4}%
-\select@language {magyar} \contentsline {chapter}{\'Abr\'ak jegyz\'eke}{9}{chapter*.4}%
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{9}{chapter*.4}%
-\select@language {magyar} \contentsline {chapter}{Függelék}{11}{appendix*.6}%
+\select@language {magyar} \contentsline {section}{\numberline {2.1}Bevezetés az Audio over IP világába}{4}{section.2.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.1.1}Előnyök}{4}{subsection.2.1.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.1.2}Hátrányok}{4}{subsection.2.1.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.1.3}Fázishelyesség}{5}{subsection.2.1.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.1.4}Időszinkronizáció}{5}{subsection.2.1.4}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.1.5}Mintavételi frekvencia és bitmélység}{5}{subsection.2.1.5}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.1.6}Késleltetés és bufferek}{5}{subsection.2.1.6}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.1.7}IP címek és maszkok}{5}{subsection.2.1.7}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.1.8}Unicast és Multicast}{5}{subsection.2.1.8}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.1.9}Redundancia}{5}{subsection.2.1.9}%
+\select@language {magyar} \contentsline {section}{\numberline {2.2}AES67}{5}{section.2.2}%
+\select@language {magyar} \contentsline {section}{\numberline {2.3}Waves SoundGrid}{5}{section.2.3}%
+\select@language {magyar} \contentsline {section}{\numberline {2.4}Audinate Dante}{5}{section.2.4}%
+\select@language {magyar} \contentsline {chapter}{\numberline {3}Rendszertervezés és telepítés elő környezetben}{6}{chapter.3}%
+\select@language {magyar} \contentsline {section}{\numberline {3.1}Követelmények}{6}{section.3.1}%
+\select@language {magyar} \contentsline {section}{\numberline {3.2}Rendszerterv}{6}{section.3.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.2.1}Martin Audio Wavefront Precision hangrendszer}{6}{subsection.3.2.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.2.2}Allen \& Heath digitális keverőrendszer}{6}{subsection.3.2.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.2.3}Shure ULXD digitális vezeték nélküli mikrofonrendszer}{6}{subsection.3.2.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.2.4}Dante audio szerver}{6}{subsection.3.2.4}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.2.5}Dante hálózat kialakítása és optimalizálása}{6}{subsection.3.2.5}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.2.5.1}Dante Controller: Hálózati mátrix}{6}{subsubsection.3.2.5.1}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.2.5.2}Dante Controller: Eszköz nézet}{6}{subsubsection.3.2.5.2}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.2.5.3}Dante Controller: Órajel nézet}{7}{subsubsection.3.2.5.3}%
+\select@language {magyar} \contentsline {section}{\numberline {3.3}Rendszermérések és monitorozás}{7}{section.3.3}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.3.0.1}Dante Controller: Hálózati állapot nézet}{7}{subsubsection.3.3.0.1}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.3.0.2}Dante Controller: Események nézet}{7}{subsubsection.3.3.0.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.1}Cardioid mélyláda rendszer mérése}{7}{subsection.3.3.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.2}Mélyláda és Line Array fázishelyesség}{7}{subsection.3.3.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.3}Rendszer hangnyomás szint és frekvencia átvitel mérése}{7}{subsection.3.3.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.4}Dante rendszer monitorozása}{7}{subsection.3.3.4}%
+\select@language {magyar} \contentsline {chapter}{\numberline {4}Üzemeltetési tapasztalatok és továbbfejlesztési lehetőségek}{8}{chapter.4}%
+\select@language {magyar} \contentsline {section}{\numberline {4.1}További eszközök integrálása}{8}{section.4.1}%
+\select@language {magyar} \contentsline {section}{\numberline {4.2}Bővítés nagyobb interfészre}{8}{section.4.2}%
+\select@language {magyar} \contentsline {chapter}{Köszönetnyilvánítás}{9}{chapter*.5}%
+\select@language {magyar} \contentsline {chapter}{\'Abr\'ak jegyz\'eke}{10}{chapter*.5}%
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{10}{chapter*.5}%
+\select@language {magyar} \contentsline {chapter}{Függelék}{12}{appendix*.7}%

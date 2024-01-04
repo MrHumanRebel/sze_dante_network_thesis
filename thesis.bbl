@@ -26,7 +26,7 @@
   \bibEarlyBegin
 \else \let\bibEarlyEnd\relax \fi
 
-\begin{thebibliography}{}
+\begin{thebibliography}{1}
 \frenchspacing
 \makeatletter
 \global\def\bibIE@lowc{%
@@ -92,5 +92,20 @@
 \def\bibTechRep#1{Jelent\'{e}s}
 \def\bibInSelf#1{In u\H{o}: }
 \csname bibOverride\endcsname
+
+\bibitem{AHNERT2023}
+Wolfgang Ahnert\bibAnd 1Dirk Noy\bibEd 1:
+\bibNewBlock {\em Sound Reinforcement for Audio Engineers}.
+\bibNewBlock Abingdon, Oxon and New York, NY, 2023, Routledge.
+\bibNewBlock ISBN 978-1-032-11518-4 (hbk).
+
+\bibitem{MCCARTHY2016}
+Bob McCarthy:
+\bibNewBlock {\em Sound Systems: Design and Optimization}.
+\bibNewBlock Third edition. kiad.
+\bibNewBlock New York, NY and Abingdon, Oxon, 2016, Focal Press, 12--842.~p.
+\bibNewBlock ISBN 978-0-415-73101-0 (pbk).
+\bibNewBlock Library of Congress Cataloging-in-Publication Data: TK7881.4.M42
+  2016.
 
 \end{thebibliography}

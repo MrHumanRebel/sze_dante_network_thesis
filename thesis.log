@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.12.28)  3 JAN 2024 10:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.12.28)  4 JAN 2024 10:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -601,7 +601,7 @@ File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count334
 \l__pdf_internal_box=\box101
-) (./thesis.aux (./include/outercover.aux) (./include/titlepage.aux) (./include/project.aux) (./include/declaration.aux) (./content/abstract.aux) (./content/introduction.aux) (./content/audio_over_ip_systems.aux) (./content/system_desing.aux) (./content/system_deployment.aux) (./content/further_development.aux) (./content/acknowledgement.aux) (./content/appendices.aux))
+) (./thesis.aux (./include/outercover.aux) (./include/titlepage.aux) (./include/project.aux) (./include/declaration.aux) (./content/abstract.aux) (./content/introduction.aux) (./content/audio_over_ip_systems.aux) (./content/system_desing.aux) (./content/further_development.aux) (./content/acknowledgement.aux) (./content/appendices.aux))
 \openout1 = `thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
@@ -690,12 +690,12 @@ Package hyperref Info: Option `pageanchor' set `false' on input line 22.
 
  (./include/titlepage.tex
 Package hyperref Info: Option `pageanchor' set `false' on input line 1.
-<figures/sze_logo_wide.pdf, id=95, 1159.33125pt x 301.125pt>
+<figures/sze_logo_wide.pdf, id=175, 1159.33125pt x 301.125pt>
 File: figures/sze_logo_wide.pdf Graphic file (type pdf)
 <use figures/sze_logo_wide.pdf>
 Package pdftex.def Info: figures/sze_logo_wide.pdf  used on input line 13.
 (pdftex.def)             Requested size: 164.30423pt x 42.67912pt.
-<figures/dept_it_logo.png, id=96, 217.31187pt x 52.195pt>
+<figures/dept_it_logo.png, id=176, 217.31187pt x 52.195pt>
 File: figures/dept_it_logo.png Graphic file (type png)
 <use figures/dept_it_logo.png>
 Package pdftex.def Info: figures/dept_it_logo.png  used on input line 13.
@@ -769,14 +769,14 @@ File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 \c@romanPage=\count343
 ) [2
 
-] (./thesis.toc)
+] (./thesis.toc [3
+
+
+])
 \tf@toc=\write4
 \openout4 = `thesis.toc'.
 
- [1
-
-
-]
+ [1]
 \openout2 = `content/introduction.aux'.
 
  (./content/introduction.tex
@@ -794,32 +794,32 @@ File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 
 
 
-]
+] [5]
 \openout2 = `content/system_desing.aux'.
 
  (./content/system_desing.tex
 3. fejezet.
-) [5
+<figures/Dante_IPs.png, id=274, 1247.41031pt x 569.12625pt>
+File: figures/Dante_IPs.png Graphic file (type png)
+<use figures/Dante_IPs.png>
+Package pdftex.def Info: figures/Dante_IPs.png  used on input line 94.
+(pdftex.def)             Requested size: 426.79134pt x 194.71614pt.
+[6
 
 
 
 
 ]
-\openout2 = `content/system_deployment.aux'.
 
- (./content/system_deployment.tex
-4. fejezet.
-) [6
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 120.
 
-
-
-
-]
+) [7 <./figures/Dante_IPs.png>]
 \openout2 = `content/further_development.aux'.
 
  (./content/further_development.tex
-5. fejezet.
-) [7
+4. fejezet.
+) [8
 
 
 
@@ -827,7 +827,7 @@ File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ]
 \openout2 = `content/acknowledgement.aux'.
 
- (./content/acknowledgement.tex) [8
+ (./content/acknowledgement.tex) [9
 
 
 
@@ -836,47 +836,38 @@ File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 \tf@lof=\write5
 \openout5 = `thesis.lof'.
 
- (./thesis.bbl [9
+ (./thesis.bbl [10
 
 
-]
-
-Package natbib Warning: Empty `thebibliography' environment on input line 96.
-
-) [10
+]) [11
 
 ]
 \openout2 = `content/appendices.aux'.
 
- (./content/appendices.tex) [11
+ (./content/appendices.tex) [12
 
 
 ]
 \tf@thm=\write6
 \openout6 = `thesis.thm'.
 
-
-
-Package caption Warning: Unused \captionsetup[figure] on input line 110.
-See the caption package documentation for explanation.
-
-(./thesis.aux (./include/outercover.aux) (./include/titlepage.aux) (./include/project.aux) (./include/declaration.aux) (./content/abstract.aux) (./content/introduction.aux) (./content/audio_over_ip_systems.aux) (./content/system_desing.aux) (./content/system_deployment.aux) (./content/further_development.aux) (./content/acknowledgement.aux) (./content/appendices.aux))
+ (./thesis.aux (./include/outercover.aux) (./include/titlepage.aux) (./include/project.aux) (./include/declaration.aux) (./content/abstract.aux) (./content/introduction.aux) (./content/audio_over_ip_systems.aux) (./content/system_desing.aux) (./content/further_development.aux) (./content/acknowledgement.aux) (./content/appendices.aux))
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 5381B08026DBB350B542E4C05D169338;3828.
+(rerunfilecheck)             Checksum: ABABC8E3EB95D3B773B5889082F9CC87;8419.
  ) 
 Here is how much of TeX's memory you used:
- 20387 strings out of 478287
- 355743 string characters out of 5849288
- 660582 words of memory out of 5000000
- 38156 multiletter control sequences out of 15000+600000
+ 20426 strings out of 478287
+ 355805 string characters out of 5849288
+ 664911 words of memory out of 5000000
+ 38178 multiletter control sequences out of 15000+600000
  520163 words of font info for 59 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
- 75i,5n,81p,671b,393s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 75i,6n,81p,671b,519s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtl10.pfb>
-Output written on thesis.pdf (17 pages, 190904 bytes).
+Output written on thesis.pdf (19 pages, 278768 bytes).
 PDF statistics:
- 223 PDF objects out of 1000 (max. 8388607)
- 186 compressed objects within 2 object streams
- 25 named destinations out of 1000 (max. 500000)
- 187 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 345 PDF objects out of 1000 (max. 8388607)
+ 302 compressed objects within 4 object streams
+ 48 named destinations out of 1000 (max. 500000)
+ 352 words of extra memory for PDF output out of 10000 (max. 10000000)
 
