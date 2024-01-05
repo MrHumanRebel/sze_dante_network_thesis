@@ -18,11 +18,9 @@ Az új rendszer tervezésekor a következő szempontokat tartottam szem előtt:
 
 
 
-
-
 Hangrendszer szempontjából a Martin Audio Wavefront Precision szériás termékeire esett a választás.
 Mivel teljes mértékben digitális rendszert elérése volt a cél, ezért a Dante modullal
-rendelkező Martin Audio iK42 és iK81 végfokok tökéletesen illeszkedtek a rendszerbe.
+rendelkező Martin Audio iKON iK42 és iK81 végfokok tökéletesen illeszkedtek a rendszerbe.
 Mindkét végfok csúcskategóriás teljesítményt és hangminőséget nyújt, és a D kategóriás
 erősítőknek köszönhetően rendkívül kis helyet foglalnak el a rackben miközben kiváló hatásfok
 mellett képesek nagy teljesítményt leadni. A végfokokat a Dante hálózaton keresztül
@@ -32,17 +30,25 @@ tudjuk a végfokokat a hálózatra kötni. A végfokrendszer fő vezérlő proto
 Minden egyes végfokrackben két MikroTik 24 portos switch lesz. Az egyik switch a Dante elsődleges hálózatát fogja kizárólag kezelni.
 A másik switch a Dante másodlagos hálózatát, és a VU-NET hálózatot fogja kezelni.
 Ez a két alhálózat VLAN szegmensekkel lesz elkülönítve, hogy a hálózat biztonságos és stabil legyen.
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth, keepaspectratio]{figures/ikon_ik42.jpg}
+        \caption{Martin Audio iK42 végfok}\label{fig:ikon_ik42}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth, keepaspectratio]{figures/ikon_ik81.jpg}
+        \caption{Martin Audio iK81 végfok}\label{fig:ikon_ik81}
+    \end{minipage}
+\end{figure}
+%----------------------------------------------------------------------------
 
+!!!ÁBRA HELYE!!! Egy jel útja a régi hibrid rendszerben
 
-
-!!!ÁBRA HELYE!!!
-
-Egy jel útja a régi hibrid rendszerben
-
-
-!!!ÁBRA HELYE!!!
-
-Egy jel útja az új teljesen digitális rendszerben
+!!!ÁBRA HELYE!!! Egy jel útja az új teljesen digitális rendszerben
 
 %----------------------------------------------------------------------------
 \subsection{Martin Audio Wavefront Precision hangrendszer}
@@ -120,7 +126,7 @@ A hozzáadás gombra kattintva a elénk kerül a fő kezelőfelület, ahol a han
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=50mm, keepaspectratio]{figures/display_wpc_0.png}
-	\caption{Display 2.3.4 b1 szoftver kezdőképernyője (WPC)}\label{fig:display_wpc_0}
+	\caption{Display 2.3.4 b1 kezdőképernyője (WPC)}\label{fig:display_wpc_0}
 \end{figure}
 %----------------------------------------------------------------------------
 A tervezési folyamat öt alrészre osztható, amiket a szoftverben külön kezelünk.
@@ -131,7 +137,7 @@ balról jobbra haladva. Mivel a különböző részegységek egymásra épülnek
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth, keepaspectratio]{figures/display_wpc_0_1.png}
-	\caption{Display 2.3.4 b1 szoftver fő kezelőfelülete (WPC)}\label{fig:display_wpc_0_1}
+	\caption{Display 2.3.4 b1 fő kezelőfelülete (WPC)}\label{fig:display_wpc_0_1}
 \end{figure}
 %----------------------------------------------------------------------------
 A \textit{``Slice''} panelen meghatározzuk a rendszer fizikai pozícióját térben. A csarnok
@@ -200,7 +206,7 @@ a 14-es érték egyenletes és dinamikus hangvisszaadást biztosít.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth, keepaspectratio]{figures/display_wpc_2.png}
-	\caption{Display 2.3.4 b1 \textit{``Cover''}kezelőfelülete (WPC)}\label{fig:display_wpc_2}
+	\caption{Display 2.3.4 b1 \textit{``Cover''} kezelőfelülete (WPC)}\label{fig:display_wpc_2}
 \end{figure}
 %----------------------------------------------------------------------------
 Miután a \textit{``Cover''} kezelőfelületen elvégeztük a szükséges beállításokat, a \textit{``Splay''} kezelőfelületen folytatjuk a tervezést.
@@ -219,14 +225,14 @@ nem szoktam módosítani. A \textit{``Max Time''} mezőben megadott érték más
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth, keepaspectratio]{figures/display_wpc_3.png}
-	\caption{Display 2.3.4 b1 \textit{``Splay''}kezelőfelülete (WPC)}\label{fig:display_wpc_3}
+	\caption{Display 2.3.4 b1 \textit{``Splay''} kezelőfelülete (WPC)}\label{fig:display_wpc_3}
 \end{figure}
 %----------------------------------------------------------------------------
 A következő lépés a \textit{``Rig''} kezelőfelületen történik. Ez a felület elsősorban az eddig elkészített
 rendszerünket fogja megjeleníteni térben. Elsődleges beállítási paraméter ezen a panelen, hogy egy vagy két pontos
 rögzítést szeretnénk-e használni. Jelen esetben egy pontos  rögzítést fogunk használni. Amennyiben valamilyen okból
 szeretnénk változtatni a rendszer fizikai elhelyezkedésén, még megtehetjük, de ez a lépés ezen a ponton már nem ajánlott.
-Bármely változtatás kardinálisan más eredményt fog eredményezni. A tervezési folyamatot újra kell kezdeni, ellenkező esetben
+Bármely kis apró változtatás kardinálisan más végeredményhez vezethet. A tervezési folyamatot újra kell kezdeni, ellenkező esetben
 a szoftver nem fogja tudni a megfelelő eredményt produkálni, és a rendszerünk nem úgy fog viselkedni a valóságban, ahogy azt mi szeretnénk.
 A hangrendszer függesztéséhez és összeszereléséhez az összes információ megtalálható itt. Gondolva itt a riggvas fokolási helyére,
 a ládák közti szögekre, a rendszer legfelső és legalsó pontjára.
@@ -238,7 +244,7 @@ Ezek után a rendszert az említett paraméterek alapján össze építjük, fig
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth, keepaspectratio]{figures/display_wpc_4.png}
-	\caption{Display 2.3.4 b1 \textit{``Rig''}kezelőfelülete (WPC)}\label{fig:display_wpc_4}
+	\caption{Display 2.3.4 b1 \textit{``Rig''} kezelőfelülete (WPC)}\label{fig:display_wpc_4}
 \end{figure}
 %----------------------------------------------------------------------------
 Az utolsó lépés mielőtt ki tudnánk menteni a tervezett rendszert, az a \textit{``EQ''} kezelőfelületen történik.
@@ -269,10 +275,17 @@ a referencia értéktől való eltérésekről.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth, keepaspectratio]{figures/display_wpc_5.png}
-	\caption{Display 2.3.4 b1 \textit{``EQ''}kezelőfelülete (WPC)}\label{fig:display_wpc_5}
+	\caption{Display 2.3.4 b1 \textit{``EQ''} kezelőfelülete (WPC)}\label{fig:display_wpc_5}
 \end{figure}
 %----------------------------------------------------------------------------
-
+Amennyiben szeretnénk megtekinteni a tervezett rendszer teljesítményét amit a program számított ki, 
+akkor az \textit{``SPL''} kezelőfelületen, az \textit{``Index Plot''}-on a bal egeret nyomva tartva
+tudunk virtuálisan mozogni a teremben, és megtekinthetjük a számított hangnyomás és frekvencia eloszlás értékeket.
+Ha mindent rendben találunk és nincsenek kivetnivalóink a tervezett rendszerrel kapcsolatban, akkor
+sikeresen megterveztük a hangrendszert, és elmenthetjük a projektet.
+A mentés során egy MAT kiterjesztésű fájlt fogunk kapni, segítségével később bármikor újra megnyithatjuk a projektet,
+ha ugyan azon a helyszínen dolgozunk, gyorsabban és egyszerűbben tudjuk a rendszert újra tervezni, a szükséges
+módosításokat elvégezni.
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
@@ -280,17 +293,16 @@ a referencia értéktől való eltérésekről.
 	\caption{Display 2.3.4 b1 \textit{``SPL''}kezelőfelülete (WPC)}\label{fig:display_wpc_6}
 \end{figure}
 %----------------------------------------------------------------------------
-
+Az utolsó dolgunk ebben a programban mielőtt át térünk a Martin Audio VU-NET rendszer szoftverére, hogy exportáljuk a tervezett rendszert.
+Az exportálás során egy D2P kiterjesztésű fájlt fogunk kapni, amit a VU-NET szoftver fog tud majd importálni a későbbiekben.
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth, keepaspectratio]{figures/display_wpc_7.png}
-	\caption{Display 2.3.4 b1 szoftver exportáló kezelőfelülete (WPC)}\label{fig:display_wpc_7}
+	\caption{Display 2.3.4 b1 exportáló kezelőfelülete (WPC)}\label{fig:display_wpc_7}
 \end{figure}
 %----------------------------------------------------------------------------
-
-%----------------------------------------------------------------------------
-\subsubsection{Martin Audio VU-NET rendszer szoftver}
+\subsubsection{Martin Audio VU-NET rendszer szoftver \cite{VUNETUSERGUIDE}}
 %----------------------------------------------------------------------------
 
 
