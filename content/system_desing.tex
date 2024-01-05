@@ -47,7 +47,7 @@ Egy jel útja az új teljesen digitális rendszerben
 %----------------------------------------------------------------------------
 \subsection{Martin Audio Wavefront Precision hangrendszer}
 %----------------------------------------------------------------------------
-\subsubsection{Martin Audio Display 2.3.4 b1 tervező szoftver}
+\subsubsection{Martin Audio Display 2.3.4 b1 tervező szoftver \cite{DISPLAY23USERGUIDE}}
 %----------------------------------------------------------------------------
 Mielőtt bele kezdenénk a tervezési folyatba, fontos megemlíteni, hogy a szoftver 
 eredetileg Intel alapú processzorokra lett tervezve és MatLab alapú. Ebből fakadóan
@@ -101,7 +101,7 @@ Első lépésben a fő hangrendszert tervezem meg, ami oldalanként (bal és job
 Ez a láda 2 darab 10"-os mélysugárzót, 2 darab 5"-os közép sugárzót és 4 darab 0.7"-os magassugárzót tartalmaz.
 Három utas Bi-amp meghajtású külső végfokot igénylő rendszer, ahol a mély tartományt (+1,-1) és a középmagas tartományt (+2,-2) külön kezeljük,
 a négypólusú Neutrik Speakon csatlakozókon keresztül. 
-A láda maximális hangnyomás szintje 135 dB, és 65 Hz-től 18 kHz-ig terjed a frekvencia átvitele +- 3 dB pontossággal. \cite{MARTINAUDIOWPC}
+A láda maximális hangnyomás szintje 135 dB, és 65 Hz-től 18 kHz-ig terjed a frekvencia átvitele +- 3 dB pontossággal. \cite{WPCUSERGUIDE}
 %----------------------------------------------------------------------------
 \begin{figure}[H]
     \centering
@@ -120,7 +120,7 @@ A hozzáadás gombra kattintva a elénk kerül a fő kezelőfelület, ahol a han
 \begin{figure}[H]
     \centering
     \includegraphics[width=50mm, keepaspectratio]{figures/display_wpc_0.png}
-    \caption{Display 2.3.4 b1 szoftver kezdőképernyője}\label{fig:display_wpc_0}
+    \caption{Display 2.3.4 b1 szoftver kezdőképernyője (WPC)}\label{fig:display_wpc_0}
 \end{figure}
 %----------------------------------------------------------------------------
 A tervezési folyamat öt alrészre osztható, amiket a szoftverben külön kezelünk.
@@ -131,7 +131,7 @@ balról jobbra haladva. Mivel a különböző részegységek egymásra épülnek
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth, keepaspectratio]{figures/display_wpc_0_1.png}
-    \caption{Display 2.3.4 b1 szoftver fő kezelőfelülete}\label{fig:display_wpc_0_1}
+    \caption{Display 2.3.4 b1 szoftver fő kezelőfelülete (WPC)}\label{fig:display_wpc_0_1}
 \end{figure}
 %----------------------------------------------------------------------------
 A \textit{``Slice''} panelen meghatározzuk a rendszer fizikai pozícióját térben. A csarnok
@@ -146,37 +146,99 @@ A terem pontos rajza után még két fontos paramétert kell megadni ezen a fel�
 El kell helyeznünk magát a hangrendszert a teremben, és meg kell határoznunk milyen magasra szeretnénk a rendszert emelni.
 Mivel a csarnok rendkívül hosszú, és a adottságai megengedik, ezért a rendszert minél magasabbra szeretnénk emelni, 
 a jobb lefedettség érdekében.
-
-
+A másik fontos paraméter az optimalizációhoz, a könzönség területének meghatározása. Kezdő és végpont segítségével
+tudjuk a területet meghatározni, ahol a hallgatóközönség tartózkodni fog.
 %----------------------------------------------------------------------------
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth, keepaspectratio]{figures/display_wpc_1.png}
-    \caption{Display 2.3.4 b1 szoftver \textit{``Slice''} kezelőfelülete}\label{fig:display_wpc_1}
+    \caption{Display 2.3.4 b1 \textit{``Slice''} kezelőfelülete (WPC)}\label{fig:display_wpc_1}
 \end{figure}
 %----------------------------------------------------------------------------
-
+A következő lépések a \textit{``Cover''} kezelőfelületen történnek.
+Első és legfontosabb beállítás amit el kell végezni, hogy a hallgatóság az esemény során ülni vagy állni fog-e.
+Lehetőségünk van a nézőteret különböző részekre is osztani, amennyiben a rendezvény során különböző helyeken
+eltérő típusú részeket szeretnénk egyenletesen lefedni. Lehetőség van egyedi magasság beállítására is,
+de jelen esetben a közönség egyhangúan állva fogja hallgatni a produkciót, ezért a \textit{``Standing''} opciót választottam.
+Az előző lépésben elkészített rajzunkon definiálhatunk a program számára három fő régiót. 
+\newline Ezek az alábbiak:
+%----------------------------------------------------------------------------
+\begin{itemize}
+    \item \textit{``Non Audience''} - a közönség területén kívül eső terület
+    \item \textit{``Audience''} - a közönség területe
+    \item \textit{``Hard Avoid''} - a közönség területén kívül eső terület, ahol a hangvisszaverődést szeretnénk minimalizálni
+\end{itemize}
+%----------------------------------------------------------------------------
+Jelen esetben a fő hangrendszernél nem jelöltem meg a \textit{``Hard Avoid''} területet, mivel a teremben az első olyan felület
+ami a hangvisszaverődést okozna már olyan távol helyezkedik el a hangrendszertől, hogy a hangvisszaverődés már nem okoz problémát.
+A következő lépéseket előkészítve meg kell határoznunk a hangrendszertől egy adott távolságra lévő pontot a teremben,
+amit referencia pontként fogunk használni. Ezt a pontot a \textit{``Move Ref''} gombra kattintva tudjuk megadni, 
+vagy manuálisan beírva az X és Y koordinátákat. Automatikusan a terem közepére van pozícionálva a referencia pont, de 
+ezt erősen ajánlott mozgatni attól függően mit szeretnénk elérni. Jelen esetben a mix pultot fogjuk a referencia pontnak megadni.
+A \textit{``Start''} és \textit{``Stop''} mezőkben meg kell adnunk, hogy a referencia ponttól véve mekkora hangnyomás 
+deltával szeretnénk dolgozni. Ez azt jelenti, hogy a kezdő, a referencia és a végpont közötti hangnyomás hány dB-el térhet el egymástól.
+Ezt az értéket a szoftver az eddig megadott információk alapján automatikusan kiszámolja, de manuálisan is megadhatjuk.
+Az automatikus számítás az esetek többségében megfelelő eredményt ad, ezért most is ezt választottam.
+A \textit{``Target SPL''} mezőben megadhatjuk a referencia ponton elérni kívánt hangnyomás szintet.
+Így a rendszer \textit{``Gain''} struktúrája úgy lesz beállítva, hogy a referencia ponton 0 dBu bemeneti szint mellett elérjük a megadott hangnyomás szintet.
+Magas frekvenciák csökkennek ahogy a távolság nő a forrástól, azaz a hangrendszertől.
+Ha egyenletes frekvencia választást szeretnénk elérni nagyobb távolságokon, akkor a rendszernek nagyobb energiára lenne szüksége
+a magas frekvenciákon, és kifutna a dinamika tartalékból, ezért jobb megoldás, ha a magas frekvenciák fokozatosan csökkennek a távolság növekedésével.
+Beállíthajuk a levegő veszteség kompenzációját, teljesen balra állítva nincs kompenzáció (figyelmen kívül hagyva a levegő abszorpcióját).
+Teljesen jobbra állítva a maximális kompenzáció (a rendszernek 17dB headroom-ra van szüksége, hogy egyenes választ kapjunk). 
+Viszont ezeből az következik, hogyha túlságosan sok a kompenzáció, akkor a rendszernek nem lesz elég dinamika tartaléka, és a hang torzulni fog.
+A változások hatását a \textit{``Target Response''} ábrán láthatjuk.
+Ahhoz, hogy a számítások pontosak legyenek, elengedhetetlen, hogy pontosan megadjuk a környezeti változókat,
+a hőmérsékletet, a páratartalmat és a légnyomást. Ezeket a paramétereket a \textit{``Edit''} gombra kattintva tudjuk megadni.
+Jelen esetben mivel a teremben alapból is meleg van, a mérés időpontjában 28 fok, és a rendezvény során a közönség is melegíti a termet,
+ezért a hőmérsékletet harminc fokra állítottam. 
+A páratartalom értéke a méréskor 57\%-os volt, de én 65\%-ra állítottam, mivel a rendezvény során a közönség által kibocsátott
+vízgőz miatt a páratartalom nagy valószínűséggel magasabb lesz ennél. A légnyomás értékét pedig a helyi időjárás jelentésből vettem, ami
+azon a napon 101800 Pa volt. Ezek beállítása után mivel az adott hangládához a gyári beállítások nagyon jók, ezért nem változtattam rajtuk,
+a 14-es érték egyenletes és dinamikus hangvisszaadást biztosít.
 %----------------------------------------------------------------------------
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth, keepaspectratio]{figures/display_wpc_2.png}
-    \caption{Display 2.3.4 b1 szoftver \textit{``Cover''}kezelőfelülete}\label{fig:display_wpc_2}
+    \caption{Display 2.3.4 b1 \textit{``Cover''}kezelőfelülete (WPC)}\label{fig:display_wpc_2}
 \end{figure}
 %----------------------------------------------------------------------------
-
+Miután a \textit{``Cover''} kezelőfelületen elvégeztük a szükséges beállításokat, a \textit{``Splay''} kezelőfelületen folytatjuk a tervezést.
+Az optimalizáció ezen részén a hangrendszert fogjuk a hallgatóság területére irányítani, a fokolási szögek beállításával.
+A szoftver által biztosított optimalizációs algoritmus a lehető legjobb lefedettségre törekszik a tervezett területen.
+Lehetőség van az optimalizáció súlyozási tényezőinek beállítására, de jelen esetben a gyári beállításokat használtam.
+Amennyiben módosítani szeretnénk a súlyozást a \textit{``Target'} és a \textit{``Leakage''} mezőkben tudjuk megadni a súlyozási tényezőket.
+A \textit{``Target''} mezőben megadott érték a közönség terület súlyozása, 
+a \textit{``Leakage''} mezőben megadott érték pedig a közönség területén kívül eső szivárgás súlyozása.
+Az \textit{``Alow Polish''} opció engedélyezi a szoftvernek, hogy egy második körben finomhangolja a splay szögeket az első próbálkozás után.
+Ezt az opciót előnyös bekapcsolni, mivel a szoftver így pontosabb eredményt tud produkálni, ezért ezt a beállítást mindig használom.
+A \textit{``Max Time''} mezőben megadhatjuk, hogy a szoftvernek mennyi idő álljon rendelkezésére az optimalizáció elvégzéséhez.
+Mivel a mai modern számítógépek olyan gyorsak, hogy a szoftver általában 1-2 perc alatt elvégzi az optimalizációt, ezért ezt az értéket
+nem szoktam módosítani. A \textit{``Max Time''} mezőben megadott érték másodpercben értendő.
 %----------------------------------------------------------------------------
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth, keepaspectratio]{figures/display_wpc_3.png}
-    \caption{Display 2.3.4 b1 szoftver \textit{``Splay''}kezelőfelülete}\label{fig:display_wpc_3}
+    \caption{Display 2.3.4 b1 \textit{``Splay''}kezelőfelülete (WPC)}\label{fig:display_wpc_3}
 \end{figure}
 %----------------------------------------------------------------------------
-
+A következő lépés a \textit{``Rig''} kezelőfelületen történik. Ez a felület elsősorban az eddig elkészített
+rendszerünket fogja megjeleníteni térben. Elsődleges beállítási paraméter ezen a panelen, hogy egy vagy két pontos
+rögzítést szeretnénk-e használni. Jelen esetben egy pontos  rögzítést fogunk használni. Amennyiben valamilyen okból
+szeretnénk változtatni a rendszer fizikai elhelyezkedésén, még megtehetjük, de ez a lépés ezen a ponton már nem ajánlott.
+Bármely változtatás kardinálisan más eredményt fog eredményezni. A tervezési folyamatot újra kell kezdeni, ellenkező esetben
+a szoftver nem fogja tudni a megfelelő eredményt produkálni, és a rendszerünk nem úgy fog viselkedni a valóságban, ahogy azt mi szeretnénk.
+A hangrendszer függesztéséhez és összeszereléséhez az összes információ megtalálható itt. Gondolva itt a riggvas fokolási helyére,
+a ládák közti szögekre, a rendszer legfelső és legalsó pontjára.
+Ezeken az információkon kívül még a rendszer súlyát és súlypontját is megkapjuk.
+Esetünkben a teljes súly 289 kilogramm, amit a csarnok tartószerkezete biztonságosan elbír, valamint az egy tonnás emelőkapacitású
+láncos emelők is képesek biztonságosan emelni. A súlypont a rendszer relatíve közepén helyezkedik el, ami stabil függesztést tesz lehetővé.
+Ezek után a rendszert az említett paraméterek alapján össze építjük, figyelve az összes program által megadott információra.
 %----------------------------------------------------------------------------
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth, keepaspectratio]{figures/display_wpc_4.png}
-    \caption{Display 2.3.4 b1 szoftver \textit{``Rig''}kezelőfelülete}\label{fig:display_wpc_4}
+    \caption{Display 2.3.4 b1 \textit{``Rig''}kezelőfelülete (WPC)}\label{fig:display_wpc_4}
 \end{figure}
 %----------------------------------------------------------------------------
 
@@ -184,7 +246,7 @@ a jobb lefedettség érdekében.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth, keepaspectratio]{figures/display_wpc_5.png}
-    \caption{Display 2.3.4 b1 szoftver \textit{``EQ''}kezelőfelülete}\label{fig:display_wpc_5}
+    \caption{Display 2.3.4 b1 \textit{``EQ''}kezelőfelülete (WPC)}\label{fig:display_wpc_5}
 \end{figure}
 %----------------------------------------------------------------------------
 
@@ -192,7 +254,7 @@ a jobb lefedettség érdekében.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth, keepaspectratio]{figures/display_wpc_6.png}
-    \caption{Display 2.3.4 b1 szoftver \textit{``SPL''}kezelőfelülete}\label{fig:display_wpc_6}
+    \caption{Display 2.3.4 b1 \textit{``SPL''}kezelőfelülete (WPC)}\label{fig:display_wpc_6}
 \end{figure}
 %----------------------------------------------------------------------------
 
@@ -200,7 +262,7 @@ a jobb lefedettség érdekében.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth, keepaspectratio]{figures/display_wpc_7.png}
-    \caption{Display 2.3.4 b1 szoftver exportáló kezelőfelülete}\label{fig:display_wpc_7}
+    \caption{Display 2.3.4 b1 szoftver exportáló kezelőfelülete (WPC)}\label{fig:display_wpc_7}
 \end{figure}
 %----------------------------------------------------------------------------
 
@@ -264,7 +326,6 @@ A címeket egy online is elérhető Excel táblázatban tároltam, hogy amennyib
 bármikor könnyen elérhető legyen. Ez a táblázat a cégnél dolgozó összes munkatárs számára látható,
 aki a rendszerrel foglalkozik. Így amennyiben új eszköz kerül a hálózatra, vagy egy eszköz IP címét
 valamilyen okból meg kell változtatni, egyszerűen elérhető a szükséges információ.
-
 %----------------------------------------------------------------------------
 \begin{figure}[H]
     \centering
