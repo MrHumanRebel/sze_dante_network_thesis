@@ -1,15 +1,8 @@
 %----------------------------------------------------------------------------
 \chapter{\SystemDesign}
 %----------------------------------------------------------------------------
-
-%----------------------------------------------------------------------------
 \section{Követelmények}
 %----------------------------------------------------------------------------
-
-
-
-
-
 
  
 
@@ -18,31 +11,47 @@
 %----------------------------------------------------------------------------
 
 
+Az új rendszer tervezésekor a következő szempontokat tartottam szem előtt:
 
 
 
+
+
+
+
+
+Hangrendszer szempontjából a Martin Audio Wavefront Precision szériás termékeire esett a választás.
+Mivel teljes mértékben digitális rendszert elérése volt a cél, ezért a Dante modullal
+rendelkező Martin Audio iK42 és iK81 végfokok tökéletesen illeszkedtek a rendszerbe.
+Mindkét végfok csúcskategóriás teljesítményt és hangminőséget nyújt, és a D kategóriás
+erősítőknek köszönhetően rendkívül kis helyet foglalnak el a rackben miközben kiváló hatásfok
+mellett képesek nagy teljesítményt leadni. A végfokokat a Dante hálózaton keresztül
+fogjuk jellel ellátni, így a hagyományos analóg XLR, vagy AES kábelezés helyett két CAT5E kábellel (a rendundancia miatt)
+tudjuk a végfokokat a hálózatra kötni. A végfokrendszer fő vezérlő protokollja miatt szükség lesz még egy CAT5E alapú
+összeköttetésre, ami az egyes végfokokat köti össze egy hálózatba a switcheken keresztül. (VU-NET protokoll)
+Minden egyes végfokrackben két MikroTik 24 portos switch lesz. Az egyik switch a Dante elsődleges hálózatát fogja kizárólag kezelni. 
+A másik switch a Dante másodlagos hálózatát, és a VU-NET hálózatot fogja kezelni. 
+Ez a két alhálózat VLAN szegmensekkel lesz elkülönítve, hogy a hálózat biztonságos és stabil legyen.
 
 
 
 !!!ÁBRA HELYE!!!
+
 Egy jel útja a régi hibrid rendszerben
 
 
-
-
-
 !!!ÁBRA HELYE!!!
+
 Egy jel útja az új teljesen digitális rendszerben
 
 %----------------------------------------------------------------------------
 \subsection{Martin Audio Wavefront Precision hangrendszer}
 %----------------------------------------------------------------------------
-
 \subsubsection{Martin Audio Display 2.3.4 b1 tervező szoftver}
-
+%----------------------------------------------------------------------------
 Mielőtt bele kezdenénk a tervezési folyatba, fontos megemlíteni, hogy a szoftver 
 eredetileg Intel alapú processzorokra lett tervezve és MatLab alapú. Ebből fakadóan
-AMD processzorokon habár elidult a szoftver, de nem volt stabil és a számítások során
+AMD Ryzen processzorokon habár elidult a szoftver, de nem volt stabil és a számítások során
 minden esetben összeomlott, és használtatalanul lassú volt. Személy szerint a saját gépem amivel dolgoztam
 sajnos ilyen processzorral van szerelve ezért muszáj volt megoldást találni a problémára.
 A Martin Audio hivatalos szoftveres támogatásához fordultam először, de sajnos nem tudtak segíteni.
@@ -51,17 +60,19 @@ sok belefektetett óra olvasás után sikerült egy olyan MatLab CMD parancsot t
 a szoftver elindul és használható. 
 Miután rájöttem a probléma gyökerére, ezt megosztottam velük, hogy a jövőben másoknak ne kelljen
 ezzel a problémával szembesülniük. 
-A probléma az alábbi volt. Az új AMD processzorok másfajta utasításkészletet használnak. 
-Ebből kifolyólag a MatLab alapú szoftver adta sima utasításokat nem tudta értelmezni a CPU.
+A hiba az alábbi volt. Az új AMD Ryzen processzorok másfajta utasításkészletet használnak. 
+Ebből kifolyólag a MatLab 2015-s runtime alapú szoftver adta alaputasításokat nem tudta értelmezni a CPU.
 A vezető szoftvermérnökkel való e-mail-es beszélgetésünk során megköszönte a probléma
 megoldását, és nemsokkal a megoldásom megosztása után a hivatalos oldalra feltölttötték
-az indító parancsfáljt. A kompatibilási probémát rögtön a script elején megoldottam,
+az indító parancsfáljt. Az e-mailben további kollaborációra is adott lehetőséget.
+A kompatibilási problémát rögtön a script elején megoldottam,
 mivel a következő parancs megadásával már használhatóvá válik a program: \texttt{set MKL\_DEBUG\_CPU\_TYPE=5} \newline
-Ez a sor a program vezérlését AVX2-re állítja át, és mivel ezt az utasításkészletet ismeri az AMD processzor
+Ez a sor a program vezérlését AVX2-re állítja át, és mivel ezt az utasításkészletet már ismeri az AMD Ryzen processzor
 is ezért a probléma már a múlté.
-Az indító fájl további részei optimalizálások a számítások gyorsítására, és a párhuzamosításra AMD processzorokon.
-
-\begin{lstlisting}[caption={A Display 2.3.4 b1 indító ".bat" scriptje AMD processzorokhoz}, label=batcode]
+Az indító fájl további sorai optimalizálások a számítások gyorsítására, és a párhuzamosítására, ezzel jobban kihasználva
+a rendelkezésre álló hardver erőforrásokat.
+%----------------------------------------------------------------------------
+\begin{lstlisting}[caption={A Display 2.3.4 b1 indító ".bat" scriptje AMD Ryzen processzorokhoz}, label=batcode, xleftmargin=\parindent]
     @echo off
     set PATH=%PATH%;C:\Program Files\Martin Audio\Display2_3_4_b1\application
     set MKL_DEBUG_CPU_TYPE=5
@@ -75,30 +86,127 @@ Az indító fájl további részei optimalizálások a számítások gyorsítás
     start "Martin Audio" Display2_3_4_b1.exe
     pause
 \end{lstlisting}
-
-
-\begin{figure}[!ht]
+%----------------------------------------------------------------------------
+\begin{figure}[H]
     \centering
-    \includegraphics[width=150mm, keepaspectratio]{figures/ambrose_email.png}
+    \includegraphics[width=\textwidth, keepaspectratio]{figures/ambrose_email.png}
     \caption{E-mail a Martin Audio vezető szoftvermérnökétől}
     \label{fig:ambrose_email}
 \end{figure}
-
-
-    
+%----------------------------------------------------------------------------
 Most, hogy már a szoftver használható és teljes mértékben működőképes, kezdjük el a tervezést.
 A modellezés során a budapesti Millenáris B csarnoka lesz a referencia helyszín. Két LineArray rendszert fogunk
 tervezni, mivel a terem hosszúsága és a lefedettség növelése miatt szükségünk lesz Delay kiegészítésre a fő hangrendszerhez.
+Első lépésben a fő hangrendszert tervezem meg, ami oldalanként (bal és jobb) 8 darab WPC LineArray modulból fog állni.
+Ez a láda 2 darab 10"-os mélysugárzót, 2 darab 5"-os közép sugárzót és 4 darab 0.7"-os magassugárzót tartalmaz.
+Három utas Bi-amp meghajtású külső végfokot igénylő rendszer, ahol a mély tartományt (+1,-1) és a középmagas tartományt (+2,-2) külön kezeljük,
+a négypólusú Neutrik Speakon csatlakozókon keresztül. 
+A láda maximális hangnyomás szintje 135 dB, és 65 Hz-től 18 kHz-ig terjed a frekvencia átvitele +- 3 dB pontossággal. \cite{MARTINAUDIOWPC}
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=80mm, keepaspectratio]{figures/wpc_front_view.jpg}
+    \caption{Martin Audio WPC LineArray modul}\label{fig:wpc}
+\end{figure}
+%----------------------------------------------------------------------------
+A program megnyitásakor a legelső lépés, hogy kiválasztjuk a termékpalettából a megfelelő hangrendszert. 
+Jelen esetben az előbbiekben említett WPC-t. A produkció igényei, a nagylétszámú közönség és a ládamennyiség miatt a rendszert
+\textit{``riggelni''} fogjuk. (maximálisan 6 darab WPC-t lehet \textit{``stackelni''}, azaz a földre vagy mélyládákra helyezni)
+A helyszín felmérése után a hangrendszer \textit{``riggelése''} lehetséges, mivel a csarnokban található tartószerkezet biztonságosan
+és tartósan képes elviselni a rendszer súlyát.
+A telepítés módja kiválasztása után megadjuk a szoftvernek a tervezni való hangláda mennyiséget, ez az esetünkben már említett 8 darab.
+A hozzáadás gombra kattintva a elénk kerül a fő kezelőfelület, ahol a hangrendszert tudjuk lépésről lépésre tervezni.
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=50mm, keepaspectratio]{figures/display_wpc_0.png}
+    \caption{Display 2.3.4 b1 szoftver kezdőképernyője}\label{fig:display_wpc_0}
+\end{figure}
+%----------------------------------------------------------------------------
+A tervezési folyamat öt alrészre osztható, amiket a szoftverben külön kezelünk.
+Ezeket a \textit{``Slice''}, \textit{``Cover''}, \textit{``Splay''}, \textit{``Rig''} és \textit{``EQ''} kezelőfelületeken tudjuk elvégezni,
+balról jobbra haladva. Mivel a különböző részegységek egymásra épülnek, ezért fontos a sorrend betartása.
+(tervezés utáni módosításokra természetesen van lehetőség, de az adott projekt első tervezési folyamata során ezeket a lépéseket kell követni)
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{figures/display_wpc_0_1.png}
+    \caption{Display 2.3.4 b1 szoftver fő kezelőfelülete}\label{fig:display_wpc_0_1}
+\end{figure}
+%----------------------------------------------------------------------------
+A \textit{``Slice''} panelen meghatározzuk a rendszer fizikai pozícióját térben. A csarnok
+pontos lemodellezése érdekében a mérésekhez lézeres távolságmérőt használtam.
+Mivel minden egyes rendezvényen más és más a különböző elemek elhelyezkedése, ezért a
+rendszert minden alkalommal újra kell tervezni, még akkor is ha maga a helyszín nem változik.
+\textit{``Vertex''} pontok segítségével tudjuk a méreteket és a pozíciókat meghatározni.
+A 2D-s modellen figyelembe kell venni a terem önálló méretén kívül a színpadod és a színpad mögötti területet is.
+A rajznak tartalmazni kell azokat a falfelületeket is amelyeknél a hangvisszaverődést minimalizálni szeretnénk,
+ennek az optimalizáció későbbi fázisában lesz jelentősége.
+A terem pontos rajza után még két fontos paramétert kell megadni ezen a felületen.
+El kell helyeznünk magát a hangrendszert a teremben, és meg kell határoznunk milyen magasra szeretnénk a rendszert emelni.
+Mivel a csarnok rendkívül hosszú, és a adottságai megengedik, ezért a rendszert minél magasabbra szeretnénk emelni, 
+a jobb lefedettség érdekében.
 
 
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{figures/display_wpc_1.png}
+    \caption{Display 2.3.4 b1 szoftver \textit{``Slice''} kezelőfelülete}\label{fig:display_wpc_1}
+\end{figure}
+%----------------------------------------------------------------------------
 
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{figures/display_wpc_2.png}
+    \caption{Display 2.3.4 b1 szoftver \textit{``Cover''}kezelőfelülete}\label{fig:display_wpc_2}
+\end{figure}
+%----------------------------------------------------------------------------
 
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{figures/display_wpc_3.png}
+    \caption{Display 2.3.4 b1 szoftver \textit{``Splay''}kezelőfelülete}\label{fig:display_wpc_3}
+\end{figure}
+%----------------------------------------------------------------------------
 
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{figures/display_wpc_4.png}
+    \caption{Display 2.3.4 b1 szoftver \textit{``Rig''}kezelőfelülete}\label{fig:display_wpc_4}
+\end{figure}
+%----------------------------------------------------------------------------
 
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{figures/display_wpc_5.png}
+    \caption{Display 2.3.4 b1 szoftver \textit{``EQ''}kezelőfelülete}\label{fig:display_wpc_5}
+\end{figure}
+%----------------------------------------------------------------------------
 
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{figures/display_wpc_6.png}
+    \caption{Display 2.3.4 b1 szoftver \textit{``SPL''}kezelőfelülete}\label{fig:display_wpc_6}
+\end{figure}
+%----------------------------------------------------------------------------
 
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{figures/display_wpc_7.png}
+    \caption{Display 2.3.4 b1 szoftver exportáló kezelőfelülete}\label{fig:display_wpc_7}
+\end{figure}
+%----------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------
 \subsubsection{Martin Audio VU-NET rendszer szoftver}
-
+%----------------------------------------------------------------------------
 
 
 %----------------------------------------------------------------------------
@@ -122,15 +230,14 @@ tervezni, mivel a terem hosszúsága és a lefedettség növelése miatt szüks�
 %----------------------------------------------------------------------------
 \subsection{Dante hálózat kialakítása és optimalizálása}
 %----------------------------------------------------------------------------
-
 \subsubsection{Dante Controller: Hálózati mátrix}
-
+%----------------------------------------------------------------------------
 Ezen a felületen tudjuk a hálózaton összekapcsolni a különböző hang vevőket és
 adókat. Egy nagyobb rendszerben a konfigurálása rendkívül nagy odafigyelést és
 precíziót igényel, pontosan tudnunk kell mit, hogyan és miért kötünk össze.
-
+%----------------------------------------------------------------------------
 \subsubsection{Dante Controller: Eszköz nézet}
-
+%----------------------------------------------------------------------------
 Mielőtt elkezdenénk konfigurálni az adott eszközt, fontos eldöntenünk, hogy
 milyen módban szeretnénk használni.
 Lehetőségünk van két fő mód közül választani, a redundáns és a
@@ -144,9 +251,9 @@ teszi egyszerűbbé. Amennyiben a rendundancia nem elsődleges szempont számunk
 minden egyes eszköz mögé switch, hanem a másodlagos RJ45 port direktbe köti
 az arra csatlakoztatott eszközt az elsődleges hálózatra. Így gyorsabban és
 költséghatékonyabban tudjuk kiépíteni a hálózatot, azonban a redundancia lehetősége megszűnik. 
-
+%----------------------------------------------------------------------------
 \subsubsection{IP kiosztás}
-
+%----------------------------------------------------------------------------
 A rendszer képes automatikusan IP címeket osztani az egyes eszközöknek, 
 így meggyorsítva a munkafolyamatot.
 Azonban egy fixen előre megtervezett rendszernél praktikusabb és
@@ -158,23 +265,21 @@ bármikor könnyen elérhető legyen. Ez a táblázat a cégnél dolgozó össze
 aki a rendszerrel foglalkozik. Így amennyiben új eszköz kerül a hálózatra, vagy egy eszköz IP címét
 valamilyen okból meg kell változtatni, egyszerűen elérhető a szükséges információ.
 
-
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=150mm, keepaspectratio]{figures/dante_ips.png}
-\caption{Dante eszközök IP címei a hálózaton}
-\label{fig:dante_ips}
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{figures/dante_ips.png}
+    \caption{Dante eszközök IP címei a hálózaton}\label{fig:dante_ips}
 \end{figure}
+%----------------------------------------------------------------------------
 
 
 
 
 
-
-
-
+%----------------------------------------------------------------------------
 \subsubsection{Dante Controller: Órajel nézet}
-
+%----------------------------------------------------------------------------
 Meg kell adnunk az audio hálózatunk master órajelét, ehhez az órajelhez
 szinkronizál a többi eszköz, az időszinkronizáció kulcsontosságú élőzenei
 produkcióknál.
@@ -187,22 +292,21 @@ produkcióknál.
 
 
 
-
+%----------------------------------------------------------------------------
 \subsection{Dante rendszer monitorozása}
+%----------------------------------------------------------------------------
 
 
 
-
-
+%----------------------------------------------------------------------------
 \subsubsection{Dante Controller: Hálózati állapot nézet}
+%----------------------------------------------------------------------------
 
 
 
-
-
+%----------------------------------------------------------------------------
 \subsubsection{Dante Controller: Események nézet}
-
-
+%----------------------------------------------------------------------------
 
 
 
