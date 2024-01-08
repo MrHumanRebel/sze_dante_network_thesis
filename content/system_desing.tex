@@ -11,10 +11,8 @@
 %----------------------------------------------------------------------------
 
 
-Az új rendszer tervezésekor a következő szempontokat tartottam szem előtt:
-
-
-
+Az új rendszer tervezésekor a következő szempontokat kellett szem előtt tartanom:
+Az új rendszer 
 
 
 
@@ -22,10 +20,13 @@ Hangrendszer szempontjából a Martin Audio Wavefront Precision szériás termé
 Mivel teljes mértékben digitális rendszert elérése volt a cél, ezért a Dante modullal
 rendelkező Martin Audio iKON iK42 és iK81 végfokok tökéletesen illeszkedtek a rendszerbe.
 Mindkét végfok csúcskategóriás teljesítményt és hangminőséget nyújt, és a D kategóriás
-erősítőknek köszönhetően rendkívül kis helyet foglalnak el a rackben miközben kiváló hatásfok
-mellett képesek nagy teljesítményt leadni. A végfokokat a Dante hálózaton keresztül
-fogjuk jellel ellátni, így a hagyományos analóg XLR, vagy AES kábelezés helyett két CAT5E kábellel (a rendundancia miatt)
-tudjuk a végfokokat a hálózatra kötni. A végfokrendszer fő vezérlő protokollja miatt szükség lesz még egy CAT5E alapú
+erősítőknek köszönhetően rendkívül kis helyet foglalnak el a rack-ben miközben kiváló hatásfok
+mellett képesek nagy teljesítményt leadni. A két erősítő között két fundamentális különbség van,
+az iK42 négy kimeneti csatornával rendelkezik, 20.000 W teljesítmény leadása mellett. 
+Ezzel szemben az iK81 nyolc kimeneti csatornával rendelkezik, 10.000 W teljesítménnyel.
+A végfokokat a Dante hálózaton keresztül fogjuk jellel ellátni, így a hagyományos analóg XLR, vagy AES kábelezés helyett
+két CAT5E kábellel (a redundancia miatt) tudjuk a végfokokat a hálózatra kötni. 
+A végfokrendszer fő vezérlő protokollja miatt szükség lesz még egy CAT5E alapú
 összeköttetésre, ami az egyes végfokokat köti össze egy hálózatba a switcheken keresztül. (VU-NET protokoll)
 Minden egyes végfokrackben két MikroTik 24 portos switch lesz. Az egyik switch a Dante elsődleges hálózatát fogja kizárólag kezelni.
 A másik switch a Dante másodlagos hálózatát, és a VU-NET hálózatot fogja kezelni.
@@ -55,10 +56,10 @@ Ez a két alhálózat VLAN szegmensekkel lesz elkülönítve, hogy a hálózat b
 %----------------------------------------------------------------------------
 \subsubsection{Martin Audio Display 2.3.4 b1 tervező szoftver \cite{DISPLAY23USERGUIDE}}
 %----------------------------------------------------------------------------
-Mielőtt bele kezdenénk a tervezési folyatba, fontos megemlíteni, hogy a szoftver
+Mielőtt bele fognánk a tervezési folyamatba, fontos megemlíteni, hogy a szoftver
 eredetileg Intel alapú processzorokra lett tervezve és MatLab alapú. Ebből fakadóan
-AMD Ryzen processzorokon habár elidult a szoftver, de nem volt stabil és a számítások során
-minden esetben összeomlott, és használtatalanul lassú volt. Személy szerint a saját gépem amivel dolgoztam
+AMD Ryzen processzorokon habár elindult a szoftver, de nem volt stabil és a számítások során
+minden esetben összeomlott, és használhatatlanul lassú volt. Személy szerint a saját gépem amivel dolgoztam
 sajnos ilyen processzorral van szerelve ezért muszáj volt megoldást találni a problémára.
 A Martin Audio hivatalos szoftveres támogatásához fordultam először, de sajnos nem tudtak segíteni.
 Ezért a szoftver használatához
@@ -69,9 +70,9 @@ ezzel a problémával szembesülniük.
 A hiba az alábbi volt. Az új AMD Ryzen processzorok másfajta utasításkészletet használnak.
 Ebből kifolyólag a MatLab 2015-s runtime alapú szoftver adta alaputasításokat nem tudta értelmezni a CPU.
 A vezető szoftvermérnökkel való e-mail-es beszélgetésünk során megköszönte a probléma
-megoldását, és nemsokkal a megoldásom megosztása után a hivatalos oldalra feltölttötték
-az indító parancsfáljt. Az e-mailben további kollaborációra is adott lehetőséget.
-A kompatibilási problémát rögtön a script elején megoldottam,
+megoldását, és nemsokkal a megoldásom megosztása után a hivatalos oldalra is felekerült
+az indító parancsfájl. Az e-mailben további kollaborációra is adott lehetőséget.
+A kompatibilitási problémát rögtön a script elején megoldottam,
 mivel a következő parancs megadásával már használhatóvá válik a program: \texttt{set MKL\_DEBUG\_CPU\_TYPE=5} \newline
 Ez a sor a program vezérlését AVX2-re állítja át, és mivel ezt az utasításkészletet már ismeri az AMD Ryzen processzor
 is ezért a probléma már a múlté.
@@ -104,9 +105,9 @@ Most, hogy már a szoftver használható és teljes mértékben működőképes,
 A modellezés során a budapesti Millenáris B csarnoka lesz a referencia helyszín. Két LineArray rendszert fogunk
 tervezni, mivel a terem hosszúsága és a lefedettség növelése miatt szükségünk lesz Delay kiegészítésre a fő hangrendszerhez.
 Első lépésben a fő hangrendszert tervezem meg, ami oldalanként (bal és jobb) 8 darab WPC LineArray modulból fog állni.
-Ez a láda 2 darab 10"-os mélysugárzót, 2 darab 5"-os közép sugárzót és 4 darab 0.7"-os magassugárzót tartalmaz.
+Ez a láda 2 darab 10"-os mélysugárzót (LF), 2 darab 5"-os közép sugárzót (MF) és 4 darab 0.7"-os magassugárzót tartalmaz (HF).
 Három utas Bi-amp meghajtású külső végfokot igénylő rendszer, ahol a mély tartományt (+1,-1) és a középmagas tartományt (+2,-2) külön kezeljük,
-a négypólusú Neutrik Speakon csatlakozókon keresztül.
+a négy pólusú Neutrik Speakon csatlakozókon keresztül.
 A láda maximális hangnyomás szintje 135 dB, és 65 Hz-től 18 kHz-ig terjed a frekvencia átvitele +- 3 dB pontossággal. \cite{WPCUSERGUIDE}
 %----------------------------------------------------------------------------
 \begin{figure}[H]
@@ -116,7 +117,7 @@ A láda maximális hangnyomás szintje 135 dB, és 65 Hz-től 18 kHz-ig terjed a
 \end{figure}
 %----------------------------------------------------------------------------
 A program megnyitásakor a legelső lépés, hogy kiválasztjuk a termékpalettából a megfelelő hangrendszert.
-Jelen esetben az előbbiekben említett WPC-t. A produkció igényei, a nagylétszámú közönség és a ládamennyiség miatt a rendszert
+Jelen esetben az előbbiekben említett WPC-t. A produkció igényei, a nagy létszámú közönség és a ládamennyiség miatt a rendszert
 \textit{``riggelni''} fogjuk. (maximálisan 6 darab WPC-t lehet \textit{``stackelni''}, azaz a földre vagy mélyládákra helyezni)
 A helyszín felmérése után a hangrendszer \textit{``riggelése''} lehetséges, mivel a csarnokban található tartószerkezet biztonságosan
 és tartósan képes elviselni a rendszer súlyát.
@@ -129,7 +130,7 @@ A hozzáadás gombra kattintva a elénk kerül a fő kezelőfelület, ahol a han
 	\caption{Display 2.3.4 b1 kezdőképernyője (WPC)}\label{fig:display_wpc_0}
 \end{figure}
 %----------------------------------------------------------------------------
-A tervezési folyamat öt alrészre osztható, amiket a szoftverben külön kezelünk.
+A tervezési folyamat öt részre osztható, amiket a szoftverben külön kezelünk.
 Ezeket a \textit{``Slice''}, \textit{``Cover''}, \textit{``Splay''}, \textit{``Rig''} és \textit{``EQ''} kezelőfelületeken tudjuk elvégezni,
 balról jobbra haladva. Mivel a különböző részegységek egymásra épülnek, ezért fontos a sorrend betartása.
 (tervezés utáni módosításokra természetesen van lehetőség, de az adott projekt első tervezési folyamata során ezeket a lépéseket kell követni)
@@ -152,7 +153,7 @@ A terem pontos rajza után még két fontos paramétert kell megadni ezen a fel�
 El kell helyeznünk magát a hangrendszert a teremben, és meg kell határoznunk milyen magasra szeretnénk a rendszert emelni.
 Mivel a csarnok rendkívül hosszú, és a adottságai megengedik, ezért a rendszert minél magasabbra szeretnénk emelni,
 a jobb lefedettség érdekében.
-A másik fontos paraméter az optimalizációhoz, a könzönség területének meghatározása. Kezdő és végpont segítségével
+A másik fontos paraméter az optimalizációhoz, a közönség területének meghatározása. Kezdő és végpont segítségével
 tudjuk a területet meghatározni, ahol a hallgatóközönség tartózkodni fog.
 %----------------------------------------------------------------------------
 \begin{figure}[H]
@@ -190,9 +191,9 @@ A \textit{``Target SPL''} mezőben megadhatjuk a referencia ponton elérni kív�
 Magas frekvenciák csökkennek ahogy a távolság nő a forrástól, azaz a hangrendszertől.
 Ha egyenletes frekvencia választást szeretnénk elérni nagyobb távolságokon, akkor a rendszernek nagyobb energiára lenne szüksége
 a magas frekvenciákon, és kifutna a dinamika tartalékból, ezért jobb megoldás, ha a magas frekvenciák fokozatosan csökkennek a távolság növekedésével.
-Beállíthajuk a levegő veszteség kompenzációját, teljesen balra állítva nincs kompenzáció (figyelmen kívül hagyva a levegő abszorpcióját).
+Beállíthatjuk a levegő veszteség kompenzációját, teljesen balra állítva nincs kompenzáció (figyelmen kívül hagyva a levegő abszorpcióját).
 Teljesen jobbra állítva a maximális kompenzáció (a rendszernek 17dB headroom-ra van szüksége, hogy egyenes választ kapjunk).
-Viszont ezeből az következik, hogyha túlságosan sok a kompenzáció, akkor a rendszernek nem lesz elég dinamika tartaléka, és a hang torzulni fog.
+Viszont ezekből az következik, hogyha túlságosan sok a kompenzáció, akkor a rendszernek nem lesz elég dinamika tartaléka, és a hang torzulni fog.
 A változások hatását a \textit{``Target Response''} ábrán láthatjuk.
 Ahhoz, hogy a számítások pontosak legyenek, elengedhetetlen, hogy pontosan megadjuk a környezeti változókat,
 a hőmérsékletet, a páratartalmat és a légnyomást. Ezeket a paramétereket a \textit{``Edit''} gombra kattintva tudjuk megadni.
@@ -216,7 +217,7 @@ Lehetőség van az optimalizáció súlyozási tényezőinek beállítására, d
 Amennyiben módosítani szeretnénk a súlyozást a \textit{``Target'} és a \textit{``Leakage''} mezőkben tudjuk megadni a súlyozási tényezőket.
 A \textit{``Target''} mezőben megadott érték a közönség terület súlyozása,
 a \textit{``Leakage''} mezőben megadott érték pedig a közönség területén kívül eső szivárgás súlyozása.
-Az \textit{``Alow Polish''} opció engedélyezi a szoftvernek, hogy egy második körben finomhangolja a splay szögeket az első próbálkozás után.
+Az \textit{``Alow Polish''} opció engedélyezi a szoftvernek, hogy egy második körben finom hangolja a splay szögeket az első próbálkozás után.
 Ezt az opciót előnyös bekapcsolni, mivel a szoftver így pontosabb eredményt tud produkálni, ezért ezt a beállítást mindig használom.
 A \textit{``Max Time''} mezőben megadhatjuk, hogy a szoftvernek mennyi idő álljon rendelkezésére az optimalizáció elvégzéséhez.
 Mivel a mai modern számítógépek olyan gyorsak, hogy a szoftver általában 1-2 perc alatt elvégzi az optimalizációt, ezért ezt az értéket
@@ -252,7 +253,7 @@ Ha a \textit{``Cover''} kezelőfelületen már megadtuk a környezeti változók
 mivel a szoftver automatikusan átveszi az ott megadott értékeket. Beállíthatjuk az alsó és felső határfrekvenciákat, de mivel
 a program a kiválasztott hangrendszerhez tartozó gyári beállításokat automatikusan betölti, ezért ezeket az értékeket sem kell módosítani.
 Amit viszont érdemes és erősen ajánlott módosítani, az a \textit{``Freq Res''} és a \textit{``Space Res''} értékek. Az előbbi a
-freakvencia felbontást, az utóbbi pedig a térbeli felbontást jelenti. Ezek az értékek határozzák meg, hogy a szoftver milyen 
+frekvencia felbontást, az utóbbi pedig a térbeli felbontást jelenti. Ezek az értékek határozzák meg, hogy a szoftver milyen 
 felbontásban végezze el a számításokat. Minél kisebb értéket adunk meg, annál pontosabb eredményt fogunk kapni, viszont a számítások
 hosszabb ideig fognak tartani. A \textit{``Freq Res''} értékét 1-re, a \textit{``Space Res''} értékét pedig szintén 1-re állítottam, mivel
 ez az elérhető legnagyobb felbontás, és a számításokat is a lehető legpontosabban szeretném elvégezni. A gyári érték mindegyiknél a kettő.
@@ -260,7 +261,7 @@ Minél pontosabbak a számítások, annál jobban fog viselkedni a rendszer a va
 Ha már a kiegyensúlyozott hangvisszaadásnál tartunk, akkor a \textit{``Resolution''} panelen meg kell adnunk, hogy milyen
 konfigurációban szeretnénk használni a rendszert. A WPC szériás hangládákat tudjuk akár egyesével hajtani, azaz egy láda egy végfok csatorna
 párral (mivel Bi-Amp hangládáról beszélünk). De a gyártó lehetőséget biztosít arra is, hogy a ládákat párosával vagy hármasával is hajtsuk.
-Ennek költséghatékonysági és rugalmassági előnyei vannak, viszont a hangvisszaadás egyenletessége csökken. Jelen esetben 
+Ennek költséghatékonysági és rugalmassági előnyei vannak, viszont a hangvisszaadás kevésbé lesz egyenletes. Jelen esetben 
 az arany középutat választottam, és párosával fogom hajtani a ládákat. Így a rendszer összesen 3 darab iK42 végfokot fog igényelni, ami 
 12 darab végfokcsatornát jelent. A WPC rendszer csak iK42 végfokkal hajtható, a 8 csatornás iK81 végfokkal nem kompatibilis.
 Lehetőség van az optimalizációs algoritmus befolyásolására is, a három előbbiekben már definiált súlyozási tényezők segítségével.
@@ -278,22 +279,22 @@ a referencia értéktől való eltérésekről.
 	\caption{Display 2.3.4 b1 \textit{``EQ''} kezelőfelülete (WPC)}\label{fig:display_wpc_5}
 \end{figure}
 %----------------------------------------------------------------------------
-Amennyiben szeretnénk megtekinteni a tervezett rendszer teljesítményét amit a program számított ki, 
-akkor az \textit{``SPL''} kezelőfelületen, az \textit{``Index Plot''}-on a bal egeret nyomva tartva
-tudunk virtuálisan mozogni a teremben, és megtekinthetjük a számított hangnyomás és frekvencia eloszlás értékeket.
-Ha mindent rendben találunk és nincsenek kivetnivalóink a tervezett rendszerrel kapcsolatban, akkor
-sikeresen megterveztük a hangrendszert, és elmenthetjük a projektet.
-A mentés során egy MAT kiterjesztésű fájlt fogunk kapni, segítségével később bármikor újra megnyithatjuk a projektet,
-ha ugyan azon a helyszínen dolgozunk, gyorsabban és egyszerűbben tudjuk a rendszert újra tervezni, a szükséges
-módosításokat elvégezni.
+%Amennyiben szeretnénk megtekinteni a tervezett rendszer teljesítményét amit a program számított ki, 
+%akkor az \textit{``SPL''} kezelőfelületen, az \textit{``Index Plot''}-on a bal egeret nyomva tartva
+%tudunk virtuálisan mozogni a teremben, és megtekinthetjük a számított hangnyomás és frekvencia eloszlás értékeket.
+%Ha mindent rendben találunk és nincsenek kivetnivalóink a tervezett rendszerrel kapcsolatban, akkor
+%sikeresen megterveztük a hangrendszert, és elmenthetjük a projektet.
+%A mentés során egy MAT kiterjesztésű fájlt fogunk kapni, segítségével később bármikor újra megnyithatjuk a projektet,
+%ha ugyan azon a helyszínen dolgozunk, gyorsabban és egyszerűbben tudjuk a rendszert újra tervezni, a szükséges
+%módosításokat elvégezni.
 %----------------------------------------------------------------------------
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth, keepaspectratio]{figures/display_wpc_6.png}
-	\caption{Display 2.3.4 b1 \textit{``SPL''}kezelőfelülete (WPC)}\label{fig:display_wpc_6}
-\end{figure}
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=\textwidth, keepaspectratio]{figures/display_wpc_6.png}
+%	\caption{Display 2.3.4 b1 \textit{``SPL''}kezelőfelülete (WPC)}\label{fig:display_wpc_6}
+%\end{figure}
 %----------------------------------------------------------------------------
-Az utolsó dolgunk ebben a programban mielőtt át térünk a Martin Audio VU-NET rendszer szoftverére, hogy exportáljuk a tervezett rendszert.
+Az utolsó dolgunk ebben a programban mielőtt tovább lépünk, hogy exportáljuk a tervezett rendszert.
 Az exportálás során egy D2P kiterjesztésű fájlt fogunk kapni, amit a VU-NET szoftver fog tud majd importálni a későbbiekben.
 %----------------------------------------------------------------------------
 \begin{figure}[H]
@@ -302,10 +303,86 @@ Az exportálás során egy D2P kiterjesztésű fájlt fogunk kapni, amit a VU-NE
 	\caption{Display 2.3.4 b1 exportáló kezelőfelülete (WPC)}\label{fig:display_wpc_7}
 \end{figure}
 %----------------------------------------------------------------------------
+A fő hangrendszer megtervezése után a következő részegység aminek a tervét el kell készíteni, az a Delay hangrendszer.
+A Delay hangrendszer a fő hangrendszerrel együtt fog működni, és a közönségtér hátsó-közép részétől kezdve fogja kiegészíteni azt.
+Erre azért van szükség, mert a csarnokban a közönség ezen része olyan távolságra helyezkedik el, hogy
+a WPC rendszer már nem tudja a megfelelő hangnyomás szintet egyenletesen biztosítani.
+Ezt a feladatot a Wavefront Precision sorozatból a WPM típusú hangládák fogják ellátni, oldalanként 6-6 darab LineArray modullal.
+Ez a láda egy két utas passzív hangrendszer, 2 darab 6.5"-os mély hangszóróval (LF) és 3 darab 1.4"-es magas hangszóróval (HF). 
+Maximásan 130 dB hangnyomás szintet tud biztosítani, nagy előnye ennek a fajta rendszernek a súly-teljesítmény aránya, mivel egy
+darab láda mindössze 14 kilogramm. \cite{WPMUSERGUIDE}
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=80mm, keepaspectratio]{figures/wpm_front_view.jpg}
+	\caption{Martin Audio WPM LineArray modul}\label{fig:wpm}
+\end{figure}
+%----------------------------------------------------------------------------
+A tervezési fázisok nagy része megegyezik az előbbi rendszer tervezésével, ezért ezeket a részeket nem ismétlem meg.
+A hangsúlyt a eltérésekre helyezem, és azokat fogom részletezni.
+A fő különbség a \textit{``Cover''} kezelőfelületen történik, ahol a \textit{``Hard Avoid''} területet kell megjelölni.
+Ezen a rajzon már radikálisan szükség van erre a funkcióra, mivel a közönség területén kívül eső területen beton nagy felületek találhatóak,
+amelyek jelentős hangvisszaverődést okoznának. 
+%----------------------------------------------------------------------------
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=\textwidth, keepaspectratio]{figures/display_wpm_1.png}
+%	\caption{Display 2.3.4 b1 \textit{``Cover''} kezelőfelülete (WPM)}\label{fig:display_wpm_1}
+%\end{figure}
+%----------------------------------------------------------------------------
+Ebből kifolyólag, szépen látható, hogy a program pontosan úgy optimalizálja a rendszert, hogy a \textit{``Hard Avoid''} területre, minél kevesebb
+hangnyomás jusson.
+Már a kék színnel jelölt terület első pár méterén radikálisan csökken a hangnyomás, és a rendszer a lehető legkevesebb energiát fordítja erre a területre.
+A gyártó a WMP rendszert végfog csatornák szempontjából úgy tervezte, hogy a költség és a rugalmasság szempontjából akár négyesével is hajthatóak legyenek.
+Ez persze nem jár kompromisszumok nélkül, a hangvisszaadás egyenletesebb lenne, ha egyesével hajtanánk a ládákat, de a jelenlegi rendszerben
+hármasával fogom hajtani a ládákat, mivel ez a legköltséghatékonyabb megoldás, és végeredményben így is kielégítő hangvisszaadást fog produkálni mint 
+kiegészítő egység.
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth, keepaspectratio]{figures/display_wpm_2.png}
+	\caption{Display 2.3.4 b1 \textit{``Splay''} kezelőfelülete (WPM)}\label{fig:display_wpm_2}
+\end{figure}
+%----------------------------------------------------------------------------
+Az előbbiekben már tárgyalt exportáló felületen az összes többi optimalizációs lépést követően
+mentjük az elkészített tervet a WPC rendszerhez hasonlóan.
+%----------------------------------------------------------------------------
 \subsubsection{Martin Audio VU-NET rendszer szoftver \cite{VUNETUSERGUIDE}}
 %----------------------------------------------------------------------------
+Miután már rendelkezünk az összes számunkra szükséges tervezett rendszerrel a rendezvényhez, a következő lépések a VU-NET szoftverben történnek.
+A VU-NET szoftver egy olyan alkalmazás, amely lehetővé teszi a Martin Audio hangrendszerek teljes körű vezérlését és monitorozását.
+Jelen esetben az iK42 és iK81 típusú végfokokat fogjuk tudni kezelni. 
 
-
+%----------------------------------------------------------------------------
+\subsubsection{Mélyláda rendszer}
+%----------------------------------------------------------------------------
+A mélyláda hangja hosszabb hullámhosszú, mint a többi komponensé, ezért az
+optimális helymeghatározásuk és elhelyezésük kulcsfontosságú a megfelelő
+hangzás érdekében. 
+A rendszerben a Martin Audio SX218 típusú mélyládáit fogjuk használni.
+Ezek a ládák dupla 18"-os mély hangszórókkal vannak felszerelve, 2000W AES és 8000W csúcsteljesítményre képesek, és
+maximálisan 144 dB hangnyomás szintet tudnak biztosítani. \cite{SXSUBWOOFERUSERGUIDE}
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=80mm, keepaspectratio]{figures/sx218_front_view.jpg}
+	\caption{Martin Audio SX218 mélyláda}\label{fig:sx218}
+\end{figure}
+%----------------------------------------------------------------------------
+A \textit{``SUB''} tervezést egy általam készített Excel kalkulátor
+segítségével végzem el. Ez a táblázat egyesíti a Martin Audio és Merlin van Veen által
+készített kalkulátorokat (S.A.D), valamint kiegészítésre került további modulokkal és funkciókkal. \cite{MERLINVANVEEN}
+A egy EndFire konfigurációs mélyláda elrendezést terveztem. 
+(Egy EndFire Pack = két láda egymás előtt adott távolságra és késleltetési értékkel) 
+A táblázatba megadhatjuk, hogy éppen helyileg hol
+van a rendezvény, és egy időjárás API segítségével megkapjuk az adott napra/napokra a
+teljes időjárás előrejelzést. Majd ezekből egy adott időintervallumra átlagolva
+megkapjuk az optimális értékeket a tervezéshez. 
+A program kiszámolja, hogy milyen távolságra kell a ládákat helyezni egymástól előrefelé,
+valamint mekkora \textit{``delay''} értéket kell alkalmazni. 
+Majd az egyes EndFire Pack-ok egymáshoz képesti távolságot oldalirányban és azok
+közötti delay értéket is megkapjuk. A sub array-t 63 Hz-re optimalizáltam, mivel
+ez az a frekvenciatartomány, ahol a mélyláda rendszer a legtöbb energiát tudja leadni.
 %----------------------------------------------------------------------------
 \subsection{Allen \& Heath digitális keverőrendszer}
 %----------------------------------------------------------------------------
@@ -321,9 +398,21 @@ Az exportálás során egy D2P kiterjesztésű fájlt fogunk kapni, amit a VU-NE
 %----------------------------------------------------------------------------
 \subsection{Dante audio szerver}
 %----------------------------------------------------------------------------
-
-
-
+Ez a kiegészítő szerver egység lehetővé teszi bármilyen alacsony késleltetéssel dolgozó VST3 plugin használatát a rendszerben elő környezetben.
+Olyan komplex funkcionalitásokat is elérhetünk, amelyek a keverőpulton csak limitáltan, vagy egyáltalán nem elérhetőek.
+Gondolva itt a dinamikus EQ használatára, különböző kompressziós technikákra (például Opto, Multiband), 
+A legnagyobb előnye ennek a fajta megoldásnak, hogy költségek szempontjából egy magasabb kategóriás keverőpult rendszer sokkal drágább lenne,
+valamint nem vagyunk korlátozva a keverőpult által biztosított funkcionalitásokkal, bármikor tudunk igényeink szerint újabb és újabb pluginokat
+telepíteni a rendszerbe, amíg a számítógép hardveres erőforrásai ezt lehetővé teszik.
+Az általam épített szerver egy AMD Ryzen 7950X processzorral és 32 GB DDR5 memóriával, és a Focusrite RedNet PCIe kártya veszi fel a harcot a
+komplex hangfeldolgozási feladatokkal. Ezekre a hardverekre azért esett a választás, mert mivel a Dante kártya 128 csatornát tud kezelni, 
+(az épített rendszer 64 csatornás, de a bővítés lehetősége fent áll) erős számítási kapacitásra van szükség, hogy a rendszer a beállított
+késleltetési értékek mellett is képes legyen késés nélkül a csatornák feldolgozására. Amennyiben nem sikerül a jelet a beállított időn belül
+produkálni, furcsa zavaró pattogó hangokat hallhatunk, vagy rosszabb esetben hangkimaradás is előfordulhat. Ezért fontos a megfelelő hardveres
+erőforrások biztosítása, és a pontos beállítások elvégzése.
+A példában szereplő rendszer kifogástalanul képes elvégezni a feladatát, és a beállított 1 ms-os késleltetési értéket is képes folyamatosan tartani.
+%----------------------------------------------------------------------------
+% !!! Képernyőfotó a szerverről !!!
 %----------------------------------------------------------------------------
 \subsection{Dante hálózat kialakítása és optimalizálása}
 %----------------------------------------------------------------------------
@@ -335,16 +424,16 @@ precíziót igényel, pontosan tudnunk kell mit, hogyan és miért kötünk öss
 %----------------------------------------------------------------------------
 \subsubsection{Dante Controller: Eszköz nézet}
 %----------------------------------------------------------------------------
-Mielőtt elkezdenénk konfigurálni az adott eszközt, fontos eldöntenünk, hogy
+Mielőtt neki állnánk konfigurálni az adott eszközt, fontos eldöntenünk, hogy
 milyen módban szeretnénk használni.
 Lehetőségünk van két fő mód közül választani, a redundáns és a
-váltott mód közül. A redundant mód mint ahogy azt a neve is sugallja
+váltott mód közül. A \textit{``redundant''} mód mint ahogy azt a neve is sugallja
 redundáns kommunikációt valósít meg az eszközök között szoftveresen és
-hardveresen egyaránt. Az összes Dante kártya a jelenlegi rendszerben gyárilag két RJ45-s
+hardveresen egyaránt. Az összes Dante kártya a jelenlegi rendszerben gyári konfigurációban két RJ45-s
 csatlakozóval rendelkezik. Jelen esetben ezt a módot választjuk az
 üzembiztosság és a kritikus hibák minimalizálása miatt.
-A másik lehetőség a váltott pedig eszközök láncolását
-teszi egyszerűbbé. Amennyiben a rendundancia nem elsődleges szempont számunkra, nem kell
+A másik lehetőség a \textit{``switched''} pedig eszközök láncolását
+teszi egyszerűbbé. Amennyiben a redundancia nem elsődleges szempont számunkra, nem kell
 minden egyes eszköz mögé switch, hanem a másodlagos RJ45 port direktbe köti
 az arra csatlakoztatott eszközt az elsődleges hálózatra. Így gyorsabban és
 költséghatékonyabban tudjuk kiépíteni a hálózatot, azonban a redundancia lehetősége megszűnik.
@@ -368,63 +457,30 @@ valamilyen okból meg kell változtatni, egyszerűen elérhető a szükséges in
 	\caption{Dante eszközök IP címei a hálózaton}\label{fig:dante_ips}
 \end{figure}
 %----------------------------------------------------------------------------
-
-
-
-
-
 %----------------------------------------------------------------------------
 \subsubsection{Dante Controller: Órajel nézet}
 %----------------------------------------------------------------------------
-Meg kell adnunk az audio hálózatunk master órajelét, ehhez az órajelhez
-szinkronizál a többi eszköz, az időszinkronizáció kulcsontosságú élőzenei
-produkcióknál.
-
-
-
+Meg kell adnunk az audio hálózatunk master órajelét. Ehhez az órajelhez
+szinkronizál a többi eszköz.
+Az időszinkronizáció kulcsfontosságú élőzenei produkcióknál.
 %----------------------------------------------------------------------------
 \section{Rendszermérések és monitorozás}
 %----------------------------------------------------------------------------
-
-
-
 %----------------------------------------------------------------------------
 \subsection{Dante rendszer monitorozása}
 %----------------------------------------------------------------------------
-
-
-
 %----------------------------------------------------------------------------
 \subsubsection{Dante Controller: Hálózati állapot nézet}
 %----------------------------------------------------------------------------
-
-
-
 %----------------------------------------------------------------------------
 \subsubsection{Dante Controller: Események nézet}
 %----------------------------------------------------------------------------
-
-
-
 %----------------------------------------------------------------------------
 \subsection{Cardioid mélyláda rendszer mérése}
 %----------------------------------------------------------------------------
-
-
-
 %----------------------------------------------------------------------------
 \subsection{Mélyláda és Line Array fázishelyesség}
 %----------------------------------------------------------------------------
-
-
-
 %----------------------------------------------------------------------------
 \subsection{Rendszer hangnyomás szint és frekvencia átvitel mérése}
 %----------------------------------------------------------------------------
-
-
-
-
-
-
-
