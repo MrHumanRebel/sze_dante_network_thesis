@@ -3,27 +3,30 @@
 %----------------------------------------------------------------------------
 \section{Követelmények}
 %----------------------------------------------------------------------------
-
-
-
+Az új rendszer tervezésekor a következő szempontokat kellett szem előtt tartanom:
+\begin{itemize}
+	\item Teljesen digitális megoldás kialakítása.
+	\item Redundáns rendszer kialakítása biztosítva a folyamatos működést.
+	\item Rugalmas felépítés, amely lehetővé teszi a könnyű alkalmazkodást változó körülményekhez.
+	\item Könnyen bővíthető struktúra kialakítása a jövőbeli igényekhez való gyors reagálás érdekében.
+	\item Magasabb hangminőség és hangnyomás elérésének lehetősége a korábbi rendszerrel összehasonlítva.
+	\item Jobb lefedettség és egyenletes hangvisszaadás biztosítása a közönség területén.
+	\item A piacon lévő termékekhez képest viszonylag költséghatékony megoldás kidolgozása.
+	\item Legyen hosszú távon egy kompetitív és korszerű rendszer.
+	\item Megbízható és kiforrott technológiára épüljön.
+\end{itemize}
 %----------------------------------------------------------------------------
 \section{Rendszerterv}
 %----------------------------------------------------------------------------
-
-
-Az új rendszer tervezésekor a következő szempontokat kellett szem előtt tartanom:
-Az új rendszer 
-
-
-
-Hangrendszer szempontjából a Martin Audio Wavefront Precision szériás termékeire esett a választás.
+A szakdolgozatomban megtervezésre kerülő hangrendszer lelke a Dante protokoll lesz.
+Hangládák szempontjából a Martin Audio Wavefront Precision szériás termékeire esett a választás.
 Mivel teljes mértékben digitális rendszert elérése volt a cél, ezért a Dante modullal
 rendelkező Martin Audio iKON iK42 és iK81 végfokok tökéletesen illeszkedtek a rendszerbe.
 Mindkét végfok csúcskategóriás teljesítményt és hangminőséget nyújt, és a D kategóriás
 erősítőknek köszönhetően rendkívül kis helyet foglalnak el a rack-ben miközben kiváló hatásfok
 mellett képesek nagy teljesítményt leadni. A két erősítő között két fundamentális különbség van,
 az iK42 négy kimeneti csatornával rendelkezik, 20.000 W teljesítmény leadása mellett. 
-Ezzel szemben az iK81 nyolc kimeneti csatornával rendelkezik, 10.000 W teljesítménnyel.
+Ezzel szemben az iK81 nyolc kimeneti csatornával rendelkezik, 10.000 W teljesítménnyel. \cite{IKONAMPUSEGUIDE}
 A végfokokat a Dante hálózaton keresztül fogjuk jellel ellátni, így a hagyományos analóg XLR, vagy AES kábelezés helyett
 két CAT5E kábellel (a redundancia miatt) tudjuk a végfokokat a hálózatra kötni. 
 A végfokrendszer fő vezérlő protokollja miatt szükség lesz még egy CAT5E alapú
@@ -387,15 +390,26 @@ ez az a frekvenciatartomány, ahol a mélyláda rendszer a legtöbb energiát tu
 \subsection{Allen \& Heath digitális keverőrendszer}
 %----------------------------------------------------------------------------
 A jelenlegi rendszer két keverőpultot fog tartalmazni, egyet a fő hangrendszerhez, és egyet a monitor rendszerhez.
-Mindkét keverőpult egy Allen \& Heath SQ-6 típusú digitális keverőpult lesz.
-
-
+Mindkét keverőpult Allen \& Heath SQ-6 típusú digitális keverőpult lesz.
+A pultok 96 kHz-es mintavételezési frekvenciával operálnak és 48 csatornát képesek maximálisan kezelni, melyek közül 
+24 csatornával rendelkezik fizikailag beépített mikrofon előerősítővel. A konzolokon található 16 programozható gomb,
+25 fader melyek 6 rétegben helyezkednek el és a felhasználó személyre szabhatja őket a saját igényei szerint. 
+Emellett 12 sztereó mix áll a rendelkezésünkre, melyeket szintén a felhasználó konfigurálhat saját igényei szerint.
+A sztereóm mixek testreszabásával tudunk csoportokat is létrehozni.
+A konzolokon 8 sztereó effekt motort is megtalálunk, ezekbe a virtuális effekt processzorokba a pultokon található ingyenes és fizetős 
+pluginokat tudjuk betölteni. (amennyiben megvásároltuk a fizetős csomagokat, jelen rendszerben ezek nincsenek megvásárolva)
+További előnye a platformnak, hogy egy 32x32 csatornás USB audio interfésszel rendelkezik, így a számítógéphez csatlakoztatva
+egy nagy felbontású hangkártyaként is használhatjuk. \cite{AHSQ}
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=80mm, keepaspectratio]{figures/sq6.jpg}
+	\caption{Allen \& Heath SQ-6 digitális keverőpult}\label{fig:sq6}
+\end{figure}
 %----------------------------------------------------------------------------
 \subsection{Shure ULXD digitális vezeték nélküli mikrofonrendszer}
 %----------------------------------------------------------------------------
-
-
-
+Manapság egy rendezvényen elengedhetetlen a vezeték nélküli mikrofonok használata.
 %----------------------------------------------------------------------------
 \subsection{Dante audio szerver}
 %----------------------------------------------------------------------------
