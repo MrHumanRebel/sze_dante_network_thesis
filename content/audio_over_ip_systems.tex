@@ -333,64 +333,105 @@ ezáltal soha ne történjen meg a hang megszakítása.
 \subsection{IP címek és maszkok}
 %----------------------------------------------------------------------------
 Egy hálózaton belül minden eszköznek egyedi címre van szüksége annak érdekében,
-hogy a csomagok elérjék a céljukat. Egy ilyen cím lehet hardverrel kapcsolatos
-(MAC-cím) vagy konfigurálható a hosztokban (IP-cím). Az IP-címet háromféleképpen
-lehet hozzárendelni: Felhasználói kézi beállítással Ez dokumentációt és
-felhasználói fegyelmet igényel annak érdekében, hogy egy adott IP-címet csak
-egyszer használjanak ugyanabban a hálózatban. Ez lehet a preferált megközelítés
-állandó telepítések esetén, mivel lehetővé teszi az IP-címek rendelésének
-bizonyos struktúrájának követését. DHCP szerver általi eszközhöz rendeléssel Ez
-egy rugalmas, mégis strukturált módja az IP-címek elosztásának a hálózaton belül.
-Egy hoszt `DHCP módban' megpróbálja megtalálni a megfelelő DHCP szerveret, és
-minden szükséges IP-konfigurációt egy jól szabványosított módon szerez be. Egy
-felhasználó ellenőrizheti a DHCP szerverben észlelt eszközöket és azok IP-címeit.
-Az adminisztrátor konfigurálhatja úgy, hogy csak bizonyos IP-cím-tartományt
-osztanak ki, míg másokat kézi rendelésre tartalékolnak. Hoszt általi
-önkiosztással Ez a mechanizmus ismert még Zeroconfig néven, és csak kis
-telepítésekre ajánlott a korlátai miatt, mivel az összes eszköz egy alhálózatban
-van, és nem csatlakozhat más alhálózatokhoz. Egy adott eszköz IP-címéről való
-információ beszerzése kissé nehéz lehet, ha az nem jelenik meg egy kijelzőn.
-Szoftveres eszközök elérhetők az eszközök jelenlétének szkennelésére
-IP-cím-tartományokban, de az IT osztályok gyakran tiltják az ilyen eszközök
-használatát. Ha az eszköz támogatja az automatikus eszközfelismerést, például
-mDNS vagy Bonjour, az eszközök IP-címével együtt egyfajta felfedező szoftvert
-lehet használni. Ennek egy példája a Merging Technologies által készített
-ingyenes eszköz, az MTDiscovery [5]. Azonosítani, hogy két IP-cím ugyanabba az
-alhálózatba tartozik-e, lehetetlen a hozzájuk tartozó alhálózati maszkok
-ellenőrzése nélkül. Ha egy csomag cél-IP-címe nem ugyanabban az alhálózatban van,
+hogy a csomagok sikeresen elérjék a céljukat és elkerüljük a csomagok ütközését.
+Egy ilyen cím lehet hardverrel kapcsolatos (MAC-cím) vagy konfigurálható a cím (IP-cím).
+%----------------------------------------------------------------------------
+\section{IP-cím hozzárendelési módszerek}
+%----------------------------------------------------------------------------
+Az IP-címeket háromféleképpen lehet hozzárendelni egy eszközhöz:
+%----------------------------------------------------------------------------
+\begin{itemize}
+    \item \textbf{Felhasználói kézi beállítás:}
+    Ez dokumentációt és felhasználói fegyelmet igényel annak érdekében,
+	hogy egy adott IP-címet csak egyszer használjanak ugyanabban a hálózatban.
+	Ez lehet a preferált megközelítés állandó telepítések esetén,
+	mivel lehetővé teszi az IP-címek rendelésének bizonyos struktúrájának követését.
+    
+    \item \textbf{DHCP szerver általi eszközhöz rendelés:}
+    Ez egy rugalmas, mégis strukturált módja az IP-címek elosztásának a hálózaton belül.
+	Egy hoszt 'DHCP módban' megpróbálja megtalálni a megfelelő DHCP szerveret,
+	és minden szükséges IP-konfigurációt egy jól szabványosított módon szerez be.
+	Egy felhasználó ellenőrizheti a DHCP szerverben észlelt eszközöket és azok IP-címeit.
+	Az adminisztrátor konfigurálhatja úgy, hogy csak bizonyos IP-cím-tartományt osztanak ki,
+	míg másokat kézi rendelésre tartalékolnak.
+    
+    \item \textbf{Hoszt általi önkiosztással:}
+    Ez a mechanizmus még \textit{Zeroconfig} néven ismert, és csak kis telepítésnél
+	működik a korlátai miatt, mivel az összes eszköz egy alhálózatban van,
+	és nem csatlakozhat más alhálózatokhoz.
+\end{itemize}
+%----------------------------------------------------------------------------
+Egy adott eszköz IP-címéről való információ beszerzése alapvetően kissé nehéz lehet,
+ha az nem jelenik meg egy kijelzőn. 
+Szoftveres eszközök elérhetők az eszközök jelenlétének szkennelésére IP-cím-tartományokban,
+de az IT osztályok gyakran tiltják az ilyen eszközök használatát.
+
+
+Azonosítani, hogy két IP-cím ugyanabba az alhálózatba tartozik-e, nem lehetséges 
+a hozzájuk tartozó alhálózati maszkok ellenőrzése nélkül.
+Ha egy csomag cél-IP-címe nem ugyanabban az alhálózatban van,
 a küldő eszköznek a router IP-címére kell irányítania, ahelyett hogy
-közvetlenül a fogadó eszközhöz küldené. Csomagok küldése egy alhálózaton belül
-sok hasonlóságot mutat a vállalaton belüli belső telefonhívásokkal. Az összes
-vállalati szám ugyanazzal a számsorral kezdődik, és csak az utolsó részben vagy
-a kiterjesztésekben különbözik. Hasonlóképpen, két hoszt ugyanabban az
-alhálózaton belül hasonló IP-címekkel rendelkezik, csak az utolsó számjegyekben
+közvetlenül a fogadó eszközhöz küldené. 
+Két hoszt ugyanabban az alhálózaton belül hasonló IP-címekkel rendelkezik, csak az utolsó számjegyekben
 különbözik. Az első részt hálózati címkének nevezik, a másodikat, amely az
 eszköz számára egyedi, hosztcímkének. A kettő közötti szétválasztást az
-alhálózati maszkban az `0'-s számjegyek pozíciója jelzi: A hálózati címkét az
-alhálózati maszkban egy `0'-nél nagyobb érték jelzi, míg a hosztcím a maradék
-jobb oldal, ahol az alhálózati maszk `0'-át jelzi. Ez a legjobban példák
-segítségével érthető meg: Host A Host B  Host B ugyanabban az alhálózatban van,
+alhálózati maszkban a `0'-s számjegyek pozíciója jelzi.
+A hálózati címkét az alhálózati maszkban egy `0'-nál nagyobb érték jelzi,
+míg a hosztcím a maradék jobb oldal, ahol az alhálózati maszk `0'-át jelzi.
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=67mm, keepaspectratio]{figures/host_a.png}
+        \caption{Host A}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=67mm, keepaspectratio]{figures/host_b.png}
+        \caption{Host B}
+    \end{minipage}
+\end{figure}
+%----------------------------------------------------------------------------
+Host A Host B  Host B ugyanabban az alhálózatban van,
 mint Host A, mert mindkettő ugyanazt a hálózati címkét használja (192.168.020).
 Az IP-cím hálózati része az a rész, ahol az alhálózati maszk 255-ös értéket
-mutat. Ezen két eszköz között egy router nem szükséges. Host C  Host C más
-alhálózatban van, mint Host A és B, mert különbözik a hálózati címében (192.168.
-134, nem pedig 192.168.020). Host C nem tud csomagokat cserélni A és B
-eszközökkel egy router nélkül. Annak érdekében, hogy ez az eszköz
-kommunikálhasson A és B-vel, más IP-címet kell kapnia, kezdve a 192.168.
-134\ldots címmel. Vagy más alhálózati maszk is választható az egész beállításhoz,
-például 255.255.0.0. A feljegyzett alhálózati maszkok decimális jelölése
-dot-decimális jelölésnek nevezik. Hogy ugyanazt az információt rövidebben
-jelezzék, a számítástechnikai osztályokban gyakran használt alternatív módszer a
-CIDR vagy perjeljelölés: az IP-cím után azonnal következő perjel után az
-alhálózati maszkot a `0'-nél nagyobb értékeket mutatva jelöli meg. Ez a jelölés
-az alhálózati maszk bináris formájára utal, tehát a `255' a `11111111' -nek
-felel meg. A fenti példákban az alhálózati maszkok tehát bináris formájukban 24
-`1'-t tartalmaznak. A fenti példában szereplő hosztok CIDR jelölése: Számítógép
-A 192.168.020.182 /24 Számítógép B 192.168.020.079 /24 Számítógép C 192.168.134.
-061 /24 A routereket használó és több alhálózatot összekapcsoló telepítések a
-szóban forgó OSI modell 3. rétegén működnek. Ez a modell hét rétegre osztja a
-hálózatok általános funkcionalitását, mindegyik egy készletet leír a hálózati
-eszközök által nyújtott funkcionalitásokról, például a csomagok továbbításáról a
+mutat. Ezen két eszköz között egy router nem szükséges. 
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=67mm, keepaspectratio]{figures/host_c.png}
+	\caption{Host C}
+	\label {fig:host_c}
+\end{figure}
+%----------------------------------------------------------------------------
+Host C más alhálózatban van, mint Host A és B, mert különbözik a hálózati címében (192.168.134, nem pedig 192.168.020).
+Host C nem tud csomagokat cserélni A és B eszközökkel egy router nélkül. 
+Annak érdekében, hogy ez az eszköz kommunikálhasson A és B-vel, más IP-címet kell kapnia,
+kezdve a 192.168.134\ldots címmel. 
+Vagy más alhálózati maszk is választható az egész beállításhoz,
+például 255.255.0.0.
+%----------------------------------------------------------------------------
+A feljegyzett alhálózati maszkok decimális jelölése dot-decimális jelölésnek nevezik.
+Azért, hogy az információt rövidebben jelezzék, gyakran
+használt alternatív módszer a CIDR vagy perjeljelölés.
+Az IP-cím után azonnal következő perjel után az
+alhálózati maszkot a `0'-nál nagyobb értékeket mutatva jelöli meg.
+Ez a jelölés az alhálózati maszk bináris formájára utal, tehát a `255' a `11111111' -nek felel meg.
+A fenti példákban az alhálózati maszkok tehát bináris formájukban 24
+`1'-t tartalmaznak. 
+A fenti példában szereplő hosztok CIDR jelölése:
+%----------------------------------------------------------------------------
+\begin{itemize}
+    \item \textbf{Host A:} 192.168.020.182/24
+    \item \textbf{Host B:} 192.168.020.079/24
+    \item \textbf{Host C:} 192.168.134.61/24
+\end{itemize}
+%----------------------------------------------------------------------------
+A routereket használó és több alhálózatot összekapcsoló telepítések a
+az OSI modell 3. rétegén működnek. Ez a modell hét rétegre osztja a
+hálózatok általános funkcionalitását, mindegyik egy adott készletet ír le a hálózati
+eszközök által nyújtott funkcionalitásokról. Gondolva itt elsősorban a csomagok továbbításáról a
 megfelelő címzett felé. Az összes jelenlegi IT eszköz követi ezt a jól
 meghatározott absztrakciós rétegkoncepciót, hogy elősegítse a gyártók közötti
 interoperabilitást. A 3. rétegen működő telepítések értelmezhetik az IP-címeket,
@@ -403,6 +444,49 @@ szállítják, és nem tartalmaznak alhálózati információkat. Ennek eredmén
 lehet routerek által továbbítani, és ezáltal a skálázhatóságuk valamelyest
 korlátozott. Az egyik népszerű példa a 2. rétegű hálózatokra a már említett
 TSN/Milan, valamint a történelem során tovább visszamenve a CobraNet.
+
+% OSI modell rétegeinek ábrája python kód alapú diagrammal
+\begin{pycode}
+	from diagrams import Diagram, Cluster
+	from diagrams.onprem.network import Firewall
+	from diagrams.programming.language import Python
+	from diagrams.onprem.network import Internet
+	from diagrams.onprem.network import Server
+	from diagrams.onprem.client import User
+	
+	with Diagram("OSI Modell", show=False):
+		with Cluster("Fizikai réteg"):
+			user = User("Eszköz 1")
+			user - [Firewall("Eszköz 2")]
+	
+		with Cluster("Adatkapcsolati réteg"):
+			with Cluster("MAC réteg"):
+				user - [Firewall("Eszköz 3")]
+			with Cluster("LLC réteg"):
+				user - [Firewall("Eszköz 4")]
+	
+		with Cluster("Hálózati réteg"):
+			user - [Firewall("Eszköz 5")]
+	
+		with Cluster("Szállítási réteg"):
+			user - [Firewall("Eszköz 6")]
+	
+		with Cluster("Viszony réteg"):
+			user - [Firewall("Eszköz 7")]
+	
+		with Cluster("Megjelenítési réteg"):
+			user - [Firewall("Eszköz 8")]
+	
+		with Cluster("Applikációs réteg"):
+			user - [Firewall("Eszköz 9")]
+
+\end{pycode}
+
+\begin{pycode}
+	print("Python says ``Hello!''")
+\end{pycode}
+
+
 
 %----------------------------------------------------------------------------
 
