@@ -276,43 +276,59 @@ az adott eszköz sosem próbálja meg átvenni a vezetői szerepet az PTP háló
 %----------------------------------------------------------------------------
 \subsection{Mintavételi frekvencia és bitmélység}
 %----------------------------------------------------------------------------
- 
+Az audio over IP rendszereknél a kifogástalan működéshez elengedhetetlen a számunkra
+megfelelő mintavételi frekvencia és bitmélység meghatározása.
 
-
-
-
+Ezek a paraméterek alapvetően befolyásolják az audio minőségét és a hálózati teljesítményt.
+Fontos figyelembe venni az átviteli kapacitást, valamint az egyes eszközök maximális mintavételi frekvenciáját és bitmélységét.
+Amennyiben a hálózat nem képes a megfelelő sávszélesség biztosítására, a hálózatunk instabillá válhat, 
+hangkimaradások és megszakadások, legrosszabb esetben a hálózat összeomlása is előfordulhat.
+A gyakran alkalmazott 48 kHz-es mintavételi frekvencia széles hangsávot biztosít, és kompatibilis a legtöbb
+professzionális hangtechnikai alkalmazással. 
+Nemrégiben kezdett el jobban elterjedni szélesebb körben is a 96 kHz-es mintavételi frekvencia, ami
+nagyobb részletességet és jobb hangminőséget eredményez, de cserébe nagyobb sávszélességet igényel.
+A sávszélesség kiszámítása a következő képlettel történik:
+%----------------------------------------------------------------------------
+\begin{equation}
+	\label{eq:sávszélesség}
+	Sávszélesség igény = MintavételiFrekvencia * BitMélység * CsatornákSzáma
+\end{equation}
+%----------------------------------------------------------------------------
+Ezzel a formulával könnyen és gyorsan kiszámíthatjuk, hogy a rendszerünknek mekkora sávszélességre lesz szüksége.
+Tehát ha egy 64x64 csatornás rendszerünk van, 96 kHz-es mintavételi frekvenciával és 24 bites bitmélységgel,
+akkor a sávszélességünk a következő lesz:
+%----------------------------------------------------------------------------
+\begin{equation}
+	\label{eq:sávszélesség}
+	96000 * 24 * 64 * 2 = 294912000 bit/s = 294,912 Mbit/s 
+\end{equation}
+%----------------------------------------------------------------------------
+A számítások alapján egy átlagos 1 Gbit/s (1 Gbit/s = 1000 Mbit/s) sávszélességű hálózaton ez a rendszer már megfelelően működhet.
+Érdemes a hálózatunkat túlbiztosítani, hogy a rendszerünk a legnagyobb terhelés alatt is megfelelően működjön.
+A bitmélység a hangsáv digitális reprezentációját határozza meg, és az adatok pontosságát befolyásolja.
+Általában 16 vagy 24 bitmélységű rendszerek használatosak az audio over IP területén, de a Dante rendszerek a 
+32 bites bitmélységet is támogatják. A 16 bites reprezentáció megfelelő lehet olyan alkalmazásokhoz, ahol a nagy
+dinamikatartomány nem kritikus. Ugyanakkor a 24 bites felbontás lehetőséget nyújt a pontosabb és részletesebb hangátvitelhez,
+általában zenei stúdiókban és élőzenei környezetekben. 
+A 32 bites bitmélység a legmagasabb minőséget biztosítja, de a sokkal nagyobb sávszélesség igénye miatt elsősorban csak
+a kiemelten professzionális stúdiókban használják.
 %----------------------------------------------------------------------------
 \subsection{Késleltetés}
 %----------------------------------------------------------------------------
-Amennyiben egy csomag például 1 ms hanganyagot tartalmaz, a kapcsolat
-késleltetése mindig >1 ms lesz. Ez nyilvánvaló, mert a küldőnek először 1 ms
-hangot kell pufferelnie, mielőtt beleteszi egy csomagba, majd elküldi a
-hálózaton. Ezt követi a hálózaton történő utazás ideje az összes kapcsolóval és
-sorral, mielőtt végül eljutna a fogadó eszköz pufferébe. Az IP audio kapcsolat
-összes késleltetése, a link offset, tehát ezeknek a három tényezőnek a összege:
-Csomag idő Utazási idő a hálózaton Fogadási puffer A gyakorlatban a link offset
-technikai kifejezés sok alternatív nevet visel, a gyártótól függően, például
-késleltetés vagy latencia. A felhasználó felelőssége, hogy olyan link offsetet
-válasszon, amely elég hosszú, hogy a fogadó puffer soha ne ürüljön ki, és
-ezáltal soha ne történjen meg a hang megszakítása. Annak ellenére, hogy a
-hálózatok lassúaknak tűnnek, a tipikus helyzetekben a hálózat nem a teljes
-késleltetés legfontosabb tényezője. Egy alacsony forgalmú hálózatban valójában a
-küldő csomagideje valószínűleg a meghatározó tényező. Ezért néhány felhasználó
-úgy dönthet, hogy rövidebb csomagidőt választ, annak ellenére, hogy ez növeli a
-feldolgozási teljesítmény és a csomagfelesleg követelményeit. De ha a hálózatban
-jelentős a versengő forgalom, az audio adatfolyam csomagjittere nő (több
-várakozás a kapcsolókban), és a fogadó puffer lesz a teljes késleltetés fő
-hozzájárulója, mivel kompenzálnia kell a csomagjittert. A versengő forgalom
-csökkentése a hálózatban közvetlenül a csomagjitter csökkentéséhez vezet, ami
-ezután csökkenti a szükségét a fogadási puffer kompenzálásának, és így végső
-soron lehetővé teszi a minimális késleltetés beállítását. Általában érdemes csak
-akkor csökkenteni a csomagidőt, amikor a jitter hatásokat minimalizálták.
-
-
-
-
-
-
+Amennyiben egy csomag például 1 ms (milliszekundum) hanganyagot tartalmaz, a kapcsolat
+késleltetése mindig nagyobb lesz, mint 1 ms.
+A küldőnek először 1 ms hangot kell pufferelnie, mielőtt beleteszi egy csomagba, majd elküldi a hálózaton.
+Ezt követi a hálózaton történő utazás ideje az összes kapcsolóval, mielőtt végül eljutna a fogadó eszköz pufferébe.
+%----------------------------------------------------------------------------
+\begin{enumerate}
+    \item Csomag idő
+    \item Utazási idő a hálózaton
+    \item Fogadási puffer
+\end{enumerate}
+%----------------------------------------------------------------------------
+A gyakorlatban a link offset technikai kifejezés egyenlő a késleltetés fogalmával.
+A felhasználó felelőssége, hogy olyan link offsetet válasszon, amely elég hosszú, hogy a fogadó puffer soha ne ürüljön ki, és
+ezáltal soha ne történjen meg a hang megszakítása. 
 %----------------------------------------------------------------------------
 \subsection{IP címek és maszkok}
 %----------------------------------------------------------------------------
