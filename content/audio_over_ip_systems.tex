@@ -6,157 +6,120 @@
 A 90-es évek vége óta a szakmai hangipar elmozdult a pont-pont digitális
 átviteli formátumoktól (például AES/EBU vagy MADI) az IP-alapú szabványok felé
 (például AES67). Ez a csomag alapú hálózati megoldás hatalmas rugalmasságot
-hozott, valamint kibővített vezérlési és monitorozási képességeket biztosított
-hangrendszerek számára. Lehetőséget teremt arra, hogy egy fizikailag rögzített
+hozott, valamint kibővített vezérlési és monitorozási képességeket biztosít
+hangrendszerek számára. Lehetőséget teremt arra, hogy egy fizikailag már meglévő
 telepítés későbbi szoftverkonfigurációval és frissítésekkel alkalmazkodóvá és
-bővíthetővé váljon. A jelutak már nem kötődnek fizikai kábelekhez, hanem
-bármikor egérkattintással megváltoztathatók anélkül, hogy szükség lenne
-dedikált audio útválasztó hardverre. A csomagorientált átvitel természetéből
-adódik, hogy az audiojelek automatikusan eljutnak a kívánt helyre az IT
-hálózaton keresztül. A Cirrus Logic által 1996-ban bevezetett CobraNetet
+bővíthetővé váljon. A gyártó különböző esetekben akár teljesen új funkciókkal is
+kiegészítheti a már meglévő eszközöket. 
+A jelutak az IP alapú megközelítés miatt már nem kötődnek 1:1 fizikai kábelekhez, hanem
+bármikor pár egérkattintással megváltoztathatóak anélkül, hogy szükség lenne bármilyen
+jellegű fizikai átrendezésre, vagy dedikált audio útválasztó hardverre. 
+A csomagorientált átvitel jellegéből adódik, hogy az audiojelek automatikusan eljutnak 
+a kívánt helyre az IT hálózaton keresztül. 
+A Cirrus Logic által 1996-ban bevezetett CobraNetet
 általában az első sikeres audio-over-ethernet hálózat-implementációnak tekintik,
-és számos audio telepítés alapját képezi, mint például kongresszusi központok,
-színházak, koncerttermek, repülőterek és vidámparkok. Bár ma is sok CobraNet
-telepítés létezik, magas késleltetési problémák és korlátozott mérethatékonyság
-miatt nem ideális élő hang, stúdiófelvételek és sugárzási létesítmények számára.
-A mintegy tíz évvel később bevezetett ausztrál Audinate cég által kifejlesztett
-Dante a `Digital Audio Network Through Ethernet' rövidítése. Dante több jelentős
-előnnyel rendelkezik az első generációs audio-over-IP technológiákhoz képest,
-beleértve a jobb használhatóságot és a magasabb kompatibilitást a szabványos
-hálózati infrastruktúrával. Dante egy hatalmas felszerelési ökoszisztémából
-profitál, több száz gyártó által gyártott ezernél is több eszközzel. Mielőtt a
-Dante elérte volna jelenlegi domináns pozícióját, nagy várakozás volt egy AVB
-(Audio Video Bridging) nevű technológia körül, mivel erős természete és az
-AVB-képes hálózati hardverek magas szintű automatikus konfigurációja miatt. Más
-iparágak, például az autóipar és az ipari automatizálás, átvették az AVB-t, és
-általánosabb nevet adtak neki, mivel az már nem csak audioés
-videóalkalmazásokhoz kapcsolódik: az AVB-t a keresztipari gyártók
-fejlesztőcsoportja, az AVnu Alliance [2] időérzékeny hálózat (TSN) néven nevezte
-el. Később a Milan munkacsoport, egy audio/video gyártókból álló konzorcium, úgy
+és számos audio telepítés alapját képezi. Ezek közé tartoznak különböző kongresszusi központok,
+színházak, koncerttermek, repülőterek és vidámparkok.
+Bár ma is sok CobraNet telepítés létezik, magas késleltetési problémák és korlátozott mérethatékonyság
+miatt nem ideális élő hang, stúdiófelvételek és rádió létesítmények számára.
+A mintegy tíz évvel később megjelent egy ausztrál cég az Audinate, és az általuk kifejlesztett
+Dante a `Digital Audio Network Through Ethernet'. Dante több jelentős
+előnnyel rendelkezik az első generációs audio-over-IP technológiákhoz viszonyítva.
+Ezek közé értve a jobb használhatóságot és magasabb kompatibilitást a szabványos
+hálózati infrastruktúrával. A Dante egy hatalmas hardveres ökoszisztémából
+profitál, több száz gyártó által gyártott ezernél is több eszközzel. 
+Mielőtt a Dante elérte volna jelenlegi domináns pozícióját, nagy várakozás volt egy AVB
+(Audio Video Bridging) nevű technológia körül.
+Más iparágak, például az autóipar és az ipari automatizálás, átvették az AVB-t, és
+általánosabb nevet adtak neki, mivel az már nem csak hang és videóalkalmazásokhoz kapcsolódik.
+Az AVB-t a gyártók fejlesztőcsoportja, az AVnu Alliance időérzékeny hálózat (TSN) néven nevezte el.
+Később a Milan munkacsoport, egy audio/video gyártókból álló konzorcium, úgy
 döntött, hogy kidolgoz egy finomhangolt specifikációt a profi audio/video
-rendszerekben való használatra, Milan néven. Ez egy specifikus TSN verzió, amely
-az audio/video szolgáltatók közötti interoperabilitásra összpontosít. Ez nem a
-TSN alapján történt, mivel a TSN-hez speciális IT hardver szükséges az audio
-követelmények kezeléséhez, és csak korlátozott számú kapcsolómodell támogatja a
-TSN-t. Ezért ez a fejezet nem a TSN/Milanra összpontosít, hanem arra, hogyan
-lehet standard IT hardvert használni valós idejű audioalkalmazásokhoz.
+rendszerekben való használatra, Milan néven. 
+Ez egy specifikus TSN verzió, amely az audio/video szolgáltatók közötti interoperabilitásra összpontosít.
+Ez nem a TSN alapján történt, mivel a TSN-hez speciális IT hardver szükséges az audio
+követelmények kezeléséhez, és csak korlátozott számú kapcsolómodell támogatja a TSN-t. 
+%----------------------------------------------------------------------------
 Az átmenet az IP hálózatokra összehasonlítható az analóg hangról a digitális
-hangra való átmenettel: néhány kezdeti telepítés, amelyek az új technológiát
-használják, esetleg hiányosságokat mutathatnak a kezelés vagy a megbízhatóság
-terén a hagyományos megközelítéshez képest, de ezek idővel eltűnnek. Ezért az
-audiojelek csatlakoztatása hamarosan nem lesz lehetséges az IT hálózati
-infrastruktúra nélkül. Azonban vannak területek, ahol az IT hálózatok alapvetően
-más módon működnek, mint a hagyományos audio útválasztás. Először is, egy
-szabványos IT hálózat nincs kialakítva szigorú időzítési követelmények
-teljesítésére, amelyek általában az audio esetében jellemzőek. Egy hálózati
-környezetben az adatcsomagok útját más csomagok is akadályozhatják, ami jelentős
-időbeli változást eredményezhet az érkezési időben. A hagyományos audio kábelek
-esetében az adatok továbbításának időzítése nem változott meg a kábel által.
-Másodszor, egy csomag elvesztése elfogadhatónak tűnhet a szokásos IT
-alkalmazások esetében, mivel azok automatikusan újraküldésre kerülnek, ha
-elvesznek. Az audio alkalmazások esetében a késleltetés minimalizálása érdekében
-létfontosságú, hogy a csomagok az első alkalommal érkezzenek meg, mivel nincs
-elegendő idő az újraküldéshez. Ha néhány csomag elveszik, az azonnal hallható
-megszakításokat okoz. A csomagvesztés gyakori oka a linkek túlterhelése. Ezért,
-éppen úgy, ahogyan az utakat optimalizálják a forgalomcsillapítás elkerülése
-érdekében, az audiohálózatokat is oly módon kell kialakítani, hogy elegendő
-sávszélesség álljon rendelkezésre minden felhasználójuk számára. Ha ez teljesül,
-a csomagkiszállítás időben történik, ahogyan az audio alkalmazások igénylik.
-Ennek biztosítása az audiofelhasználó motivációja annak megértésére, hogy az IT
-hálózatok hogyan működnek, és hogyan befolyásolhatók a komponenseik
-konfigurációjával, például kapcsolókkal és útválasztókkal. Azonban ahelyett,
-hogy mélyen belemerülne az IT hálózatok összes részletének megértésébe, gyakran
-könnyebb túlbiztosítani a hálózatot oly mértékben, hogy minden csomag időben
+hangra való átmenettel. Először csak néhány kezdeti telepítés, amelyek az új technológiát
+használják, majd esetleg hiányosságokat mutathatnak a kezelés vagy a megbízhatóság
+terén a hagyományos régi megközelítéshez képest, de ezek idővel a technológia fejlődésével eltűnnek. 
+Vannak területek, ahol az IT hálózatok alapvetően más módon működnek, mint a hagyományos audio útválasztás.
+Először is, egy szabványos IT hálózat nincs kialakítva szigorú időzítési követelmények
+teljesítésére, amelyek általában az audio esetében jellemzőek. 
+Egy hálózati környezetben az adatcsomagok útját más csomagok is akadályozhatják, ami jelentős
+időbeli változást eredményezhet az érkezési időben.
+A hagyományos audio kábelek esetében az adatok továbbításának időzítése nem változott meg a kábel által.
+Másodszor, egy csomag elvesztése elfogadhatónak tűnhet és tűnik a szokásos IT
+alkalmazások esetében, mivel azok automatikusan újraküldésre kerülnek, ha elvesznek.
+Az audio alkalmazások esetében a késleltetés minimalizálása érdekében
+létfontosságú, hogy a csomagok az első alkalommal a korrekt helyre érkezzenek meg, mivel egyáltalán nincs
+elegendő idő az újraküldéshez. Ha néhány csomag elveszik, az azonnal hallható megszakításokat és kimaradásokat okoz.
+A csomagvesztés gyakori oka a linkek túlterhelése, vagy a túl alacsony pufferméret.
+Az audiohálózatokat oly módon kell kialakítani, hogy elegendő sávszélesség álljon rendelkezésre
+minden felhasználójuk számára. Ha ez teljesül, és a csomagkiszállítás időben történik, ahogyan az audio alkalmazások igénylik,
+akkor a hálózatunk már elméletileg képes stabilan működni.
+Érdemes túlbiztosítani a hálózatot oly mértékben, hogy minden csomag időben
 megérkezzen, anélkül, hogy további finomításra lenne szükség a kapcsolók
 konfigurációjában. Konkrétan ez azt jelenti, hogy olyan IT hálózatokat kell
 építeni elegendő sávszélességgel, és kizárólag az audio alkalmazások számára
-kell használni, tehát ne keveredjenek általános irodai alkalmazásokkal. A
-legtöbb audio-over-IP technológia abból indul ki, hogy az alapul szolgáló
-hálózat megfelelően fog működni: nincs csomagvesztés, és nincs súlyos ütközés
-más csomagokkal a kapcsoló hardverben. Néhány hálózatban, különösen ha az audio
-és más forgalmat keverik, fontos lehet az audioés szinkronizációs csomagoknak
-elsőbbséget biztosítani másokkal szemben, például internetes böngészés vagy
-fájlkoppintás irodai alkalmazásokkal. Ez a mai legtöbb kereskedelmi forgalmazott
-kapcsolóval elérhető. Ennek a fejezetnek a fókusza az alacsony késleltetésű
-alkalmazásokon van, amelyek kihasználják a tömörítetlen audiojeleket, például a
-magas minőségű audioelőállításokat. Ezek lényegében ugyanazokat a
-követelményeket támasztják az IP hálózatokhoz, mint az AES/EBU vagy MADI
-esetében. Tehát itt leírt magyarázatok az összes AES67 szabványt támogató
-audiohálózati technológiára vonatkoznak, ideértve a következőket is:
-
+kell használni, tehát ne keveredjenek általános mindennapi alkalmazásokkal. 
+%----------------------------------------------------------------------------
+A legtöbb audio-over-IP technológia abból indul ki, hogy az alapul szolgáló
+hálózat megfelelően fog működni. Gondolva itt arra, hogy nincsen csomagvesztés, 
+nincs súlyos ütközés más csomagokkal a kapcsoló hardveren. 
+Néhány hálózatban, különösen ha az audio és más forgalmat keverik, 
+fontos lehet az audio és szinkronizációs csomagoknak elsőbbséget biztosítani másokkal szemben,
+például az internetes böngészéssel szemben. Ez a mai legtöbb kereskedelmi forgalmazott
+kapcsolóval elérhető. 
+Példa audio over IP hálózatokra:
+%----------------------------------------------------------------------------
 \begin{itemize}
 	\item Audinate által kifejlesztett Dante
 \end{itemize}
-
-
 \begin{itemize}
 	\item QSC által kifejlesztett Q-LAN
 \end{itemize}
-
-
 \begin{itemize}
 	\item Lawo és Partnerei által kifejlesztett RAVENNA
 \end{itemize}
 %----------------------------------------------------------------------------
-
-
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=60mm, keepaspectratio]{figures/dante_logo.jpg}
+	\caption{Audinate Dante logó}
+	\label {fig:dante_logo}
+\end{figure}
 %----------------------------------------------------------------------------
 \subsection{Előnyök és hátrányok}
 %----------------------------------------------------------------------------
-Nincsen szükség fizikai kábelekre a különböző végpontok között. Egyetlen egy CAT kábelre van szükségünk a rendszerbe kapcsoláshoz, majd egy
-szoftveres kezelőfelületen keresztül bármikor megváltoztathatóak a jelek útjai. (Ez alól kivételt képeznek a redundáns rendszerek amelyek két CAT kábelt igényelnek a redundancia biztosítása végett)
-A megfelelően megtervezett rendszerünk modulárissá válik, és a hálózat bármely pontján könnyen bővíthető, illetve a hálózat bármely pontjáról elérhetővé válik a rendszer.
-Egyes eszközökre a gyártó akár olyan fundamentális frissítéseket is kiadhat, amely nagymértékben képes lehet az adott eszköz funkcionalitását javítani,
-vagy új funkciók hozzáadásával tovább növelni a komponens értékét.
-
-A digitális hangfeldolgozás nagy flexibilitást és helytakarékosságot hozott el
-magával ebben az iparágban, de mindez nem teljes mértékben jött hátrány nélkül.
-Még a legmodernebb és legjobb A-D (analog to digital) konverterek sem tudták
-teljes mértékben visszaadni azt a tipikus analog hangot, amire egy analog
-hangrendszer képes. Ez elsősorban abból fakad, hogy egy átlagos digitális
-keverővel és végfokrendszerrel ellátott új generációs hangrendszerben sok A-D és
-D-A konverzió történik, és minden egyes konverzióval, hiába veszünk sok mintát
-(96 kHz 24 bit 3000+kbps), a hang akkor is veszt egy kicsit a
-karakterisztikájából.
-%----------------------------------------------------------------------------
-Az IT hálózatok alkalmazása hangkapcsolatokra nézve számos előnyt kínál,
-amelyeket az alábbiakban tekintünk át:
-
+Az IT hálózatok alkalmazása hangkapcsolatokra nézve számos előnyt kínál:
 \begin{itemize}
 	\item Rugalmasság a hangkapcsolatok hozzáadásához vagy módosításához anélkül,
-	      hogy a kábeleket cserélnénk
+	      hogy a kábeleket cserélnénk.
 \end{itemize}
-
-
 \begin{itemize}
-	\item Az IT alacsony áron széles skálájú funkciót kínál, amit az általános
-	      gazdaságosság elveként ismerünk
+	\item Az IT viszonylag alacsony áron széles skálájú funkciót kínál.
 \end{itemize}
-
-
 \begin{itemize}
 	\item Az alkalmazkodás és integráció az IT hálózati infrastruktúrába
-	      specifikus audio vagy videokábelek telepítése nélkül
+	      specifikus audio vagy videokábelek alkalmazása nélkül.
 \end{itemize}
-
-
 \begin{itemize}
 	\item Videójel és vezérlési adatok továbbíthatók ugyanazon infrastruktúrán
-	      keresztül további erőfeszítés nélkül.
+	      keresztül.
 \end{itemize}
-Ugyanakkor az audio-over-IP hálózatok felhasználóját számos kihívás elé
-állíthatják:
-
+%----------------------------------------------------------------------------
+Ugyanakkor az audio-over-IP hálózatok felhasználóit számos kihívás elé is állíthatják:
+%----------------------------------------------------------------------------
 \begin{itemize}
-	\item Mivel általában több hangmintát egy csatornából egy csomagba helyeznek
-	      el a teljes hatékonyság érdekében, adott minimális késleltetés adódik, mivel az
+	\item Azért mert általában több hangmintát egy csatornából egy csomagba helyeznek
+	      el a hatékonyság érdekében, adott minimális késleltetés adódik, mivel az
 	      küldőnek meg kell várnia, hogy a hangminták rendelkezésre álljanak, mielőtt
 	      azokat átküldené a hálózaton. Ez a késleltetés általában magasabb, mint a
 	      pont-pont digitális hangszabványok esetében, de optimalizált csomagformátumok és
-	      hálózati beállítások segítségével minimalizálható és közelíthető.
+	      hálózati beállítások segítségével minimalizálható és nagyon jól közelíthető.
 \end{itemize}
-
-
 \begin{itemize}
 	\item Mivel az IT hálózatok nem meghatározottak a csomagok úti idejét tekintve,
 	      egy biztonsági tartományt, azaz egy audio buffer-t kell beszúrni a fogadó végén.
@@ -164,8 +127,6 @@ Ugyanakkor az audio-over-IP hálózatok felhasználóját számos kihívás elé
 	      jelen a hálózatban, annál inkább csökkenthető ez a biztonsági tartomány (és
 	      ezzel a késleltetés).
 \end{itemize}
-
-
 \begin{itemize}
 	\item Az audio csomagformátumok változatossága miatt növekszik a komplexitás,
 	      ami azt jelenti, hogy a fogadóknak és küldőknek azonos beállításokkal kell
@@ -175,52 +136,56 @@ Ugyanakkor az audio-over-IP hálózatok felhasználóját számos kihívás elé
 	      intelligens és felhasználóbarát szoftvermegoldásokat az audiohálózatok
 	      kezelésére.
 \end{itemize}
-
-
-
-
-
-
-
 %----------------------------------------------------------------------------
 \subsection{Fázishelyesség}
 %----------------------------------------------------------------------------
 A legtöbb audio alkalmazásban kritikus a több eszköz szinkronizált viselkedése.
-Stereofonikus felvételi helyzetekben vagy több hangszóróval történő hangerősítés
-során elengedhetetlen a mikrofonok vagy hangszórók közötti fázispontosság.
+Elengedhetetlen a mikrofonok vagy hangszórók közötti fázispontosság.
 Amikor több hangszóró van csatlakoztatva egy erősítőhöz, és az összes csatorna
 egyetlen hangcsomagban érkezik meg, nincs veszélye annak, hogy a csatornák
-kifázisban lennének egymással, mivel a hangminták nem változhatnak el egymás
-között a hálózaton keresztüli átvitel során. Azonban egyre több alkalmazásban
-több erősítő és processzor függetlenül kap hangcsomagokat, miközben továbbra is
-szükség van arra, hogy pontosan reprodukálják az audiojeleket fázispontossággal.
-Ezért egy adott audio csomagot több hálózati eszköz is megkaphatja, pufferelheti,
-majd pontosan ugyanabban az időben kell lejátszania. Mivel nincsenek szoros
-időzítési specifikációk az IT hálózatokban a csomagok továbbításának és
-megérkezésének időpontjára vonatkozóan, az audiohálózatoknak szinkronizációs
-módszert kell biztosítaniuk ezek között a vevők között. Ez egy fontos, de új
-probléma az audiohálózatokban. Szerencsére a későbbiekben leírt koncepció
-elterjedt és jelenleg minden audiohálózati szabványban és a videóban is
-használatos. Az audiohálózaton belül minden eszköz abszolút időben szinkronizált
+ellenfázisban lennének egymással, mivel a hangminták nem változhatnak el egymás
+között a hálózaton keresztüli átvitel során. 
+Azonban egyre több alkalmazásban több erősítő és processzor függetlenül kap hangcsomagokat,
+miközben továbbra is szükség van arra, hogy pontosan reprodukálják az audiojeleket egyező fázispontossággal.
+Ezért egy adott audio csomagot több hálózati eszköz is megkaphatja, pufferelheti, és ezeket
+pontosan ugyanabban az időben kell lejátszania. 
+Mivel nincsenek szoros időzítési specifikációk az IT hálózatokban a csomagok továbbításának és
+megérkezésének időpontjára vonatkozóan, az audiohálózatoknak mindenképpen szinkronizációs
+módszert kell biztosítaniuk. Ez egy fontos, de új probléma a hálózatokban, amellyel az összes
+audio-over-IP technológiának foglalkoznia kell.
+Az audiohálózaton belül minden eszköz abszolút időben szinkronizált
 a Precision Time Protocol (PTP) szerint. Ez azt jelenti, hogy belső óráik (PTP
 követők) egy referenciaóra eszközből (PTP vezető) származnak. Ez az eszköz
 bármilyen audioeszköz lehet, amely biztosítja ezt a funkciót, vagy akár egy
-speciálisan kifejlesztett termék is lehet a pontos PTP órák előállítására. A
-vezetőt egy felhasználói beállítás vagy alternatívaként egy szabványos
+speciálisan erre a célra kifejlesztett termék is lehet a pontos PTP órák előállítására.
+A vezetőt egy felhasználói beállítás vagy alternatívaként egy szabványos
 automatizmus választja ki. Az összes eszköz számára, legyen az audio adó vagy
-vevő, az a végső követelmény, hogy pontosan szinkronizálódjanak ehhez az adott
-időhöz. Az audio csomag küldési pillanatában egy időbélyegzővel látják el, amely
-azt jelzi, mikor lett elküldve. A felhasználó állandó időeltolást állít be az
-összes vevőnél, a ún. linkeltolást. Amikor egy csomag megérkezik egy vevőhöz, a
+vevő, az a végső követelmény, hogy pontosan szinkronizálódjanak ehhez az adott időhöz.
+Az audio csomag küldési pillanatában egy időbélyegzővel látják el. A felhasználó állandó időeltolást állít be az
+összes vevőnél, ez a linkeltolás. Amikor egy csomag megérkezik egy vevőhöz, a
 pufferben marad, amíg lejátszásra kerül. Tehát az audio lejátszás pillanata a
-küldési idő plusz a linkeltolás. Minden vevő (pl. beépített audio-over-IP
-csatlakozóval rendelkező hangszórók) két feltétel mellett érheti el egymás
-között a fázispontosságot: Pontos időszinkronizálás a PTP óra vezetőjéhez
-(azonos időbázis) Azonos linkeltolási érték beállítása a felhasználó által az
-összes vevőeszközön Ezért a linkeltolást az érintett összes kapcsolat
-legrosszabb esetű késleltetése alapján kell kiválasztani. Javasolt bizonyos
-engedményt hozzáadni az esetleges csomagkiszállítási idők váratlan eltéréseinek
-esetére.
+küldési idő plusz a linkeltolás. Minden vevő két feltétel mellett érheti el egymás
+között a fázispontosságot: 
+Pontos időszinkronizálás a PTP óra vezetőjéhez (azonos időbázis) 
+Azonos linkeltolási érték beállítása a felhasználó által az összes vevőeszközön
+Ezért a linkeltolást az érintett összes kapcsolat legrosszabb esetű késleltetése alapján kell kiválasztani. 
+Javasolt bizonyos engedményt hozzáadni az esetleges csomagkiszállítási idők váratlan eltéréseinek esetére,
+ez azt jelenti, hogy kicsivel nagyobb időt hagyunk az átlagos csomagfeldolgozási időnél.
+Szerencsére ez a koncepció elterjedt és jelenleg minden audiohálózati szabványban és a videóban is használatos. 
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth, keepaspectratio]{figures/link_offset_latency.png}
+	\caption{A kapcsolati eltolás meghatározza a késleltetést \cite{AHNERT2023}}
+	\label {fig:link_offset_latency}
+\end{figure}
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth, keepaspectratio]{figures/phase_coherence_link_offset.png}
+	\caption{Fáziskoherencia azonos kapcsolati eltolással \cite{AHNERT2023}}
+	\label {fig:phase_coherence_link_offset}
+\end{figure}
 %----------------------------------------------------------------------------
 \subsection{Szinkronizáció}
 %----------------------------------------------------------------------------
@@ -710,9 +675,9 @@ megkönnyítve a nagy, összetett hangrendszerek beállítását és kezelését
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth, keepaspectratio]{figures/dante_logo.jpg}
-	\caption{Audinate Dante logó}
-	\label {fig:dante_logo}
+	\includegraphics[width=\linewidth, keepaspectratio]{figures/dante_visual.jpg}
+	\caption{Audinate Dante fanzázia ábra}
+	\label {fig:dante_visual}
 \end{figure}
 %----------------------------------------------------------------------------
 
@@ -778,6 +743,14 @@ Dante hanghálózatok távolról is vezérelhetők és monitorozhatók, széles 
 hangformátumokat, mintavételi rátákat és egyszerre több hangcsatornát támogatnak,
 valamint fejlett funkciókat is kínálnak, mint a DDM és a DVS.
 %----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth, keepaspectratio]{figures/dante_chip.jpg}
+	\caption{Audinate Dante chip}
+	\label {fig:dante_chip}
+\end{figure}
+%----------------------------------------------------------------------------
+
 A Dante hanghálózatok működése abban rejlik, hogy digitális hangjeleket
 továbbítanak a szabványos Ethernet hálózatokon keresztül. A technológia egy
 saját protokollt használ, amit Dante néven ismerünk, és az User Datagram
