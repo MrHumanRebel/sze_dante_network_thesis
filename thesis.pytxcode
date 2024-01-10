@@ -32,8 +32,6 @@
 		with Cluster("Applikációs réteg"):
 			user - [Firewall("Eszköz 9")]
 
-=>PYTHONTEX#py#default#default#1#code####audio_over_ip_systems.tex#485#
-	print("Python says ``Hello!''")
 =>PYTHONTEX:SETTINGS#
 version=0.18
 outputdir=pythontex-files-thesis
