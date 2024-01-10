@@ -189,65 +189,59 @@ Szerencsére ez a koncepció elterjedt és jelenleg minden audiohálózati szabv
 %----------------------------------------------------------------------------
 \subsection{Szinkronizáció}
 %----------------------------------------------------------------------------
-Az IP küldők és fogadók szinkronizációja az alacsony latenciával való szinkron
-működéshez elengedhetetlen. A hagyományos audio technológiákban az eszközöket
-vagy külön word clock kapcsolattal, vagy szinkronizált audio formátumokkal,
-például AES/EBU vagy MADI segítségével szinkronizálták. A fogadók közvetlenül
-képesek voltak azokból az formátumokból frekvenciájukat és fázisukat kinyerni,
-mivel valamiféle ``impulzust'` biztosítottak, ami jelzi a pillanatot, amikor egy
-audio minta létrejön vagy lejátszódik, például analóg-digitális konverterek
-esetében. Megjegyzés: A következő fejezet részletezi, hogyan szinkronizálják a
-hangeszközöket fázisban a szakosított csomagok segítségével (PTP). Ezek a
-csomagok kicsik és nem tartják fel a forgalmat sokáig, de fontos, hogy a
-kapcsolókban a lehető legmagasabb prioritással továbbítsák őket. Ez végül
-növelni fogja a szinkronizáció pontosságát. A QoS-hoz kapcsolódóan ez azt
-jelenti, hogy a PTP csomagokat még a hangnál is magasabb prioritással kell
-kezelni. A fenti példában ezért a sorba (queue) 4-hez lennének hozzárendelve,
-míg a hang a 2. vagy 3. sorba kerülne. Táblázat 9.1 Ajánlott QoS beállítások
-DSCP érték Legmagasabb prioritás (például sor 4) 46 és 56 (szinkronizáció és
-Dante hang) Közepes prioritás (például sor 2 vagy 3) 34 (hang, Dante kivételével
-minden) Legalacsonyabb prioritás (például sor 1) Minden egyéb Az Audio-over-IP
-már nem támaszkodik hagyományos időzítőkre ``impulzus'' formájában, hanem az
-abszolút idő információra helyezi a hangszerzés során. Az összes hálózati
-eszközt ugyanazon naptári időpontra szinkronizálják a Precision Time Protocol
-(PTP) segítségével. Ennek az időnek a kiindulása egy olyan eszköz, amelyet
-óraleadernek (vagy óramesternek) neveznek, míg az ehhez igazodó eszközöket óra
-követőknek (vagy óra szolgák) hívják. Minden eszköznek meg kell hozzá generálnia
-a kívánt hagyományos órát (például 48 kHz), amelyet a PTP-n keresztül kapott
-abszolút időből származtat. Ez a belső óra az ún. médiaóra. Ha a gyártó
-megfelelően implementálja, minden eszköz médiaórájának ugyanaznak kell lennie a
+Az IP küldők és fogadók szinkronizációja az alacsony késleltetéssel való szinkronban lévő működéshez elengedhetetlen.
+A hagyományos audio technológiákban az eszközöket vagy külön \textit{word clock} kapcsolattal, 
+vagy szinkronizált audio formátumokkal, például AES/EBU vagy MADI segítségével szinkronizálták.
+A fogadók közvetlenül képesek voltak azokból az formátumokból frekvenciájukat és fázisukat kinyerni,
+mivel valamiféle \textit{impulzust} biztosítottak, ami jelzi a pillanatot, amikor egy
+audio minta létrejön vagy lejátszódik, például analóg-digitális konverterek esetében.
+Az PTP csomagok kicsik és nem tartják fel a forgalmat sokáig, de fontos, hogy a
+kapcsolókban a lehető legmagasabb prioritással továbbítsák őket. 
+Ez végül növelni fogja a szinkronizáció pontosságát. 
+A QoS-hez (Quality of service) kapcsolódóan ez azt jelenti, hogy a PTP csomagokat még a hangnál is magasabb prioritással kell
+kezelni. Az összes hálózati eszközt ugyanazon naptári időpontra szinkronizálják a Precision Time Protocol
+(PTP) segítségével. Ennek az időnek a kiindulása egy olyan eszköz, amelyet óraleadernek
+neveznek, míg az ehhez igazodó eszközöket óra követőknek hívják. 
+Minden eszköznek meg kell hozzá generálnia a kívánt hagyományos órát (például 96 kHz), amelyet a PTP-n keresztül kapott
+abszolút időből származtat. Ez a belső óra a \textit{médiaóra}. 
+Ha a gyártó megfelelően implementálja, minden eszköz médiaórájának pontosan ugyan annyinak kell lennie a
 frekvencia és fázis terén. A magas pontosság technikailag elérhető, de kihívást
 jelent az audio gyártók számára. Ezért a PTP szinkronizált eszközök közötti
-fázispontosság minőségtől függően változhat. Elfogadható változás <1 µs. Mivel
-az IT hálózatok nem eléggé determinisztikusak a csomag kézbesítésének időpontját
+fázispontosság minőségtől függően változhat. Elfogadható változásnak tekinthető ha az kisebb mint <1 µs, azaz 1 mikroszekundum.
+%----------------------------------------------------------------------------
+Mivel az IT hálózatok nem eléggé determinisztikusak a csomag kézbesítésének időpontját
 illetően, a készülékek pontos szinkronizációja kifinomult megközelítést igényel.
-A PTP követők fő feladata két hatás kompenzálása, amelyek minden hálózatban
-előfordulnak: JITTER KOMPENZÁCIÓ A PTP vezető által a szinkronizációs
-üzenetekben megadott jelenlegi időt az összes követőnek egy jól ismert multicast
-cím (224.0.1.129) használatával mutatják be. A hálózat és a kapcsolók sorai
-természetükből adódóan ez az információ nem mindig érkezik meg állandó
-késleltetéssel a követő végére. Ez a változás a csomag jitter vagy csomag
-késleltetési változás (PDV) néven ismert, és minden PTP követőnek ki kell
-egyenlítenie. Általában az audio hálózatok 1--8 üzenet/mp szinkronizálási arányt
-használnak, az 8 a maximális kompatibilitás érdekében javasolt érték. KÉSÉS
-MÉRÉSE A követő második kulcsfontosságú feladata a vezető és a követő közötti
-csomagkésleltetés mérésének a vezető által a szinkronizációs üzenetekben kapott
-idő kijavításához. Ehhez szükség van azoknak az időmérésekre, amelyek során a
-hálózaton keresztül utaztak. Ez a mérés magában foglalja az összes közöttük lévő
-összetevő késleltetését, beleértve a kábeleket és kapcsolókat is. Más szóval a
-vezető és a követő közötti kábelhossz és a kapcsolók száma nem számít. A PTP idő
-az összes követő között ugyanaz nanoszekundumok pontosságával. Az egyetlen
-feltétel a PTP számára, hogy a késleltetés mindkét irányban, a vezetőtől a
-követőig és fordítva, állandó és szimmetrikus maradjon. De ez a feltétel
-általában teljesül a helyi hálózati telepítéseknél. A késleltetést a követő két
-üzenet cseréjével méri, a késleltetési kérésből és a késleltetési válaszból
-következően. Ezt a késleltetést általában a szinkronizálási aránnyal azonos
-gyakorisággal hajtják végre, bárhol 1 és 8 alkalom között. Mivel egy vezetőnek
-minden egyes követővel üzenetet kell cserélnie, van egy maximális követőszámra
+A PTP követők fő feladata két hatás kompenzálása, amelyek bármilyen hálózat esetén előfordulhatnak:
+%----------------------------------------------------------------------------
+\subsubsection{Jitter kompenzáció}
+%----------------------------------------------------------------------------
+A PTP vezető által a szinkronizációs üzenetekben megadott jelenlegi időt az összes követőnek egy jól ismert multicast
+cím (224.0.1.129) használatával mutatják be. 
+A hálózat és a kapcsolók sorai természetükből adódóan ez az információ nem mindig érkezik meg állandó
+késleltetéssel a vevő számára. 
+Ez a változás a csomag jitter vagy csomag késleltetési változás (PDV) néven ismert effektus,
+ezt az elváltozást minden PTP követőnek kompenzálnia kell. 
+Általában az audio hálózatok 1--8 üzenet/mp szinkronizálási arányt
+használnak. (A 8-as maximális érték csak kompatibilitás érdekében javasolt)
+%----------------------------------------------------------------------------
+\subsubsection{Késleltetés mérése}
+%----------------------------------------------------------------------------
+A követő második kulcsfontosságú feladat a vezető és a követő közötti
+csomagkésleltetés mérése a vezető által a szinkronizációs üzenetekben kapott
+idő kijavításához. Ehhez szükség van arra az időmérésre, amelyek azt mutatja meg számunkra,
+hogy a hálózati út során mennyi időbe telik egy csomag átvitele.
+Ez a mérés magában foglalja az összes közöttük lévő
+összetevő késleltetését, beleértve a kábeleket és kapcsolókat is. 
+A vezető és a követő közötti kábelhossz és a kapcsolók száma nem számít, csak a végső érték.
+A PTP időnek az összes követő között ugyanannak kell lennie nanoszekundum pontossággal.
+Az egyetlen feltétel a PTP számára, hogy a késleltetés mindkét irányban, a vezetőtől a
+követőig és fordítva, állandó és szimmetrikus maradjon.
+A késleltetést a követő két üzenet cseréjével méri, a késleltetési kérésből és a késleltetési válaszból következően.
+Ezt a késleltetést általában a szinkronizálási aránnyal azonos gyakorisággal hajtják végre, 
+azaz az előbbiekben már említett 1 és 8 alkalom között.
+Mivel egy vezetőnek minden egyes követővel üzenetet kell cserélnie, van egy maximális követőszámra
 vonatkozó korlátja. Sajnálatos módon ez nincs egyértelműen meghatározva, mivel
-az használt üzenetsebességektől függ. Tipikus audio beállításokban, ahol nincs
-kijelölt PTP vezető eszköz, a mesterekre képes audio eszközök általában 25-től
-250 követőig szolgálhatnak ki.
+ez az érték a használt üzenetsebességektől függ.
 %----------------------------------------------------------------------------
 Mivel a hálózaton több eszköz is képes lehet PTP vezetőként működni és elosztani
 az időt az összes követőnek, a szabvány szabályokat hozott létre a vezető
@@ -255,36 +249,30 @@ kiválasztásához. Ezt a szabályt a Best Master Clock Algorithm (BMCA), vagyis
 Legjobb Mesteróra Algoritmusnak nevezik. Minden vezetőképes eszköz küldhet
 bejelentő üzeneteket a prioritásairól (amelyeket a felhasználó állít be),
 valamint az oszcillátor pontosságáról. Ezenkívül figyelnie kell más eszközöket,
-amelyek szintén elküldhetik saját bejelentő üzeneteiket. Ha más bejövő üzenetek
-jobb minőséget jelentenek, az eszköz leállítja a vezetőként való bejelentkezését.
-Ellenkező esetben rendszeresen küldi saját üzeneteit, mintegy ``szívverésként'`,
-és ezzel jelez minden másnak az aktív állapotát. Ezeket az üzeneteket az
-announce intervallumnak nevezett időközönként küldik el. A bejelentő üzenetek
-szolgálnak ``szívverésként'` is, hogy mások tudják, a jelenlegi mester még
-mindig működőképes. Ha a kapcsolat megszakad, az összes egység vár egy bizonyos
-időt (bejelentő időtúllépés), amíg elküldik bejelentő üzeneteiket, majd
-megismétlik a kiválasztási folyamatot. A vezetőváltás idején a követőknek
-folytatniuk kell saját oszcillátoruk belső működését. Az audio nem szakítható
-meg a vezetőváltás során. A bejelentő üzenetekben megadott minőség két értéket
-tartalmaz, amelyeket a felhasználó állít be: prioritás 1 és prioritás 2.
-Mindkettő értéke 0 és 255 között változhat, ahol az 0 a legjobb és legyőzi a
-többieket. Ha egy prioritás 1 érték kisebb egy eszközön, mint más eszközökön,
+amelyek szintén elküldhetik saját bejelentő üzeneteiket. 
+Ha más bejövő üzenetek jobb minőséget jelentenek, az eszköz leállítja a vezetőként való bejelentkezését.
+Ellenkező esetben rendszeresen küldi saját üzeneteit, mintegy \textit{szívverésként},
+és ezzel jelezve minden másik eszköznek az aktív állapotát. 
+Ezeket az üzeneteket az announce intervallumnak nevezett időközönként küldik el. 
+A bejelentő üzenetek szolgálnak \textit{szívverésként} is, hogy mások tudják, a jelenlegi mester még működőképes.
+Ha a kapcsolat megszakad, az összes egység vár egy bizonyos időt (bejelentő időtúllépés),
+amíg elküldik bejelentő üzeneteiket, majd megismétlik a kiválasztási folyamatot. 
+A vezetőváltás idején a követőknek folytatniuk kell saját oszcillátoruk belső működését.
+Az audio nem szakítható meg a vezetőváltás során.
+A bejelentő üzenetekben megadott minőség két értéket tartalmaz, amelyeket a felhasználó állít be: prioritás 1 és prioritás 2.
+Mindkettő értéke 0 és 255 között változhat, ahol az 0 a legjobb és legyőzi a többieket.
+Ha egy prioritás 1 érték kisebb egy eszközön, mint más eszközökön,
 akkor az lesz a vezető. A prioritás 2 alatti érték csak akkor releváns, ha
-minden előző érték - beleértve a prioritás 1-et is - több eszközön ugyanaz. Ez
-előfordulhat két azonos típusú eszköz telepítéseknél, amelyeknek a felhasználó
+minden előző érték, beleértve a prioritás 1-et is, több eszközön ugyanaz. 
+Ez előfordulhat két azonos típusú eszköz telepítéseknél, amelyeknek a felhasználó
 azonos értéket állított be a prioritás 1-hez. Ebben az esetben a prioritás 2
-határozza meg, hogy melyik azaz két egység közül melyik a fő vezető, és melyik
-tartalék. Fontos megjegyezni, hogy néhány eszköz nem kínál lehetőséget a
-felhasználónak prioritás 1 és 2 numerikus értékének megadására. Ehelyett
-egyszerűen lehetőséget biztosítanak a felhasználónak a ``Preferált Vezető'`
-kiválasztására. Technikailag ezek a termékek rögzített értéket használnak
-bejelentő üzeneteikben, amit a gyártó határoz meg. Ezért még mindig lehetséges,
-hogy egy másik PTP vezetőnél beírva egy még alacsonyabb értéket, legyőzheti az
-ilyen típusú eszközt. Néhány eszköz támogatja azt a beállítást is, amit ``Csak
-Szolga'` vagy ``Csak Követő'' néven emlegetnek. Amikor engedélyezve van, az
-eszköz sosem próbálja átvenni a vezetői szerepet és PTP vezetővé válni.
-
-
+határozza meg, hogy melyik lesz a fő vezető, és melyik a tartalék. 
+Fontos megjegyezni, hogy néhány eszköz nem kínál lehetőséget a felhasználónak ezen értékének megadására.
+Ehelyett egyszerűen a \textit{Preferált Vezető} megjelölésével rendelkeznek.
+Technikailag ezek a termékek rögzített értéket használnak bejelentő üzeneteikben, amit a gyártó határoz meg.
+Ezért még mindig lehetséges, hogy egy másik PTP vezetőnél beírva egy még alacsonyabb értéket, felül bírálhatja az ilyen típusú eszközt.
+Néhány eszköz támogatja azt a beállítást is, amit \textit{Csak Követő} néven ismerünk. Ebben az esetben amikor ez engedélyezve van,
+az adott eszköz sosem próbálja meg átvenni a vezetői szerepet az PTP hálózaton.
 %----------------------------------------------------------------------------
 \subsection{Mintavételi frekvencia és bitmélység}
 %----------------------------------------------------------------------------
