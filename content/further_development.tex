@@ -6,6 +6,20 @@
 \section{További eszközök integrálása}
 %----------------------------------------------------------------------------
 
+A Dante networking keresztrendszer lehetővé teszi a rendszer folyamatos bővítését a
+hálózati limitációk megfelelő kezelésével. A rendszer bővítésekor figyelembe kell venni a
+még rendelkezésre álló csatornák számát, a sávszélességet és a késleltetést. Amennyiben
+tarjuk magunkat ezekhez a paraméterekhez, a rendszer bővítése nem okozhat problémát, akár
+elméletileg a teljes hálózatot is szaturálhatjuk mindenféle probléma nélkül.
+
+
+
+
 %----------------------------------------------------------------------------
 \section{Bővítés nagyobb interfészre}
 %----------------------------------------------------------------------------
+
+Ha a hálózatunk csatornaszáma meghaladja a 64x64-et, akkor a fő gerincet 
+bővíthejük 128x128-re. Ebben az esetben a Dante hálózati cseréje szükséges,
+valamint a rendszer fő csomópontja a RedNet PCIe kártya lesz, mivel 
+a RedNet PCIe kártya 128x128-es Dante hálózatot tud alapból kezelni.

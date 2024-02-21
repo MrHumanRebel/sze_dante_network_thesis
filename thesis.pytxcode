@@ -1,37 +1,3 @@
-=>PYTHONTEX#py#default#default#0#code####audio_over_ip_systems.tex#449#
-	from diagrams import Diagram, Cluster
-	from diagrams.onprem.network import Firewall
-	from diagrams.programming.language import Python
-	from diagrams.onprem.network import Internet
-	from diagrams.onprem.network import Server
-	from diagrams.onprem.client import User
-	
-	with Diagram("OSI Modell", show=False):
-		with Cluster("Fizikai réteg"):
-			user = User("Eszköz 1")
-			user - [Firewall("Eszköz 2")]
-	
-		with Cluster("Adatkapcsolati réteg"):
-			with Cluster("MAC réteg"):
-				user - [Firewall("Eszköz 3")]
-			with Cluster("LLC réteg"):
-				user - [Firewall("Eszköz 4")]
-	
-		with Cluster("Hálózati réteg"):
-			user - [Firewall("Eszköz 5")]
-	
-		with Cluster("Szállítási réteg"):
-			user - [Firewall("Eszköz 6")]
-	
-		with Cluster("Viszony réteg"):
-			user - [Firewall("Eszköz 7")]
-	
-		with Cluster("Megjelenítési réteg"):
-			user - [Firewall("Eszköz 8")]
-	
-		with Cluster("Applikációs réteg"):
-			user - [Firewall("Eszköz 9")]
-
 =>PYTHONTEX:SETTINGS#
 version=0.18
 outputdir=pythontex-files-thesis

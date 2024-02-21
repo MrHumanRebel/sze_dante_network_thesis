@@ -15,7 +15,7 @@ A jelutak az IP alapú megközelítés miatt már nem kötődnek 1:1 fizikai ká
 bármikor pár egérkattintással megváltoztathatóak anélkül, hogy szükség lenne bármilyen
 jellegű fizikai átrendezésre, vagy dedikált audio útválasztó hardverre. 
 A csomagorientált átvitel jellegéből adódik, hogy az audiojelek automatikusan eljutnak 
-a kívánt helyre az IT hálózaton keresztül. 
+a kívánt helyre az IT hálózaton keresztül.
 A Cirrus Logic által 1996-ban bevezetett CobraNetet
 általában az első sikeres audio-over-ethernet hálózat-implementációnak tekintik,
 és számos audio telepítés alapját képezi. Ezek közé tartoznak különböző kongresszusi központok,
@@ -416,6 +416,10 @@ A feljegyzett alhálózati maszkok decimális jelölése dot-decimális jelölé
 Azért, hogy az információt rövidebben jelezzék, gyakran
 használt alternatív módszer a CIDR vagy perjeljelölés.
 Az IP-cím után azonnal következő perjel után az
+
+
+
+
 alhálózati maszkot a `0'-nál nagyobb értékeket mutatva jelöli meg.
 Ez a jelölés az alhálózati maszk bináris formájára utal, tehát a `255' a `11111111' -nek felel meg.
 A fenti példákban az alhálózati maszkok tehát bináris formájukban 24
@@ -428,6 +432,7 @@ A fenti példában szereplő hosztok CIDR jelölése:
     \item \textbf{Host C:} 192.168.134.61/24
 \end{itemize}
 %----------------------------------------------------------------------------
+
 A routereket használó és több alhálózatot összekapcsoló telepítések a
 az OSI modell 3. rétegén működnek. Ez a modell hét rétegre osztja a
 hálózatok általános funkcionalitását, mindegyik egy adott készletet ír le a hálózati
@@ -443,70 +448,28 @@ szállítják, és nem tartalmaznak alhálózati információkat. Ennek eredmén
 2. rétegű hálózatokat nem lehet több alhálózatokra bontani, a csomagjaikat nem
 lehet routerek által továbbítani, és ezáltal a skálázhatóságuk valamelyest
 korlátozott. Az egyik népszerű példa a 2. rétegű hálózatokra a már említett
-TSN/Milan, valamint a történelem során tovább visszamenve a CobraNet.
+TSN/Milan, valamint a CobraNet.
 
-% OSI modell rétegeinek ábrája python kód alapú diagrammal
-\begin{pycode}
-	from diagrams import Diagram, Cluster
-	from diagrams.onprem.network import Firewall
-	from diagrams.programming.language import Python
-	from diagrams.onprem.network import Internet
-	from diagrams.onprem.network import Server
-	from diagrams.onprem.client import User
-	
-	with Diagram("OSI Modell", show=False):
-		with Cluster("Fizikai réteg"):
-			user = User("Eszköz 1")
-			user - [Firewall("Eszköz 2")]
-	
-		with Cluster("Adatkapcsolati réteg"):
-			with Cluster("MAC réteg"):
-				user - [Firewall("Eszköz 3")]
-			with Cluster("LLC réteg"):
-				user - [Firewall("Eszköz 4")]
-	
-		with Cluster("Hálózati réteg"):
-			user - [Firewall("Eszköz 5")]
-	
-		with Cluster("Szállítási réteg"):
-			user - [Firewall("Eszköz 6")]
-	
-		with Cluster("Viszony réteg"):
-			user - [Firewall("Eszköz 7")]
-	
-		with Cluster("Megjelenítési réteg"):
-			user - [Firewall("Eszköz 8")]
-	
-		with Cluster("Applikációs réteg"):
-			user - [Firewall("Eszköz 9")]
-
-\end{pycode}
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=67mm, keepaspectratio]{figures/osi_modell.png}
+	\caption{Az OSI modell}
+	\label {fig:osi_modell}
+\end{figure}
 %----------------------------------------------------------------------------
 
-Egy alhálózat egy logikai szegmens egy hálózaton belül. Az ilyen szegmensezést
-gyakran különféle okokból hoznak létre, ideértve az adminisztratív és biztonsági
-szempontokat is. A hálózati adminisztrátor egy készlet szabályt alkalmazhat egy
+Egy alhálózat egy logikai szegmens egy adott hálózaton belül. Az ilyen szegmenseket
+különféle okokból hoznak létre, ideértve elsősorban az adminisztratív és biztonsági
+szempontokat. A hálózati adminisztrátor egy készlet szabályt alkalmazhat egy
 alhálózatra, míg más szabályokat választhat egy másikra. A routerek képesek
 összekapcsolni az alhálózatokat, így a hosztok csomagokat cserélhetnek az
 alhálózati határok átlépése nélkül. Egy routernek megfelelően konfigurálva kell
 lennie a hálózati útvonalak létrehozásához ezek között az alhálózatok között.
 Ezzel szemben egy tipikus kapcsoló nem képes összekapcsolni az alhálózatokat.
-Egy routerrel összehasonlítva egyszerűbb eszköz. Egy virtuális LAN (VLAN) egy
-másik módszer a hálózat szegmentálására. Szemben az alhálózatokkal, ez egy
-biztonságos módja a hosztok elkülönítésének egymástól. Egy VLAN egy kapcsolóban
-vagy routerben van beállítva, így csak a jogosult személyzet változtathatja meg.
-Az alhálózat konfigurációja viszont elérhető minden olyan személy számára, aki
-hozzáféréssel rendelkezik egy hoszthoz. Ide tartoznak azok a felhasználók is,
-akik csatlakoztathatják saját eszközüket a hálózathoz, és saját maguk
-állíthatják be bármely alhálózatba. Gyakorlatban a kapcsolóban a hosztokat
-összekötő összes interfészt elhelyezik ugyanazon VLAN-ban. Ez szükséges a modern
-IT hálózatok összes biztonsági szempontjának teljesítéséhez. Az a tény, hogy az
-egy alhálózatban lévő eszközök általában hozzá vannak rendelve a specifikus
-VLAN-jukhoz, gyakran félreértéseket okoz a kommunikáció során. Néhány szakértő
-használja a VLAN kifejezést, amikor valójában az alhálózatot érti és fordítva.
-Egy trank kapcsolat egy olyan kapcsolat, amely több VLAN-t szállít. A kapcsoló
-interfészeknek mindkét oldalon megfelelően kell lenniük konfigurálva. Ezzel a
-módszerrel a VLAN több kapcsolóban is elérhetővé válik.
+Egy virtuális LAN (VLAN) egy másik módszer a hálózat szegmentálására. 
+Szemben az alhálózatokkal, ez egy biztonságosabb módja a hosztok elkülönítésére egymástól.
+
 %----------------------------------------------------------------------------
 \subsection{Hálózati topológiák}
 %----------------------------------------------------------------------------
@@ -514,15 +477,14 @@ A csomópontok különböző módon kapcsolódhatnak össze. A topológia meghat
 az egyik legfontosabb döntés, amelyet egy hálózat tervezésekor hozni kell. A
 csillag topológia sok szempontból a preferált megoldás. Több hoszt egy
 útválasztó eszközhöz, például egy kapcsolóhoz vagy routerhez csatlakozik. A mai
-hálózatok gyakran két csillagszintet kombinálnak, hogy egy hierarchikus
-értelemben ``csillagok csillaga'' alakuljon ki. Ezt gerinc/levél architektúrának
+hálózatok gyakran két csillagszintet kombinálnak. Ezt gerinc/levél architektúrának
 nevezik. A központi kapcsoló/router (gerinc) általában több forgalmat továbbít,
 mint a perifériális kapcsoló (levél), mivel a szegmensek közötti legtöbb
 forgalom áthaladhat rajta. Ha a gerinc és a levél közötti nagy sávszélességű
 kapcsolat nem képes egyszerre továbbítani az összes hoszt forgalmát, akkor ez a
 tervezési forma blokkoló. Az ellentéte egy nem blokkoló hálózattervezés, ahol a
 nagy sávszélességű kapcsolatok képesek az összes a hozzájuk csatlakoztatott
-hoszt teljes forgalmát továbbítani. A gyűrű topológiának több interfész is lehet:
+hoszt teljes forgalmát továbbítani. A gyűrű topológiának több interfésze is lehet:
 legalább kettőre van szükség egy gyűrű topológia megvalósításához. Minden két
 csomópont közötti kapcsolat teljes sávszélességet kínál, és a csomópontokra
 hárul a feladat, hogy továbbítsák a csomagokat a gyűrűn belül. Ebben az
@@ -534,18 +496,18 @@ olyan eszközök csatlakoztatására is, amelyek esetében nincs hely egy továb
 kapcsoló számára. A gyűrű topológiák beépített redundanciát kínálnak minden
 eszközhöz hozzáférhetünk, még akkor is, ha egy kapcsolat elszakad.
 
-
 %----------------------------------------------------------------------------
 \subsection{Unicast és Multicast} %Egyedi és Csoportos Küldés
 %----------------------------------------------------------------------------
+
 Amikor egy eszköz csomagot küld egy másik eszköznek, ezt unicast mechanizmusnak
 nevezzük. Egy ilyen kapcsolatnak pontosan egy küldője és egy fogadója van. Az
 unicast gyakran használja a Transmission Control Protocol (TCP)-t, ahol a fogadó
 minden egyes csomag sikerült átvételéről visszaigazolást küld a küldőnek. Ha a
-visszaigazolás nem érkezik meg, a küldő automatikusan újraküldi a csomagot. Az
-UDP (User Datagram Protocol) egy alternatíva a TCP-nek. Ebben az esetben a küldő
+visszaigazolás nem érkezik meg, a küldő automatikusan újraküldi a csomagot. 
+Az UDP (User Datagram Protocol) egy alternatíva a TCP-nek. Ebben az esetben a küldő
 bízik abban, hogy a csomagok sikeresen megérkeznek a fogadóhoz. Nincs
-visszaigazolás, és ha a csomag elveszik, az tartalma is elveszik. Bár ez
+visszaigazolás, és ha a csomag elveszik, a tartalma is elveszik. Bár ez
 váratlan lehet, ez valójában a preferált átviteli mód a szakmai audio hálózatok
 számára. Mivel az időkésleltetés alacsonynak kell lennie, nem engedhető meg a
 csomagok újraküldése, mert az időt vesz igénybe, és ezzel növelné az általános
@@ -554,37 +516,27 @@ következő audio minták lejátszását, anélkül hogy megpróbálnánk helyre
 előzőt. Az audio alkalmazásokban gyakran szükség van arra, hogy egy audio jelet
 több helyre párhuzamosan fogadjanak, például egy mikrofonjel, amelyet
 párhuzamosan továbbítanak a front-of-house és a monitoring keverőpultoknak. Akár
-egy harmadik hely is létezhet, mint egy audio felvevő eszköz. Amikor a küldő
-unicast módban továbbítja az audio csomagokat, az audio jel három csomagként
+egy harmadik hely is létezhet, például egy felvevő eszköz. 
+Amikor a küldő unicast módban továbbítja a csomagokat, az audio jel három csomagként
 érkezik azonos tartalommal, de különböző címzési címekkel. Ez felesleges
 processzor terhelést jelent a küldő eszköz számára, és emellett sávszélességet
-foglal el mindhárom célhoz. Ezt lehet optimalizálni multicast használatával. A
-multicast használatának számos előnye van, ideértve a küldőre nehezedő kevesebb
-processzor terhelést és az általános forgalom csökkenését a hálózaton. A küldő a
-multicast címekre címezi a csomagokat, és nem a hoszt címekre. Nem tudja, melyik
+foglal el mindhárom célhoz. Ezt lehet optimalizálni a multicast használatával. 
+Számos előnye van, ideértve a küldőre nehezedő kevesebb processzor terhelést 
+és az általános forgalom csökkenését a hálózaton. 
+A küldő multicast címekre címezi a csomagokat, és nem hoszt címekre. Nem tudja, melyik
 címzetteknek érkeznek meg a csomagok. A multicast címek hasonlóak a
 rádiófrekvenciákhoz: bárki, aki érdeklődik, bekapcsolhatja és fogadhatja a
 tartalmat. A küldő csak egyszer helyezi az audio adatokat egy csomagba, elküldi
 egy multicast címre, és a vevőknek tudniuk kell, melyik multicast címre akarnak
-hallgatni. Ezért ez inkább egy `húz' mint egy `tol' elv. Fontos megjegyezni,
-hogy a multicast címek alapvetően nem kapcsolódnak alhálózatokhoz, mivel nem
+hallgatni. A multicast címek alapvetően nem kapcsolódnak alhálózatokhoz, mivel nem
 kapcsolódnak a csomópontokhoz és az IP-címekhez. Ezért a multicast csomagok
-áthaladnak az alhálózatokon, hacsak nincsenek elkülönítve VLAN-okkal (amelyek
-általában vannak). Az UDP unicast csomag és a multicast csomag közötti egyetlen
-különbség a címzési cím. Meghatározás szerint bármely csomag, amelynek a címzési
-címe 224.x.x.x--239.x.x.x tartományba esik, multicast csomag, és a hálózat ennek
-megfelelően kezeli. A különböző egymást követő csomagokat, amelyek egy adott
-audio jelet tartalmaznak, audio áramnak vagy multicast áramnak nevezik, hogy
-kifejezetten leírják a multicast működést. A részt vevő kapcsolóknak támogatniuk
-kell a multicast továbbítást. Ez egy eszköz-intern beállítás. Ha a csomag
-címzési címe a fent említett tartományban van, akkor a multicast-képes kapcsoló
-ezeket a csomagokat több interfészre továbbítja. Ez hordozza a hálózat
-felesleges (túl)terhelésének kockázatát, mivel nem minden csatlakoztatott hoszt
-érdekli a bizonyos audio áramot. Néhányan közülük például nyomtatók lehetnek,
-amelyeknek semmi közük az audiohoz. Ezért fontos, hogy a multicast forgalom csak
+áthaladnak az alhálózatokon, hacsak nincsenek elkülönítve VLAN-okkal. 
+Amennyiben a hálózatunk nem kizárólag az audio jelek továbbítására 
+készült speciálisan, néhány eszköz lehet a hálózaton, amelyeknek semmi közük az audiohoz.
+Ezért fontos, hogy a multicast forgalom csak
 azokhoz a hosztokhoz jusson el, amelyek érdeklődnek iránta. Ennek a megoldása az
-IGMP snooping (Internet Group Management Protocol Internet Csoportkezelési
-Protokoll). Az összes tárgyalt audio hálózati technológia alapértelmezetten
+IGMP snooping (Internet Csoportkezelési Protokoll). 
+Az összes tárgyalt audio hálózati technológia alapértelmezetten
 támogatja az IGMP snooping-ot. Ha be van kapcsolva a kapcsolóban, akkor a
 multicast-csomagok csak azokon az interfészeken kerülnek elküldésre, ahol a
 csatlakoztatott hosztoktól időszakos IGMP kérések érkeznek. Ha nincs beérkező
@@ -592,148 +544,121 @@ kérés, akkor a megfelelő multicast leáll, így nem jut felesleges forgalom a
 kapcsolaton. Az IGMP snoopingot egyfajta zsilippel lehetne összehasonlítani,
 amely alapértelmezetten zárva van, és csak kérésre nyílik meg. Erősen ajánlott
 az IGMP snooping bekapcsolása egy multicast hálózatban minden kapcsolóban.
-Ellenkező esetben a hálózat túlterhelésének és a nem részt vevő hosztoknak
-valószínűtlenül magas kockázata áll fenn. Az IGMP querier funkcióját is meg kell
-említeni. Ez kiváltja az összes hoszt rendszeres kérését. Általában csak egy
-adott kapcsolóban van bekapcsolva ez a funkció. Bár csak egy szükséges minden
-hálózatban, nincs kár, ha többet engedélyeznek, mivel mindegyiket kivéve az
-egyiket automatikusan letiltják. Egy fontos szempontot figyelembe kell venni a
-hálózat tervezésekor: minden multicast forgalmat továbbítanak a querier-nek,
-függetlenül attól, hogy szüksége van-e rá vagy sem. Ez akár túlterhelési
-helyzetekhez is vezethet, annak ellenére, hogy helyesek a kapcsolóbeállítások.
-Gyakorlatban javasolt az querier aktiválása a kapcsolóban, amely nagy
-sávszélességű interfészeket kínál és központi helyen található a hálózatban.
-Valószínűleg úgyis részt vesz a multicast forgalom továbbításában a helyzete
-természetéből adódóan. A spine/leaf hálózatban általában a gerinc kapcsoló.
-
 
 %----------------------------------------------------------------------------
 \subsection{Eszköz- és Adatfolyam-felfedezés}
 %----------------------------------------------------------------------------
+
 Az AES67 audió szabvány nem határozza meg, hogyan fedezhetik fel egymást a
 hálózati eszközök, vagy hogy mely adatfolyamok érhetők el a hálózaton.
-Elméletileg a felhasználótól elvárható, hogy kézi bevitellel adja meg az
-információkat, de a gyakorlatban az összes gyártó összefoglalta megvalósítását a
-következő módszerekre. 9.4.1.1 Eszközfelfedezés Az összes ismert technológia a
-bonjour vagy mDNS mechanizmust használja eszközeik számára az egymásról való
-értesítésre. Minden eszköz fix és ismert multicast cím (224.0.0.251) felé küld
-üzeneteket, amiket más eszközök kérnek elérni, így értesülnek egymás létezéséről.
+Az összes ismert technológia a bonjour vagy mDNS mechanizmust használja eszközeik számára
+az egymásról való értesítésre. 
+Minden eszköz fix és ismert multicast cím (224.0.0.251) felé küld
+üzeneteket, amiket más eszközök elérnek, így értesülnek egymás létezéséről a hálózatban.
 Ennek a mechanizmusnak egyik korlátja az, hogy nem működik nagy telepítésekben,
 ahol több alcímen vagy VLAN-on vannak. Ezen esetekre a gyártók kifejlesztettek
-saját megoldásokat (például az Audinate a Dante Domain Managerrel [1]) vagy
-követik az audio/video NMOS szabványt a felismeréshez és kapcsolatkezeléshez
-(NMOS-hoz lásd a 9.6.3 fejezetet). 9.4.1.2 Adatfolyam-felfedezés Az audio
-adatfolyamokat a gyártótól függően két mechanizmus egyikével fedezik fel. Ahogy
+saját megoldásokat (például Audinate a Dante Domain Manager) vagy
+követik az audio/video NMOS szabványt a felismeréshez és kapcsolatkezeléshez.
+Az audio adatfolyamokat a gyártótól függően két mechanizmus egyikével fedezik fel. Ahogy
 az eszközök felfedezésénél, mindkettő előre meghatározott multicast címet
 használ az adatfolyam-információk terjesztésére, hogy a címzettek megtalálják az
 elérhető adatfolyamokat és azok paramétereit:
 
+%----------------------------------------------------------------------------
 \begin{itemize}
-	\item Session Announcement Protocol (SAP) - minden Dante termék által használt
+	\item Session Announcement Protocol (SAP) - minden Dante termék által használt (Multicast cím: 239.255.255.255)
 \end{itemize}
-(Multicast cím: 239.255.255.255)
 
 \begin{itemize}
-	\item Bonjour / mDNS - minden más technológiában használt
+	\item Bonjour / mDNS - minden más technológiában használt (Multicast cím: 224.0.0.251) 
 \end{itemize}
-(Multicast cím: 224.0.0.251) Szerencsére a jelenlegi termékek többsége
+%----------------------------------------------------------------------------
+Szerencsére a jelenlegi termékek többsége
 lehetővé teszi mindkét protokoll egyidejű aktiválását, így egy adott audio
-adatfolyam mindkét mechanizmuson keresztül párhuzamosan bejelenthető. Ennek
-eredményeként néhány adatfolyam esetleg kétszer jelenik meg a felhasználói
-felületen, de ez a gyakorlatban nem okoz problémát, mivel a két bejegyzés közül
-az egyik kiválasztása egyaránt feliratkozik ugyanarra az adatfolyamra. Ha
-azonban egy adott termék nem kínál lehetőséget mindkét aktiválására, elérhető
-egy ingyenes szoftveres eszköz, amely lefordítja a két `nyelvjárást'. Ez a
-Rav2Sap [4] nevet viseli. Bár hasznos, ha folyamatosan fut, csak akkor
-használható, amikor új kapcsolatokat hoznak létre a küldő és fogadó eszközök
-között. Az audio nem irányul át ezen alkalmazáson, így az nem szakad meg, ha az
-alkalmazás valamilyen oknál fogva offline kerül.
+adatfolyam mindkét mechanizmuson keresztül párhuzamosan bejelenthető.
 
 %----------------------------------------------------------------------------
 \subsection{Redundancia}
 %----------------------------------------------------------------------------
 Az audiohálózatok kezdeti napjaiban egyes felhasználók kételkedtek az IT
-hardverek megbízhatóságában. Annak ellenére, hogy széles körben elterjedt, az
+hardverek megbízhatóságában. Annak ellenére, hogy a széles körben elterjedt
 IT-berendezések jól beváltak és gyakran megbízhatóbbak, mint a hagyományos
 audioberendezések. Emellett a legtöbb IT-hálózati komponens több diagnosztikai
-mechanizmust kínál a berendezések hibájának gyors felismeréséhez és megoldásához,
-ezek néhányát itt ismertetjük. Fontos megjegyezni, hogy ezeket a folyamatokat
-valószínűleg kézi beavatkozásra kell aktiválni a hálózati kapcsolókban. 9.8.1
-Hidakfa-protokoll (STP) Ha a kapcsolókat úgy kötik össze, hogy hurok jön létre,
-fennáll annak a veszélye, hogy a csomagok végtelenül áramlanak a hurokban. Ezt
-az `visszacsatoló hurok' jelenséget a hálózati hardver automatikusan észleli az
+mechanizmust kínál a berendezések hibájának gyors felismeréséhez és megoldásához.
+%----------------------------------------------------------------------------
+\subsubsection{Spanning Tree Protocol (STP)}
+%----------------------------------------------------------------------------
+Ha a kapcsolókat úgy kötik össze, hogy hurok jön létre, fennáll annak a veszélye, 
+hogy a csomagok végtelenül áramlanak a hurokban. 
+Ezt az `visszacsatoló hurok' jelenséget a hálózati hardver automatikusan észleli az
 STP segítségével, és ha hurokra bukkan, a kapcsoló automatikusan kikapcsol egyik
 kapcsolatot. Az STP-t továbbá felhasználhatják a rendszer véletlen
-kapcsolatvesztések elleni védelmére is, beleértve a kábelvágásokat is. A
-megközelítés abból áll, hogy szándékosan létrehoznak hurokokat, majd a rendszer
-inaktivál egyiküket. Ha valamelyik kábel véletlenül kiesik, a rendszer
+kapcsolatvesztések elleni védelmére is, beleértve a kábelvágásokat is. 
+
+Abból a  megközelítésből áll, hogy szándékosan létrehoznak hurkokat, majd a rendszer
+inaktiválja az egyiket. Ha valamelyik kábel véletlenül kiesik, a rendszer
 másodperceken belül észleli ezt, és újraaktiválja a passzív kapcsolatot. Ebben
 az időszakban az audio néhány másodpercig megszakad, de még mindig sokkal
-gyorsabb, mint a manuális hibakeresés és az új kábel telepítése. Néhány esetben
-az átívelő fa protokoll akár hibás kapcsolókkal is segíthet. Ebben az esetben
-csak a hibás kapcsolóhoz közvetlenül csatlakozó csomópontok vesznek el, míg
-mások alternatív útvonalon visszakapják a kapcsolataikat. A legtöbb rendszerben
-az STP alapértelmezetten engedélyezve van, és hurokok létrehozhatók további
-megfontolások nélkül. 9.8.2 Link Aggregáció Ha egy adott kapcsolat különösen
-fontos egy telepítésben, két vagy több kábelt párhuzamosan lehet csatlakoztatni
-a biztonság érdekében. Bár a ilyen linkaggregáció fő célja két kapcsoló közötti
-sávszélesség növelése, az is költséghatékony módszer lehet egy kapcsolat
-véletlen leválasztásának vagy kábelvágásának biztosítására. Tipikus esetek
-például két épület közötti kapcsolatok, vagy egy színpad, amely egy keverőhöz
+gyorsabb, mint a manuális hibakeresés és az új kábel telepítése. 
+A legtöbb rendszerben az STP alapértelmezetten engedélyezve van. 
+%----------------------------------------------------------------------------
+\subsubsection{Link Aggregáció}
+%----------------------------------------------------------------------------
+Ha egy adott kapcsolat különösen fontos egy telepítésben, két vagy több kábelt párhuzamosan
+lehet csatlakoztatni a biztonság érdekében. 
+Bár az ilyen link aggregáció fő célja két kapcsoló közötti sávszélesség növelése, 
+ez is költséghatékony módszer lehet egy kapcsolat véletlen leválasztásának
+vagy kábelvágásának biztosítására. Tipikus eset például egy színpad, amely egy keverőhöz
 csatlakozik. A kapcsolóknak mindkét végén ugyanúgy kell konfigurálni: két vagy
-több interfészt kell kijelölni Link Aggregációs Csoportként (LAG), és azok
+több interfészt kell kijelölni Link Aggregációs Csoportként, és azok
 egyetlen interfészként jelennek meg a kapcsolón. Gyakorlatban a linkaggregáció
 alkalmazása a kábelproblémák csökkentése érdekében nagyon hasznos lehet
 egyszerűsége miatt, hiszen a felhasználónak csak egy további kábelt kell
 biztosítania, és azonosítania kell a kapcsolók konfigurációját mindkét végén.
-Ugyanakkor a kábelt lekapcsoláskor előfordulhat, hogy az audioátvitel típusosan
+Ugyanakkor a kábelt lekapcsoláskor előfordulhat, hogy az audioátvitel
 néhány másodpercig megszakad, mielőtt a kapcsoló alternatív kapcsolatot
-aktiválna. 9.8.3 Adatfolyam redundancia A legbiztonságosabb - de egyben a
-legdrágább - módja a redundancia megvalósításának egy hálózatban az, ha két
-különálló audiohálózatot hoznak létre, két független utat biztosítva a küldő és
-a fogadó között. Ebben a felállásban minden csomópontnak két hálózati interfészt
-kell biztosítania, mindkettőt mindkét hálózathoz csatlakoztatva. A küldő két
-azonos (audio) tartalommal rendelkező csomagot hoz létre, mindkettőre azonos
-PTP-időbélyegzőt nyom, majd mindkettőt elküldi mindkét hálózaton. A fogadó végén
-mindkét csomagot fogadják és kicsomagolják. Még akkor is, ha az egyik csomag
+aktiválna.
+%----------------------------------------------------------------------------
+\subsubsection{ Adatfolyam redundancia}
+%----------------------------------------------------------------------------
+A legbiztonságosabb de egyben legdrágább módja a redundancia megvalósításának
+egy hálózatban az, ha két különálló audiohálózatot hoznak létre, 
+két független utat biztosítva a küldő és a fogadó között. 
+Ebben a felállásban minden csomópontnak két hálózati interfészt
+kell biztosítania. A küldő két azonos audio tartalommal rendelkező csomagot hoz létre,
+mindkettőre azonos PTP-időbélyegzőt nyom, majd elküldi mindkét hálózaton.
+A fogadó végén mindkét csomagot fogadják és kicsomagolják. Még akkor is, ha az egyik csomag
 elveszik, a megmaradt csomag tartalmazza az összes információt, és biztosítja,
 hogy az audio zavartalanul folytatódik. Valójában ez a mechanizmus az egyetlen
 megközelítés egy hálózatban a véletlenszerű csomagvesztés kompenzálására anélkül,
-hogy meg kellene ismételni azokat a küldőtől és ezzel hozzáadni a késleltetést.
-Más szóval, az adatfolyam redundancia védi a kiszolgáló oldalon az egyes
-csomagok elvesztése ellen, egészen a hálózat egyik felének teljes
-meghibásodásáig. Szerencsére erre a mechanizmusra van egy szabvány, amit
-hibamentes váltásnak vagy ütésmentes összevonásnak hívnak. A szabvány a SMPTE ST
-2022-7 [23], és leírja, hogyan ismétlődik meg a tartalom, és hogyan kezelik a
-csomagokat a vevőoldalon a zavartalan jelátvitel érdekében. Ez független a
-csomagokban található tényleges adattípustól, és így alkalmazható az audio- és
-videóadatokra egyaránt.
-
-
-
-
+hogy meg kellene ismételni azokat a küldőtől és ezzel késleltetést hozzáadva a rendszerhez.
 %----------------------------------------------------------------------------
 \section{AES67}
 %----------------------------------------------------------------------------
-Az AES67 szabvány [6] szerint az összes eszköznek meg kell felelnie az
-alábbi minimális specifikációknak (részlet): Ábra 9.19 Teljes késleltetés elemei.
-Kapcsolódás: Unicast és multicast (a gyakorlatban a legtöbb gyártó jelenleg
-csak a multicastot támogatja, bár a szabvány további unicast-támogatást is kér)
-Szállítási protokoll: UDP/RTP DSCP címkék beállítása meghatározott értékekre,
-hogy engedélyezhető legyen a Szolgáltatás Minősége (QoS) (DiffServ). Nincs
-meghatározott automatikus eszköz- és adatfolyam-felfedezés Szinkronizáció: PTPv2
-(IEEE 1588-2008) használata PTP profil: Standard (a gyakorlatban a Dante
-jelenleg magasabb szinkronizációs rátát igényel, ezért a Média profil ajánlott)
-Kapcsolatkezelés Küldőknek ki kell adniuk egy SDP fájlt A fogadóknak érteniük
-kell egy SDP fájlt A fogadó puffernek legalább 3 ms hangot kell tudnia tárolni
-Adatfolyam formátumok Egytől nyolc csatorna (a küldő választhat egy fix számot,
-de a fogadóknak képesnek kell lenniük rugalmasan fogadni bármelyik lehetőséget).
-24 bites és 16 bites felbontás (a küldő választhat egyet, de a fogadóknak
-mindkettőt érteniük kell) 48 kHz mintavételi frekvencia 1 ms csomagidő (48
-minta) A multicast címek 239.0.0.0 és 239.255.255.255 között vannak Megjegyzés:
+Az AES67 szabvány szerint az összes eszköznek meg kell felelnie az
+alábbi minimális specifikációknak: 
+
+%----------------------------------------------------------------------------
+\begin{itemize}
+	\item Unicast és multicast támogatása
+	\item UDP/RTP protokollok használata
+	\item DSCP címkék beállítása meghatározott értékekre,QoS támogatás 
+	\item Nincs meghatározott automatikus eszköz- és adatfolyam-felfedezés 
+	\item PTPv2 szabvány használata az időszinkronizációhoz
+	\item PTP profil Standard (a gyakorlatban a Dante jelenleg magasabb szinkronizációs rátát igényel)
+	\item Küldőknek ki kell adniuk egy SDP fájlt
+	\item A fogadóknak érteniük kell egy SDP fájlt
+	\item A fogadó puffernek legalább 3 ms hangot kell tudnia tárolni
+	\item Adatfolyam formátumok
+	\item Egytől nyolc csatorna (a küldő választhat egy fix számot, de a fogadóknak képesnek kell lenniük rugalmasan fogadni bármelyik lehetőséget).
+	\item 24 bites és 16 bites felbontás (a küldő választhat egyet, de a fogadóknak mindkettőt érteniük kell) 
+	\item 48 kHz mintavételi frekvencia 1 ms csomagidő (48 minta)
+	\item A multicast címek 239.0.0.0 és 239.255.255.255 között vannak 
+\end{itemize}
+
+
 A szabványban sok további paraméter és érték szerepel, de ezek nem szerepelnek a
 fent felsorolt minimális követelmények között.
-
 
 %----------------------------------------------------------------------------
 \section{Audinate Dante}
@@ -744,13 +669,13 @@ A Dante hanghálózatok digitális hanghálózati technológiát képviselnek, a
 lehetővé teszi a hang elosztását és útválasztását a szabványos Ethernet
 hálózatokon keresztül. Az ausztrál Audinate vállalat fejlesztette ki a Dante-t,
 amely a szabványos Internet Protocol (IP) hálózatokat használja a magas minőségű,
-alacsony késleltetésű hangátvitelhez eszközök között. Ez lehetővé teszi a
+alacsony késleltetésű hangátvitelhez eszközök között. Ez lehetővé tesz
 nagyobb rugalmasságot és skálázhatóságot a hagyományos analóg hangrendszerekhez
-képest, és lehetővé teszi a hang integrálását a meglévő IT infrastruktúrába. A
-Dante hanghálózatokat széles körben alkalmazzák, ideértve a koncerthangosítást,
-sugárzást, stúdiófelvételeket, vállalati és konferenciaközpontokat, és egyebeket.
+képest, valamint biztosítja a hangrendszer integrálását egy meglévő IT infrastruktúrába.
+A Dante hanghálózatokat széles körben alkalmazzák, ideértve a koncerthangosítást,
+rádiózást, stúdiófelvételeket, vállalati és konferenciaközpontokat, és még sok mást.
 A technológia támogat számos hangformátumot és mintavételi rátát, és lehetővé
-teszi százak hangcsatornájának egyidejű átvitelét egyetlen hálózaton keresztül.
+teszi akár több száz hangcsatorna egyidejű átvitelét egyetlen hálózaton keresztül.
 Emellett a Dante hanghálózatok távolról is vezérelhetők és monitorozhatók,
 megkönnyítve a nagy, összetett hangrendszerek beállítását és kezelését.
 %----------------------------------------------------------------------------
@@ -761,10 +686,6 @@ megkönnyítve a nagy, összetett hangrendszerek beállítását és kezelését
 	\label {fig:dante_visual}
 \end{figure}
 %----------------------------------------------------------------------------
-
-
-
-
 
 %----------------------------------------------------------------------------
 \subsection{Összehasonlítás a hagyományos hangrendszerekkel}
