@@ -771,7 +771,7 @@ is kialakíthatunk, amelyben minden eszköz egy központi kapcsolóhoz csatlakoz
 	\begin{minipage}{0.5\textwidth}
 		\centering
 		\includegraphics[width=100px, keepaspectratio]{figures/dante-redundant-mode.jpg}
-		\caption{Rredundáns mód}
+		\caption{Redundáns mód}
 		\label{fig:dante_redundant}
 	\end{minipage}
 \end{figure}
@@ -781,6 +781,32 @@ A másik mód a redundant (redundáns) mód, amelyben az eszközökön találhat
 Ethernet port két különálló hálózatot alkot. Ebben a módban a hálózat redundáns
 kialakítású, és a hálózat egyik része automatikusan átveszi a másik rész szerepét,
 ha az meghibásodik.
+Néhány Dante eszköznek létezik egy harmadik Ethernet portja, amelyet konfigurálási
+és vezérlési célokra használnak.
+%----------------------------------------------------------------------------
+\subsubsection{Késleltetés}
+%----------------------------------------------------------------------------
+A késleltetés az az idő, amely szükséges a folyamat végrehajtásához. Például
+az idő amíg a bemeneti oldalon egy hangjel feldolgozásra kerül, és a kimeneti
+oldalon megjelenik. 
+Két fő mértékegységet használunk a késleltetés mérésére:
+%----------------------------------------------------------------------------
+\begin{equation}
+	\label{eq:milliseconds}
+	1 \text{ másodperc} = 1000 \text{ milli másodperc}, \quad \text{azaz} \quad 1 \text{ ms} = 0.001 \text{ s}
+\end{equation}
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\begin{equation}
+	\label{eq:microseconds}
+	1 \text{ másodperc} = 1000000 \text{ mikro másodperc}, \quad \text{azaz} \quad 1 \mu\text{s} = 0.000001 \text{ s}
+\end{equation}
+%----------------------------------------------------------------------------
+A Dante eszközök lehetővé teszik a késleltetés teljesítményének meghatározását. 
+A 0.1 milliszekundumos késleltetés az a késleltetés, amely már kapcsoló lépés biztos.
+Ha két eszköz különböző késleltetésű, akkor a nagyobb érték lesz az irányadó.
+Egy megfelelően konfigurált modern Dante hálózatban a késleltetés 1 ms körüli értéket vesz fel.
+Ez azt is jelenti, hogy például egy dobos előbb hallja a hangszerét a fülmonitoron, mint a saját dobját.
 
 
 
