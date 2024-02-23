@@ -300,7 +300,15 @@ akkor a sávszélességünk a következő lesz:
 %----------------------------------------------------------------------------
 \begin{equation}
 	\label{eq:sávszélesség}
-	96000 * 24 * 64 * 2 = 294912000 bit/s = 294,912 Mbit/s 
+	96000 * 24 * 64 * 2 = 294912000 bit/s = 294,912 Mbit/s (nyers adatfolyam)
+\end{equation}
+%----------------------------------------------------------------------------
+Mivel a hálózatunkat a Dante által ajánlott méretezés szerint szeretnénk kialakítani,
+legalább 30 százalékos túlméretezést kell alkalmaznunk. Tehát a fenti példában a sávszélességünk a következő lesz:
+%----------------------------------------------------------------------------
+\begin{equation}
+	\label{eq:teljes-sávszélesség}
+	294912000 bit/s * 1.3 = 383385600 bit/s = 383,3856 Mbit/s (teljes sávszélesség)
 \end{equation}
 %----------------------------------------------------------------------------
 A számítások alapján egy átlagos 1 Gbit/s (1 Gbit/s = 1000 Mbit/s) sávszélességű hálózaton ez a rendszer már megfelelően működhet.
@@ -665,6 +673,12 @@ fent felsorolt minimális követelmények között.
 %----------------------------------------------------------------------------
 \subsection{A Dante hálózatok áttekintése}
 %----------------------------------------------------------------------------
+A 2021-es Covid-19 járvány alatt lehetőségem volt egy széleskörű átfogó Dante
+kurzusra beiratkozni, amelyet a Dante gyártója, az Audinate szervezett. A kurzus
+egy átfogó mély áttekintést nyújtott a Dante hálózatokról. Ebben a fejezetben
+a fő forrásomnak a belsős oktatóanyagot fogom használni, amelyet a kurzus
+során kaptam, pontos és részletes információkat nyújtva a Dante hálózatokról.
+Ez a dokumentum csak azok számára elérhető, akik részt vettek a kurzuson.
 A Dante hanghálózatok digitális hanghálózati technológiát képviselnek, amely
 lehetővé teszi a hang elosztását és útválasztását a szabványos Ethernet
 hálózatokon keresztül. Az ausztrál Audinate vállalat fejlesztette ki a Dante-t,
@@ -681,11 +695,97 @@ megkönnyítve a nagy, összetett hangrendszerek beállítását és kezelését
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth, keepaspectratio]{figures/dante_visual.jpg}
-	\caption{Audinate Dante fanzázia ábra}
+	\includegraphics[width=200px, keepaspectratio]{figures/dante_visual.jpg}
+	\caption{Audinate Dante fantázia ábra}
 	\label {fig:dante_visual}
 \end{figure}
 %----------------------------------------------------------------------------
+\subsubsection{Több mintavételi ráta és bitmélység}
+%----------------------------------------------------------------------------
+A rendszer képes egyidejűleg több bitmélységet kezelni. Ennek informatikai háttere a
+a következő képpen néz ki. Ha egy 32 bites hangforrásunk van, de a másik eszköz
+csak 24 bites hangot tud fogadni, akkor a Dante a 32 bites hangot 24 bitesre tudja 
+alakítani.
+
+%----------------------------------------------------------------------------
+\begin{align*}
+	\begin{array}{|c|c|}
+	\hline
+	\text{Hangminták} & \text{Bitmélység} \\
+	\hline
+	\text{11110000 11110000 11110000 11110000} & \text{32 bites} \\
+	\hline
+	\text{11110000 11110000 11110000} & \text{24 bites} \\
+	\hline
+	\end{array}
+\end{align*}
+%----------------------------------------------------------------------------
+	
+Amint a példában látszik, 32 bites hangból úgy kaptunk 24 bites hangot, 
+hogy egyszerűen csak elhagytuk az utolsó 8 bitet. Ez a folyamat visszafelé is működik,
+ha 24 bites hangot kell 32 bites hanggá alakítani, akkor az utolsó 8 bitet 0-val kell feltölteni.
+
+%----------------------------------------------------------------------------	
+\begin{align*}
+	\begin{array}{|c|c|}
+	\hline
+	\text{Hangminták} & \text{Bitmélység} \\
+	\hline
+	\text{11110000 11110000 11110000} & \text{24 bites} \\
+	\hline
+	\text{11110000 11110000 11110000 00000000} & \text{32 bites} \\
+	\hline
+	\end{array}
+\end{align*}
+%----------------------------------------------------------------------------
+
+Mintavételezési frekvencia eltérést csak abban az esetben tudja kezelni, ha a
+bitmélység is eltérő. Amennyiben a bitmélység azonos, de a mintavételezési
+frekvencia eltérő, akkor a rendszer nem képes a hangot továbbítani.
+Ez a mechanizmus egy egyszerű mechanikai példával jól megérhető és leírható.
+Tegyük fel van két fogaskerekünk. Amennyiben a mintavételezési frekvencia azonos, és a 
+bitmélység eltérő, akkor a fogaskerekek egymásba illeszthetőek és csak a fogaskerekek
+mélysége fog eltérni. Amennyiben a mintavételezési frekvencia eltérő, akkor a fogaskerekek
+nem illeszthetőek egymásba, és nem tudjuk továbbítani a hangot. Ebben az esetben már egy
+konverterre lesz szükségünk, amely képes a két fogaskereket összeilleszteni számunkra.
+Egy fontos kitétel van ahhoz, hogy a több mintavételi ráta egyszerre megfelelően működjön,
+az pedig az egységes órajel az összes mintavételi frekvenciához.
+
+
+%----------------------------------------------------------------------------
+\subsubsection{Hálózati topológiák}
+%----------------------------------------------------------------------------
+A Dante rendszerek alapvetően kétféle módban tudnak üzemelni. Az első a
+switched (kapcsolt) mód, amelyben az eszközökön található két Ethernet port
+egy hálózatot alkot. Ebben a módban tudunk Daisy Chain (füzéres) topológiát kialakítani,
+amelyben az egyik eszköz a másikhoz csatlakozik, és így tovább. Továbbá csillagtopológiát
+is kialakíthatunk, amelyben minden eszköz egy központi kapcsolóhoz csatlakozik.
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\includegraphics[width=100px, keepaspectratio]{figures/dante-switched-mode.jpg}
+		\caption{Kapcsolt mód}
+		\label{fig:dante_switched}
+	\end{minipage}%
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\includegraphics[width=100px, keepaspectratio]{figures/dante-redundant-mode.jpg}
+		\caption{Rredundáns mód}
+		\label{fig:dante_redundant}
+	\end{minipage}
+\end{figure}
+
+%----------------------------------------------------------------------------
+A másik mód a redundant (redundáns) mód, amelyben az eszközökön található két
+Ethernet port két különálló hálózatot alkot. Ebben a módban a hálózat redundáns
+kialakítású, és a hálózat egyik része automatikusan átveszi a másik rész szerepét,
+ha az meghibásodik.
+
+
+
+
+
 
 %----------------------------------------------------------------------------
 \subsection{Összehasonlítás a hagyományos hangrendszerekkel}
@@ -695,11 +795,7 @@ támaszkodnak a hangjelek eszközök közötti átviteléhez. Ezek a rendszerek
 korlátozottak lehetnek rugalmasságban, skálázhatóságban és az egyidejűleg
 átvihető hangcsatornák számában. Emellett hajlamosak bonyolultabbá válni a
 beállítás és kezelés szempontjából, mivel minden hangcsatornához külön kábel és
-csatlakozás szükséges. Ellentétben a Dante hanghálózatok a szabványos Ethernet
-hálózatokat alkalmazzák digitális hangjelek átviteléhez, lehetővé téve a nagyobb
-rugalmasságot és skálázhatóságot. Mivel az Ethernet hálózatokat már széles
-körben használják adathálózatként, könnyű integrálni a hangot a meglévő IT
-infrastruktúrába. A Dante hanghálózatok jóval több hangcsatornát is támogatnak,
+csatlakozás szükséges. A Dante hanghálózatok jóval több hangcsatornát is támogatnak,
 mint a hagyományos analóg rendszerek, és távolról is vezérelhetők és
 monitorozhatók, lehetővé téve a nagy, összetett hangrendszerek könnyű
 beállítását és kezelését. A Dante hanghálózatok további előnye, hogy képesek
@@ -707,28 +803,52 @@ hangot továbbítani hosszú távolságokon anélkül, hogy a minőség romlana.
 hagyományos analóg rendszerek zajra és jelveszteségre hajlamosak hosszú kábelek
 esetén, míg a digitális hangjelek, amelyeket az Ethernet hálózatokon
 továbbítanak, minimális minőségveszteséggel juthatnak el nagy távolságokra.
-Összefoglalva, a Dante hanghálózatok számos előnnyel rendelkeznek a hagyományos
-analóg hangrendszerekkel szemben, például rugalmasság, skálázhatóság, távoli
-vezérlés és hang minőségromlás nélküli hosszú távú hangátvitel. Továbbá
-könnyedén integrálhatók a meglévő IT infrastruktúrába, és lehetővé teszik számos
-hangcsatorna egyidejű átvitelét egyetlen hálózaton keresztül.
+%----------------------------------------------------------------------------
+\begin{table}[htbp]
+    \centering
+    \caption{Digital Snake és DigitalAVNetwork Jelút opciók}
+    \begin{tabular}{@{}lll@{}}
+        \toprule
+        \textbf{Kérdés} & \textbf{Pont-pont között} & \textbf{Hálózati megoldás} \\ \midrule
+        Hová megy a jel? & Lineáris kábelút & Bárhol a hálózaton \\
+        Hogyan változtassuk meg a jelútvonalat? & Mozgassuk a kábelt & Egy egérkattintással \\
+        Szétválaszthatjuk-e a jeleket? & Nem & Igen - a hálózaton \\
+        Megosztható-e a kábel más jelekkel? & Nem & Igen - közös infrastruktúra \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:digital-snake-vs-digitalavnetwork-hu}
+\end{table}
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth, keepaspectratio]{figures/dsnake-p2p.jpg}
+	\caption{Digital Snake és Pont-pont közötti (P2P) kapcsolatok}
+	\label {fig:dsnake-p2p}
+\end{figure}
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth, keepaspectratio]{figures/dante-solution.jpg}
+	\caption{Dante hálózati megoldás}
+	\label {fig:dante-solution}
+\end{figure}
+%----------------------------------------------------------------------------
+
+
+
+
 %----------------------------------------------------------------------------
 \subsection{Dante hálózatok technikai részletei}
 %----------------------------------------------------------------------------
-A Dante hanghálózatok a szabványos Internet Protocol (IP) hálózatokat használják
-digitális hangjelek átvitelére eszközök között. A technológia egy saját
-protokollt, a Dante-t alkalmazza, amely az User Datagram Protocol (UDP) alapján
-működik, és alacsony késleltetéssel és magas minőséggel tervezték a hang
-átvitelére. A Dante hanghálózatok két fő komponensből állnak: Dante eszközökből
+A Dante hanghálózatok két fő komponensből állnak: Dante eszközökből
 és Dante hálózatokból. A Dante eszközök olyan hangeszközök, amelyeket
 kifejezetten a Dante protokollhoz terveztek, mint például hangkártyák, erősítők
 és hangszórók. Ezeket az eszközöket szabványos Ethernet kábelekkel és
-kapcsolókkal lehet csatlakoztatni a Dante hálózathoz. A Dante hálózat egy vagy
-több Dante eszközből áll, amelyeket egy közös Ethernet hálózathoz
-csatlakoztatnak. A hálózatot Audinate Dante Controller szoftverrel lehet
+kapcsolókkal lehet csatlakoztatni a Dante hálózathoz.
+A hálózatot az Audinate Dante Controller szoftverrel lehet
 konfigurálni, amely lehetővé teszi a hang elosztását és útválasztását az
 eszközök között. A szoftver továbbá lehetővé teszi az eszközök távoli vezérlését
-és monitorozását a hálózaton. A Dante hanghálózatok támogatnak számos
+és monitorozását a hálózaton. Ezek a hanghálózatok támogatnak számos
 hangformátumot és mintavételi rátát, és képesek egyszerre több száz hangcsatorna
 átvitelére egyetlen hálózaton keresztül. A technológia továbbá támogat olyan
 fejlett funkciókat, mint a Dante Domain Manager (DDM) a biztonságos
@@ -737,116 +857,83 @@ hanglejátszáshoz és felvételhez. A Dante hanghálózatok Quality of Service 
 támogatást is nyújtanak, hogy biztosítsák, hogy a hangátvitel elsőbbséget
 élvezzen más hálózati forgalommal szemben. Ez segít minimalizálni a hálózati
 torlódás lehetőségét és biztosítani, hogy a hangátvitel minimális késleltetéssel
-és magas minőségben történjen. Összefoglalva, a Dante hanghálózatok szabványos
-IP hálózatokat alkalmaznak a digitális hangjelek eszközök közötti átvitelére. A
-technológia a Dante nevű saját protokollt használja alacsony késleltetésű és
-magas minőségű hangátvitelre, és Dante eszközökből és Dante hálózatokból áll. A
-Dante hanghálózatok távolról is vezérelhetők és monitorozhatók, széles körű
-hangformátumokat, mintavételi rátákat és egyszerre több hangcsatornát támogatnak,
-valamint fejlett funkciókat is kínálnak, mint a DDM és a DVS.
-%----------------------------------------------------------------------------
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\linewidth, keepaspectratio]{figures/dante_chip.jpg}
-	\caption{Audinate Dante chip}
-	\label {fig:dante_chip}
-\end{figure}
-%----------------------------------------------------------------------------
-
-A Dante hanghálózatok működése abban rejlik, hogy digitális hangjeleket
-továbbítanak a szabványos Ethernet hálózatokon keresztül. A technológia egy
-saját protokollt használ, amit Dante néven ismerünk, és az User Datagram
-Protocol (UDP) alapján működik, alacsony késleltetéssel és magas minőséggel
-tervezve a hang továbbításához. A Dante hanghálózatok két fő komponensből állnak:
-Dante eszközökből és Dante hálózatokból. A Dante eszközök olyan hangeszközök,
-amelyeket kifejezetten a Dante protokollhoz terveztek, például hangkártyák,
-erősítők és hangszórók. Ezeket az eszközöket szabványos Ethernet kábelekkel és
-kapcsolókkal lehet csatlakoztatni a Dante hálózathoz. Amikor egy Dante eszközt
-csatlakoztatnak a hálózathoz, egyedi hálózati címet kap, amit Media Access
-Control (MAC) címnek nevezünk. Ez a cím az eszközt azonosítja a hálózaton,
-lehetővé téve más eszközök számára a kommunikációt vele. A Dante protokoll ezt a
-címet használja a hangjelek útvonalazásához a hálózaton belül. Miután az
-eszközöket csatlakoztatták és konfigurálták, a hangjelek továbbíthatók közöttük.
-A hangjeleket digitális adatcsomagokká alakítják, majd a Dante protokoll
-segítségével továbbítják őket a hálózaton. A protokoll időbélyegezést használ
-annak biztosítására, hogy a hangcsomagok minimális késleltetéssel és a megfelelő
-sorrendben érkezzenek meg. A Dante protokoll tartalmaz hibajavítást is, hogy
-biztosítsa, hogy a hangcsomagok hibamentesen érkezzenek meg. A Dante hálózatot
-konfigurálni és kezelni lehet az Audinate Dante Controller szoftverrel. Ez a
-szoftver lehetővé teszi a hang útvonalazását és elosztását az eszközök között,
-valamint az eszközök távoli vezérlését és monitorozását a hálózaton. Továbbá
-lehetővé teszi virtuális hangcsatornák létrehozását is, amelyeket rugalmasan
-lehet használni hangjelek útvonalazására az eszközök között. Összefoglalva, a
-Dante hanghálózatok digitális hangjelek továbbításával működnek a szabványos
-Ethernet hálózatokon, a Dante nevű saját protokoll segítségével. A technológia
-egyedi hálózati címet, azaz MAC címet használ az eszközök azonosításához és a
-hangjelek közötti útvonalazáshoz. Az időbélyegezés biztosítja, hogy a
-hangcsomagok minimális késleltetéssel és a megfelelő sorrendben érkezzenek meg,
-míg a hibajavítás a hangcsomagok hibamentes érkezését garantálja. A Dante
-hálózatot az Audinate Dante Controller szoftverrel lehet konfigurálni és kezelni,
-amely lehetővé teszi a hang útvonalazását és elosztását az eszközök között,
-valamint a távoli vezérlést és monitorozást.
-%----------------------------------------------------------------------------
-Latencia arra utal, hogy mennyi idő telik el egy hangjel bevitelétől egy
-rendszerben az annak kimenetig. Hangrendszerek esetében alacsony latencia
-kritikus fontosságú, mivel minimalizálja a hangjel bevitelének és kimenetének
-közötti késleltetést, ezáltal természetesebb és azonnalibb hangot eredményez.
-Magas latencia észrevehető késleltetést okozhat a hangjel bevitelének és
-kimenetének között, ami zavaró lehet a hallási élmény szempontjából. A Dante
-hanghálózatokat úgy tervezték, hogy minimalizálják a latenciát, és fenntartsák a
-magas minőségű hangátvitelt. A technológia egy saját protokollt alkalmaz, Dante
-néven, amely az User Datagram Protocol (UDP) alapján működik, és optimalizált a
-kis latenciájú hangátvitel érdekében. A Dante eszközök emellett egy olyan
-technikát is alkalmaznak, amit ``időbélyegzésnek'` neveznek, hogy biztosítsák,
-hogy a hangcsomagok minimális késleltetéssel és a helyes sorrendben érkezzenek
-meg. Szinkronizáció arra utal, hogy az audiojelek összehangolása több eszközön
-keresztül egy rendszerben. A Dante hanghálózatokban a szinkronizációt a
-``óraképzés'' nevű technika segítségével tartják fenn. Ez a technika egy közös
-órát használ, amelyet az összes hálózaton lévő eszköz megoszt, biztosítva, hogy
-az audiojelek összehangolva legyenek az összes rendszerben lévő eszközön. Az
-óraképzés mellett a Dante hanghálózatok támogatják az előrehaladott
-szinkronizációs funkciókat, például a minta-pontosságú szinkronizációt és az
-SMPTE-LTC és MIDI időkódot. Ezek a funkciók lehetővé teszik az audiojelek pontos
-összehangolását több eszközön keresztül, és alkalmazhatók élő hangosításban,
-sugárzási és stúdiófelvételek alkalmazásokban. Összefoglalva, a Dante
-hanghálózatokat úgy tervezték, hogy minimalizálják a latenciát és fenntartsák a
-magas minőségű hangátvitelt a saját protokoll, az időbélyegzés és az óraképzés
-technikájának alkalmazásával. A technológia emellett támogatja az előrehaladott
-szinkronizációs funkciókat, mint a minta-pontosságú szinkronizációt és az
-SMPTE-LTC és MIDI időkódot, amelyek lehetővé teszik az audiojelek pontos
-összehangolását több eszközön keresztül.
+és magas minőségben történjen.
 %----------------------------------------------------------------------------
 \subsection{Rugalmasság és skálázhatóság}
 %----------------------------------------------------------------------------
 A rugalmasság és a skálázhatóság két kulcsfontosságú előnye a Dante
-hanghálózatoknak a hagyományos analóg hangrendszerekkel szemben. A rugalmasság
-azt jelenti, hogy a Dante hanghálózatok képesek alkalmazkodni és változtatni
-különböző hangkonfigurációkhoz és követelményekhez. Mivel a hangjeleket egy
-szabványos Ethernet hálózaton keresztül továbbítják, könnyű eszközöket hozzáadni
-vagy eltávolítani, megváltoztatni a hangjelek útvonalát, és a rendszert újra
+hanghálózatoknak a hagyományos analóg hangrendszerekkel szemben.
+Képesek alkalmazkodni különböző hangkonfigurációkhoz és követelményekhez. 
+Könnyű eszközöket hozzáadni vagy eltávolítani, megváltoztatni a hangjelek útvonalát, és a rendszert újra
 konfigurálni szükség esetén. Ez lehetővé teszi testreszabott audio-megoldások
 létrehozását, amelyeket az adott alkalmazás vagy környezet speciális igényeihez
-lehet igazítani. A skálázhatóság azt jelenti, hogy a Dante hanghálózatok képesek
-bővülni és kezelni a növekvő hangcsatornák és eszközök számát. Mivel a Dante
-hanghálózatok szabványos Ethernet hálózatokat használnak, könnyű új eszközöket
-hozzáadni, és növelni az egyszerre továbbítható hangcsatornák számát. Ez
-lehetővé teszi nagyméretű audio rendszerek létrehozását, amelyek képesek kezelni
-százával számolt hangcsatornákat, így alkalmasak nagy helyszínekhez és
-eseményekhez. A Dante hanghálózatok könnyen integrálhatók a meglévő IT
-infrastruktúrába is, lehetővé téve a meglévő hálózati infrastruktúra, kapcsolók
-és kábelezés használatát, csökkentve az új kábelezés és infrastruktúra
-szükségességét. Ez megkönnyíti a rendszer bővítését szükség szerint, és
-költségmegtakarításhoz vezethet. Összefoglalva, a rugalmasság és a skálázhatóság
-két kulcsfontosságú előnye a Dante hanghálózatoknak a hagyományos analóg
-hangrendszerekkel szemben. A technológia lehetővé teszi testreszabott
-audio-megoldások létrehozását, amelyeket az adott alkalmazás vagy környezet
-speciális igényeihez lehet igazítani, és könnyű új eszközöket hozzáadni,
-megváltoztatni a hangjelek útvonalát és újra konfigurálni a rendszert szükség
-esetén. A technológia emellett lehetővé teszi nagyméretű audio rendszerek
-létrehozását, amelyek százával számolható hangcsatornákat tudnak kezelni, így
-alkalmasak nagy helyszínekhez és eseményekhez, és könnyen integrálhatók a
-meglévő IT infrastruktúrába, csökkentve az új kábelezés és infrastruktúra
-szükségességét.
+lehet igazítani. 
+
+
+%----------------------------------------------------------------------------
+\subsection{Chipek}
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\begin{itemize}
+    \item 
+    \begin{minipage}[t]{.2\textwidth}
+        \includegraphics[width=50px,height=50px,keepaspectratio]{figures/ultimo-x.jpg}
+    \end{minipage}%
+    \begin{minipage}[t]{.8\textwidth}
+        \textbf{Dante Ultimo-X - 0x4, 2x2, 4x0}
+    \end{minipage}
+
+    \item 
+    \begin{minipage}[t]{.2\textwidth}
+        \includegraphics[width=50px,height=50px,keepaspectratio]{figures/broadway.jpg}
+    \end{minipage}%
+    \begin{minipage}[t]{.8\textwidth}
+        \textbf{Dante Broadway - 16x16}
+    \end{minipage}
+
+    \item 
+    \begin{minipage}[t]{.2\textwidth}
+        \includegraphics[width=50px,height=50px,keepaspectratio]{figures/brooklyn-ii.jpg}
+    \end{minipage}%
+    \begin{minipage}[t]{.8\textwidth}
+        \textbf{Dante Brooklyn II - 64x64}
+    \end{minipage}
+
+    \item 
+    \begin{minipage}[t]{.2\textwidth}
+        \includegraphics[width=50px,height=50px,keepaspectratio]{figures/pcie-r.jpg}
+    \end{minipage}%
+    \begin{minipage}[t]{.8\textwidth}
+        \textbf{Dante PCIe-R - 128x128}
+    \end{minipage}
+
+    \item 
+    \begin{minipage}[t]{.2\textwidth}
+        \includegraphics[width=50px,height=50px,keepaspectratio]{figures/dante-hc.jpg}
+    \end{minipage}%
+    \begin{minipage}[t]{.8\textwidth}
+        \textbf{Dante HC (High Capacity) - 512x512}
+    \end{minipage}
+
+    \item 
+    \begin{minipage}[t]{.2\textwidth}
+        \includegraphics[width=50px,height=50px,keepaspectratio]{figures/shared-processor.jpg}
+    \end{minipage}%
+    \begin{minipage}[t]{.8\textwidth}
+        \textbf{Dante Shared Processor - IP Core 512x512 FPGA and Dante Embedded Platform 64x64 X86/ARM}
+    \end{minipage}
+
+    \item 
+    \begin{minipage}[t]{.2\textwidth}
+        \includegraphics[width=50px,height=50px,keepaspectratio]{figures/dante-av.jpg}
+    \end{minipage}%
+    \begin{minipage}[t]{.8\textwidth}
+        \textbf{Dante AV - V:1, A:8}
+    \end{minipage}
+\end{itemize}
+
+
+
 
 
 
