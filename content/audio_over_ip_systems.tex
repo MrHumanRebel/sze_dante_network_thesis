@@ -691,7 +691,7 @@ fent felsorolt minimális követelmények között.
 %----------------------------------------------------------------------------
 \subsection{A Dante hálózatok áttekintése}
 %----------------------------------------------------------------------------
-A 2021-es Covid-19 járvány alatt lehetőségem volt egy széleskörű átfogó Dante
+A 2020 - 2021-es Covid-19 járvány alatt lehetőségem volt egy széleskörű átfogó Dante
 kurzusra beiratkozni, amelyet a Dante gyártója, az Audinate szervezett. A kurzus
 egy átfogó mély áttekintést nyújtott a Dante hálózatokról. Ebben a fejezetben
 a fő forrásomnak a belsős oktatóanyagot fogom használni, amelyet a kurzus
@@ -718,8 +718,38 @@ megkönnyítve a nagy, összetett hangrendszerek beállítását és kezelését
 	\label {fig:dante_visual}
 \end{figure}
 %----------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------
+\subsection{Dante hálózatok technikai részletei}
+%----------------------------------------------------------------------------
+A Dante hanghálózatok két fő komponensből állnak: Dante eszközökből
+és Dante hálózatokból. A Dante eszközök olyan hangeszközök, amelyeket
+kifejezetten a Dante protokollhoz terveztek, mint például hangkártyák, erősítők
+és hangszórók. Ezeket az eszközöket szabványos Ethernet kábelekkel és
+kapcsolókkal lehet csatlakoztatni a Dante hálózathoz.
+A hálózatot az Audinate Dante Controller szoftverrel lehet
+konfigurálni, amely lehetővé teszi a hang elosztását és útválasztását az
+eszközök között. A szoftver továbbá lehetővé teszi az eszközök távoli vezérlését
+és monitorozását a hálózaton. Ezek a hanghálózatok támogatnak számos
+hangformátumot és mintavételi rátát, és képesek egyszerre több száz hangcsatorna
+átvitelére egyetlen hálózaton keresztül. A technológia továbbá támogat olyan
+fejlett funkciókat, mint a Dante Domain Manager (DDM) a biztonságos
+hangátvitelhez, valamint a Dante Virtual Soundcard (DVS) a számítógépes alapú
+hanglejátszáshoz és felvételhez. 
+Tegyük fel, hogy több eszköz is küld hangot egy adott végpontra a hálózaton.
+Alapesetben, ahogy a csomagok felgyülemlenek, az elsőként érkezőket, elsőként szolgálják ki elvet alkalmazzák.
+A Dante hanghálózatok Quality of Service (QoS)
+támogatást is nyújtanak, a prioritások kezelésére.
+Ezzel biztosítható a hangátvitel elsőbbse más hálózati forgalommal szemben. Ez segít minimalizálni a hálózati
+torlódás lehetőségét és biztosítani, hogy a hangátvitel minimális késleltetéssel
+és magas minőségben történjen. 
+Körülbelül 70 százalékos hálózati szaturációnál már ajánlott a QoS használata.
+Valamint 100 Mbps-es hálózatoknál segít a jitter csökkenésében.
+
+%----------------------------------------------------------------------------
 \subsubsection{Több mintavételi ráta és bitmélység}
 %----------------------------------------------------------------------------
+
 A rendszer képes egyidejűleg több bitmélységet kezelni. Ennek informatikai háttere a
 a következő képpen néz ki. Ha egy 32 bites hangforrásunk van, de a másik eszköz
 csak 24 bites hangot tud fogadni, akkor a Dante a 32 bites hangot 24 bitesre tudja 
@@ -768,7 +798,6 @@ nem illeszthetőek egymásba, és nem tudjuk továbbítani a hangot. Ebben az es
 konverterre lesz szükségünk, amely képes a két fogaskereket összeilleszteni számunkra.
 Egy fontos kitétel van ahhoz, hogy a több mintavételi ráta egyszerre megfelelően működjön,
 az pedig az egységes órajel az összes mintavételi frekvenciához.
-
 
 %----------------------------------------------------------------------------
 \subsubsection{Hálózati topológiák}
@@ -840,8 +869,9 @@ A Dante automatikusan választ óra vezetőt.
 Mindig csak egy óra vezető lesz, függetlenül a mintavételi rátától.
 Beállíthatunk külső óra vezetőt is amennyiben szükséges.
 Nem szinkronizál újra, hanem beállítja a sebességet és kompenzálja a hálózati késést.
-Bebizonyosodott, hogy az időzítés szinkronban marad akkor is, ha az óra perceken keresztül eltűnik.
-
+A Dante által végzett tesztelések és tapasztalatok alapján
+bebizonyosodott, hogy az időzítés szinkronban marad akkor is,
+ha az óra perceken keresztül teljesen eltűnik.
 
 %----------------------------------------------------------------------------
 \begin{figure}[H]
@@ -851,7 +881,6 @@ Bebizonyosodott, hogy az időzítés szinkronban marad akkor is, ha az óra perc
 	\label{fig:dante-clock}
 \end{figure}
 %----------------------------------------------------------------------------
-
 
 %----------------------------------------------------------------------------
 \subsection{Összehasonlítás a hagyományos hangrendszerekkel}
@@ -900,43 +929,7 @@ továbbítanak, minimális minőségveszteséggel juthatnak el nagy távolságok
 \end{figure}
 %----------------------------------------------------------------------------
 
-
-
-
-%----------------------------------------------------------------------------
-\subsection{Dante hálózatok technikai részletei}
-%----------------------------------------------------------------------------
-A Dante hanghálózatok két fő komponensből állnak: Dante eszközökből
-és Dante hálózatokból. A Dante eszközök olyan hangeszközök, amelyeket
-kifejezetten a Dante protokollhoz terveztek, mint például hangkártyák, erősítők
-és hangszórók. Ezeket az eszközöket szabványos Ethernet kábelekkel és
-kapcsolókkal lehet csatlakoztatni a Dante hálózathoz.
-A hálózatot az Audinate Dante Controller szoftverrel lehet
-konfigurálni, amely lehetővé teszi a hang elosztását és útválasztását az
-eszközök között. A szoftver továbbá lehetővé teszi az eszközök távoli vezérlését
-és monitorozását a hálózaton. Ezek a hanghálózatok támogatnak számos
-hangformátumot és mintavételi rátát, és képesek egyszerre több száz hangcsatorna
-átvitelére egyetlen hálózaton keresztül. A technológia továbbá támogat olyan
-fejlett funkciókat, mint a Dante Domain Manager (DDM) a biztonságos
-hangátvitelhez, valamint a Dante Virtual Soundcard (DVS) a számítógépes alapú
-hanglejátszáshoz és felvételhez. 
-Tegyük fel, hogy több eszköz is küld hangot egy adott végpontra a hálózaton.
-Alapesetben, ahogy a csomagok felgyülemlenek, az elsőként érkezőket, elsőként szolgálják ki elvet alkalmazzák.
-A Dante hanghálózatok Quality of Service (QoS)
-támogatást is nyújtanak, a prioritások kezelésére.
-Ezzel biztosítható a hangátvitel elsőbbse más hálózati forgalommal szemben. Ez segít minimalizálni a hálózati
-torlódás lehetőségét és biztosítani, hogy a hangátvitel minimális késleltetéssel
-és magas minőségben történjen. 
-Körülbelül 70 százalékos hálózati szaturációnál már ajánlott a QoS használata.
-Valamint 100 Mbps-es hálózatoknál segít a jitter csökkenésében.
-
-
-
-
-%----------------------------------------------------------------------------
-\subsection{Rugalmasság és skálázhatóság}
-%----------------------------------------------------------------------------
-A rugalmasság és a skálázhatóság két kulcsfontosságú előnye a Dante
+A rugalmasság és a skálázhatóság tovbbi kulcsfontosságú előnye a Dante
 hanghálózatoknak a hagyományos analóg hangrendszerekkel szemben.
 Képesek alkalmazkodni különböző hangkonfigurációkhoz és követelményekhez. 
 Könnyű eszközöket hozzáadni vagy eltávolítani, megváltoztatni a hangjelek útvonalát, és a rendszert újra
@@ -944,71 +937,59 @@ konfigurálni szükség esetén. Ez lehetővé teszi testreszabott audio-megold�
 létrehozását, amelyeket az adott alkalmazás vagy környezet speciális igényeihez
 lehet igazítani. 
 
+%----------------------------------------------------------------------------
+\subsubsection{Firmware frissítés}
+%----------------------------------------------------------------------------
+
+A Dante eszközök rendelkeznek Dante Firmware és Eszköz Firmware-el.
+Lehet, hogy mindkettőt frissíteni kell. Kérjük, forduljon a gyártóhoz a párosított verziókért.
+Néhány eszköz sorozat más módszerekkel frissíthető.
+A Dante Updater hasznos lehet a frissítések nyomon követéséhez és telepítéséhez.
+A rendszer ellenőrzi az online adatbázisunkat, hogy tájékoztassa Önt az elérhető frissítésekről.
+A Dante firmware könnyen frissíthető.
+A Dante Firmware Update Manager továbbra is aktuális.
+Importálja a firmware fájlokat, ha firmware-t kap egy gyártótól.
+Ha a frissítés nem sikerül, rendelkezünk vészhelyzeti helyreállítási módszerrel.
+A Dante eszközök erős támogatást nyújtanak a vegyes firmware verziókhoz.
+Mérnökeink automatizált regressziós tesztelést végeztek a korábbi firmware kiadásokkal szemben.
 
 %----------------------------------------------------------------------------
 \subsection{Chipek}
 %----------------------------------------------------------------------------
+
+A Dante hálózatok változatos chipekkel építhetők fel. 
+Az Audinate számos különböző chipet kínál a Dante hálózatok létrehozásához, 
+melyek eltérő hangcsatorna-számot és egyéb funkciókat támogatnak. 
+A Dante chipek különféle méretekben és árkategóriákban elérhetők, 
+lehetővé téve a gyártók számára, hogy különféle méretű és árú Dante 
+eszközöket fejlesszenek ki, így képesek kielégíteni a különböző piaci igényeket. 
+A Dante chipek segítik a gyártókat abban, hogy gyorsan és hatékonyan hozzanak 
+létre Dante-kompatibilis eszközöket, és könnyedén integrálják azokat a saját termékeikbe.
+
 %----------------------------------------------------------------------------
-\begin{itemize}
-    \item 
-    \begin{minipage}[t]{.2\textwidth}
-        \includegraphics[width=50px,height=50px,keepaspectratio]{figures/ultimo-x.jpg}
-    \end{minipage}%
-    \begin{minipage}[t]{.8\textwidth}
-        \textbf{Dante Ultimo-X - 0x4, 2x2, 4x0}
-    \end{minipage}
-
-    \item 
-    \begin{minipage}[t]{.2\textwidth}
-        \includegraphics[width=50px,height=50px,keepaspectratio]{figures/broadway.jpg}
-    \end{minipage}%
-    \begin{minipage}[t]{.8\textwidth}
-        \textbf{Dante Broadway - 16x16}
-    \end{minipage}
-
-    \item 
-    \begin{minipage}[t]{.2\textwidth}
-        \includegraphics[width=50px,height=50px,keepaspectratio]{figures/brooklyn-ii.jpg}
-    \end{minipage}%
-    \begin{minipage}[t]{.8\textwidth}
-        \textbf{Dante Brooklyn II - 64x64}
-    \end{minipage}
-
-    \item 
-    \begin{minipage}[t]{.2\textwidth}
-        \includegraphics[width=50px,height=50px,keepaspectratio]{figures/pcie-r.jpg}
-    \end{minipage}%
-    \begin{minipage}[t]{.8\textwidth}
-        \textbf{Dante PCIe-R - 128x128}
-    \end{minipage}
-
-    \item 
-    \begin{minipage}[t]{.2\textwidth}
-        \includegraphics[width=50px,height=50px,keepaspectratio]{figures/dante-hc.jpg}
-    \end{minipage}%
-    \begin{minipage}[t]{.8\textwidth}
-        \textbf{Dante HC (High Capacity) - 512x512}
-    \end{minipage}
-
-    \item 
-    \begin{minipage}[t]{.2\textwidth}
-        \includegraphics[width=50px,height=50px,keepaspectratio]{figures/shared-processor.jpg}
-    \end{minipage}%
-    \begin{minipage}[t]{.8\textwidth}
-        \textbf{Dante Shared Processor - IP Core 512x512 FPGA and Dante Embedded Platform 64x64 X86/ARM}
-    \end{minipage}
-
-    \item 
-    \begin{minipage}[t]{.2\textwidth}
-        \includegraphics[width=50px,height=50px,keepaspectratio]{figures/dante-av.jpg}
-    \end{minipage}%
-    \begin{minipage}[t]{.8\textwidth}
-        \textbf{Dante AV - V:1, A:8}
-    \end{minipage}
-\end{itemize}
-
-
-
+\begin{center}
+	\begin{tabular}{|c|p{10cm}|}
+		\hline
+		\textbf{Chip} & \textbf{Leírás} \\
+		\hline
+		\includegraphics[width=40px,height=40px,keepaspectratio]{figures/ultimo-x.jpg} & \textbf{Dante Ultimo-X} - 0x4, 2x2, 4x0 \\
+		\hline
+		\includegraphics[width=40px,height=40px,keepaspectratio]{figures/broadway.jpg} & \textbf{Dante Broadway} - 16x16 \\
+		\hline
+		\includegraphics[width=40px,height=40px,keepaspectratio]{figures/brooklyn-ii.jpg} & \textbf{Dante Brooklyn II} - 64x64 \\
+		\hline
+		\includegraphics[width=40px,height=40px,keepaspectratio]{figures/pcie-r.jpg} & \textbf{Dante PCIe-R} - 128x128 \\
+		\hline
+		\includegraphics[width=40px,height=40px,keepaspectratio]{figures/dante-hc.jpg} & \textbf{Dante HC (High Capacity)} - 512x512 \\
+		\hline
+		\includegraphics[width=40px,height=40px,keepaspectratio]{figures/shared-processor.jpg} & \textbf{Dante Shared Processor} - IP Core 512x512 FPGA and Dante Embedded Platform 64x64 X86/ARM \\
+		\hline
+		\includegraphics[width=40px,height=40px,keepaspectratio]{figures/dante-av.jpg} & \textbf{Dante AV} - V:1, A:8 \\
+		\hline
+	\end{tabular}
+\end{center}
+%----------------------------------------------------------------------------
+	
 
 
 
