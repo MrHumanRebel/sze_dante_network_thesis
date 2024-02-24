@@ -476,7 +476,8 @@ alhálózati határok átlépése nélkül. Egy routernek megfelelően konfigur�
 lennie a hálózati útvonalak létrehozásához ezek között az alhálózatok között.
 Ezzel szemben egy tipikus kapcsoló nem képes összekapcsolni az alhálózatokat.
 Egy virtuális LAN (VLAN) egy másik módszer a hálózat szegmentálására. 
-Szemben az alhálózatokkal, ez egy biztonságosabb módja a hosztok elkülönítésére egymástól.
+Rugalmasabbá teszi a rendszereket, csökkenti a kapcsolatlan rendszerek közötti fölösleges kommunikációt.
+Szemben az alhálózatokkal, ez egy biztonságosabb módja is a hosztok elkülönítésére egymástól.
 
 %----------------------------------------------------------------------------
 \subsection{Hálózati topológiák}
@@ -503,6 +504,9 @@ Gyakorlati példák a különböző helyszínek közötti hálózatok, de gyűr�
 olyan eszközök csatlakoztatására is, amelyek esetében nincs hely egy további
 kapcsoló számára. A gyűrű topológiák beépített redundanciát kínálnak minden
 eszközhöz hozzáférhetünk, még akkor is, ha egy kapcsolat elszakad.
+A megfelelő hálózat kialakításához még elengedhetetlenek a nem blokkoló kapcsolók.
+A nem blokkoló architektúra azt jelenti, hogy nem a kapcsoló a szűk keresztmetszet.
+Tehát képes kezelni az összes rá táplált forgalmat, csak a port sebessége a korlát.
 
 %----------------------------------------------------------------------------
 \subsection{Unicast és Multicast} %Egyedi és Csoportos Küldés
@@ -515,13 +519,17 @@ minden egyes csomag sikerült átvételéről visszaigazolást küld a küldőne
 visszaigazolás nem érkezik meg, a küldő automatikusan újraküldi a csomagot. 
 Az UDP (User Datagram Protocol) egy alternatíva a TCP-nek. Ebben az esetben a küldő
 bízik abban, hogy a csomagok sikeresen megérkeznek a fogadóhoz. Nincs
-visszaigazolás, és ha a csomag elveszik, a tartalma is elveszik. Bár ez
-váratlan lehet, ez valójában a preferált átviteli mód a szakmai audio hálózatok
+visszaigazolás, és ha a csomag elveszik, a tartalma is elveszik.
+Ez az jelenti, hogy az UDP nem annyira megbízható? Valójában nem,
+csak egy más eszköz más felhasználásra.
+Bár ez váratlan lehet, ez valójában a preferált átviteli mód a szakmai audio hálózatok
 számára. Mivel az időkésleltetés alacsonynak kell lennie, nem engedhető meg a
 csomagok újraküldése, mert az időt vesz igénybe, és ezzel növelné az általános
 időkésleltetést. Az élő audio csomagvesztés esetén a legjobb, ha folytatjuk a
 következő audio minták lejátszását, anélkül hogy megpróbálnánk helyreállítani az
-előzőt. Az audio alkalmazásokban gyakran szükség van arra, hogy egy audio jelet
+előzőt. A menedzselhető switchek és végpontok tudják logolni a csomagvesztéseket, így
+monitorozható a hálózat állapota.
+Az audio alkalmazásokban gyakran szükség van arra, hogy egy audio jelet
 több helyre párhuzamosan fogadjanak, például egy mikrofonjel, amelyet
 párhuzamosan továbbítanak a front-of-house és a monitoring keverőpultoknak. Akár
 egy harmadik hely is létezhet, például egy felvevő eszköz. 
@@ -552,6 +560,13 @@ kérés, akkor a megfelelő multicast leáll, így nem jut felesleges forgalom a
 kapcsolaton. Az IGMP snoopingot egyfajta zsilippel lehetne összehasonlítani,
 amely alapértelmezetten zárva van, és csak kérésre nyílik meg. Erősen ajánlott
 az IGMP snooping bekapcsolása egy multicast hálózatban minden kapcsolóban.
+Azonban egy hálózatban csak egy darab IGMP Querier lehet aktív, mivel az
+összes többi kapcsoló az aktív IGMP Querier-től kapja az információkat.
+Enélkül a multicast úgy viselkedni mint egy broadcast, ami nagy mennyiségű
+felesleges forgalmat eredményez.
+Összefoglalva, a unicast a legjobb késleltetési teljesítményt nyújtja, és a
+kapcsolók számára a legkönnyebben mozgatható.
+A multicast pedig jobb sávszélesség-kezelést kínál, ahogy a csatornaszám (és a sávszélesség) nő.
 
 %----------------------------------------------------------------------------
 \subsection{Eszköz- és Adatfolyam-felfedezés}
@@ -593,6 +608,7 @@ hardverek megbízhatóságában. Annak ellenére, hogy a széles körben elterje
 IT-berendezések jól beváltak és gyakran megbízhatóbbak, mint a hagyományos
 audioberendezések. Emellett a legtöbb IT-hálózati komponens több diagnosztikai
 mechanizmust kínál a berendezések hibájának gyors felismeréséhez és megoldásához.
+
 %----------------------------------------------------------------------------
 \subsubsection{Spanning Tree Protocol (STP)}
 %----------------------------------------------------------------------------
@@ -609,6 +625,8 @@ másodperceken belül észleli ezt, és újraaktiválja a passzív kapcsolatot. 
 az időszakban az audio néhány másodpercig megszakad, de még mindig sokkal
 gyorsabb, mint a manuális hibakeresés és az új kábel telepítése. 
 A legtöbb rendszerben az STP alapértelmezetten engedélyezve van. 
+Nélküle broadcast 'viharok' alakulnának ki, ami felemészti a sávszélességet.
+
 %----------------------------------------------------------------------------
 \subsubsection{Link Aggregáció}
 %----------------------------------------------------------------------------
@@ -808,7 +826,9 @@ Ha két eszköz különböző késleltetésű, akkor a nagyobb érték lesz az i
 Egy megfelelően konfigurált modern Dante hálózatban a késleltetés 1 ms körüli értéket vesz fel.
 Ez azt is jelenti, hogy például egy dobos előbb hallja a hangszerét a fülmonitoron, mint a saját dobját.
 
-
+%----------------------------------------------------------------------------
+\subsubsection{Címzés}
+%----------------------------------------------------------------------------
 
 
 
@@ -879,11 +899,20 @@ hangformátumot és mintavételi rátát, és képesek egyszerre több száz han
 átvitelére egyetlen hálózaton keresztül. A technológia továbbá támogat olyan
 fejlett funkciókat, mint a Dante Domain Manager (DDM) a biztonságos
 hangátvitelhez, valamint a Dante Virtual Soundcard (DVS) a számítógépes alapú
-hanglejátszáshoz és felvételhez. A Dante hanghálózatok Quality of Service (QoS)
-támogatást is nyújtanak, hogy biztosítsák, hogy a hangátvitel elsőbbséget
-élvezzen más hálózati forgalommal szemben. Ez segít minimalizálni a hálózati
+hanglejátszáshoz és felvételhez. 
+Tegyük fel, hogy több eszköz is küld hangot egy adott végpontra a hálózaton.
+Alapesetben, ahogy a csomagok felgyülemlenek, az elsőként érkezőket, elsőként szolgálják ki elvet alkalmazzák.
+A Dante hanghálózatok Quality of Service (QoS)
+támogatást is nyújtanak, a prioritások kezelésére.
+Ezzel biztosítható a hangátvitel elsőbbse más hálózati forgalommal szemben. Ez segít minimalizálni a hálózati
 torlódás lehetőségét és biztosítani, hogy a hangátvitel minimális késleltetéssel
-és magas minőségben történjen.
+és magas minőségben történjen. 
+Körülbelül 70 százalékos hálózati szaturációnál már ajánlott a QoS használata.
+Valamint 100 Mbps-es hálózatoknál segít a jitter csökkenésében.
+
+
+
+
 %----------------------------------------------------------------------------
 \subsection{Rugalmasság és skálázhatóság}
 %----------------------------------------------------------------------------
