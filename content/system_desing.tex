@@ -408,11 +408,9 @@ egy nagy felbontású hangkártyaként is használhatjuk. \cite{AHSQ}
 \end{figure}
 %----------------------------------------------------------------------------
 Az I/O bővítőkártyák közül a rendszerben mindkét pultban megtalálható egy darab SQ Dante kártya ami 64x64 csatorna
-kezelésére képes.
-
-
-
-
+kezelésére képes. Az A\&H SQ szériás pultjai csak egy darab I/O bővítőkártyát tudnak kezelni, de léteznek
+olyan rendszerek mint például az Avantis és a DLive szériás pultok, amelyek több I/O bővítőkártyát is tudnak kezelni.
+Jelen esetben ez teljes mértékben felesleges, mivel a rendszerben kizárólag a Dante protokollra támaszkodunk.
 
 %----------------------------------------------------------------------------
 \begin{figure}[H]
@@ -420,12 +418,12 @@ kezelésére képes.
     \begin{minipage}{0.45\textwidth}
         \centering
         \includegraphics[width=67mm, keepaspectratio]{figures/sq_dante.jpg}
-        \caption{Allen \& Heath SQ Dante kártya}\label{fig:sq_dante}
+        \caption{A\&H SQ Dante kártya}\label{fig:sq_dante}
     \end{minipage}\hfill
     \begin{minipage}{0.45\textwidth}
         \centering
         \includegraphics[width=67mm, keepaspectratio]{figures/dt168.jpg}
-        \caption{Allen \& Heath DT168 Dante stagebox}\label{fig:dt168}
+        \caption{A\&H DT168 Dante stagebox}\label{fig:dt168}
     \end{minipage}
 \end{figure}
 %----------------------------------------------------------------------------
@@ -511,15 +509,27 @@ Az időszinkronizáció kulcsfontosságú élőzenei produkcióknál.
 %----------------------------------------------------------------------------
 \section{Rendszermérések és monitorozás}
 %----------------------------------------------------------------------------
+
+
+
 %----------------------------------------------------------------------------
 \subsection{Dante rendszer monitorozása}
 %----------------------------------------------------------------------------
+
+
+
 %----------------------------------------------------------------------------
 \subsubsection{Dante Controller: Hálózati állapot nézet}
 %----------------------------------------------------------------------------
+
+
+
 %----------------------------------------------------------------------------
 \subsubsection{Dante Controller: Események nézet}
 %----------------------------------------------------------------------------
+
+
+
 %----------------------------------------------------------------------------
 \subsection{Cardioid mélyláda rendszer mérése}
 %----------------------------------------------------------------------------
