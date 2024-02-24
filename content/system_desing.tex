@@ -34,6 +34,15 @@ A végfokrendszer fő vezérlő protokollja miatt szükség lesz még egy CAT5E 
 Minden egyes végfokrackben két MikroTik 24 portos switch lesz. Az egyik switch a Dante elsődleges hálózatát fogja kizárólag kezelni.
 A másik switch a Dante másodlagos hálózatát, és a VU-NET hálózatot fogja kezelni.
 Ez a két alhálózat VLAN szegmensekkel lesz elkülönítve, hogy a hálózat biztonságos és stabil legyen.
+A rendszer kábelezése egyedileg készített Neutrik EtherCon csatlakozóval ellátott CAT5E és CAT6A kábelekből fog állni.
+A kábelek készítésekor a T568B szabvány szerinti kábelrendezést alkalmazom, mivel a T568B jobb átviteli
+teljesítményt és interferencia védelmet nyújt a hosszú távú használat során.
+Nem szükséges a T568A szabvány által nyújtott plusz kompatibilitás a régi hálózatokkal, mivel egy teljesen új 
+modern hálózatot fogunk kiépíteni. 
+A csatlakozók felhelyezésekor a szabványnak megfelelően járok el, milliméterre pontosan, hogy a kábelek
+a lehető legjobb minőségűek legyenek. Ez a CAT6A kábeleknél különösen fontos, mivel a CAT6A kábelek
+még nagyobb frekvencia tartományban képesek adatokat továbbítani, mint a CAT5E kábelek,
+ezért jobban érzékenyek a külső interferenciákra.
 %----------------------------------------------------------------------------
 \begin{figure}[H]
     \centering
