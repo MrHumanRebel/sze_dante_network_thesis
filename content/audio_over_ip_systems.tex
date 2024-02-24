@@ -827,10 +827,30 @@ Egy megfelelően konfigurált modern Dante hálózatban a késleltetés 1 ms kö
 Ez azt is jelenti, hogy például egy dobos előbb hallja a hangszerét a fülmonitoron, mint a saját dobját.
 
 %----------------------------------------------------------------------------
-\subsubsection{Címzés}
+\subsubsection{Órajel}
 %----------------------------------------------------------------------------
 
+Minden eszköz egy nagyon-nagyon pontos Dátum/Idő órát követ.
+Szinkronizálnak az időhöz és állítják a sebességet, hogy egységes legyen.
+Mi a helyzet a terjedési késéssel? Miért vannak szinkronban a Dante eszközök?
+A PTP (Precision Time Protocol) késleltetési kéréseket (Delay Requests)
+ad ki, amelyek kiszámítják a hálózat késleltetését. 
+Az eszközök az információváltás késését is kompenzálják.
+A Dante automatikusan választ óra vezetőt.
+Mindig csak egy óra vezető lesz, függetlenül a mintavételi rátától.
+Beállíthatunk külső óra vezetőt is amennyiben szükséges.
+Nem szinkronizál újra, hanem beállítja a sebességet és kompenzálja a hálózati késést.
+Bebizonyosodott, hogy az időzítés szinkronban marad akkor is, ha az óra perceken keresztül eltűnik.
 
+
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=400px, keepaspectratio] {figures/dante-clocking.jpg}
+	\caption{Dante órajel}
+	\label{fig:dante-clock}
+\end{figure}
+%----------------------------------------------------------------------------
 
 
 %----------------------------------------------------------------------------
