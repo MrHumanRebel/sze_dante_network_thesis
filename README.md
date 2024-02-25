@@ -21,6 +21,12 @@
 git clone
 ```
 
+### Lépjen be a mappába
+
+```bash
+cd sze_dante_network_thesis
+```
+
 ### Telepítse fel a VS Code-ot
 
 ```bash
