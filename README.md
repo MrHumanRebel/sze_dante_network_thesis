@@ -11,9 +11,7 @@
 
 ## Megnyitás PDF formátumban
 
-### Töltse le az előre elkészített PDF-et
-
-[PDF](thesis.pdf)
+### Töltse le az előre elkészített [PDF](thesis.pdf)-et
 
 ## Megnyitás LaTeX környezetben
 
