@@ -83,8 +83,7 @@ nincs súlyos ütközés más csomagokkal a kapcsoló hardveren.
 Néhány hálózatban, különösen ha az audio és más forgalmat keverik, 
 fontos lehet az audio és szinkronizációs csomagoknak elsőbbséget biztosítani másokkal szemben,
 például az internetes böngészéssel szemben. Ez a mai legtöbb kereskedelmi forgalmazott
-kapcsolóval elérhető. 
-\newline
+kapcsolóval elérhető. \newline
 
 Példa audio over IP hálózatokra:
 %----------------------------------------------------------------------------
@@ -153,21 +152,24 @@ Ugyanakkor az audio-over-IP hálózatok felhasználóit számos kihívás elé i
 %----------------------------------------------------------------------------
 \subsection{Fázishelyesség}
 %----------------------------------------------------------------------------
-A legtöbb audio alkalmazásban kritikus a több eszköz szinkronizált viselkedése.
+A legtöbb audio alkalmazásban kritikus több eszköz szinkronizált viselkedése.
 Elengedhetetlen a mikrofonok vagy hangszórók közötti fázispontosság.
 Amikor több hangszóró van csatlakoztatva egy erősítőhöz, és az összes csatorna
 egyetlen hangcsomagban érkezik meg, nincs veszélye annak, hogy a csatornák
 ellenfázisban lennének egymással, mivel a hangminták nem változhatnak el egymás
 között a hálózaton keresztüli átvitel során. 
+
 Azonban egyre több alkalmazásban több erősítő és processzor függetlenül kap hangcsomagokat,
 miközben továbbra is szükség van arra, hogy pontosan reprodukálják az audiojeleket egyező fázispontossággal.
 Ezért egy adott audio csomagot több hálózati eszköz is megkaphatja, pufferelheti, és ezeket
 pontosan ugyanabban az időben kell lejátszania. 
+
 Mivel nincsenek szoros időzítési specifikációk az IT hálózatokban a csomagok továbbításának és
 megérkezésének időpontjára vonatkozóan, az audiohálózatoknak mindenképpen szinkronizációs
-módszert kell biztosítaniuk. Ez egy fontos, de új probléma a hálózatokban, amellyel az összes
+módszert kell biztosítaniuk. Ez egy fontos, és egyben új probléma a audio hálózatokban, amellyel az összes
 audio-over-IP technológiának foglalkoznia kell.
-Az audiohálózaton belül minden eszköz abszolút időben szinkronizált
+
+Az audiohálózaton belül minden eszköz abszolút időben szinkronizáltnak kell lennie
 a Precision Time Protocol (PTP) szerint. Ez azt jelenti, hogy belső óráik (PTP
 követők) egy referenciaóra eszközből (PTP vezető) származnak. Ez az eszköz
 bármilyen audioeszköz lehet, amely biztosítja ezt a funkciót, vagy akár egy
@@ -178,14 +180,20 @@ vevő, az a végső követelmény, hogy pontosan szinkronizálódjanak ehhez az 
 Az audio csomag küldési pillanatában egy időbélyegzővel látják el. A felhasználó állandó időeltolást állít be az
 összes vevőnél, ez a linkeltolás. Amikor egy csomag megérkezik egy vevőhöz, a
 pufferben marad, amíg lejátszásra kerül. Tehát az audio lejátszás pillanata a
-küldési idő plusz a linkeltolás. Minden vevő két feltétel mellett érheti el egymás
-között a fázispontosságot: 
-Pontos időszinkronizálás a PTP óra vezetőjéhez (azonos időbázis) 
-Azonos linkeltolási érték beállítása a felhasználó által az összes vevőeszközön
+küldési idő plusz a linkeltolás. \newline
+
+Minden vevő két feltétel mellett érheti el egymás között a fázispontosságot:
+%----------------------------------------------------------------------------
+\begin{itemize}
+	\item Pontos időszinkronizálás a PTP óra vezetőjéhez (azonos időbázis).
+	\item Azonos linkeltolási érték beállítása a felhasználó által az összes vevőeszközön.
+\end{itemize}
+%----------------------------------------------------------------------------
+
 Ezért a linkeltolást az érintett összes kapcsolat legrosszabb esetű késleltetése alapján kell kiválasztani. 
 Javasolt bizonyos engedményt hozzáadni az esetleges csomagkiszállítási idők váratlan eltéréseinek esetére,
 ez azt jelenti, hogy kicsivel nagyobb időt hagyunk az átlagos csomagfeldolgozási időnél.
-Szerencsére ez a koncepció elterjedt és jelenleg minden audiohálózati szabványban és a videóban is használatos. 
+Szerencsére ez a koncepció elterjedt és jelenleg minden audiohálózati szabványban használatos. 
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
@@ -206,23 +214,26 @@ Szerencsére ez a koncepció elterjedt és jelenleg minden audiohálózati szabv
 Az IP küldők és fogadók szinkronizációja az alacsony késleltetéssel való szinkronban lévő működéshez elengedhetetlen.
 A hagyományos audio technológiákban az eszközöket vagy külön \textit{word clock} kapcsolattal, 
 vagy szinkronizált audio formátumokkal, például AES/EBU vagy MADI segítségével szinkronizálták.
+
 A fogadók közvetlenül képesek voltak azokból az formátumokból frekvenciájukat és fázisukat kinyerni,
 mivel valamiféle \textit{impulzust} biztosítottak, ami jelzi a pillanatot, amikor egy
 audio minta létrejön vagy lejátszódik, például analóg-digitális konverterek esetében.
 Az PTP csomagok kicsik és nem tartják fel a forgalmat sokáig, de fontos, hogy a
 kapcsolókban a lehető legmagasabb prioritással továbbítsák őket. 
 Ez végül növelni fogja a szinkronizáció pontosságát. 
-A QoS-hez (Quality of service) kapcsolódóan ez azt jelenti, hogy a PTP csomagokat még a hangnál is magasabb prioritással kell
+
+A QoS (Quality of service) keretein belül a PTP csomagokat még a hangnál is magasabb prioritással kell
 kezelni. Az összes hálózati eszközt ugyanazon naptári időpontra szinkronizálják a Precision Time Protocol
 (PTP) segítségével. Ennek az időnek a kiindulása egy olyan eszköz, amelyet óraleadernek
 neveznek, míg az ehhez igazodó eszközöket óra követőknek hívják. 
-Minden eszköznek meg kell hozzá generálnia a kívánt hagyományos órát (például 96 kHz), amelyet a PTP-n keresztül kapott
+
+Minden eszköznek meg kell hozzá generálnia a kívánt hagyományos órát, amelyet a PTP-n keresztül kapott
 abszolút időből származtat. Ez a belső óra a \textit{médiaóra}. 
 Ha a gyártó megfelelően implementálja, minden eszköz médiaórájának pontosan ugyan annyinak kell lennie a
 frekvencia és fázis terén. A magas pontosság technikailag elérhető, de kihívást
 jelent az audio gyártók számára. Ezért a PTP szinkronizált eszközök közötti
 fázispontosság minőségtől függően változhat. Elfogadható változásnak tekinthető ha az kisebb mint <1 µs, azaz 1 mikroszekundum.
-%----------------------------------------------------------------------------
+
 Mivel az IT hálózatok nem eléggé determinisztikusak a csomag kézbesítésének időpontját
 illetően, a készülékek pontos szinkronizációja kifinomult megközelítést igényel.
 A PTP követők fő feladata két hatás kompenzálása, amelyek bármilyen hálózat esetén előfordulhatnak:
