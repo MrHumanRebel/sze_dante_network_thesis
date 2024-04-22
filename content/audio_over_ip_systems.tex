@@ -251,33 +251,33 @@ használnak. (A 8-as maximális érték csak kompatibilitás érdekében javasol
 %----------------------------------------------------------------------------
 \subsubsection{Késleltetés mérése}
 %----------------------------------------------------------------------------
-A követő második kulcsfontosságú feladat a vezető és a követő közötti
-csomagkésleltetés mérése a vezető által a szinkronizációs üzenetekben kapott
+A követő második kulcsfontosságú feladata a vezető és a követő közötti
+csomagkésleltetés mérése a vezető által szinkronizációs üzenetekben kapott
 idő kijavításához. Ehhez szükség van arra az időmérésre, amelyek azt mutatja meg számunkra,
 hogy a hálózati út során mennyi időbe telik egy csomag átvitele.
 Ez a mérés magában foglalja az összes közöttük lévő
 összetevő késleltetését, beleértve a kábeleket és kapcsolókat is. 
 A vezető és a követő közötti kábelhossz és a kapcsolók száma nem számít, csak a végső érték.
 A PTP időnek az összes követő között ugyanannak kell lennie nanoszekundum pontossággal.
+
 Az egyetlen feltétel a PTP számára, hogy a késleltetés mindkét irányban, a vezetőtől a
 követőig és fordítva, állandó és szimmetrikus maradjon.
 A késleltetést a követő két üzenet cseréjével méri, a késleltetési kérésből és a késleltetési válaszból következően.
 Ezt a késleltetést általában a szinkronizálási aránnyal azonos gyakorisággal hajtják végre, 
 azaz az előbbiekben már említett 1 és 8 alkalom között.
-Mivel egy vezetőnek minden egyes követővel üzenetet kell cserélnie, van egy maximális követőszámra
-vonatkozó korlátja. Sajnálatos módon ez nincs egyértelműen meghatározva, mivel
-ez az érték a használt üzenetsebességektől függ.
 %----------------------------------------------------------------------------
 Mivel a hálózaton több eszköz is képes lehet PTP vezetőként működni és elosztani
 az időt az összes követőnek, a szabvány szabályokat hozott létre a vezető
 kiválasztásához. Ezt a szabályt a Best Master Clock Algorithm (BMCA), vagyis a
-Legjobb Mesteróra Algoritmusnak nevezik. Minden vezetőképes eszköz küldhet
-bejelentő üzeneteket a prioritásairól (amelyeket a felhasználó állít be),
+Legjobb Mesteróra Algoritmusnak nevezik. 
+
+Minden vezetőképes eszköz küldhet bejelentő üzeneteket a prioritásairól (amelyeket a felhasználó állít be),
 valamint az oszcillátor pontosságáról. Ezenkívül figyelnie kell más eszközöket,
 amelyek szintén elküldhetik saját bejelentő üzeneteiket. 
 Ha más bejövő üzenetek jobb minőséget jelentenek, az eszköz leállítja a vezetőként való bejelentkezését.
 Ellenkező esetben rendszeresen küldi saját üzeneteit, mintegy \textit{szívverésként},
 és ezzel jelezve minden másik eszköznek az aktív állapotát. 
+
 Ezeket az üzeneteket az announce intervallumnak nevezett időközönként küldik el. 
 A bejelentő üzenetek szolgálnak \textit{szívverésként} is, hogy mások tudják, a jelenlegi mester még működőképes.
 Ha a kapcsolat megszakad, az összes egység vár egy bizonyos időt (bejelentő időtúllépés),
@@ -285,13 +285,14 @@ amíg elküldik bejelentő üzeneteiket, majd megismétlik a kiválasztási foly
 A vezetőváltás idején a követőknek folytatniuk kell saját oszcillátoruk belső működését.
 Az audio nem szakítható meg a vezetőváltás során.
 A bejelentő üzenetekben megadott minőség két értéket tartalmaz, amelyeket a felhasználó állít be: prioritás 1 és prioritás 2.
-Mindkettő értéke 0 és 255 között változhat, ahol az 0 a legjobb és legyőzi a többieket.
+Mindkettő értéke 0 és 255 között változhat, ahol a 0 érték a legjobb és legyőzi a többieket.
 Ha egy prioritás 1 érték kisebb egy eszközön, mint más eszközökön,
 akkor az lesz a vezető. A prioritás 2 alatti érték csak akkor releváns, ha
 minden előző érték, beleértve a prioritás 1-et is, több eszközön ugyanaz. 
 Ez előfordulhat két azonos típusú eszköz telepítéseknél, amelyeknek a felhasználó
 azonos értéket állított be a prioritás 1-hez. Ebben az esetben a prioritás 2
 határozza meg, hogy melyik lesz a fő vezető, és melyik a tartalék. 
+
 Fontos megjegyezni, hogy néhány eszköz nem kínál lehetőséget a felhasználónak ezen értékének megadására.
 Ehelyett egyszerűen a \textit{Preferált Vezető} megjelölésével rendelkeznek.
 Technikailag ezek a termékek rögzített értéket használnak bejelentő üzeneteikben, amit a gyártó határoz meg.
@@ -325,26 +326,26 @@ akkor a sávszélességünk a következő lesz:
 %----------------------------------------------------------------------------
 \begin{equation}
 	\label{eq:sávszélesség}
-	96000 * 24 * 64 * 2 = 294912000 bit/s = 294,912 Mbit/s (nyers adatfolyam)
+	96000 * 24 * 64 * 2 = 294912000 bit/s = 294,912 Mbit/s (\text{nyers adatfolyam})
 \end{equation}
 %----------------------------------------------------------------------------
-Mivel a hálózatunkat a Dante által ajánlott méretezés szerint szeretnénk kialakítani,
-legalább 30 százalékos túlméretezést kell alkalmaznunk. Tehát a fenti példában a sávszélességünk a következő lesz:
+A hálózatunkat nem centizhetjük ki, mindig kell egy bizonyos tartalékot hagyni a hálózatban. A korábbiakban már említett
+legalább 30 százalékos túlméretezést érdemes alkalmazni nem csak elméletben hanem gyakorlatban is. 
+Tehát a fenti példában a sávszélességünk a következő lesz:
 %----------------------------------------------------------------------------
 \begin{equation}
 	\label{eq:teljes-sávszélesség}
-	294912000 bit/s * 1.3 = 383385600 bit/s = 383,3856 Mbit/s (teljes sávszélesség)
+	294912000 bit/s * 1.3 = 383385600 bit/s = 383,3856 Mbit/s (\text{teljes sávszélesség})
 \end{equation}
 %----------------------------------------------------------------------------
 A számítások alapján egy átlagos 1 Gbit/s (1 Gbit/s = 1000 Mbit/s) sávszélességű hálózaton ez a rendszer már megfelelően működhet.
-Érdemes a hálózatunkat túlbiztosítani, hogy a rendszerünk a legnagyobb terhelés alatt is megfelelően működjön.
 A bitmélység a hangsáv digitális reprezentációját határozza meg, és az adatok pontosságát befolyásolja.
 Általában 16 vagy 24 bitmélységű rendszerek használatosak az audio over IP területén, de a Dante rendszerek a 
 32 bites bitmélységet is támogatják. A 16 bites reprezentáció megfelelő lehet olyan alkalmazásokhoz, ahol a nagy
 dinamikatartomány nem kritikus. Ugyanakkor a 24 bites felbontás lehetőséget nyújt a pontosabb és részletesebb hangátvitelhez,
 általában zenei stúdiókban és élőzenei környezetekben. 
 A 32 bites bitmélység a legmagasabb minőséget biztosítja, de a sokkal nagyobb sávszélesség igénye miatt elsősorban csak
-a kiemelten professzionális stúdiókban használják.
+a kiemelten professzionális stúdiókban használják, de általában a 24 bites bitmélységű rendszerek is tökéletesen megfelelnek.
 %----------------------------------------------------------------------------
 \subsection{Késleltetés}
 %----------------------------------------------------------------------------
@@ -366,8 +367,8 @@ ezáltal soha ne történjen meg a hang megszakítása.
 \subsection{IP címek és maszkok}
 %----------------------------------------------------------------------------
 Egy hálózaton belül minden eszköznek egyedi címre van szüksége annak érdekében,
-hogy a csomagok sikeresen elérjék a céljukat és elkerüljük a csomagok ütközését.
-Egy ilyen cím lehet hardverrel kapcsolatos (MAC-cím) vagy konfigurálható a cím (IP-cím).
+hogy a csomagok sikeresen elérjék céljukat és elkerüljük a csomagok ütközését.
+Egy ilyen cím lehet hardverrel kapcsolatos (MAC-cím) vagy konfigurálható cím (IP-cím).
 %----------------------------------------------------------------------------
 \section{IP-cím hozzárendelési módszerek}
 %----------------------------------------------------------------------------
@@ -382,8 +383,8 @@ Az IP-címeket háromféleképpen lehet hozzárendelni egy eszközhöz:
     
     \item \textbf{DHCP szerver általi eszközhöz rendelés:}
     Ez egy rugalmas, mégis strukturált módja az IP-címek elosztásának a hálózaton belül.
-	Egy hoszt 'DHCP módban' megpróbálja megtalálni a megfelelő DHCP szerveret,
-	és minden szükséges IP-konfigurációt egy jól szabványosított módon szerez be.
+	Egy hoszt 'DHCP módban' megpróbálja megtalálni a megfelelő DHCP szervert,
+	és minden szükséges IP-konfigurációt egy szabványosított módon szerez be.
 	Egy felhasználó ellenőrizheti a DHCP szerverben észlelt eszközöket és azok IP-címeit.
 	Az adminisztrátor konfigurálhatja úgy, hogy csak bizonyos IP-cím-tartományt osztanak ki,
 	míg másokat kézi rendelésre tartalékolnak.
@@ -398,7 +399,6 @@ Egy adott eszköz IP-címéről való információ beszerzése alapvetően kiss�
 ha az nem jelenik meg egy kijelzőn. 
 Szoftveres eszközök elérhetők az eszközök jelenlétének szkennelésére IP-cím-tartományokban,
 de az IT osztályok gyakran tiltják az ilyen eszközök használatát.
-
 
 Azonosítani, hogy két IP-cím ugyanabba az alhálózatba tartozik-e, nem lehetséges 
 a hozzájuk tartozó alhálózati maszkok ellenőrzése nélkül.
@@ -429,7 +429,7 @@ míg a hosztcím a maradék jobb oldal, ahol az alhálózati maszk `0'-át jelzi
 Host A Host B  Host B ugyanabban az alhálózatban van,
 mint Host A, mert mindkettő ugyanazt a hálózati címkét használja (192.168.020).
 Az IP-cím hálózati része az a rész, ahol az alhálózati maszk 255-ös értéket
-mutat. Ezen két eszköz között egy router nem szükséges. 
+mutat. Ezen két eszköz között egy router sem szükséges. 
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
@@ -449,15 +449,12 @@ A feljegyzett alhálózati maszkok decimális jelölése dot-decimális jelölé
 Azért, hogy az információt rövidebben jelezzék, gyakran
 használt alternatív módszer a CIDR vagy perjeljelölés.
 Az IP-cím után azonnal következő perjel után az
-
-
-
-
 alhálózati maszkot a `0'-nál nagyobb értékeket mutatva jelöli meg.
 Ez a jelölés az alhálózati maszk bináris formájára utal, tehát a `255' a `11111111' -nek felel meg.
 A fenti példákban az alhálózati maszkok tehát bináris formájukban 24
 `1'-t tartalmaznak. 
 A fenti példában szereplő hosztok CIDR jelölése:
+
 %----------------------------------------------------------------------------
 \begin{itemize}
     \item \textbf{Host A:} 192.168.020.182/24
@@ -470,23 +467,24 @@ A routereket használó és több alhálózatot összekapcsoló telepítések a
 az OSI modell 3. rétegén működnek. Ez a modell hét rétegre osztja a
 hálózatok általános funkcionalitását, mindegyik egy adott készletet ír le a hálózati
 eszközök által nyújtott funkcionalitásokról. Gondolva itt elsősorban a csomagok továbbításáról a
-megfelelő címzett felé. Az összes jelenlegi IT eszköz követi ezt a jól
+megfelelő címzett felé. 
+
+Az összes jelenlegi IT eszköz követi ezt a jól
 meghatározott absztrakciós rétegkoncepciót, hogy elősegítse a gyártók közötti
 interoperabilitást. A 3. rétegen működő telepítések értelmezhetik az IP-címeket,
-az alhálózati maszkokat stb., és így továbbítani tudják a csomagokat az
+az alhálózati maszkokat, és így továbbítani tudják a csomagokat az
 alhálózatok között. Az itt tárgyalt összes technológia képes ilyen
-forgatókönyvekben működni. Ezzel szemben néhány technológia korlátozott a 2.
+forgatókönyvel működni. Ezzel szemben néhány technológia korlátozott a 2.
 rétegre. Ez azt jelenti, hogy a csomagjaikat kizárólag MAC-címek alapján
 szállítják, és nem tartalmaznak alhálózati információkat. Ennek eredményeként a
 2. rétegű hálózatokat nem lehet több alhálózatokra bontani, a csomagjaikat nem
-lehet routerek által továbbítani, és ezáltal a skálázhatóságuk valamelyest
-korlátozott. Az egyik népszerű példa a 2. rétegű hálózatokra a már említett
-TSN/Milan, valamint a CobraNet.
+lehet routerek által továbbítani, és ezáltal a skálázhatóságuk korlátozott. 
+Az egyik népszerű példa a 2. rétegű hálózatokra a már említett TSN/Milan, valamint a CobraNet.
 
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=67mm, keepaspectratio]{figures/osi_modell.png}
+	\includegraphics[width=150mm, keepaspectratio]{figures/osi_modell.jpg}
 	\caption{Az OSI modell}
 	\label {fig:osi_modell}
 \end{figure}
@@ -500,7 +498,7 @@ alhálózatra, míg más szabályokat választhat egy másikra. A routerek képe
 alhálózati határok átlépése nélkül. Egy routernek megfelelően konfigurálva kell
 lennie a hálózati útvonalak létrehozásához ezek között az alhálózatok között.
 Ezzel szemben egy tipikus kapcsoló nem képes összekapcsolni az alhálózatokat.
-Egy virtuális LAN (VLAN) egy másik módszer a hálózat szegmentálására. 
+Virtuális LAN készítése (VLAN) egy másik módszer a hálózat szegmentálására. 
 Rugalmasabbá teszi a rendszereket, csökkenti a kapcsolatlan rendszerek közötti fölösleges kommunikációt.
 Szemben az alhálózatokkal, ez egy biztonságosabb módja is a hosztok elkülönítésére egymástól.
 
