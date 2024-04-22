@@ -4,46 +4,54 @@
 \section{Bevezetés az Audio over IP világába}
 %----------------------------------------------------------------------------
 A 90-es évek vége óta a szakmai hangipar elmozdult a pont-pont digitális
-átviteli formátumoktól (például AES/EBU vagy MADI) az IP-alapú szabványok felé
-(például AES67). Ez a csomag alapú hálózati megoldás hatalmas rugalmasságot
-hozott, valamint kibővített vezérlési és monitorozási képességeket biztosít
+átviteli formátumoktól (AES/EBU vagy MADI) az IP-alapú szabványok felé
+(AES67). Ez a csomag alapú hálózati megoldás hatalmas rugalmasságot
+hozott, valamint kibővített vezérlési és monitorozási képességeket biztosít a
 hangrendszerek számára. Lehetőséget teremt arra, hogy egy fizikailag már meglévő
 telepítés későbbi szoftverkonfigurációval és frissítésekkel alkalmazkodóvá és
 bővíthetővé váljon. A gyártó különböző esetekben akár teljesen új funkciókkal is
 kiegészítheti a már meglévő eszközöket. 
+
 A jelutak az IP alapú megközelítés miatt már nem kötődnek 1:1 fizikai kábelekhez, hanem
 bármikor pár egérkattintással megváltoztathatóak anélkül, hogy szükség lenne bármilyen
 jellegű fizikai átrendezésre, vagy dedikált audio útválasztó hardverre. 
 A csomagorientált átvitel jellegéből adódik, hogy az audiojelek automatikusan eljutnak 
 a kívánt helyre az IT hálózaton keresztül.
+
 A Cirrus Logic által 1996-ban bevezetett CobraNetet
-általában az első sikeres audio-over-ethernet hálózat-implementációnak tekintik,
+tekintik általában az első sikeres audio-over-ethernet hálózat-implementációnak,
 és számos audio telepítés alapját képezi. Ezek közé tartoznak különböző kongresszusi központok,
 színházak, koncerttermek, repülőterek és vidámparkok.
 Bár ma is sok CobraNet telepítés létezik, magas késleltetési problémák és korlátozott mérethatékonyság
 miatt nem ideális élő hang, stúdiófelvételek és rádió létesítmények számára.
+
 A mintegy tíz évvel később megjelent egy ausztrál cég az Audinate, és az általuk kifejlesztett
-Dante a `Digital Audio Network Through Ethernet'. Dante több jelentős
+Dante a `Digital Audio Network Through Ethernet'. Dante sok jelentős
 előnnyel rendelkezik az első generációs audio-over-IP technológiákhoz viszonyítva.
 Ezek közé értve a jobb használhatóságot és magasabb kompatibilitást a szabványos
 hálózati infrastruktúrával. A Dante egy hatalmas hardveres ökoszisztémából
 profitál, több száz gyártó által gyártott ezernél is több eszközzel. 
+
 Mielőtt a Dante elérte volna jelenlegi domináns pozícióját, nagy várakozás volt egy AVB
 (Audio Video Bridging) nevű technológia körül.
 Más iparágak, például az autóipar és az ipari automatizálás, átvették az AVB-t, és
 általánosabb nevet adtak neki, mivel az már nem csak hang és videóalkalmazásokhoz kapcsolódik.
 Az AVB-t a gyártók fejlesztőcsoportja, az AVnu Alliance időérzékeny hálózat (TSN) néven nevezte el.
+
 Később a Milan munkacsoport, egy audio/video gyártókból álló konzorcium, úgy
 döntött, hogy kidolgoz egy finomhangolt specifikációt a profi audio/video
 rendszerekben való használatra, Milan néven. 
 Ez egy specifikus TSN verzió, amely az audio/video szolgáltatók közötti interoperabilitásra összpontosít.
 Ez nem a TSN alapján történt, mivel a TSN-hez speciális IT hardver szükséges az audio
 követelmények kezeléséhez, és csak korlátozott számú kapcsolómodell támogatja a TSN-t. 
+
 %----------------------------------------------------------------------------
+
 Az átmenet az IP hálózatokra összehasonlítható az analóg hangról a digitális
 hangra való átmenettel. Először csak néhány kezdeti telepítés, amelyek az új technológiát
 használják, majd esetleg hiányosságokat mutathatnak a kezelés vagy a megbízhatóság
 terén a hagyományos régi megközelítéshez képest, de ezek idővel a technológia fejlődésével eltűnnek. 
+
 Vannak területek, ahol az IT hálózatok alapvetően más módon működnek, mint a hagyományos audio útválasztás.
 Először is, egy szabványos IT hálózat nincs kialakítva szigorú időzítési követelmények
 teljesítésére, amelyek általában az audio esetében jellemzőek. 
@@ -55,16 +63,20 @@ alkalmazások esetében, mivel azok automatikusan újraküldésre kerülnek, ha 
 Az audio alkalmazások esetében a késleltetés minimalizálása érdekében
 létfontosságú, hogy a csomagok az első alkalommal a korrekt helyre érkezzenek meg, mivel egyáltalán nincs
 elegendő idő az újraküldéshez. Ha néhány csomag elveszik, az azonnal hallható megszakításokat és kimaradásokat okoz.
+
 A csomagvesztés gyakori oka a linkek túlterhelése, vagy a túl alacsony pufferméret.
 Az audiohálózatokat oly módon kell kialakítani, hogy elegendő sávszélesség álljon rendelkezésre
-minden felhasználójuk számára. Ha ez teljesül, és a csomagkiszállítás időben történik, ahogyan az audio alkalmazások igénylik,
-akkor a hálózatunk már elméletileg képes stabilan működni.
-Érdemes túlbiztosítani a hálózatot oly mértékben, hogy minden csomag időben
+minden felhasználójuk számára egyidejű használat esetén is. 
+Ha ez teljesül, és a csomagkiszállítás időben történik, ahogyan az audio alkalmazások igénylik,
+akkor a hálózatunk már elméletileg képes lehet hosszútávon stabilan működni.
+Ettől függetlenül érdemes túlbiztosítani a hálózatot oly mértékben, hogy minden csomag időben
 megérkezzen, anélkül, hogy további finomításra lenne szükség a kapcsolók
 konfigurációjában. Konkrétan ez azt jelenti, hogy olyan IT hálózatokat kell
 építeni elegendő sávszélességgel, és kizárólag az audio alkalmazások számára
-kell használni, tehát ne keveredjenek általános mindennapi alkalmazásokkal. 
+legyen használatos, tehát ne keveredjenek általános mindennapi alkalmazásokkal. 
+
 %----------------------------------------------------------------------------
+
 A legtöbb audio-over-IP technológia abból indul ki, hogy az alapul szolgáló
 hálózat megfelelően fog működni. Gondolva itt arra, hogy nincsen csomagvesztés, 
 nincs súlyos ütközés más csomagokkal a kapcsoló hardveren. 
@@ -72,21 +84,23 @@ Néhány hálózatban, különösen ha az audio és más forgalmat keverik,
 fontos lehet az audio és szinkronizációs csomagoknak elsőbbséget biztosítani másokkal szemben,
 például az internetes böngészéssel szemben. Ez a mai legtöbb kereskedelmi forgalmazott
 kapcsolóval elérhető. 
+\newline
+
 Példa audio over IP hálózatokra:
 %----------------------------------------------------------------------------
 \begin{itemize}
-	\item Audinate által kifejlesztett Dante
+	\item Audinate által kifejlesztett - Dante
 \end{itemize}
 \begin{itemize}
-	\item QSC által kifejlesztett Q-LAN
+	\item QSC által kifejlesztett - Q-LAN
 \end{itemize}
 \begin{itemize}
-	\item Lawo és Partnerei által kifejlesztett RAVENNA
+	\item Lawo és Partnerei által kifejlesztett - RAVENNA
 \end{itemize}
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=60mm, keepaspectratio]{figures/dante_logo.jpg}
+	\includegraphics[width=50mm, keepaspectratio]{figures/dante_logo.jpg}
 	\caption{Audinate Dante logó}
 	\label {fig:dante_logo}
 \end{figure}
@@ -95,14 +109,14 @@ Példa audio over IP hálózatokra:
 %----------------------------------------------------------------------------
 Az IT hálózatok alkalmazása hangkapcsolatokra nézve számos előnyt kínál:
 \begin{itemize}
-	\item Rugalmasság a hangkapcsolatok hozzáadásához vagy módosításához anélkül,
-	      hogy a kábeleket cserélnénk.
+	\item Rugalmasság hangkapcsolatok hozzáadásához vagy módosításához anélkül,
+	      hogy kábeleket cserélnénk.
 \end{itemize}
 \begin{itemize}
-	\item Az IT viszonylag alacsony áron széles skálájú funkciót kínál.
+	\item Az IT viszonylag alacsony áron széles skálájú funkciókat kínál.
 \end{itemize}
 \begin{itemize}
-	\item Az alkalmazkodás és integráció az IT hálózati infrastruktúrába
+	\item Alkalmazkodás és integráció az IT hálózati infrastruktúrákba
 	      specifikus audio vagy videokábelek alkalmazása nélkül.
 \end{itemize}
 \begin{itemize}
@@ -124,15 +138,15 @@ Ugyanakkor az audio-over-IP hálózatok felhasználóit számos kihívás elé i
 	\item Mivel az IT hálózatok nem meghatározottak a csomagok úti idejét tekintve,
 	      egy biztonsági tartományt, azaz egy audio buffer-t kell beszúrni a fogadó végén.
 	      Ez a buffer további késleltetést eredményez. Minél kevesebb csomagütközés van
-	      jelen a hálózatban, annál inkább csökkenthető ez a biztonsági tartomány (és
-	      ezzel a késleltetés).
+	      jelen a hálózatban, annál inkább csökkenthető ez a biztonsági tartomány és
+	      ezzel a késleltetés.
 \end{itemize}
 \begin{itemize}
 	\item Az audio csomagformátumok változatossága miatt növekszik a komplexitás,
 	      ami azt jelenti, hogy a fogadóknak és küldőknek azonos beállításokkal kell
 	      rendelkezniük. Az audio-over-IP technológia komplexitása jelentősen magasabb,
 	      mint az előző technológiáké. Az iparág még mindig jelentős munkát végez annak
-	      érdekében, hogy csökkentse ezt a komplexitást a felhasználó számára, bevezetve
+	      érdekében, hogy csökkentse ezt a komplexitást a felhasználók számára, bevezetve
 	      intelligens és felhasználóbarát szoftvermegoldásokat az audiohálózatok
 	      kezelésére.
 \end{itemize}
