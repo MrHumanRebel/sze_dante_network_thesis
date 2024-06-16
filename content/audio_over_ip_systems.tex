@@ -26,24 +26,22 @@ Bár ma is sok CobraNet telepítés létezik, magas késleltetési problémák �
 miatt nem ideális élő hang, stúdiófelvételek és rádió létesítmények számára.
 
 A mintegy tíz évvel később megjelent egy ausztrál cég az Audinate, és az általuk kifejlesztett
-Dante a `Digital Audio Network Through Ethernet'. Dante sok jelentős
+Dante a `Digital Audio Network Through Ethernet'. A Dante sok jelentős
 előnnyel rendelkezik az első generációs audio-over-IP technológiákhoz viszonyítva.
 Ezek közé értve a jobb használhatóságot és magasabb kompatibilitást a szabványos
 hálózati infrastruktúrával. A Dante egy hatalmas hardveres ökoszisztémából
-profitál, több száz gyártó által gyártott ezernél is több eszközzel. 
+profitál, több száz gyártó által gyártott több ezer eszközzel. 
 
 Mielőtt a Dante elérte volna jelenlegi domináns pozícióját, nagy várakozás volt egy AVB
-(Audio Video Bridging) nevű technológia körül.
+(Audio Video Bridging) nevű technológia körül is.
 Más iparágak, például az autóipar és az ipari automatizálás, átvették az AVB-t, és
 általánosabb nevet adtak neki, mivel az már nem csak hang és videóalkalmazásokhoz kapcsolódik.
-Az AVB-t a gyártók fejlesztőcsoportja, az AVnu Alliance időérzékeny hálózat (TSN) néven nevezte el.
+Az AVB-t a gyártók fejlesztőcsoportja, az AVnu Alliance időérzékeny hálózat (TSN - Time Sensitive Network) néven nevezte el.
 
 Később a Milan munkacsoport, egy audio/video gyártókból álló konzorcium, úgy
 döntött, hogy kidolgoz egy finomhangolt specifikációt a profi audio/video
 rendszerekben való használatra, Milan néven. 
-Ez egy specifikus TSN verzió, amely az audio/video szolgáltatók közötti interoperabilitásra összpontosít.
-Ez nem a TSN alapján történt, mivel a TSN-hez speciális IT hardver szükséges az audio
-követelmények kezeléséhez, és csak korlátozott számú kapcsolómodell támogatja a TSN-t. 
+Ez egy specifikus TSN verzió, amely az audio/video szolgáltatók közötti interoperabilitásra összpontosít. 
 
 %----------------------------------------------------------------------------
 
@@ -72,12 +70,12 @@ akkor a hálózatunk már elméletileg képes lehet hosszútávon stabilan műk�
 Ettől függetlenül érdemes túlbiztosítani a hálózatot oly mértékben, hogy minden csomag időben
 megérkezzen, anélkül, hogy további finomításra lenne szükség a kapcsolók
 konfigurációjában. Konkrétan ez azt jelenti, hogy olyan IT hálózatokat kell
-építeni elegendő sávszélességgel, és kizárólag az audio alkalmazások számára
-legyen használatos, tehát ne keveredjenek általános mindennapi alkalmazásokkal. 
+építeni amelyek elegendő sávszélességgel, és kizárólag az audio alkalmazások számára legyenek
+használatosak, tehát ne keveredjenek általános mindennapi alkalmazásokkal. 
 
 %----------------------------------------------------------------------------
 
-A legtöbb audio-over-IP technológia abból indul ki, hogy az alapul szolgáló
+A legtöbb audio-over-IP technológia abból indul ki, hogy az alapját szolgáló
 hálózat megfelelően fog működni. Gondolva itt arra, hogy nincsen csomagvesztés, 
 nincs súlyos ütközés más csomagokkal a kapcsoló hardveren. 
 Néhány hálózatban, különösen ha az audio és más forgalmat keverik, 
@@ -112,7 +110,7 @@ Az IT hálózatok alkalmazása hangkapcsolatokra nézve számos előnyt kínál:
 	      hogy kábeleket cserélnénk.
 \end{itemize}
 \begin{itemize}
-	\item Az IT viszonylag alacsony áron széles skálájú funkciókat kínál.
+	\item Viszonylag alacsony áron széles skálájú funkciókat kínál.
 \end{itemize}
 \begin{itemize}
 	\item Alkalmazkodás és integráció az IT hálózati infrastruktúrákba
@@ -134,7 +132,7 @@ Ugyanakkor az audio-over-IP hálózatok felhasználóit számos kihívás elé i
 	      hálózati beállítások segítségével minimalizálható és nagyon jól közelíthető.
 \end{itemize}
 \begin{itemize}
-	\item Mivel az IT hálózatok nem meghatározottak a csomagok úti idejét tekintve,
+	\item Mivel az IT hálózatok nem meghatározottak a csomagok út idejét tekintve,
 	      egy biztonsági tartományt, azaz egy audio buffer-t kell beszúrni a fogadó végén.
 	      Ez a buffer további késleltetést eredményez. Minél kevesebb csomagütközés van
 	      jelen a hálózatban, annál inkább csökkenthető ez a biztonsági tartomány és
@@ -153,7 +151,7 @@ Ugyanakkor az audio-over-IP hálózatok felhasználóit számos kihívás elé i
 \subsection{Fázishelyesség}
 %----------------------------------------------------------------------------
 A legtöbb audio alkalmazásban kritikus több eszköz szinkronizált viselkedése.
-Elengedhetetlen a mikrofonok vagy hangszórók közötti fázispontosság.
+Elengedhetetlen a mikrofonok és hangszórók közötti fázispontosság.
 Amikor több hangszóró van csatlakoztatva egy erősítőhöz, és az összes csatorna
 egyetlen hangcsomagban érkezik meg, nincs veszélye annak, hogy a csatornák
 ellenfázisban lennének egymással, mivel a hangminták nem változhatnak el egymás
@@ -166,10 +164,10 @@ pontosan ugyanabban az időben kell lejátszania.
 
 Mivel nincsenek szoros időzítési specifikációk az IT hálózatokban a csomagok továbbításának és
 megérkezésének időpontjára vonatkozóan, az audiohálózatoknak mindenképpen szinkronizációs
-módszert kell biztosítaniuk. Ez egy fontos, és egyben új probléma a audio hálózatokban, amellyel az összes
+módszert kell biztosítani. Ez egy fontos, és egyben új probléma a audio hálózatokban, amellyel az összes
 audio-over-IP technológiának foglalkoznia kell.
 
-Az audiohálózaton belül minden eszköz abszolút időben szinkronizáltnak kell lennie
+Az audiohálózaton belül minden eszköznek abszolút időben szinkronizáltnak kell lennie
 a Precision Time Protocol (PTP) szerint. Ez azt jelenti, hogy belső óráik (PTP
 követők) egy referenciaóra eszközből (PTP vezető) származnak. Ez az eszköz
 bármilyen audioeszköz lehet, amely biztosítja ezt a funkciót, vagy akár egy
@@ -263,15 +261,14 @@ A PTP időnek az összes követő között ugyanannak kell lennie nanoszekundum 
 Az egyetlen feltétel a PTP számára, hogy a késleltetés mindkét irányban, a vezetőtől a
 követőig és fordítva, állandó és szimmetrikus maradjon.
 A késleltetést a követő két üzenet cseréjével méri, a késleltetési kérésből és a késleltetési válaszból következően.
-Ezt a késleltetést általában a szinkronizálási aránnyal azonos gyakorisággal hajtják végre, 
-azaz az előbbiekben már említett 1 és 8 alkalom között.
+Ezt a késleltetést általában a szinkronizálási aránnyal azonos gyakorisággal hajtják végre.
 %----------------------------------------------------------------------------
-Mivel a hálózaton több eszköz is képes lehet PTP vezetőként működni és elosztani
-az időt az összes követőnek, a szabvány szabályokat hozott létre a vezető
+Mivel a hálózaton több eszköz is képes lehet PTP vezetőként működni,
+a szabvány szabályokat hozott létre a vezető
 kiválasztásához. Ezt a szabályt a Best Master Clock Algorithm (BMCA), vagyis a
 Legjobb Mesteróra Algoritmusnak nevezik. 
 
-Minden vezetőképes eszköz küldhet bejelentő üzeneteket a prioritásairól (amelyeket a felhasználó állít be),
+Minden vezetőképes eszköz küldhet bejelentő üzeneteket a prioritásairól,
 valamint az oszcillátor pontosságáról. Ezenkívül figyelnie kell más eszközöket,
 amelyek szintén elküldhetik saját bejelentő üzeneteiket. 
 Ha más bejövő üzenetek jobb minőséget jelentenek, az eszköz leállítja a vezetőként való bejelentkezését.
@@ -297,7 +294,7 @@ Fontos megjegyezni, hogy néhány eszköz nem kínál lehetőséget a felhaszná
 Ehelyett egyszerűen a \textit{Preferált Vezető} megjelölésével rendelkeznek.
 Technikailag ezek a termékek rögzített értéket használnak bejelentő üzeneteikben, amit a gyártó határoz meg.
 Ezért még mindig lehetséges, hogy egy másik PTP vezetőnél beírva egy még alacsonyabb értéket, felül bírálhatja az ilyen típusú eszközt.
-Néhány eszköz támogatja azt a beállítást is, amit \textit{Csak Követő} néven ismerünk. Ebben az esetben amikor ez engedélyezve van,
+Néhány támogatja azt a beállítást is, amit \textit{Csak Követő} néven ismerünk. Ebben az esetben amikor ez engedélyezve van,
 az adott eszköz sosem próbálja meg átvenni a vezetői szerepet az PTP hálózaton.
 %----------------------------------------------------------------------------
 \subsection{Mintavételi frekvencia és bitmélység}
@@ -306,7 +303,7 @@ Az audio over IP rendszereknél a kifogástalan működéshez elengedhetetlen a 
 megfelelő mintavételi frekvencia és bitmélység meghatározása.
 
 Ezek a paraméterek alapvetően befolyásolják az audio minőségét és a hálózati teljesítményt.
-Fontos figyelembe venni az átviteli kapacitást, valamint az egyes eszközök maximális mintavételi frekvenciáját és bitmélységét.
+Figyelembe kell venni az átviteli kapacitást, valamint az egyes eszközök maximális mintavételi frekvenciáját és bitmélységét.
 Amennyiben a hálózat nem képes a megfelelő sávszélesség biztosítására, a hálózatunk instabillá válhat, 
 hangkimaradások és megszakadások, legrosszabb esetben a hálózat összeomlása is előfordulhat.
 A gyakran alkalmazott 48 kHz-es mintavételi frekvencia széles hangsávot biztosít, és kompatibilis a legtöbb
@@ -338,14 +335,16 @@ Tehát a fenti példában a sávszélességünk a következő lesz:
 	294912000 bit/s * 1.3 = 383385600 bit/s = 383,3856 Mbit/s (\text{teljes sávszélesség})
 \end{equation}
 %----------------------------------------------------------------------------
-A számítások alapján egy átlagos 1 Gbit/s (1 Gbit/s = 1000 Mbit/s) sávszélességű hálózaton ez a rendszer már megfelelően működhet.
+A számítások alapján egy átlagos 1 Gbit/s (1 Gbit/s = 1000 Mbit/s) sávszélességű hálózaton ez a rendszer már megfelelően működhet,
+amennyiben kizárólag audio felhasználásra dedikáljuk a hálózatunkat.
 A bitmélység a hangsáv digitális reprezentációját határozza meg, és az adatok pontosságát befolyásolja.
 Általában 16 vagy 24 bitmélységű rendszerek használatosak az audio over IP területén, de a Dante rendszerek a 
 32 bites bitmélységet is támogatják. A 16 bites reprezentáció megfelelő lehet olyan alkalmazásokhoz, ahol a nagy
 dinamikatartomány nem kritikus. Ugyanakkor a 24 bites felbontás lehetőséget nyújt a pontosabb és részletesebb hangátvitelhez,
 általában zenei stúdiókban és élőzenei környezetekben. 
 A 32 bites bitmélység a legmagasabb minőséget biztosítja, de a sokkal nagyobb sávszélesség igénye miatt elsősorban csak
-a kiemelten professzionális stúdiókban használják, de általában a 24 bites bitmélységű rendszerek is tökéletesen megfelelnek.
+a kiemelten professzionális stúdiókban használják, de általában az esetek többségében
+a 24 bites bitmélységű rendszerek bőven tökéletesen megfelelnek.
 %----------------------------------------------------------------------------
 \subsection{Késleltetés}
 %----------------------------------------------------------------------------
@@ -376,10 +375,10 @@ Az IP-címeket háromféleképpen lehet hozzárendelni egy eszközhöz:
 %----------------------------------------------------------------------------
 \begin{itemize}
     \item \textbf{Felhasználói kézi beállítás:}
-    Ez dokumentációt és felhasználói fegyelmet igényel annak érdekében,
+    Ez dokumentációt és felhasználói figyelmet igényel annak érdekében,
 	hogy egy adott IP-címet csak egyszer használjanak ugyanabban a hálózatban.
 	Ez lehet a preferált megközelítés állandó telepítések esetén,
-	mivel lehetővé teszi az IP-címek rendelésének bizonyos struktúrájának követését.
+	mivel könnyen tudjuk az IP-címek kiosztásának bizonyos struktúráját követni.
     
     \item \textbf{DHCP szerver általi eszközhöz rendelés:}
     Ez egy rugalmas, mégis strukturált módja az IP-címek elosztásának a hálózaton belül.
@@ -397,9 +396,6 @@ Az IP-címeket háromféleképpen lehet hozzárendelni egy eszközhöz:
 %----------------------------------------------------------------------------
 Egy adott eszköz IP-címéről való információ beszerzése alapvetően kissé nehéz lehet,
 ha az nem jelenik meg egy kijelzőn. 
-Szoftveres eszközök elérhetők az eszközök jelenlétének szkennelésére IP-cím-tartományokban,
-de az IT osztályok gyakran tiltják az ilyen eszközök használatát.
-
 Azonosítani, hogy két IP-cím ugyanabba az alhálózatba tartozik-e, nem lehetséges 
 a hozzájuk tartozó alhálózati maszkok ellenőrzése nélkül.
 Ha egy csomag cél-IP-címe nem ugyanabban az alhálózatban van,
@@ -473,9 +469,9 @@ Az összes jelenlegi IT eszköz követi ezt a jól
 meghatározott absztrakciós rétegkoncepciót, hogy elősegítse a gyártók közötti
 interoperabilitást. A 3. rétegen működő telepítések értelmezhetik az IP-címeket,
 az alhálózati maszkokat, és így továbbítani tudják a csomagokat az
-alhálózatok között. Az itt tárgyalt összes technológia képes ilyen
-forgatókönyvel működni. Ezzel szemben néhány technológia korlátozott a 2.
-rétegre. Ez azt jelenti, hogy a csomagjaikat kizárólag MAC-címek alapján
+alhálózatok között. Az itt tárgyalt összes technológia képes így működni. 
+Ezzel szemben néhány technológia korlátozódott a 2.rétegre. 
+Ez azt jelenti, hogy a csomagjaikat kizárólag MAC-címek alapján
 szállítják, és nem tartalmaznak alhálózati információkat. Ennek eredményeként a
 2. rétegű hálózatokat nem lehet több alhálózatokra bontani, a csomagjaikat nem
 lehet routerek által továbbítani, és ezáltal a skálázhatóságuk korlátozott. 
@@ -490,12 +486,10 @@ Az egyik népszerű példa a 2. rétegű hálózatokra a már említett TSN/Mila
 \end{figure}
 %----------------------------------------------------------------------------
 
-Egy alhálózat egy logikai szegmens egy adott hálózaton belül. Az ilyen szegmenseket
+Egy alhálózat egy logikai szegmens egy adott hálózaton belül. Ilyen szegmenseket
 különféle okokból hoznak létre, ideértve elsősorban az adminisztratív és biztonsági
-szempontokat. A hálózati adminisztrátor egy készlet szabályt alkalmazhat egy
-alhálózatra, míg más szabályokat választhat egy másikra. A routerek képesek
-összekapcsolni az alhálózatokat, így a hosztok csomagokat cserélhetnek az
-alhálózati határok átlépése nélkül. Egy routernek megfelelően konfigurálva kell
+szempontokat. A routerek képesek összekapcsolni az alhálózatokat, így a hosztok csomagokat cserélhetnek az
+alhálózati határok átlépése nélkül. Megfelelően konfigurálva kell
 lennie a hálózati útvonalak létrehozásához ezek között az alhálózatok között.
 Ezzel szemben egy tipikus kapcsoló nem képes összekapcsolni az alhálózatokat.
 Virtuális LAN készítése (VLAN) egy másik módszer a hálózat szegmentálására. 
@@ -507,12 +501,11 @@ Szemben az alhálózatokkal, ez egy biztonságosabb módja is a hosztok elkülö
 %----------------------------------------------------------------------------
 A csomópontok különböző módon kapcsolódhatnak össze. A topológia meghatározása
 az egyik legfontosabb döntés, amelyet egy hálózat tervezésekor hozni kell. A
-csillag topológia sok szempontból a preferált megoldás. Több hoszt egy
+csillag topológia sok szempontból preferált megoldás. Több hoszt egy
 útválasztó eszközhöz, például egy kapcsolóhoz vagy routerhez csatlakozik. A mai
 hálózatok gyakran két csillagszintet kombinálnak. Ezt gerinc/levél architektúrának
 nevezik. A központi kapcsoló/router (gerinc) általában több forgalmat továbbít,
-mint a perifériális kapcsoló (levél), mivel a szegmensek közötti legtöbb
-forgalom áthaladhat rajta. Ha a gerinc és a levél közötti nagy sávszélességű
+mint a perifériális kapcsoló (levél). Ha a gerinc és a levél közötti nagy sávszélességű
 kapcsolat nem képes egyszerre továbbítani az összes hoszt forgalmát, akkor ez a
 tervezési forma blokkoló. Az ellentéte egy nem blokkoló hálózattervezés, ahol a
 nagy sávszélességű kapcsolatok képesek az összes a hozzájuk csatlakoztatott
@@ -535,7 +528,7 @@ Tehát képes kezelni az összes rá táplált forgalmat, csak a port sebessége
 \subsection{Unicast és Multicast} %Egyedi és Csoportos Küldés
 %----------------------------------------------------------------------------
 
-Amikor egy eszköz csomagot küld egy másik eszköznek, ezt unicast mechanizmusnak
+Amikor egy eszköz csomagot küld egy másik eszköznek, unicast mechanizmusnak
 nevezzük. Egy ilyen kapcsolatnak pontosan egy küldője és egy fogadója van. Az
 unicast gyakran használja a Transmission Control Protocol (TCP)-t, ahol a fogadó
 minden egyes csomag sikerült átvételéről visszaigazolást küld a küldőnek. Ha a
@@ -553,7 +546,7 @@ következő audio minták lejátszását, anélkül hogy megpróbálnánk helyre
 előzőt. A menedzselhető switchek és végpontok tudják logolni a csomagvesztéseket, így
 monitorozható a hálózat állapota.
 Az audio alkalmazásokban gyakran szükség van arra, hogy egy audio jelet
-több helyre párhuzamosan fogadjanak, például egy mikrofonjel, amelyet
+több helyen párhuzamosan fogadjanak, például egy mikrofonjel, amelyet
 párhuzamosan továbbítanak a front-of-house és a monitoring keverőpultoknak. Akár
 egy harmadik hely is létezhet, például egy felvevő eszköz. 
 Amikor a küldő unicast módban továbbítja a csomagokat, az audio jel három csomagként
@@ -580,7 +573,7 @@ támogatja az IGMP snooping-ot. Ha be van kapcsolva a kapcsolóban, akkor a
 multicast-csomagok csak azokon az interfészeken kerülnek elküldésre, ahol a
 csatlakoztatott hosztoktól időszakos IGMP kérések érkeznek. Ha nincs beérkező
 kérés, akkor a megfelelő multicast leáll, így nem jut felesleges forgalom a
-kapcsolaton. Az IGMP snoopingot egyfajta zsilippel lehetne összehasonlítani,
+kapcsolatra. Az IGMP snoopingot egyfajta zsilippel lehetne összehasonlítani,
 amely alapértelmezetten zárva van, és csak kérésre nyílik meg. Erősen ajánlott
 az IGMP snooping bekapcsolása egy multicast hálózatban minden kapcsolóban.
 Azonban egy hálózatban csak egy darab IGMP Querier lehet aktív, mivel az
@@ -599,10 +592,10 @@ Az AES67 audió szabvány nem határozza meg, hogyan fedezhetik fel egymást a
 hálózati eszközök, vagy hogy mely adatfolyamok érhetők el a hálózaton.
 Az összes ismert technológia a bonjour vagy mDNS mechanizmust használja eszközeik számára
 az egymásról való értesítésre. 
-Minden eszköz fix és ismert multicast cím (224.0.0.251) felé küld
+Minden eszköz fix ismert multicast cím (224.0.0.251) felé küld
 üzeneteket, amiket más eszközök elérnek, így értesülnek egymás létezéséről a hálózatban.
 Ennek a mechanizmusnak egyik korlátja az, hogy nem működik nagy telepítésekben,
-ahol több alcímen vagy VLAN-on vannak. Ezen esetekre a gyártók kifejlesztettek
+ahol több alcím létezik vagy VLAN-on vannak. Ezen esetekre a gyártók kifejlesztettek
 saját megoldásokat (például Audinate a Dante Domain Manager) vagy
 követik az audio/video NMOS szabványt a felismeréshez és kapcsolatkezeléshez.
 Az audio adatfolyamokat a gyártótól függően két mechanizmus egyikével fedezik fel. Ahogy
@@ -638,34 +631,34 @@ mechanizmust kínál a berendezések hibájának gyors felismeréséhez és mego
 Ha a kapcsolókat úgy kötik össze, hogy hurok jön létre, fennáll annak a veszélye, 
 hogy a csomagok végtelenül áramlanak a hurokban. 
 Ezt az `visszacsatoló hurok' jelenséget a hálózati hardver automatikusan észleli az
-STP segítségével, és ha hurokra bukkan, a kapcsoló automatikusan kikapcsol egyik
-kapcsolatot. Az STP-t továbbá felhasználhatják a rendszer véletlen
+STP segítségével, és ha hurokra bukkan, a kapcsoló automatikusan kikapcsolja az egyik
+kapcsolatot. Az STP-t viszont felhasználhatják a rendszer véletlen
 kapcsolatvesztések elleni védelmére is, beleértve a kábelvágásokat is. 
 
 Abból a  megközelítésből áll, hogy szándékosan létrehoznak hurkokat, majd a rendszer
-inaktiválja az egyiket. Ha valamelyik kábel véletlenül kiesik, a rendszer
+inaktiválja az egyiket, ha valamelyik kábel véletlenül kiesik, a rendszer
 másodperceken belül észleli ezt, és újraaktiválja a passzív kapcsolatot. Ebben
 az időszakban az audio néhány másodpercig megszakad, de még mindig sokkal
 gyorsabb, mint a manuális hibakeresés és az új kábel telepítése. 
 A legtöbb rendszerben az STP alapértelmezetten engedélyezve van. 
-Nélküle broadcast 'viharok' alakulnának ki, ami felemészti a sávszélességet.
+Nélküle broadcast 'viharok' alakulnának ki, ami felemészti a sávszélességet, és túlterheli a hálózatot.
 
 %----------------------------------------------------------------------------
 \subsubsection{Link Aggregáció}
 %----------------------------------------------------------------------------
 Ha egy adott kapcsolat különösen fontos egy telepítésben, két vagy több kábelt párhuzamosan
 lehet csatlakoztatni a biztonság érdekében. 
-Bár az ilyen link aggregáció fő célja két kapcsoló közötti sávszélesség növelése, 
-ez is költséghatékony módszer lehet egy kapcsolat véletlen leválasztásának
+Bár az ilyen link aggregáció fő célja két kapcsoló közötti sávszélesség növelése. 
+Ez is költséghatékony módszer lehet egy kapcsolat véletlen leválasztásának
 vagy kábelvágásának biztosítására. Tipikus eset például egy színpad, amely egy keverőhöz
 csatlakozik. A kapcsolóknak mindkét végén ugyanúgy kell konfigurálni: két vagy
 több interfészt kell kijelölni Link Aggregációs Csoportként, és azok
 egyetlen interfészként jelennek meg a kapcsolón. Gyakorlatban a linkaggregáció
-alkalmazása a kábelproblémák csökkentése érdekében nagyon hasznos lehet
-egyszerűsége miatt, hiszen a felhasználónak csak egy további kábelt kell
+alkalmazása a kábelproblémák csökkentése érdekében nagyon hasznos lehet.
+Egyszerűsége miatt, a felhasználónak csak egy további kábelt kell
 biztosítania, és azonosítania kell a kapcsolók konfigurációját mindkét végén.
 Ugyanakkor a kábelt lekapcsoláskor előfordulhat, hogy az audioátvitel
-néhány másodpercig megszakad, mielőtt a kapcsoló alternatív kapcsolatot
+néhány másodpercig itt is megszakad, mielőtt a kapcsoló alternatív kapcsolatot
 aktiválna.
 %----------------------------------------------------------------------------
 \subsubsection{ Adatfolyam redundancia}
@@ -705,7 +698,6 @@ alábbi minimális specifikációknak:
 	\item A multicast címek 239.0.0.0 és 239.255.255.255 között vannak 
 \end{itemize}
 
-
 A szabványban sok további paraméter és érték szerepel, de ezek nem szerepelnek a
 fent felsorolt minimális követelmények között.
 
@@ -714,12 +706,13 @@ fent felsorolt minimális követelmények között.
 %----------------------------------------------------------------------------
 \subsection{A Dante hálózatok áttekintése}
 %----------------------------------------------------------------------------
-A 2020 - 2021-es Covid-19 járvány alatt lehetőségem volt egy széleskörű átfogó Dante
+A 2020 - 2021-es Covid-19 járvány alatt lehetőségem volt egy széleskörű Dante
 kurzusra beiratkozni, amelyet a Dante gyártója, az Audinate szervezett. A kurzus
 egy átfogó mély áttekintést nyújtott a Dante hálózatokról. Ebben a fejezetben
-a fő forrásomnak a belsős oktatóanyagot fogom használni, amelyet a kurzus
+fő forrásomnak a belsős oktatóanyagot fogom használni, amelyet a kurzus
 során kaptam, pontos és részletes információkat nyújtva a Dante hálózatokról.
-Ez a dokumentum csak azok számára elérhető, akik részt vettek a kurzuson.
+Ezek a dokumentumok csak azok számára elérhetőek, akik részt vettek a kurzuson, ebből kifolyólag nem publikusak.
+
 A Dante hanghálózatok digitális hanghálózati technológiát képviselnek, amely
 lehetővé teszi a hang elosztását és útválasztását a szabványos Ethernet
 hálózatokon keresztül. Az ausztrál Audinate vállalat fejlesztette ki a Dante-t,
@@ -733,14 +726,6 @@ A technológia támogat számos hangformátumot és mintavételi rátát, és le
 teszi akár több száz hangcsatorna egyidejű átvitelét egyetlen hálózaton keresztül.
 Emellett a Dante hanghálózatok távolról is vezérelhetők és monitorozhatók,
 megkönnyítve a nagy, összetett hangrendszerek beállítását és kezelését.
-%----------------------------------------------------------------------------
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=200px, keepaspectratio]{figures/dante_visual.jpg}
-	\caption{Audinate Dante fantázia ábra}
-	\label {fig:dante_visual}
-\end{figure}
-%----------------------------------------------------------------------------
 
 %----------------------------------------------------------------------------
 \subsection{Dante hálózatok technikai részletei}
@@ -748,17 +733,18 @@ megkönnyítve a nagy, összetett hangrendszerek beállítását és kezelését
 A Dante hanghálózatok két fő komponensből állnak: Dante eszközökből
 és Dante hálózatokból. A Dante eszközök olyan hangeszközök, amelyeket
 kifejezetten a Dante protokollhoz terveztek, mint például hangkártyák, erősítők
-és hangszórók. Ezeket az eszközöket szabványos Ethernet kábelekkel és
+és hangládák. Ezeket az eszközöket szabványos Ethernet kábelekkel és
 kapcsolókkal lehet csatlakoztatni a Dante hálózathoz.
 A hálózatot az Audinate Dante Controller szoftverrel lehet
 konfigurálni, amely lehetővé teszi a hang elosztását és útválasztását az
-eszközök között. A szoftver továbbá lehetővé teszi az eszközök távoli vezérlését
-és monitorozását a hálózaton. Ezek a hanghálózatok támogatnak számos
+eszközök között. A szoftverrel tudjuk az eszközöket távoli vezérléssel elérni és
+monitorozni a hálózaton. Ezek a hanghálózatok támogatnak számos
 hangformátumot és mintavételi rátát, és képesek egyszerre több száz hangcsatorna
 átvitelére egyetlen hálózaton keresztül. A technológia továbbá támogat olyan
 fejlett funkciókat, mint a Dante Domain Manager (DDM) a biztonságos
 hangátvitelhez, valamint a Dante Virtual Soundcard (DVS) a számítógépes alapú
 hanglejátszáshoz és felvételhez. 
+
 Tegyük fel, hogy több eszköz is küld hangot egy adott végpontra a hálózaton.
 Alapesetben, ahogy a csomagok felgyülemlenek, az elsőként érkezőket, elsőként szolgálják ki elvet alkalmazzák.
 A Dante hanghálózatok Quality of Service (QoS)
@@ -856,7 +842,7 @@ Néhány Dante eszköznek létezik egy harmadik Ethernet portja, amelyet konfigu
 %----------------------------------------------------------------------------
 \subsubsection{Késleltetés}
 %----------------------------------------------------------------------------
-A késleltetés az az idő, amely szükséges a folyamat végrehajtásához. Például
+A késleltetés az az idő, amely szükséges egy folyamat végrehajtásához. Például
 az idő amíg a bemeneti oldalon egy hangjel feldolgozásra kerül, és a kimeneti
 oldalon megjelenik. 
 Két fő mértékegységet használunk a késleltetés mérésére:
@@ -914,8 +900,7 @@ korlátozottak lehetnek rugalmasságban, skálázhatóságban és az egyidejűle
 átvihető hangcsatornák számában. Emellett hajlamosak bonyolultabbá válni a
 beállítás és kezelés szempontjából, mivel minden hangcsatornához külön kábel és
 csatlakozás szükséges. A Dante hanghálózatok jóval több hangcsatornát is támogatnak,
-mint a hagyományos analóg rendszerek, és távolról is vezérelhetők és
-monitorozhatók, lehetővé téve a nagy, összetett hangrendszerek könnyű
+mint a hagyományos analóg rendszerek, lehetővé téve a nagy, összetett hangrendszerek könnyű
 beállítását és kezelését. A Dante hanghálózatok további előnye, hogy képesek
 hangot továbbítani hosszú távolságokon anélkül, hogy a minőség romlana. A
 hagyományos analóg rendszerek zajra és jelveszteségre hajlamosak hosszú kábelek
