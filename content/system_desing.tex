@@ -384,6 +384,7 @@ hangzás érdekében.
 A rendszerben a Martin Audio SX218 típusú mélyládáit fogjuk használni.
 Ezek a ládák dupla 18"-os mély hangszórókkal vannak felszerelve, 2000W AES és 8000W csúcsteljesítményre képesek, és
 maximálisan 144 dB hangnyomás szintet tudnak biztosítani. \cite{SXSUBWOOFERUSERGUIDE}
+Jelen esetben 12 darab ilyen láda fogja biztosítani a megfelelő mély tartományt a rendezvényen.
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
@@ -475,16 +476,22 @@ A példában szereplő rendszer kifogástalanul képes elvégezni a feladatát, 
 
 %----------------------------------------------------------------------------
 % !!! Képernyőfotó a szerverről !!!
+
+
+
+
 %----------------------------------------------------------------------------
 \subsection{Dante hálózat kialakítása és optimalizálása}
 %----------------------------------------------------------------------------
-\subsubsection{Dante Controller: Hálózati mátrix}
+\subsubsection{Dante Controller}
+%---------------------------------------------------------------------------- 
+% Hálózati mátrix
 %----------------------------------------------------------------------------
 Ezen a felületen tudjuk a hálózaton összekapcsolni a különböző hang vevőket és
 adókat. Egy nagyobb rendszerben a konfigurálása rendkívül nagy odafigyelést és
 precíziót igényel, pontosan tudnunk kell mit, hogyan és miért kötünk össze.
 %----------------------------------------------------------------------------
-\subsubsection{Dante Controller: Eszköz nézet}
+% Eszköz nézet
 %----------------------------------------------------------------------------
 Mielőtt neki állnánk konfigurálni az adott eszközt, fontos eldöntenünk, hogy
 milyen módban szeretnénk használni.
@@ -520,15 +527,11 @@ valamilyen okból meg kell változtatni, egyszerűen elérhető a szükséges in
 \end{figure}
 %----------------------------------------------------------------------------
 %----------------------------------------------------------------------------
-\subsubsection{Dante Controller: Órajel nézet}
+% Órajel nézet
 %----------------------------------------------------------------------------
 Meg kell adnunk az audio hálózatunk master órajelét. Ehhez az órajelhez
 szinkronizál a többi eszköz.
 Az időszinkronizáció kulcsfontosságú élőzenei produkcióknál.
-%----------------------------------------------------------------------------
-\section{Rendszermérések és monitorozás}
-%----------------------------------------------------------------------------
-
 
 
 %----------------------------------------------------------------------------
@@ -538,37 +541,70 @@ Az időszinkronizáció kulcsfontosságú élőzenei produkcióknál.
 
 
 %----------------------------------------------------------------------------
-\subsubsection{Dante Controller: Hálózati állapot nézet}
+% Hálózati állapot nézet
 %----------------------------------------------------------------------------
 
 
 
 %----------------------------------------------------------------------------
-\subsubsection{Dante Controller: Események nézet}
+% Események nézet
 %----------------------------------------------------------------------------
 
 
 
 %----------------------------------------------------------------------------
-\subsection{Cardioid mélyláda rendszer mérése}
+\subsection{A rendszer mérése}
 %----------------------------------------------------------------------------
 A rendszermérések elkészítésére a Rational Acoustics által fejlesztett Smaart nevű szoftvert fogom használni, mivel
 az iparágban ez a legelterjedtebb és legmegbízhatóbb szoftver a mérések pontos elvégzésére.
-A szoftver legújabb verzióját fogom használni, ami az írás pillanatában a 'Smaart Suite 9.2.1' verzió.
+A szoftver legújabb verzióját fogom használni, ami az írás pillanatában a 'Smaart Suite 9.4.1' verzió.
 Első lépésben a számítógéphez csatlakoztatott hangkártyát kell konfigurálni, hogy el tudjunk kezdeni méréseket végezni.
-Jelen esetben a hangkártya egy 'Focusrite Scarlett 2i2' típusú interfész lesz, ami egy USB-s csatlakozással kapcsolódik a géphez.
-A mérőmikrofon egy 'XYZ' típusú mérőmikrofon lesz, ami XLR csatlakozóval kapcsolódik a hangkártyához, valamit a hangkártya
-kimeneti csatornája szintén XLR csatlakozással kapcsolódik a már részletesebben bemutatott Allen \& Heath SQ-6 digitális keverőrendszerhez.
+Jelen esetben a hangkártya maga a keverőpult, aminek az USB interfésze egy 32x32-es kapcsolatra képes a számítógéppel.
+A mérőmikrofon egy Behringer ECM8000 típusú mérőmikrofon lesz, ami XLR csatlakozóval kapcsolódik a keverőhöz, a mikrofon tápellátását
+a keverőpult biztosítja 48V fantomtáppal. Annak érdekében, hogy a mérés működőképes legyen, a mikrofont a keverőpulton be kell szintezni, minden 
+processzálást kikapcsolni. A mikrofon kimenetét utána Direct Out móddal el kell küldeni az USB interfészre, ahol a Smaart szoftver
+fogja tudni a jelet feldolgozni. Ezen kívül egy másik bemenetre is szükség lesz a keverőpulton, ahol a Smaart szoftver a referencia jelet fogja
+küldeni, ezt szintén Direct Out módban vissza kell küldeni a számítógépre.
+Tehát a példa kedvéért még egyszer:
+Local Input 1: Behringer ECM8000 mérőmikrofon, majd Direct Out Output USB 1-re.
+USB Input 1: Smaart szoftver referencia jele, majd Direct Out Output USB 2-re.
+
+
 Az első mérés amit végezni fogok a rendszeren a mélyláda rendszer mérése lesz.
+Az EndFire konfigurációban elhelyezett mélyláda rendszer mérése során a cél az, hogy maximalizáljuk a hangnyomást a közönség távolabbi részein is,
+miközben hátrafelé kioltást érünk el. Ezen felül fontos a rendszer nyitása is, ha túl keskeny sávban működik, akkor a középső területek
+hangnyomása túl magas lesz, a szélső területeken pedig túl alacsony. Tehát fel van adva a lecke, hogy a rendszer a lehetőségekhez mérten
+egyenletes hangnyomást biztosítson a teljes területen.
 Fontos, hogy a mérési környezet a lehetőségekhez mérten minél csendesebb legyen, valamint
 ne legyenek olyan tárgyak a nézőtéren, amelyek a rendszer elő működése közben
-nem lesznek jelen és mérés közben a mért hangot visszaverik.
+nem lesznek jelen és mérés közben a mért hangot visszaverik. Ezzel minimalizálhatjuk a
+hibákat és a mérések pontatlanságát, valamint a mérés reprezentatívabb lesz.
+
+
+
+
+Mivel a mélyláda rendszer és a Main PA egymástól egy adott távolságra vannak, fontos, hogy a két rendszer fázishelyes és időhelyes legyen.
 
 
 %----------------------------------------------------------------------------
-\subsection{Mélyláda és Line Array fázishelyesség}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth, keepaspectratio]{figures/smaart_sub_top.jpg}
+	\caption{SUB - TOP mérések}\label{fig:smaart_sub_top}
+\end{figure}
 %----------------------------------------------------------------------------
-Mivel a mélyláda rendszer és a Main PA egymástól egy adott távolságra vannak, fontos, hogy a két rendszer fázishelyes legyen.
+
+
+
 %----------------------------------------------------------------------------
-\subsection{Rendszer hangnyomás szint és frekvencia átvitel mérése}
+\subsection{A rendszer monitorozása}
+%----------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth, keepaspectratio]{figures/smaart_spl_meter.jpg}
+	\caption{SPL monitorozás a produkciók közben}\label{fig:smaart_spl_meter}
+\end{figure}
 %----------------------------------------------------------------------------
