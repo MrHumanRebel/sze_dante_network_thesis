@@ -446,10 +446,7 @@ Jelen esetben ez teljes mértékben felesleges, mivel a rendszerben kizárólag 
         \caption{A\&H DT168 Dante stagebox}\label{fig:dt168}
     \end{minipage}
 \end{figure}
-%----------------------------------------------------------------------------
-\subsection{Shure ULXD digitális vezeték nélküli mikrofonrendszer}
-%----------------------------------------------------------------------------
-Manapság egy rendezvényen elengedhetetlen a vezeték nélküli mikrofonok használata.
+
 %----------------------------------------------------------------------------
 \subsection{Dante audio szerver}
 %----------------------------------------------------------------------------
@@ -579,12 +576,23 @@ Fontos, hogy a mérési környezet a lehetőségekhez mérten minél csendesebb 
 ne legyenek olyan tárgyak a nézőtéren, amelyek a rendszer elő működése közben
 nem lesznek jelen és mérés közben a mért hangot visszaverik. Ezzel minimalizálhatjuk a
 hibákat és a mérések pontatlanságát, valamint a mérés reprezentatívabb lesz.
-
-
-
-
-Mivel a mélyláda rendszer és a Main PA egymástól egy adott távolságra vannak, fontos, hogy a két rendszer fázishelyes és időhelyes legyen.
-
+%----------------------------------------------------------------------------
+% SUB - TOP Align
+%----------------------------------------------------------------------------
+Mivel a mélyláda rendszer és a Main PA fizikai elhelyezkedésük miatt (A Main PA riggelve van, míg a mélyládák a földön helyezkednek el)
+egy adott távolságra vannak egymástól, fontos, hogy a két rendszer fázishelyes és időhelyes legyen.
+Amennyiben a rendszer fázishelytelen, a rendszer elemei egymás ellen dolgoznak, kioltást okozva, és ezzel csökkentve a hangnyomást.
+Ezenkívül hiába van fázisban a rendszer, fontos, hogy a két rendszer időben is helyes legyen. Előfordulhat, hogy fázisban vagyunk de 180 fokkal el vagyunk tolva
+az egyik irányba, így a mélyek vagy késnek vagy előbb érnek a hallgatóhoz ezzel rongálva a hangképet.
+Aggodalomra azonban nincs ok, mivel megfelelő szakértelemmel és a megfelelő mérési eszközökkel ezek a problémák orvosolhatóak, ezzel biztosítva
+a kiváló hangminőséget a rendezvényen.
+Az alábbiakban a mérési eredmények láthatóak.
+Fontos megjegyezni, hogy a mérési eredmények csak a mérés helyszínén érvényesek, és a mérési körülményektől függően változhatnak.
+A reflexiók és a mérési bizonytalanság mennyisége infidecimális a mérési eredményben.
+Az ábrán a következőket láthatjuk különböző színekkel jelölve:
+- A kék szín a teljes rendszer viselkedése mérés nélkül.
+- A zöld szín a teljes rendszer viselkedése mérés után.
+- A magenta szín csak a main PA rendszer viselkedése.
 
 %----------------------------------------------------------------------------
 \begin{figure}[H]
@@ -593,12 +601,21 @@ Mivel a mélyláda rendszer és a Main PA egymástól egy adott távolságra van
 	\caption{SUB - TOP mérések}\label{fig:smaart_sub_top}
 \end{figure}
 %----------------------------------------------------------------------------
+Az ábrán egyértelműen látható, hogy a rendszer mérése után a hangnyomás szintje jelentősen nőtt, a crossover frekvencia környékén
+57-87 Hz között. A kék mérésnél egy óriási beesést láthatunk 70 Hz-nél, ami azt jelzi számunkra, hogy a rendszer nincs fázisban és időben.
+A korrekt időértékek beállítása után a zöld színű mérésnél egyértelműen látható, hogy a hangnyomás szintje jelentősen nőtt, és a 70 Hz-es
+beesés teljes mértékben eltűnt, sőt a hangnyomás szintje a crossover frekvencia környékén jelentősen nőtt. Ez azt jelzi számunkra, hogy a rendszer
+fázishelyes és időben is helyes már, készen áll a produkcióra.
+%----------------------------------------------------------------------------
+% FrontFill - TOP Align
+%----------------------------------------------------------------------------
 
 
 
 %----------------------------------------------------------------------------
 \subsection{A rendszer monitorozása}
 %----------------------------------------------------------------------------
+
 
 
 %----------------------------------------------------------------------------
