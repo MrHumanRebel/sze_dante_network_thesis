@@ -571,13 +571,6 @@ Az audio adatfolyamok felfedezése gyártónként eltérő mechanizmusokat haszn
 előre meghatározott multicast címek segítségével terjesztik az adatfolyamokkal kapcsolatos 
 információkat, lehetővé téve, hogy a címzettek megtalálják az elérhető adatfolyamokat és azok paramétereit:
 
-
-
-
-% 🚩✋🏻🛑⛔️
-
-
-
 %----------------------------------------------------------------------------
 \begin{itemize}
 	\item Session Announcement Protocol (SAP) - minden Dante termék által használt (Multicast cím: 239.255.255.255)
@@ -587,68 +580,73 @@ információkat, lehetővé téve, hogy a címzettek megtalálják az elérhető
 	\item Bonjour / mDNS - minden más technológiában használt (Multicast cím: 224.0.0.251) 
 \end{itemize}
 %----------------------------------------------------------------------------
-Szerencsére a jelenlegi termékek többsége
-lehetővé teszi mindkét protokoll egyidejű aktiválását, így egy adott audio
-adatfolyam mindkét mechanizmuson keresztül párhuzamosan bejelenthető.
+Szerencsére a mai modern eszközök többsége támogatja mindkét protokoll egyidejű aktiválását, 
+ami lehetővé teszi, hogy egy adott audio adatfolyam párhuzamosan áramoljon mindkét mechanizmuson keresztül.
 
 %----------------------------------------------------------------------------
 \subsection{Redundancia}
 %----------------------------------------------------------------------------
-Az audiohálózatok kezdeti napjaiban egyes felhasználók kételkedtek az IT
-hardverek megbízhatóságában. Annak ellenére, hogy a széles körben elterjedt
-IT-berendezések jól beváltak és gyakran megbízhatóbbak, mint a hagyományos
-audioberendezések. Emellett a legtöbb IT-hálózati komponens több diagnosztikai
-mechanizmust kínál a berendezések hibájának gyors felismeréséhez és megoldásához.
+Az audiohálózatok korai fejlődési szakaszaiban bizonyos felhasználók kétségeiket 
+fejezték ki az IT hardverek megbízhatóságával kapcsolatban. 
+Azonban az elterjedt IT-berendezések nemcsak hogy jól teljesítettek, 
+hanem gyakran megbízhatóbbak voltak, mint a hagyományos audioberendezések. 
+Ezen kívül a legtöbb IT-hálózati komponens rendelkezik különféle diagnosztikai 
+mechanizmusokkal, amelyek lehetővé teszik a berendezések hibáinak gyors azonosítását és orvoslását.
 
 %----------------------------------------------------------------------------
 \subsubsection{Spanning Tree Protocol (STP)}
 %----------------------------------------------------------------------------
-Ha a kapcsolókat úgy kötik össze, hogy hurok jön létre, fennáll annak a veszélye, 
-hogy a csomagok végtelenül áramlanak a hurokban. 
-Ezt az `visszacsatoló hurok' jelenséget a hálózati hardver automatikusan észleli az
-STP segítségével, és ha hurokra bukkan, a kapcsoló automatikusan kikapcsolja az egyik
-kapcsolatot. Az STP-t viszont felhasználhatják a rendszer véletlen
-kapcsolatvesztések elleni védelmére is, beleértve a kábelvágásokat is. 
+Amennyiben a kapcsolókat olyan módon kötik össze, hogy hurkot képezzenek, 
+fennáll a kockázata annak, hogy a csomagok végtelen ciklusban áramlanak a hurokban. 
+Ezt a 'visszacsatoló hurok' jelenséget a hálózati hardver automatikusan 
+észleli az STP (Spanning Tree Protocol) segítségével. Ha a rendszer hurkot 
+érzékel, a kapcsoló automatikusan deaktiválja az egyik kapcsolatot. 
+Az STP emellett felhasználható a rendszer véletlenszerű kapcsolatvesztések, például kábelvágások ellen is.
 
-Abból a  megközelítésből áll, hogy szándékosan létrehoznak hurkokat, majd a rendszer
-inaktiválja az egyiket, ha valamelyik kábel véletlenül kiesik, a rendszer
-másodperceken belül észleli ezt, és újraaktiválja a passzív kapcsolatot. Ebben
-az időszakban az audio néhány másodpercig megszakad, de még mindig sokkal
-gyorsabb, mint a manuális hibakeresés és az új kábel telepítése. 
-A legtöbb rendszerben az STP alapértelmezetten engedélyezve van. 
-Nélküle broadcast 'viharok' alakulnának ki, ami felemészti a sávszélességet, és túlterheli a hálózatot.
+A rendszer úgy van megtervezve, hogy szándékosan hoz létre hurkokat, 
+majd ha egy kábel véletlenül kioldódik, azonnal észleli a problémát és 
+újraaktiválja a passzív kapcsolatot. Ez a folyamat néhány másodpercet 
+vesz igénybe, amely alatt az audio jel rövid időre megszakadhat, de ez 
+lényegesen gyorsabb megoldás, mint a manuális hibakeresés és új kábel telepítése. 
+A legtöbb rendszerben az STP alapértelmezés szerint engedélyezve van, ami 
+elkerüli a broadcast 'viharok' kialakulását, amelyek jelentősen csökkenthetik a 
+sávszélességet és túlterhelhetik a hálózatot.
 
 %----------------------------------------------------------------------------
 \subsubsection{Link Aggregáció}
 %----------------------------------------------------------------------------
-Ha egy adott kapcsolat különösen fontos egy telepítésben, két vagy több kábelt párhuzamosan
-lehet csatlakoztatni a biztonság érdekében. 
-Bár az ilyen link aggregáció fő célja két kapcsoló közötti sávszélesség növelése. 
-Ez is költséghatékony módszer lehet egy kapcsolat véletlen leválasztásának
-vagy kábelvágásának biztosítására. Tipikus eset például egy színpad, amely egy keverőhöz
-csatlakozik. A kapcsolóknak mindkét végén ugyanúgy kell konfigurálni: két vagy
-több interfészt kell kijelölni Link Aggregációs Csoportként, és azok
-egyetlen interfészként jelennek meg a kapcsolón. Gyakorlatban a linkaggregáció
-alkalmazása a kábelproblémák csökkentése érdekében nagyon hasznos lehet.
-Egyszerűsége miatt, a felhasználónak csak egy további kábelt kell
-biztosítania, és azonosítania kell a kapcsolók konfigurációját mindkét végén.
-Ugyanakkor a kábelt lekapcsoláskor előfordulhat, hogy az audioátvitel
-néhány másodpercig itt is megszakad, mielőtt a kapcsoló alternatív kapcsolatot
-aktiválna.
+Ha egy adott kapcsolat kiemelkedő fontossággal bír egy telepítés során, lehetőség 
+van arra, hogy két vagy több kábelt párhuzamosan csatlakoztassunk a biztonság érdekében. 
+Habár a link aggregáció elsődleges célja a két kapcsoló közötti sávszélesség növelése, 
+ez a megközelítés költséghatékony megoldást kínál a kapcsolat véletlen leválasztásának 
+vagy kábelvágásának elkerülésére is. Például egy színpad esetében, amely egy keverőhöz 
+csatlakozik, gyakran alkalmazzák ezt a módszert.
+
+A link aggregáció során a kapcsolóknak mindkét végén azonos 
+konfigurációt kell alkalmazni: két vagy több interfészt kell Link Aggregációs Csoportként 
+kijelölni, amelyek így egyetlen interfészként jelennek meg a kapcsolón. Gyakorlatilag a link 
+aggregáció rendkívül hasznos lehet a kábelproblémák csökkentésében. 
+Az egyszerűsége miatt csupán egy további kábelt kell biztosítani, és a 
+kapcsolók konfigurációját mindkét végén megfelelően be kell állítani.
+
+Ugyanakkor, ha egy kábel lekapcsolódik, előfordulhat, hogy az audioátvitel néhány másodpercig megszakad, 
+amíg a kapcsoló az alternatív kapcsolatot aktiválja.
 %----------------------------------------------------------------------------
 \subsubsection{ Adatfolyam redundancia}
 %----------------------------------------------------------------------------
-A legbiztonságosabb de egyben legdrágább módja a redundancia megvalósításának
-egy hálózatban az, ha két különálló audiohálózatot hoznak létre, 
-két független utat biztosítva a küldő és a fogadó között. 
-Ebben a felállásban minden csomópontnak két hálózati interfészt
-kell biztosítania. A küldő két azonos audio tartalommal rendelkező csomagot hoz létre,
-mindkettőre azonos PTP-időbélyegzőt nyom, majd elküldi mindkét hálózaton.
-A fogadó végén mindkét csomagot fogadják és kicsomagolják. Még akkor is, ha az egyik csomag
-elveszik, a megmaradt csomag tartalmazza az összes információt, és biztosítja,
-hogy az audio zavartalanul folytatódik. Valójában ez a mechanizmus az egyetlen
-megközelítés egy hálózatban a véletlenszerű csomagvesztés kompenzálására anélkül,
-hogy meg kellene ismételni azokat a küldőtől és ezzel késleltetést hozzáadva a rendszerhez.
+A redundancia biztosítása egy hálózaton belül a legnagyobb biztonságot nyújtó, ám 
+legdrágább megoldás az, ha két teljesen független audiohálózatot alakítanak ki. 
+Ez a megközelítés két különböző utat biztosít a küldő és a fogadó között. 
+Az ilyen rendszerben minden csomópontnak két hálózati interfészt kell rendelkezésre bocsátania.
+
+A küldő fél két, azonos audio tartalommal rendelkező csomagot generál, és mindkettőre 
+egyazon PTP-időbélyegzőt helyez el, majd ezeket párhuzamosan továbbítja mindkét hálózaton. 
+A fogadó végén mindkét csomagot fogadják és feldolgozzák. Ha az egyik csomag 
+esetleg elveszik, a megmaradt csomag még így is tartalmazza az összes szükséges információt, 
+biztosítva ezzel, hogy az audiofolyamat zavartalanul folytatódjon.
+
+Ez a módszer egyedülálló módon képes kompenzálni a véletlenszerű csomagvesztést 
+egy hálózatban anélkül, hogy újraküldést igényelne a küldőtől, ezzel elkerülve a rendszer késleltetését.
 %----------------------------------------------------------------------------
 \section{AES67}
 %----------------------------------------------------------------------------
@@ -675,6 +673,12 @@ alábbi minimális specifikációknak:
 
 A szabványban sok további paraméter és érték szerepel, de ezek nem szerepelnek a
 fent felsorolt minimális követelmények között.
+
+
+
+% 🚩✋🏻🛑⛔️
+
+
 
 %----------------------------------------------------------------------------
 \section{Audinate Dante}
