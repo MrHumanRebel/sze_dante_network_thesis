@@ -431,7 +431,6 @@ Az I/O bővítőkártyák közül a rendszerben mindkét pultban megtalálható 
 kezelésére képes. Az A\&H SQ szériás pultjai csak egy darab I/O bővítőkártyát tudnak kezelni, de léteznek
 olyan rendszerek mint például az Avantis és a DLive szériás pultok, amelyek több I/O bővítőkártyát is tudnak kezelni.
 Jelen esetben ez teljes mértékben felesleges, mivel a rendszerben kizárólag a Dante protokollra támaszkodunk.
-
 %----------------------------------------------------------------------------
 \begin{figure}[H]
     \centering
@@ -472,8 +471,10 @@ A példában szereplő rendszer kifogástalanul képes elvégezni a feladatát, 
 %----------------------------------------------------------------------------
 
 %----------------------------------------------------------------------------
-% !!! Képernyőfotó a szerverről !!!
 
+
+
+% !!! Képernyőfotó a szerverről !!!
 
 
 
@@ -507,15 +508,15 @@ költséghatékonyabban tudjuk kiépíteni a hálózatot, azonban a redundancia 
 \subsubsection{IP kiosztás}
 %----------------------------------------------------------------------------
 A rendszer képes automatikusan IP címeket osztani az egyes eszközöknek,
-így meggyorsítva a munkafolyamatot.
-Azonban egy fixen előre megtervezett rendszernél praktikusabb és
-üzembiztosabb megoldás, ha minden eszköznek manuálisan megadjuk a címét a
+így meggyorsítva a munkafolyamatot. Ez azonban nem bizonyul jó megoldásnak.
+Egy fixen előre megtervezett rendszer praktikusabb és
+üzembiztosabb megoldás, ha minden eszköznek manuálisan mi adjuk meg a címét a
 hálózaton. A tervezett rendszerben minden egyes eszköznek fix IP címet adtam,
 hogy könnyen és logikusan átlátható legyen az előbb említett előnyökön kívül.
 A címeket egy online is elérhető Excel táblázatban tároltam, hogy amennyiben szükség van rá
 bármikor könnyen elérhető legyen. Ez a táblázat a cégnél dolgozó összes munkatárs számára látható,
 aki a rendszerrel foglalkozik. Így amennyiben új eszköz kerül a hálózatra, vagy egy eszköz IP címét
-valamilyen okból meg kell változtatni, egyszerűen elérhető a szükséges információ.
+valamilyen okból meg kell változtatni, egyszerűen elérhető a szükséges naprakész információ.
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
@@ -524,13 +525,24 @@ valamilyen okból meg kell változtatni, egyszerűen elérhető a szükséges in
 \end{figure}
 %----------------------------------------------------------------------------
 %----------------------------------------------------------------------------
-% Órajel nézet
+% Órajel nézet és késleltetés
 %----------------------------------------------------------------------------
 Meg kell adnunk az audio hálózatunk master órajelét. Ehhez az órajelhez
 szinkronizál a többi eszköz.
 Az időszinkronizáció kulcsfontosságú élőzenei produkcióknál.
-
-
+A mi esetünkben a keverőpult lesz a master órajel, ő fogja a hálózatot
+vezérelni. A felületen egyszerűen bepipáljuk a \textit{``Preferred leader''} opciót
+a keverőpult mellett, és a hálózat többi eszköze automatikusan ehhez az órajelhez szinkronizálódik.
+Az órajelen kívül a késleltetési értékeket is be kell állítanunk. A default érték minden eszköznél jelen esetben
+1 ms, mivel ennél az értéknél a legtöbb eszköz képes probléma nélkül működni. Ez az érték azonban
+nem minden esetben optimális, ezért fontos, hogy minden eszköz késleltetését ellenőrizzük és beállítsuk.
+Amennyiben problémákat, zavaró pattanásokat vagy hangkimaradásokat tapasztalunk, akkor a késleltetési értékeket
+növelni kell mindaddig, amíg a probléma nem szűnik meg. Fontos megjegyezni, hogy a késleltetési értékek
+növelésével egyre több és több időt vesz igénybe a jelek feldolgozása, előzenei produkcióknál ez kritikus.
+A mi esetünkben mivel az útválasztók is kifejezetten csak erre a célra vannak használva és semmiféle más
+adatforgalmat nem bonyolítanak, a 1 ms-os késleltetési érték csökkenthető is akár a felére is.
+Rövid kábelhosszak esetén egyes eszközök között akár 0.25 ms-os késleltetési értéket is beállíthatunk amennyiben
+hosszútávon nagy biztonsággal stabil a hálózat.
 %----------------------------------------------------------------------------
 \subsection{Dante rendszer monitorozása}
 %----------------------------------------------------------------------------
