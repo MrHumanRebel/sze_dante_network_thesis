@@ -3,85 +3,74 @@
 %----------------------------------------------------------------------------
 \section{Bevezetés az Audio over IP világába}
 %----------------------------------------------------------------------------
-A 90-es évek vége óta a szakmai hangipar elmozdult a pont-pont digitális
-átviteli formátumoktól (AES/EBU vagy MADI) az IP-alapú szabványok felé
-(AES67). Ez a csomag alapú hálózati megoldás hatalmas rugalmasságot
-hozott, valamint kibővített vezérlési és monitorozási képességeket biztosít a
-hangrendszerek számára. Lehetőséget teremt arra, hogy egy fizikailag már meglévő
-telepítés későbbi szoftverkonfigurációval és frissítésekkel alkalmazkodóvá és
-bővíthetővé váljon. A gyártó különböző esetekben akár teljesen új funkciókkal is
-kiegészítheti a már meglévő eszközöket. 
+Az 1990-es évek végén a professzionális hangtechnika fokozatosan elmozdult a hagyományos pont-pont 
+digitális átviteli rendszerekről (mint az AES/EBU vagy MADI) az IP-alapú megoldások irányába, például az AES67 szabvány felé. 
+Ez az új, csomagalapú hálózati technológia jelentős rugalmasságot hozott a hangrendszerek terén, valamint lehetőséget adott 
+a vezérlés és monitorozás bővítésére. Ennek köszönhetően a meglévő telepítések könnyen bővíthetők és frissíthetők szoftveres 
+konfigurációk révén, így a rendszer idővel további funkciókkal gazdagodhat, anélkül, hogy fizikai módosításokat kellene végezni.
 
-A jelutak az IP alapú megközelítés miatt már nem kötődnek 1:1 fizikai kábelekhez, hanem
-bármikor pár egérkattintással megváltoztathatóak anélkül, hogy szükség lenne bármilyen
-jellegű fizikai átrendezésre, vagy dedikált audio útválasztó hardverre. 
-A csomagorientált átvitel jellegéből adódik, hogy az audiojelek automatikusan eljutnak 
-a kívánt helyre az IT hálózaton keresztül.
+Az IP-alapú rendszerek egyik legnagyobb előnye, hogy a jelutak már nem kötődnek egy-egy fizikai kábelhez, 
+ami azt jelenti, hogy néhány kattintással megváltoztathatók a hálózati beállítások anélkül, hogy fizikai 
+átrendezésekre vagy dedikált audioroute hardverekre lenne szükség. A csomagokba szervezett adatátvitel 
+lehetővé teszi, hogy az audiojelek automatikusan elérjenek a kívánt célállomásokhoz az IT hálózaton keresztül.
 
-A Cirrus Logic által 1996-ban bevezetett CobraNetet
-tekintik általában az első sikeres audio-over-ethernet hálózat-implementációnak,
-és számos audio telepítés alapját képezi. Ezek közé tartoznak különböző kongresszusi központok,
-színházak, koncerttermek, repülőterek és vidámparkok.
-Bár ma is sok CobraNet telepítés létezik, magas késleltetési problémák és korlátozott mérethatékonyság
-miatt nem ideális élő hang, stúdiófelvételek és rádió létesítmények számára.
+A CobraNet, amelyet a Cirrus Logic 1996-ban vezetett be, az első széles körben használt audio-over-ethernet 
+technológiának tekinthető. Ezt a rendszert számos helyen alkalmazzák, mint például kongresszusi 
+központokban, színházakban, koncerttermekben, repülőtereken és vidámparkokban. 
+Noha a CobraNet még mindig megtalálható bizonyos telepítésekben, magas késleltetése és 
+korlátozott skálázhatósága miatt nem ideális élő hangosítási rendszerekhez, stúdiófelvételekhez vagy rádiós alkalmazásokhoz.
 
-A mintegy tíz évvel később megjelent egy ausztrál cég az Audinate, és az általuk kifejlesztett
-Dante a `Digital Audio Network Through Ethernet'. A Dante sok jelentős
-előnnyel rendelkezik az első generációs audio-over-IP technológiákhoz viszonyítva.
-Ezek közé értve a jobb használhatóságot és magasabb kompatibilitást a szabványos
-hálózati infrastruktúrával. A Dante egy hatalmas hardveres ökoszisztémából
-profitál, több száz gyártó által gyártott több ezer eszközzel. 
+A 2000-es évek közepén jelent meg az Audinate által kifejlesztett Dante rendszer, amely a `Digital Audio Network Through Ethernet' rövidítése. 
+A Dante jelentős előrelépést hozott a korábbi audio-over-IP technológiákhoz képest, különösen a 
+használhatóság és a szabványos hálózati infrastruktúrával való kompatibilitás terén. 
+A Dante nagy előnye a széleskörű hardveres ökoszisztémája, amely több száz gyártó által gyártott több ezer eszközzel működik együtt.
 
-Mielőtt a Dante elérte volna jelenlegi domináns pozícióját, nagy várakozás volt egy AVB
-(Audio Video Bridging) nevű technológia körül is.
-Más iparágak, például az autóipar és az ipari automatizálás, átvették az AVB-t, és
-általánosabb nevet adtak neki, mivel az már nem csak hang és videóalkalmazásokhoz kapcsolódik.
-Az AVB-t a gyártók fejlesztőcsoportja, az AVnu Alliance időérzékeny hálózat (TSN - Time Sensitive Network) néven nevezte el.
+Mielőtt a Dante elérte volna piacvezető pozícióját, az AVB (Audio Video Bridging) technológia is 
+nagy figyelmet kapott. Bár az AVB eredetileg a hang- és videóalkalmazásokhoz készült, 
+más iparágak, például az autóipar és az ipari automatizálás is átvették ezt a technológiát, 
+és egy általánosabb nevet kapott: TSN (Time Sensitive Network), amely az időérzékeny hálózatokat fedi le.
 
-Később a Milan munkacsoport, egy audio/video gyártókból álló konzorcium, úgy
-döntött, hogy kidolgoz egy finomhangolt specifikációt a profi audio/video
-rendszerekben való használatra, Milan néven. 
-Ez egy specifikus TSN verzió, amely az audio/video szolgáltatók közötti interoperabilitásra összpontosít. 
+A Milan munkacsoport, amely audio- és videorendszerek gyártóiból áll, 
+finomhangolt specifikációt dolgozott ki a professzionális audio- és videorendszerek számára, 
+amelyet Milan néven ismerhetünk. Ez a specifikáció egy TSN-alapú verzió, amelynek fő célja az 
+interoperabilitás biztosítása a különböző audio- és videorendszerek között.
 
 %----------------------------------------------------------------------------
 
-Az átmenet az IP hálózatokra összehasonlítható az analóg hangról a digitális
-hangra való átmenettel. Először csak néhány kezdeti telepítés, amelyek az új technológiát
-használják, majd esetleg hiányosságokat mutathatnak a kezelés vagy a megbízhatóság
-terén a hagyományos régi megközelítéshez képest, de ezek idővel a technológia fejlődésével eltűnnek. 
+Az IP-alapú hálózatokra való átállás hasonló folyamatként írható le, mint amikor az analóg hangtechnikáról áttértek
+a digitális megoldásokra. Kezdetben csak néhány úttörő telepítés használja az új technológiát, 
+és ezek kezdetben kezelési vagy megbízhatósági problémákat mutathatnak a hagyományos rendszerekkel szemben. 
+Azonban, ahogy a technológia fejlődik, ezek a hiányosságok fokozatosan megszűnnek.
 
-Vannak területek, ahol az IT hálózatok alapvetően más módon működnek, mint a hagyományos audio útválasztás.
-Először is, egy szabványos IT hálózat nincs kialakítva szigorú időzítési követelmények
-teljesítésére, amelyek általában az audio esetében jellemzőek. 
-Egy hálózati környezetben az adatcsomagok útját más csomagok is akadályozhatják, ami jelentős
-időbeli változást eredményezhet az érkezési időben.
-A hagyományos audio kábelek esetében az adatok továbbításának időzítése nem változott meg a kábel által.
-Másodszor, egy csomag elvesztése elfogadhatónak tűnhet és tűnik a szokásos IT
-alkalmazások esetében, mivel azok automatikusan újraküldésre kerülnek, ha elvesznek.
-Az audio alkalmazások esetében a késleltetés minimalizálása érdekében
-létfontosságú, hogy a csomagok az első alkalommal a korrekt helyre érkezzenek meg, mivel egyáltalán nincs
-elegendő idő az újraküldéshez. Ha néhány csomag elveszik, az azonnal hallható megszakításokat és kimaradásokat okoz.
+Az IT-alapú hálózatok bizonyos szempontból alapvetően eltérnek a hagyományos audió útvonalaktól. 
+Először is, a szokásos IT hálózatok nem feltétlenül felelnek meg az audió rendszerekre jellemző 
+szigorú időzítési követelményeknek. A hálózati csomagok továbbítása során egyes csomagokat más, 
+párhuzamosan haladó csomagok késleltethetnek, ami az audióadatok esetében hallható időbeli eltérésekhez vezethet. 
+Ezzel szemben a hagyományos audiókábelek használata esetén a továbbítási időzítés stabil és állandó marad.
 
-A csomagvesztés gyakori oka a linkek túlterhelése, vagy a túl alacsony pufferméret.
-Az audiohálózatokat oly módon kell kialakítani, hogy elegendő sávszélesség álljon rendelkezésre
-minden felhasználójuk számára egyidejű használat esetén is. 
-Ha ez teljesül, és a csomagkiszállítás időben történik, ahogyan az audio alkalmazások igénylik,
-akkor a hálózatunk már elméletileg képes lehet hosszútávon stabilan működni.
-Ettől függetlenül érdemes túlbiztosítani a hálózatot oly mértékben, hogy minden csomag időben
-megérkezzen, anélkül, hogy további finomításra lenne szükség a kapcsolók
-konfigurációjában. Konkrétan ez azt jelenti, hogy olyan IT hálózatokat kell
-építeni amelyek elegendő sávszélességgel, és kizárólag az audio alkalmazások számára legyenek
-használatosak, tehát ne keveredjenek általános mindennapi alkalmazásokkal. 
+Továbbá, az IT-alkalmazások esetében a csomagvesztés nem jelent komoly problémát, mivel az elveszett 
+adatokat a rendszer automatikusan újraküldi. Az audió alkalmazásoknál viszont kulcsfontosságú, hogy 
+a csomagok már az első alkalommal hibamentesen megérkezzenek, mivel az újraküldésre nincs elegendő idő. 
+Egy-egy elveszett csomag azonnal hallható zavarokat, megszakításokat okozhat az audiófolyamban.
+
+A csomagvesztés gyakori oka lehet a hálózati linkek túlterheltsége vagy a túl kicsi pufferméret. 
+Ezért az audióhálózatok tervezésekor ügyelni kell arra, hogy minden felhasználó számára elegendő 
+sávszélesség álljon rendelkezésre, még teljes terhelés mellett is. Amennyiben biztosítva van az 
+adatcsomagok időben történő továbbítása, a hálózat stabil és hosszú távon megbízhatóan működhet. 
+Ugyanakkor érdemes a hálózatot megfelelő mértékben túlméretezni annak érdekében, hogy minden csomag 
+időben célba érjen, anélkül, hogy a kapcsolók bonyolult finomhangolására lenne szükség.
+
+Ez azt jelenti, hogy olyan IT-hálózatokat kell kiépíteni, amelyek dedikált sávszélességet 
+biztosítanak az audió alkalmazások számára, és elkerülik az egyéb, általános célú alkalmazásokkal való közös használatot.
 
 %----------------------------------------------------------------------------
 
-A legtöbb audio-over-IP technológia abból indul ki, hogy az alapját szolgáló
-hálózat megfelelően fog működni. Gondolva itt arra, hogy nincsen csomagvesztés, 
-nincs súlyos ütközés más csomagokkal a kapcsoló hardveren. 
-Néhány hálózatban, különösen ha az audio és más forgalmat keverik, 
-fontos lehet az audio és szinkronizációs csomagoknak elsőbbséget biztosítani másokkal szemben,
-például az internetes böngészéssel szemben. Ez a mai legtöbb kereskedelmi forgalmazott
-kapcsolóval elérhető. \newline
+Az audio-over-IP technológiák többsége azon a feltételezésen alapul, hogy az alapjául szolgáló hálózat megbízhatóan üzemel, 
+tehát nem fordul elő csomagvesztés, és a csomagok nem ütköznek jelentős mértékben más adatforgalommal a hálózati kapcsoló eszközökön. 
+Azonban bizonyos hálózatok esetében, különösen ha az audióadatokat más típusú forgalommal, például általános 
+internetes forgalommal vegyítik, kulcsfontosságú lehet, hogy az audió- és szinkronizációs csomagok elsőbbséget 
+élvezzenek más típusú adatátvitelhez képest, például a webes böngészéshez viszonyítva. Szerencsére a mai, kereskedelmi 
+forgalomban kapható kapcsolók többsége képes ilyen típusú prioritás beállítására, így biztosítható az audiórendszerek zavartalan működése. \newline
 
 Példa audio over IP hálózatokra:
 %----------------------------------------------------------------------------
@@ -150,35 +139,33 @@ Ugyanakkor az audio-over-IP hálózatok felhasználóit számos kihívás elé i
 %----------------------------------------------------------------------------
 \subsection{Fázishelyesség}
 %----------------------------------------------------------------------------
-A legtöbb audio alkalmazásban kritikus több eszköz szinkronizált viselkedése.
-Elengedhetetlen a mikrofonok és hangszórók közötti fázispontosság.
-Amikor több hangszóró van csatlakoztatva egy erősítőhöz, és az összes csatorna
-egyetlen hangcsomagban érkezik meg, nincs veszélye annak, hogy a csatornák
-ellenfázisban lennének egymással, mivel a hangminták nem változhatnak el egymás
-között a hálózaton keresztüli átvitel során. 
+Az audioalkalmazások többségénél alapvető fontosságú a különböző eszközök szinkronizált működése. 
+Különösen lényeges a mikrofonok és hangszórók közötti fázishelyesség biztosítása. 
+Ha egy erősítőhöz több hangszóró csatlakozik, és az összes csatorna adata egyetlen hangcsomagban érkezik meg, 
+nem áll fenn annak a veszélye, hogy a csatornák fáziskéséssel működnének, mivel az audio minták a 
+hálózati átvitel során nem torzulhatnak egymáshoz képest.
 
-Azonban egyre több alkalmazásban több erősítő és processzor függetlenül kap hangcsomagokat,
-miközben továbbra is szükség van arra, hogy pontosan reprodukálják az audiojeleket egyező fázispontossággal.
-Ezért egy adott audio csomagot több hálózati eszköz is megkaphatja, pufferelheti, és ezeket
-pontosan ugyanabban az időben kell lejátszania. 
+Ezzel szemben, számos olyan alkalmazás létezik, ahol több erősítő és processzor egymástól függetlenül 
+kapja a hangcsomagokat, ugyanakkor továbbra is szükséges, hogy az audiojelek fázishelyesen legyenek reprodukálva. 
+Ilyen esetekben ugyanazt a hangcsomagot több hálózati eszköz is megkapja és puffereli, és ezeket a jeleket 
+pontosan ugyanabban az időpontban kell lejátszaniuk, hogy elkerüljék az időzítési eltéréseket.
 
-Mivel nincsenek szoros időzítési specifikációk az IT hálózatokban a csomagok továbbításának és
-megérkezésének időpontjára vonatkozóan, az audiohálózatoknak mindenképpen szinkronizációs
-módszert kell biztosítani. Ez egy fontos, és egyben új probléma a audio hálózatokban, amellyel az összes
-audio-over-IP technológiának foglalkoznia kell.
+Mivel az IT-hálózatokban nincsenek szigorúan meghatározott időzítési előírások a csomagok továbbítási és 
+érkezési idejére, az audió hálózatokban külön szinkronizációs mechanizmusra van szükség. 
+Ez egy jelentős kihívás, amelyet minden audio-over-IP technológiának meg kell oldania.
 
-Az audiohálózaton belül minden eszköznek abszolút időben szinkronizáltnak kell lennie
-a Precision Time Protocol (PTP) szerint. Ez azt jelenti, hogy belső óráik (PTP
-követők) egy referenciaóra eszközből (PTP vezető) származnak. Ez az eszköz
-bármilyen audioeszköz lehet, amely biztosítja ezt a funkciót, vagy akár egy
-speciálisan erre a célra kifejlesztett termék is lehet a pontos PTP órák előállítására.
-A vezetőt egy felhasználói beállítás vagy alternatívaként egy szabványos
-automatizmus választja ki. Az összes eszköz számára, legyen az audio adó vagy
-vevő, az a végső követelmény, hogy pontosan szinkronizálódjanak ehhez az adott időhöz.
-Az audio csomag küldési pillanatában egy időbélyegzővel látják el. A felhasználó állandó időeltolást állít be az
-összes vevőnél, ez a linkeltolás. Amikor egy csomag megérkezik egy vevőhöz, a
-pufferben marad, amíg lejátszásra kerül. Tehát az audio lejátszás pillanata a
-küldési idő plusz a linkeltolás. \newline
+A szinkronizációt az audió hálózatokon belül a Precision Time Protocol (PTP) segítségével valósítják meg, 
+amely biztosítja, hogy az összes eszköz pontosan szinkronban legyen. 
+Ennek értelmében minden hálózati eszköz belső órája (PTP követő) egy központi referenciaórához (PTP vezető) igazodik. 
+A PTP vezető szerepét bármely olyan audióeszköz betöltheti, amely alkalmas erre a feladatra, vagy egy 
+speciálisan erre a célra fejlesztett eszköz, amely pontos időreferenciát szolgáltat. 
+A vezetőt vagy manuálisan választják ki, vagy egy szabványos automatikus mechanizmus alapján történik a kiválasztás.
+
+Az audio adók és vevők számára az alapvető követelmény az, hogy pontosan ehhez az időreferenciához szinkronizáljanak. 
+Amikor egy audio csomagot elküldenek, időbélyeggel látják el, amely a küldési időt jelöli. 
+A vevőkben egy előre meghatározott időeltolást, úgynevezett linkeltolást állítanak be, amely biztosítja a 
+megfelelő pufferelést és a zökkenőmentes lejátszást. Így a hang lejátszása akkor történik, amikor a küldési 
+idő és a linkeltolás összeadódik, biztosítva ezzel a pontos időzítést. \newline
 
 Minden vevő két feltétel mellett érheti el egymás között a fázispontosságot:
 %----------------------------------------------------------------------------
@@ -187,11 +174,11 @@ Minden vevő két feltétel mellett érheti el egymás között a fázispontoss�
 	\item Azonos linkeltolási érték beállítása a felhasználó által az összes vevőeszközön.
 \end{itemize}
 %----------------------------------------------------------------------------
-
-Ezért a linkeltolást az érintett összes kapcsolat legrosszabb esetű késleltetése alapján kell kiválasztani. 
-Javasolt bizonyos engedményt hozzáadni az esetleges csomagkiszállítási idők váratlan eltéréseinek esetére,
-ez azt jelenti, hogy kicsivel nagyobb időt hagyunk az átlagos csomagfeldolgozási időnél.
-Szerencsére ez a koncepció elterjedt és jelenleg minden audiohálózati szabványban használatos. 
+Az audiohálózatokban alkalmazott linkeltolást mindig a legnagyobb várható késleltetés alapján kell 
+beállítani az összes érintett kapcsolat esetében. Fontos, hogy némi tartalékot is hozzárendeljünk a 
+beállított értékhez, amely lehetővé teszi az esetleges, váratlan csomagkiszállítási időingadozások kezelését. 
+Ez azt jelenti, hogy a feldolgozási idő átlagánál valamivel hosszabb időkeretet hagyunk. 
+Szerencsére ez a megközelítés már széles körben elterjedt, és minden modern audiohálózati szabványban alkalmazásra került.
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
@@ -209,43 +196,54 @@ Szerencsére ez a koncepció elterjedt és jelenleg minden audiohálózati szabv
 %----------------------------------------------------------------------------
 \subsection{Szinkronizáció}
 %----------------------------------------------------------------------------
-Az IP küldők és fogadók szinkronizációja az alacsony késleltetéssel való szinkronban lévő működéshez elengedhetetlen.
-A hagyományos audio technológiákban az eszközöket vagy külön \textit{word clock} kapcsolattal, 
-vagy szinkronizált audio formátumokkal, például AES/EBU vagy MADI segítségével szinkronizálták.
+Az audiohálózatokban alkalmazott linkeltolást mindig a legnagyobb várható késleltetés alapján 
+kell beállítani az összes érintett kapcsolat esetében. Fontos, hogy némi tartalékot is 
+hozzárendeljünk a beállított értékhez, amely lehetővé teszi az esetleges, váratlan csomagkiszállítási időingadozások kezelését. 
+Ez azt jelenti, hogy a feldolgozási idő átlagánál valamivel hosszabb időkeretet hagyunk. 
+Szerencsére ez a megközelítés már széles körben elterjedt, és minden modern audiohálózati szabványban alkalmazásra került.
 
-A fogadók közvetlenül képesek voltak azokból az formátumokból frekvenciájukat és fázisukat kinyerni,
-mivel valamiféle \textit{impulzust} biztosítottak, ami jelzi a pillanatot, amikor egy
-audio minta létrejön vagy lejátszódik, például analóg-digitális konverterek esetében.
-Az PTP csomagok kicsik és nem tartják fel a forgalmat sokáig, de fontos, hogy a
-kapcsolókban a lehető legmagasabb prioritással továbbítsák őket. 
-Ez végül növelni fogja a szinkronizáció pontosságát. 
+Az IP alapú küldők és vevők precíz szinkronizációja kulcsfontosságú a minimális késleltetéssel történő működés érdekében. 
+A hagyományos audioeszközök esetében ez a szinkronizáció jellemzően különálló word clock kapcsolaton keresztül, 
+vagy szinkronizált audioformátumok, például AES/EBU vagy MADI segítségével történt. Ezek a rendszerek egyértelmű 
+jelet biztosítottak a mintavételi időpontra vonatkozóan, amely lehetővé tette a vevők számára a frekvencia és 
+fázis pontos kinyerését, például analóg-digitális átalakítók esetében.
 
-A QoS (Quality of service) keretein belül a PTP csomagokat még a hangnál is magasabb prioritással kell
-kezelni. Az összes hálózati eszközt ugyanazon naptári időpontra szinkronizálják a Precision Time Protocol
-(PTP) segítségével. Ennek az időnek a kiindulása egy olyan eszköz, amelyet óraleadernek
-neveznek, míg az ehhez igazodó eszközöket óra követőknek hívják. 
+A PTP (Precision Time Protocol) csomagok kis méretűek, így nem terhelik jelentősen a hálózatot, azonban 
+elengedhetetlen, hogy a hálózati eszközökben kiemelt prioritással kerüljenek továbbításra. 
+Ez hozzájárul a szinkronizációs pontosság javításához. A QoS (Quality of Service) szabályok keretein belül a 
+PTP csomagoknak még magasabb prioritást kell kapniuk, mint a hangátvitel során használt csomagoknak, hogy 
+biztosítsák a pontos időzítést az egész hálózatban.
 
-Minden eszköznek meg kell hozzá generálnia a kívánt hagyományos órát, amelyet a PTP-n keresztül kapott
-abszolút időből származtat. Ez a belső óra a \textit{médiaóra}. 
-Ha a gyártó megfelelően implementálja, minden eszköz médiaórájának pontosan ugyan annyinak kell lennie a
-frekvencia és fázis terén. A magas pontosság technikailag elérhető, de kihívást
-jelent az audio gyártók számára. Ezért a PTP szinkronizált eszközök közötti
-fázispontosság minőségtől függően változhat. Elfogadható változásnak tekinthető ha az kisebb mint <1 µs, azaz 1 mikroszekundum.
+Az összes hálózati eszköz a PTP segítségével egyetlen referenciaidőponthoz igazodik. Ezt az időt egy 
+úgynevezett óravezető (PTP leader) eszköz határozza meg, míg a többi eszköz óra követőként szinkronizálódik hozzá. 
+Minden eszköz ebből az abszolút időből generálja a saját belső óráját, amit médiaórának nevezünk. 
+A gyártóknak gondoskodniuk kell arról, hogy a médiaóra frekvenciája és fázisa pontosan megegyezzen minden eszköz 
+esetében, amely a hálózatban működik. Bár technikailag elérhető a magas fokú pontosság, ennek megvalósítása jelentős kihívást 
+jelent az audioeszközöket gyártó vállalatok számára. 
+A szinkronizáció minősége eszközönként változhat, azonban elfogadhatónak tekinthető, ha a fáziskésés mértéke nem haladja meg az 1 mikroszekundumot.
 
-Mivel az IT hálózatok nem eléggé determinisztikusak a csomag kézbesítésének időpontját
-illetően, a készülékek pontos szinkronizációja kifinomult megközelítést igényel.
+Mivel az IT-hálózatok nem determinisztikusak a csomagok érkezési idejének tekintetében, az eszközök pontos
+szinkronizálása összetett megoldásokat követel meg. 
 A PTP követők fő feladata két hatás kompenzálása, amelyek bármilyen hálózat esetén előfordulhatnak:
 %----------------------------------------------------------------------------
 \subsubsection{Jitter kompenzáció}
 %----------------------------------------------------------------------------
-A PTP vezető által a szinkronizációs üzenetekben megadott jelenlegi időt az összes követőnek egy jól ismert multicast
-cím (224.0.1.129) használatával mutatják be. 
-A hálózat és a kapcsolók sorai természetükből adódóan ez az információ nem mindig érkezik meg állandó
-késleltetéssel a vevő számára. 
-Ez a változás a csomag jitter vagy csomag késleltetési változás (PDV) néven ismert effektus,
-ezt az elváltozást minden PTP követőnek kompenzálnia kell. 
-Általában az audio hálózatok 1--8 üzenet/mp szinkronizálási arányt
-használnak. (A 8-as maximális érték csak kompatibilitás érdekében javasolt)
+A PTP vezető által küldött szinkronizációs üzenetekben szereplő aktuális időt minden követő eszköz 
+megkapja egy ismert multicast cím (224.0.1.129) segítségével. A hálózati infrastruktúra és a 
+kapcsolók sajátosságai miatt azonban ez az információ nem mindig érkezik meg egyenletes késleltetéssel a vevőkhöz. 
+A késleltetés ingadozása a csomag jitter, illetve csomag késleltetési változás (Packet Delay Variation, PDV) 
+nevű jelenség, amelyet minden PTP követőnek képesnek kell lennie kompenzálni. 
+Az ilyen típusú hálózatokban az audioeszközök jellemzően 1–8 szinkronizációs üzenetet dolgoznak fel másodpercenként, 
+ahol a 8-as érték az interoperabilitás biztosítása érdekében van ajánlva.
+
+
+
+
+% 🚩✋🏻🛑⛔️
+
+
+
+
 %----------------------------------------------------------------------------
 \subsubsection{Késleltetés mérése}
 %----------------------------------------------------------------------------
