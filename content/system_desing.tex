@@ -615,8 +615,15 @@ fázishelyes és időben is helyes már, készen áll a produkcióra.
 %----------------------------------------------------------------------------
 \subsection{A rendszer monitorozása}
 %----------------------------------------------------------------------------
-
-
+Az időzítési értékek megfelelő beállítása után a rendszer hangnyomásának monitorozása a fontos.
+A rendszer monitorozására a Smaart szoftverben található SPL monitor funkciót fogom használni.
+Ehhez szükséges egy kalibrált mikrofon, amelynek a kalibrációs értékeit a Smaart szoftverben be kell állítani. 
+Ez általában egy 94 dB-es referencia hangnyomás szintet jelent 1 kHz-en, melyet egy mikrofon kalibrációs eszközzel tudunk elvégezni ami képes pontosan kiadni ezt a hangnyomás szintet.
+Így a mérési értékek pontosak lesznek, és a rendszer hangnyomás szintjét valósan tudjuk mérni.
+Többféle módszerrel lehet a hangnyomás szintet monitorozni, jelen esetben hármat választottam ki:
+- dB SPL C Slow => A frekvencia súlyozott hangnyomás szintet mutatja, a mikrofon érzékenységéhez igazítva.
+- dB SPL A Slow => A frekvencia súlyozott hangnyomás szintet mutatja, az emberi hallás érzékenységéhez igazítva.
+- dB Leq 1 => A hangnyomás szint átlagértékét mutatja 1 perces időtartamra.
 
 %----------------------------------------------------------------------------
 \begin{figure}[H]
