@@ -247,67 +247,60 @@ ahol a 8-as érték az interoperabilitás biztosítása érdekében van ajánlva
 %----------------------------------------------------------------------------
 \subsubsection{Késleltetés mérése}
 %----------------------------------------------------------------------------
-A követő második kulcsfontosságú feladata a vezető és a követő közötti
-csomagkésleltetés mérése a vezető által szinkronizációs üzenetekben kapott
-idő kijavításához. Ehhez szükség van arra az időmérésre, amelyek azt mutatja meg számunkra,
-hogy a hálózati út során mennyi időbe telik egy csomag átvitele.
-Ez a mérés magában foglalja az összes közöttük lévő
-összetevő késleltetését, beleértve a kábeleket és kapcsolókat is. 
-A vezető és a követő közötti kábelhossz és a kapcsolók száma nem számít, csak a végső érték.
-A PTP időnek az összes követő között ugyanannak kell lennie nanoszekundum pontossággal.
+A „követő” második alapvető feladata a „vezető” és a „követő” közötti csomagkésleltetés mérésére irányul. 
+Ez a késleltetés mérés szükséges ahhoz, hogy a vezető által küldött szinkronizációs üzenetekben szereplő időpontok pontosak legyenek. 
+A mérés célja annak meghatározása, hogy mennyi időbe telik egy csomag átvitele a hálózaton keresztül, 
+beleértve minden hálózati eszközt, mint például kábeleket és kapcsolókat. A vezető és a követő közötti 
+kábelhossz és kapcsolók száma nem befolyásolja a mérés eredményét; az egyedüli tényező a végső késleltetési idő. 
+A Precision Time Protocol (PTP) esetében a késleltetés minden követő között nanoszekundumos pontossággal egységes kell legyen.
 
-Az egyetlen feltétel a PTP számára, hogy a késleltetés mindkét irányban, a vezetőtől a
-követőig és fordítva, állandó és szimmetrikus maradjon.
-A késleltetést a követő két üzenet cseréjével méri, a késleltetési kérésből és a késleltetési válaszból következően.
-Ezt a késleltetést általában a szinkronizálási aránnyal azonos gyakorisággal hajtják végre.
-%----------------------------------------------------------------------------
-Mivel a hálózaton több eszköz is képes lehet PTP vezetőként működni,
-a szabvány szabályokat hozott létre a vezető
-kiválasztásához. Ezt a szabályt a Best Master Clock Algorithm (BMCA), vagyis a
-Legjobb Mesteróra Algoritmusnak nevezik. 
+A PTP működéséhez elengedhetetlen, hogy a késleltetés mindkét irányban, tehát a vezetőtől a követőig 
+és vissza, konstans és szimmetrikus legyen. A késleltetés mérése a követő által történik, amely a 
+késleltetési kérés és válasz üzenetek váltásával történik. Ezt a mérést rendszerint a szinkronizálási 
+aránnyal megegyező gyakorisággal végzik.
 
-Minden vezetőképes eszköz küldhet bejelentő üzeneteket a prioritásairól,
-valamint az oszcillátor pontosságáról. Ezenkívül figyelnie kell más eszközöket,
-amelyek szintén elküldhetik saját bejelentő üzeneteiket. 
-Ha más bejövő üzenetek jobb minőséget jelentenek, az eszköz leállítja a vezetőként való bejelentkezését.
-Ellenkező esetben rendszeresen küldi saját üzeneteit, mintegy \textit{szívverésként},
-és ezzel jelezve minden másik eszköznek az aktív állapotát. 
+Mivel a hálózaton több eszköz is képes lehet PTP vezetőként működni, a szabvány előírásokat határoz 
+meg a vezető kiválasztására. Ezt az eljárást a Legjobb Mesteróra Algoritmus (Best Master Clock Algorithm, BMCA) szabályozza.
 
-Ezeket az üzeneteket az announce intervallumnak nevezett időközönként küldik el. 
-A bejelentő üzenetek szolgálnak \textit{szívverésként} is, hogy mások tudják, a jelenlegi mester még működőképes.
-Ha a kapcsolat megszakad, az összes egység vár egy bizonyos időt (bejelentő időtúllépés),
-amíg elküldik bejelentő üzeneteiket, majd megismétlik a kiválasztási folyamatot. 
-A vezetőváltás idején a követőknek folytatniuk kell saját oszcillátoruk belső működését.
-Az audio nem szakítható meg a vezetőváltás során.
-A bejelentő üzenetekben megadott minőség két értéket tartalmaz, amelyeket a felhasználó állít be: prioritás 1 és prioritás 2.
-Mindkettő értéke 0 és 255 között változhat, ahol a 0 érték a legjobb és legyőzi a többieket.
-Ha egy prioritás 1 érték kisebb egy eszközön, mint más eszközökön,
-akkor az lesz a vezető. A prioritás 2 alatti érték csak akkor releváns, ha
-minden előző érték, beleértve a prioritás 1-et is, több eszközön ugyanaz. 
-Ez előfordulhat két azonos típusú eszköz telepítéseknél, amelyeknek a felhasználó
-azonos értéket állított be a prioritás 1-hez. Ebben az esetben a prioritás 2
-határozza meg, hogy melyik lesz a fő vezető, és melyik a tartalék. 
+Minden vezetőként potenciálisan alkalmazható eszköznek lehetősége van bejelentő üzeneteket küldeni, 
+amelyek tartalmazzák prioritásaikat és oszcillátoruk pontosságát. Az eszközöknek figyelemmel kell kísérniük más 
+eszközök bejelentő üzeneteit is. Amennyiben más eszközök által küldött üzenetek jobb minőséget jeleznek, 
+az eszköz leállítja a vezetői szerepéről való bejelentkezést. Ha viszont az üzenetek nem mutatnak jobbat, 
+az eszköz folyamatosan küldi saját bejelentő üzeneteit, ezzel jelezve, hogy aktív vezetőként működik.
 
-Fontos megjegyezni, hogy néhány eszköz nem kínál lehetőséget a felhasználónak ezen értékének megadására.
-Ehelyett egyszerűen a \textit{Preferált Vezető} megjelölésével rendelkeznek.
-Technikailag ezek a termékek rögzített értéket használnak bejelentő üzeneteikben, amit a gyártó határoz meg.
-Ezért még mindig lehetséges, hogy egy másik PTP vezetőnél beírva egy még alacsonyabb értéket, felül bírálhatja az ilyen típusú eszközt.
-Néhány támogatja azt a beállítást is, amit \textit{Csak Követő} néven ismerünk. Ebben az esetben amikor ez engedélyezve van,
-az adott eszköz sosem próbálja meg átvenni a vezetői szerepet az PTP hálózaton.
+A bejelentő üzeneteket az announce intervallumnak nevezett időközönként küldik ki. 
+Ezek az üzenetek funkcionálhatnak „szívverésként” is, amely biztosítja, hogy a jelenlegi mester még mindig működőképes. 
+Ha a kapcsolat megszakad, az eszközök várnak egy bizonyos ideig (bejelentő időtúllépés), 
+mielőtt újra elküldik bejelentő üzeneteiket, és ismételjük meg a vezető kiválasztási folyamatot. 
+A vezetőváltás során a követőknek folytatniuk kell saját oszcillátoruk működését, biztosítva, hogy az audiofolyam ne szakadhasson meg.
+
+A bejelentő üzenetekben két érték található, amelyeket a felhasználó állíthat be: prioritás 1 és prioritás 2. 
+Mindkét érték 0 és 255 közötti tartományban változhat, ahol a 0 a legmagasabb prioritást jelöli. 
+Ha az egyik eszköz prioritás 1 értéke alacsonyabb, mint más eszközöké, akkor az az eszköz válik a vezetővé. 
+A prioritás 2 értéke csak akkor lényeges, ha több eszköz prioritás 1 értéke megegyezik. 
+Ez előfordulhat, ha két azonos típusú eszköz ugyanazon prioritás 1 értéket használ. 
+Ebben az esetben a prioritás 2 határozza meg a fő vezetőt és a tartalék vezetőt.
+
+Fontos megjegyezni, hogy bizonyos eszközök nem engedélyezik a felhasználó számára a prioritási értékek megadását. 
+Ezek az eszközök „Preferált Vezető” megjelöléssel rendelkeznek, és fix értéket használnak, amit a gyártó állít be. 
+Ezért lehetséges, hogy egy másik PTP vezető alacsonyabb érték megadásával felülbírálhatja az ilyen eszközt. 
+Néhány eszköz támogatja a „Csak Követő” beállítást is, amely esetén az eszköz sohasem próbálja meg átvenni a vezetői szerepet a PTP hálózaton.
 %----------------------------------------------------------------------------
 \subsection{Mintavételi frekvencia és bitmélység}
 %----------------------------------------------------------------------------
-Az audio over IP rendszereknél a kifogástalan működéshez elengedhetetlen a számunkra
-megfelelő mintavételi frekvencia és bitmélység meghatározása.
+Az audio over IP rendszerek megbízható működéséhez elengedhetetlen a megfelelő mintavételi frekvencia és bitmélység pontos meghatározása.
 
-Ezek a paraméterek alapvetően befolyásolják az audio minőségét és a hálózati teljesítményt.
-Figyelembe kell venni az átviteli kapacitást, valamint az egyes eszközök maximális mintavételi frekvenciáját és bitmélységét.
-Amennyiben a hálózat nem képes a megfelelő sávszélesség biztosítására, a hálózatunk instabillá válhat, 
-hangkimaradások és megszakadások, legrosszabb esetben a hálózat összeomlása is előfordulhat.
-A gyakran alkalmazott 48 kHz-es mintavételi frekvencia széles hangsávot biztosít, és kompatibilis a legtöbb
-professzionális hangtechnikai alkalmazással. 
-Nemrégiben kezdett el jobban elterjedni szélesebb körben is a 96 kHz-es mintavételi frekvencia, ami
-nagyobb részletességet és jobb hangminőséget eredményez, de cserébe nagyobb sávszélességet igényel.
+Ezek a paraméterek jelentős hatással vannak az audio minőségére és a hálózati teljesítményre. 
+Fontos figyelembe venni a hálózati átviteli kapacitást, valamint az egyes eszközök által támogatott 
+maximális mintavételi frekvenciát és bitmélységet. Amennyiben a hálózat nem képes biztosítani a 
+szükséges sávszélességet, instabillá válhat, ami hangkimaradásokhoz, megszakadásokhoz, vagy 
+legrosszabb esetben a hálózat teljes összeomlásához vezethet.
+
+A gyakran alkalmazott 48 kHz-es mintavételi frekvencia széles hangszalagot biztosít, és 
+általában kompatibilis a legtöbb professzionális hangtechnikai alkalmazással. 
+Az utóbbi időben egyre nagyobb népszerűségnek örvend a 96 kHz-es mintavételi frekvencia is, amely fokozott 
+részletességet és jobb hangminőséget nyújt. Azonban fontos megjegyezni, hogy a 96 kHz-es mintavételi 
+frekvencia nagyobb sávszélességet igényel, ami hatással lehet a hálózat teljesítményére.
 A sávszélesség kiszámítása a következő képlettel történik:
 %----------------------------------------------------------------------------
 \begin{equation}
@@ -346,10 +339,12 @@ a 24 bites bitmélységű rendszerek bőven tökéletesen megfelelnek.
 %----------------------------------------------------------------------------
 \subsection{Késleltetés}
 %----------------------------------------------------------------------------
-Amennyiben egy csomag például 1 ms (milliszekundum) hanganyagot tartalmaz, a kapcsolat
-késleltetése mindig nagyobb lesz, mint 1 ms.
-A küldőnek először 1 ms hangot kell pufferelnie, mielőtt beleteszi egy csomagba, majd elküldi a hálózaton.
-Ezt követi a hálózaton történő utazás ideje az összes kapcsolóval, mielőtt végül eljutna a fogadó eszköz pufferébe.
+Amennyiben egy csomag 1 ms (milliszekundum) hosszúságú hanganyagot tartalmaz, 
+a kapcsolat késleltetése mindig meghaladja az 1 ms értéket. 
+Először a küldő eszköznek 1 ms-nyi hanganyagot kell pufferelnie, mielőtt 
+azt csomagba helyezi és továbbítja a hálózaton. Ezt követi a csomag hálózati 
+utazási ideje, amely magában foglalja az összes áthaladási pontot, például kapcsolókat, 
+mielőtt a csomag végül elérné a célpont eszköz pufferét.
 %----------------------------------------------------------------------------
 \begin{enumerate}
     \item Csomag idő
@@ -357,15 +352,14 @@ Ezt követi a hálózaton történő utazás ideje az összes kapcsolóval, miel
     \item Fogadási puffer
 \end{enumerate}
 %----------------------------------------------------------------------------
-A gyakorlatban a link offset technikai kifejezés egyenlő a késleltetés fogalmával.
-A felhasználó felelőssége, hogy olyan link offsetet válasszon, amely elég hosszú, hogy a fogadó puffer soha ne ürüljön ki, és
-ezáltal soha ne történjen meg a hang megszakítása. 
+A gyakorlatban a „link offset” technikai kifejezés azonos jelentéssel bír, mint a késleltetés. A felhasználó feladata, 
+hogy olyan link offsetet állítson be, amely biztosítja, hogy a fogadó puffer soha ne ürüljön ki, ezáltal megelőzve a hang megszakadását.
 %----------------------------------------------------------------------------
 \subsection{IP címek és maszkok}
 %----------------------------------------------------------------------------
-Egy hálózaton belül minden eszköznek egyedi címre van szüksége annak érdekében,
-hogy a csomagok sikeresen elérjék céljukat és elkerüljük a csomagok ütközését.
-Egy ilyen cím lehet hardverrel kapcsolatos (MAC-cím) vagy konfigurálható cím (IP-cím).
+Egy hálózaton belül minden eszköznek egyedi címre van szüksége ahhoz, hogy a csomagok sikeresen célba érjenek, 
+és elkerülhetők legyenek a csomagok ütközései. 
+Az egyedi címek lehetnek hardverhez kötődő címek (MAC-címek) vagy konfigurálható címek (IP-címek).
 %----------------------------------------------------------------------------
 \section{IP-cím hozzárendelési módszerek}
 %----------------------------------------------------------------------------
@@ -392,19 +386,19 @@ Az IP-címeket háromféleképpen lehet hozzárendelni egy eszközhöz:
 	és nem csatlakozhat más alhálózatokhoz.
 \end{itemize}
 %----------------------------------------------------------------------------
-Egy adott eszköz IP-címéről való információ beszerzése alapvetően kissé nehéz lehet,
-ha az nem jelenik meg egy kijelzőn. 
-Azonosítani, hogy két IP-cím ugyanabba az alhálózatba tartozik-e, nem lehetséges 
-a hozzájuk tartozó alhálózati maszkok ellenőrzése nélkül.
-Ha egy csomag cél-IP-címe nem ugyanabban az alhálózatban van,
-a küldő eszköznek a router IP-címére kell irányítania, ahelyett hogy
-közvetlenül a fogadó eszközhöz küldené. 
-Két hoszt ugyanabban az alhálózaton belül hasonló IP-címekkel rendelkezik, csak az utolsó számjegyekben
-különbözik. Az első részt hálózati címkének nevezik, a másodikat, amely az
-eszköz számára egyedi, hosztcímkének. A kettő közötti szétválasztást az
-alhálózati maszkban a `0'-s számjegyek pozíciója jelzi.
-A hálózati címkét az alhálózati maszkban egy `0'-nál nagyobb érték jelzi,
-míg a hosztcím a maradék jobb oldal, ahol az alhálózati maszk `0'-át jelzi.
+Egy adott eszköz IP-címének megismerése kihívást jelenthet, ha az nem látható egy kijelzőn. 
+Az IP-címek azonosítása és annak meghatározása, hogy két cím azonos alhálózathoz tartozik-e, 
+nem lehetséges az alhálózati maszkok ellenőrzése nélkül.
+
+Amennyiben egy csomag cél-IP-címe nem található azonos alhálózaton belül, a küldő eszköznek 
+a csomagot a router IP-címére kell irányítania, nem pedig közvetlenül a fogadó eszközhöz.
+
+Az alhálózaton belül a hasonló IP-címek csak az utolsó számjegyekben térnek el egymástól. 
+Az IP-cím első része, amely a hálózati címkét jelöli, és a második része, amely a 
+hosztcímkét képviseli, az alhálózati maszk segítségével különíthető el. 
+Az alhálózati maszkban a 0'-val jelölt pozíciók határozzák meg a hálózati címkét, 
+míg a hosztcím a maradék, 0'-val jelölt rész bal oldalán található. 
+A hálózati címkét az alhálózati maszkban egy 0'-nál nagyobb érték jelzi, míg a hosztcím a maradék 0'-val jelölt pozíciókban található.
 %----------------------------------------------------------------------------
 \begin{figure}[H]
     \centering
@@ -420,10 +414,8 @@ míg a hosztcím a maradék jobb oldal, ahol az alhálózati maszk `0'-át jelzi
     \end{minipage}
 \end{figure}
 %----------------------------------------------------------------------------
-Host A Host B  Host B ugyanabban az alhálózatban van,
-mint Host A, mert mindkettő ugyanazt a hálózati címkét használja (192.168.020).
-Az IP-cím hálózati része az a rész, ahol az alhálózati maszk 255-ös értéket
-mutat. Ezen két eszköz között egy router sem szükséges. 
+Host A és Host B ugyanazon alhálózatban találhatóak, mivel mindkettő azonos hálózati címkét használ (192.168.020). 
+Az IP-cím hálózati részét az alhálózati maszk 255-ös értéke határozza meg. E két eszköz között tehát nincs szükség routerre.
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
@@ -432,21 +424,16 @@ mutat. Ezen két eszköz között egy router sem szükséges.
 	\label {fig:host_c}
 \end{figure}
 %----------------------------------------------------------------------------
-Host C más alhálózatban van, mint Host A és B, mert különbözik a hálózati címében (192.168.134, nem pedig 192.168.020).
-Host C nem tud csomagokat cserélni A és B eszközökkel egy router nélkül. 
-Annak érdekében, hogy ez az eszköz kommunikálhasson A és B-vel, más IP-címet kell kapnia,
-kezdve a 192.168.134\ldots címmel. 
-Vagy más alhálózati maszk is választható az egész beállításhoz,
-például 255.255.0.0.
-%----------------------------------------------------------------------------
-A feljegyzett alhálózati maszkok decimális jelölése dot-decimális jelölésnek nevezik.
-Azért, hogy az információt rövidebben jelezzék, gyakran
-használt alternatív módszer a CIDR vagy perjeljelölés.
-Az IP-cím után azonnal következő perjel után az
-alhálózati maszkot a `0'-nál nagyobb értékeket mutatva jelöli meg.
-Ez a jelölés az alhálózati maszk bináris formájára utal, tehát a `255' a `11111111' -nek felel meg.
-A fenti példákban az alhálózati maszkok tehát bináris formájukban 24
-`1'-t tartalmaznak. 
+Host C viszont eltérő alhálózaton helyezkedik el, mivel a hálózati címében eltérés van (192.168.134 a 192.168.020 helyett). 
+Ennek következtében Host C nem képes közvetlen csomagcserére Host A-val és Host B-vel router nélkül. 
+A kommunikációhoz Host C-nek olyan IP-címet kell kapnia, amely a 192.168.134\ldots tartományba esik, 
+vagy az alhálózati maszkot is módosítani kell, például 255.255.0.0-ra.
+
+Az alhálózati maszkok decimális jelölését dot-decimális formátumnak nevezzük. 
+Az információk rövidebb jelölésére gyakran alkalmazzák a CIDR (Classless Inter-Domain Routing) 
+vagy perjel alapú jelölést. Ez a jelölés az IP-cím után következő perjel után az alhálózati maszkot 0'-nál 
+nagyobb értékekkel tünteti fel. A CIDR jelölés az alhálózati maszk bináris formájára utal, 
+például a 255' a 11111111'-nek felel meg. A példák alapján az alhálózati maszkok bináris formájukban 24 1'-et tartalmaznak.
 A fenti példában szereplő hosztok CIDR jelölése:
 
 %----------------------------------------------------------------------------
@@ -457,23 +444,20 @@ A fenti példában szereplő hosztok CIDR jelölése:
 \end{itemize}
 %----------------------------------------------------------------------------
 
-A routereket használó és több alhálózatot összekapcsoló telepítések a
-az OSI modell 3. rétegén működnek. Ez a modell hét rétegre osztja a
-hálózatok általános funkcionalitását, mindegyik egy adott készletet ír le a hálózati
-eszközök által nyújtott funkcionalitásokról. Gondolva itt elsősorban a csomagok továbbításáról a
-megfelelő címzett felé. 
+A routerek alkalmazása során és több alhálózat összekapcsolására szolgáló telepítések az OSI modell harmadik rétegén működnek. 
+Ez a modell a hálózati funkcionalitást hét rétegre bontja, ahol mindegyik réteg egy adott 
+szolgáltatási készletet határoz meg a hálózati eszközök által biztosított funkciókról. 
+A harmadik réteg feladata a csomagok célba juttatása a megfelelő címzett felé.
 
-Az összes jelenlegi IT eszköz követi ezt a jól
-meghatározott absztrakciós rétegkoncepciót, hogy elősegítse a gyártók közötti
-interoperabilitást. A 3. rétegen működő telepítések értelmezhetik az IP-címeket,
-az alhálózati maszkokat, és így továbbítani tudják a csomagokat az
-alhálózatok között. Az itt tárgyalt összes technológia képes így működni. 
-Ezzel szemben néhány technológia korlátozódott a 2.rétegre. 
-Ez azt jelenti, hogy a csomagjaikat kizárólag MAC-címek alapján
-szállítják, és nem tartalmaznak alhálózati információkat. Ennek eredményeként a
-2. rétegű hálózatokat nem lehet több alhálózatokra bontani, a csomagjaikat nem
-lehet routerek által továbbítani, és ezáltal a skálázhatóságuk korlátozott. 
-Az egyik népszerű példa a 2. rétegű hálózatokra a már említett TSN/Milan, valamint a CobraNet.
+Az összes modern IT eszköz követi ezt az absztrakciós rétegkoncepciót, amely biztosítja a gyártók 
+közötti interoperabilitást. A harmadik réteghez tartozó telepítések képesek az IP-címek és az 
+alhálózati maszkok értelmezésére, amely lehetővé teszi a csomagok továbbítását az alhálózatok között. 
+Az ilyen típusú technológiák képesek a kívánt működésre. Ezzel szemben bizonyos technológiák csupán a második rétegre korlátozódnak.
+
+Ez azt jelenti, hogy a csomagok továbbítása kizárólag MAC-címek alapján történik, és nem 
+tartalmaznak alhálózati információkat. Ennek következtében a második rétegű hálózatokat nem 
+lehet több alhálózatra bontani, a csomagok továbbítása nem végezhető routerek által, ami 
+jelentős mértékben korlátozza a skálázhatóságot. A második rétegű hálózatok egyik ismert példája a TSN/Milan és a CobraNet.
 
 %----------------------------------------------------------------------------
 \begin{figure}[H]
@@ -484,122 +468,116 @@ Az egyik népszerű példa a 2. rétegű hálózatokra a már említett TSN/Mila
 \end{figure}
 %----------------------------------------------------------------------------
 
-Egy alhálózat egy logikai szegmens egy adott hálózaton belül. Ilyen szegmenseket
-különféle okokból hoznak létre, ideértve elsősorban az adminisztratív és biztonsági
-szempontokat. A routerek képesek összekapcsolni az alhálózatokat, így a hosztok csomagokat cserélhetnek az
-alhálózati határok átlépése nélkül. Megfelelően konfigurálva kell
-lennie a hálózati útvonalak létrehozásához ezek között az alhálózatok között.
-Ezzel szemben egy tipikus kapcsoló nem képes összekapcsolni az alhálózatokat.
-Virtuális LAN készítése (VLAN) egy másik módszer a hálózat szegmentálására. 
-Rugalmasabbá teszi a rendszereket, csökkenti a kapcsolatlan rendszerek közötti fölösleges kommunikációt.
-Szemben az alhálózatokkal, ez egy biztonságosabb módja is a hosztok elkülönítésére egymástól.
+Az alhálózat egy logikai egységet jelent egy adott hálózaton belül. 
+Az alhálózatok létrehozása többféle célt szolgál, például adminisztratív és biztonsági okokból. 
+A routerek feladata az alhálózatok összekapcsolása, lehetővé téve ezzel, hogy a hosztok csomagokat 
+cseréljenek anélkül, hogy elhagynák saját alhálózatukat. 
+Az alhálózatok közötti forgalom irányításához a megfelelő hálózati útvonalak konfigurálása szükséges.
+
+Ezzel szemben a hagyományos kapcsolók nem képesek alhálózatok összekapcsolására. 
+Alternatív megoldásként a virtuális LAN (VLAN) használata lehetővé teszi a hálózat szegmentálását. 
+A VLAN létrehozása növeli a rendszer rugalmasságát, és csökkenti a különböző rendszerek közötti felesleges kommunikációt. 
+Emellett a VLAN-ok biztonságosabb módot nyújtanak a hosztok egymástól való elkülönítésére, szemben az alhálózatokkal.
 
 %----------------------------------------------------------------------------
 \subsection{Hálózati topológiák}
 %----------------------------------------------------------------------------
-A csomópontok különböző módon kapcsolódhatnak össze. A topológia meghatározása
-az egyik legfontosabb döntés, amelyet egy hálózat tervezésekor hozni kell. A
-csillag topológia sok szempontból preferált megoldás. Több hoszt egy
-útválasztó eszközhöz, például egy kapcsolóhoz vagy routerhez csatlakozik. A mai
-hálózatok gyakran két csillagszintet kombinálnak. Ezt gerinc/levél architektúrának
-nevezik. A központi kapcsoló/router (gerinc) általában több forgalmat továbbít,
-mint a perifériális kapcsoló (levél). Ha a gerinc és a levél közötti nagy sávszélességű
-kapcsolat nem képes egyszerre továbbítani az összes hoszt forgalmát, akkor ez a
-tervezési forma blokkoló. Az ellentéte egy nem blokkoló hálózattervezés, ahol a
-nagy sávszélességű kapcsolatok képesek az összes a hozzájuk csatlakoztatott
-hoszt teljes forgalmát továbbítani. A gyűrű topológiának több interfésze is lehet:
-legalább kettőre van szükség egy gyűrű topológia megvalósításához. Minden két
-csomópont közötti kapcsolat teljes sávszélességet kínál, és a csomópontokra
-hárul a feladat, hogy továbbítsák a csomagokat a gyűrűn belül. Ebben az
-értelemben mindegyik csomópont úgy működik, mint egy kapcsoló, csomagokat
-továbbítva két interfésze között. A gyűrű topológia választása gyakran ésszerű,
-amikor nagy távolságokat kell áthidalni, és a kapcsolatok költségesek.
-Gyakorlati példák a különböző helyszínek közötti hálózatok, de gyűrűket alkotnak
-olyan eszközök csatlakoztatására is, amelyek esetében nincs hely egy további
-kapcsoló számára. A gyűrű topológiák beépített redundanciát kínálnak minden
-eszközhöz hozzáférhetünk, még akkor is, ha egy kapcsolat elszakad.
-A megfelelő hálózat kialakításához még elengedhetetlenek a nem blokkoló kapcsolók.
-A nem blokkoló architektúra azt jelenti, hogy nem a kapcsoló a szűk keresztmetszet.
-Tehát képes kezelni az összes rá táplált forgalmat, csak a port sebessége a korlát.
+A csomópontok különböző módszerekkel kapcsolódhatnak egymáshoz, és a topológia kiválasztása az 
+egyik legfontosabb döntés a hálózat tervezése során. A csillag topológia széles körben 
+alkalmazott megoldás, amelyben több hoszt egy központi eszközhöz, például kapcsolóhoz vagy 
+routerhez csatlakozik. A modern hálózatok gyakran alkalmaznak kettős csillagtopológiát, 
+amelyet gerinc/levél architektúrának neveznek. Ebben a struktúrában a központi eszköz (gerinc) 
+általában több adatforgalmat kezel, mint a perifériális eszközök (levél). Amennyiben a 
+gerinc és a levél közötti nagy sávszélességű kapcsolat nem képes egyszerre kezelni az 
+összes hoszt forgalmát, a rendszer blokkolhat. Az ellentétes megközelítés a nem blokkoló 
+hálózattervezés, ahol a nagy sávszélességű kapcsolatok képesek kezelni a hozzájuk csatlakoztatott hosztok teljes forgalmát.
+
+A gyűrű topológia szintén egy népszerű megoldás, amely több interfésszel rendelkezhet. 
+A gyűrű topológia megvalósításához legalább két interfész szükséges. 
+Minden két csomópont közötti kapcsolat teljes sávszélességet biztosít, és a csomópontok 
+feladata a csomagok továbbítása a gyűrűn belül. Ebben a rendszerben minden csomópont 
+olyan módon működik, mint egy kapcsoló, amely csomagokat továbbít a két interfésze között. 
+A gyűrű topológia gyakran választott megoldás nagy távolságok áthidalására és költséges kapcsolatok esetén. 
+Gyakorlati alkalmazásai közé tartoznak a különböző helyszínek közötti hálózatok, illetve olyan 
+eszközök összekapcsolása, ahol nincs hely további kapcsolók elhelyezésére. Ezen kívül a gyűrű 
+topológiák beépített redundanciát nyújtanak, lehetővé téve a hozzáférést minden eszközhöz még akkor is, ha egy kapcsolat megszakad.
+
+A megfelelő hálózati kialakításhoz alapvető fontosságúak a nem blokkoló kapcsolók is. 
+A nem blokkoló architektúra azt jelenti, hogy a kapcsoló nem jelent szűk keresztmetszetet a rendszerben. Ez azt jelenti, hogy képes kezelni az összes rá érkező forgalmat, ahol csupán a port sebessége szabhat határt.
 
 %----------------------------------------------------------------------------
 \subsection{Unicast és Multicast} %Egyedi és Csoportos Küldés
 %----------------------------------------------------------------------------
 
-Amikor egy eszköz csomagot küld egy másik eszköznek, unicast mechanizmusnak
-nevezzük. Egy ilyen kapcsolatnak pontosan egy küldője és egy fogadója van. Az
-unicast gyakran használja a Transmission Control Protocol (TCP)-t, ahol a fogadó
-minden egyes csomag sikerült átvételéről visszaigazolást küld a küldőnek. Ha a
-visszaigazolás nem érkezik meg, a küldő automatikusan újraküldi a csomagot. 
-Az UDP (User Datagram Protocol) egy alternatíva a TCP-nek. Ebben az esetben a küldő
-bízik abban, hogy a csomagok sikeresen megérkeznek a fogadóhoz. Nincs
-visszaigazolás, és ha a csomag elveszik, a tartalma is elveszik.
-Ez az jelenti, hogy az UDP nem annyira megbízható? Valójában nem,
-csak egy más eszköz más felhasználásra.
-Bár ez váratlan lehet, ez valójában a preferált átviteli mód a szakmai audio hálózatok
-számára. Mivel az időkésleltetés alacsonynak kell lennie, nem engedhető meg a
-csomagok újraküldése, mert az időt vesz igénybe, és ezzel növelné az általános
-időkésleltetést. Az élő audio csomagvesztés esetén a legjobb, ha folytatjuk a
-következő audio minták lejátszását, anélkül hogy megpróbálnánk helyreállítani az
-előzőt. A menedzselhető switchek és végpontok tudják logolni a csomagvesztéseket, így
-monitorozható a hálózat állapota.
-Az audio alkalmazásokban gyakran szükség van arra, hogy egy audio jelet
-több helyen párhuzamosan fogadjanak, például egy mikrofonjel, amelyet
-párhuzamosan továbbítanak a front-of-house és a monitoring keverőpultoknak. Akár
-egy harmadik hely is létezhet, például egy felvevő eszköz. 
-Amikor a küldő unicast módban továbbítja a csomagokat, az audio jel három csomagként
-érkezik azonos tartalommal, de különböző címzési címekkel. Ez felesleges
-processzor terhelést jelent a küldő eszköz számára, és emellett sávszélességet
-foglal el mindhárom célhoz. Ezt lehet optimalizálni a multicast használatával. 
-Számos előnye van, ideértve a küldőre nehezedő kevesebb processzor terhelést 
-és az általános forgalom csökkenését a hálózaton. 
-A küldő multicast címekre címezi a csomagokat, és nem hoszt címekre. Nem tudja, melyik
-címzetteknek érkeznek meg a csomagok. A multicast címek hasonlóak a
-rádiófrekvenciákhoz: bárki, aki érdeklődik, bekapcsolhatja és fogadhatja a
-tartalmat. A küldő csak egyszer helyezi az audio adatokat egy csomagba, elküldi
-egy multicast címre, és a vevőknek tudniuk kell, melyik multicast címre akarnak
-hallgatni. A multicast címek alapvetően nem kapcsolódnak alhálózatokhoz, mivel nem
-kapcsolódnak a csomópontokhoz és az IP-címekhez. Ezért a multicast csomagok
-áthaladnak az alhálózatokon, hacsak nincsenek elkülönítve VLAN-okkal. 
-Amennyiben a hálózatunk nem kizárólag az audio jelek továbbítására 
-készült speciálisan, néhány eszköz lehet a hálózaton, amelyeknek semmi közük az audiohoz.
-Ezért fontos, hogy a multicast forgalom csak
-azokhoz a hosztokhoz jusson el, amelyek érdeklődnek iránta. Ennek a megoldása az
-IGMP snooping (Internet Csoportkezelési Protokoll). 
-Az összes tárgyalt audio hálózati technológia alapértelmezetten
-támogatja az IGMP snooping-ot. Ha be van kapcsolva a kapcsolóban, akkor a
-multicast-csomagok csak azokon az interfészeken kerülnek elküldésre, ahol a
-csatlakoztatott hosztoktól időszakos IGMP kérések érkeznek. Ha nincs beérkező
-kérés, akkor a megfelelő multicast leáll, így nem jut felesleges forgalom a
-kapcsolatra. Az IGMP snoopingot egyfajta zsilippel lehetne összehasonlítani,
-amely alapértelmezetten zárva van, és csak kérésre nyílik meg. Erősen ajánlott
-az IGMP snooping bekapcsolása egy multicast hálózatban minden kapcsolóban.
-Azonban egy hálózatban csak egy darab IGMP Querier lehet aktív, mivel az
-összes többi kapcsoló az aktív IGMP Querier-től kapja az információkat.
-Enélkül a multicast úgy viselkedni mint egy broadcast, ami nagy mennyiségű
-felesleges forgalmat eredményez.
-Összefoglalva, a unicast a legjobb késleltetési teljesítményt nyújtja, és a
-kapcsolók számára a legkönnyebben mozgatható.
-A multicast pedig jobb sávszélesség-kezelést kínál, ahogy a csatornaszám (és a sávszélesség) nő.
+Amikor egy eszköz adatcsomagot küld egy másik eszköznek, ezt unicast módszernek nevezzük. 
+Ilyenkor a kapcsolatnak pontosan egy küldője és egy fogadója van. 
+Az unicast gyakran a Transmission Control Protocol (TCP) segítségével történik, ahol a 
+fogadó minden egyes csomag sikeres átvételéről visszaigazolást küld a küldőnek. 
+Ha a visszaigazolás nem érkezik meg, a küldő automatikusan újraküldi a csomagot.
+
+Az UDP (User Datagram Protocol) egy alternatív megoldás a TCP-hez képest. 
+Az UDP esetében a küldő nem kap visszaigazolást a csomagok megérkezéséről, így bízik abban, hogy 
+a csomagok sikeresen eljutnak a fogadóhoz. Ha egy csomag elveszik, annak tartalma is elveszik. 
+Ez nem jelenti azt, hogy az UDP kevésbé megbízható, csupán más célokra lett tervezve.
+
+Bár ez meglepő lehet, az UDP gyakran előnyösebb a szakmai audio hálózatokban. 
+Az alacsony késleltetés érdekében nem megengedett a csomagok újraküldése, mivel ez időt igényelne, 
+ami növelné az általános késleltetést. Az élő audio esetén a csomagvesztés kezelése során a legjobb, 
+ha azonnal folytatjuk a következő audio minták lejátszását, anélkül hogy megpróbálnánk helyreállítani 
+az elveszett csomagokat. A menedzselhető switchek és végpontok lehetővé teszik a 
+csomagvesztések naplózását, így nyomon követhető a hálózat állapota.
+
+Az audio alkalmazások gyakran megkövetelik, hogy egy audio jelet párhuzamosan 
+több helyszínre továbbítsanak, például egy mikrofonjelet, amelyet egyszerre továbbítanak a 
+front-of-house és a monitoring keverőpultokhoz, esetleg egy harmadik helyszínre, például egy felvevő eszközre is.
+
+Amikor a küldő unicast módban küldi el a csomagokat, az audio jel három külön 
+csomagként érkezik azonos tartalommal, de eltérő címzésekkel. Ez felesleges terhelést jelent 
+a küldő eszköz számára és sávszélességet foglal el mindhárom célhoz. Az optimalizálás érdekében 
+a multicast használata ajánlott. A multicast előnyei közé tartozik a csökkentett processzorterhelés 
+a küldő eszközön és az általános forgalom csökkentése a hálózaton. A küldő multicast címekre küldi 
+a csomagokat, nem pedig egyedi hoszt címekre. Nem tudja, melyik címzettek kapják meg a csomagokat. 
+A multicast címek hasonlóak a rádiófrekvenciákhoz: bárki, aki érdekelt, fogadhatja a tartalmat. 
+A küldő csak egyszer helyezi el az audio adatokat egy csomagban, és elküldi egy multicast címre. 
+A vevőknek tudniuk kell, melyik multicast címre szeretnének hallgatni. 
+A multicast címek nem kapcsolódnak közvetlenül az alhálózatokhoz vagy az IP-címekhez, ezért a 
+multicast csomagok áthaladnak az alhálózatokon, hacsak nincsenek elkülönítve VLAN-okon keresztül.
+
+Ha a hálózat nem kizárólag audio jelek továbbítására van tervezve, előfordulhat, hogy olyan 
+eszközök is csatlakoznak hozzá, amelyek nem kapcsolódnak az audiohoz. Ennek elkerülésére fontos, hogy 
+a multicast forgalom csak az arra érdeklődő hosztokhoz jusson el. Ezt az IGMP snooping 
+(Internet Group Management Protocol snooping) használatával lehet megoldani. 
+Az IGMP snooping lehetővé teszi, hogy a kapcsolók csak azokon az interfészeken küldjék el a 
+multicast csomagokat, ahol az érdeklődő hosztok időszakosan IGMP kéréseket küldenek. 
+Ha nincs beérkező kérés, a megfelelő multicast leáll, így elkerülhető a felesleges forgalom. 
+Az IGMP snooping hasonló egy zsiliphez, amely alapértelmezetten zárva van, és csak kérésre nyílik meg. 
+Erősen ajánlott az IGMP snooping aktiválása minden kapcsolóban egy multicast hálózatban. 
+Fontos megjegyezni, hogy egy hálózatban csak egy IGMP Querier lehet aktív, mivel az összes 
+többi kapcsoló tőle kapja az információkat. Az IGMP Querier hiányában a multicast forgalom 
+broadcastként viselkedhet, ami jelentős felesleges forgalmat eredményezhet.
+
+Összefoglalva, az unicast biztosítja a legjobb késleltetési teljesítményt, és a kapcsolók 
+számára a legjobban kezelhető. Ezzel szemben a multicast hatékonyabb sávszélesség-kezelést 
+kínál, különösen a csatornaszám és a sávszélesség növekedésével.
 
 %----------------------------------------------------------------------------
 \subsection{Eszköz- és Adatfolyam-felfedezés}
 %----------------------------------------------------------------------------
 
-Az AES67 audió szabvány nem határozza meg, hogyan fedezhetik fel egymást a
-hálózati eszközök, vagy hogy mely adatfolyamok érhetők el a hálózaton.
-Az összes ismert technológia a bonjour vagy mDNS mechanizmust használja eszközeik számára
-az egymásról való értesítésre. 
-Minden eszköz fix ismert multicast cím (224.0.0.251) felé küld
-üzeneteket, amiket más eszközök elérnek, így értesülnek egymás létezéséről a hálózatban.
-Ennek a mechanizmusnak egyik korlátja az, hogy nem működik nagy telepítésekben,
-ahol több alcím létezik vagy VLAN-on vannak. Ezen esetekre a gyártók kifejlesztettek
-saját megoldásokat (például Audinate a Dante Domain Manager) vagy
-követik az audio/video NMOS szabványt a felismeréshez és kapcsolatkezeléshez.
-Az audio adatfolyamokat a gyártótól függően két mechanizmus egyikével fedezik fel. Ahogy
-az eszközök felfedezésénél, mindkettő előre meghatározott multicast címet
-használ az adatfolyam-információk terjesztésére, hogy a címzettek megtalálják az
-elérhető adatfolyamokat és azok paramétereit:
+Az AES67 audiostandard nem határozza meg, hogyan történik a hálózati eszközök felfedezése, illetve mely 
+adatfolyamok érhetők el a hálózaton belül. Jelenleg az ismert technológiák közül mindegyik a Bonjour 
+vagy mDNS mechanizmusokra támaszkodik az eszközök közötti értesítések kezelésére.
+
+Az eszközök általában egy fix multicast cím (224.0.0.251) felé küldik az értesítéseket, amelyeket más 
+eszközök fogadnak, így tájékozódnak egymás jelenlétéről a hálózaton. 
+Ennek a megközelítésnek azonban vannak korlátai: nem működik hatékonyan nagyobb telepítésekben, ahol 
+több alhálózat vagy VLAN van jelen. Ezen kihívások kezelésére a gyártók saját megoldásokat 
+fejlesztettek ki, mint például az Audinate Dante Domain Manager, vagy az audio/video NMOS 
+szabványt alkalmazzák a felfedezés és a kapcsolatkezelés érdekében.
+
+Az audio adatfolyamok felfedezése gyártónként eltérő mechanizmusokat használ. Mindkét esetben 
+előre meghatározott multicast címek segítségével terjesztik az adatfolyamokkal kapcsolatos 
+információkat, lehetővé téve, hogy a címzettek megtalálják az elérhető adatfolyamokat és azok paramétereit:
 
 %----------------------------------------------------------------------------
 \begin{itemize}
