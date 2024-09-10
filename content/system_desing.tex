@@ -58,6 +58,7 @@ A csatlakozók felhelyezésekor a szabványnak megfelelően járok el, millimét
 a lehető legjobb minőségűek legyenek. Ez a CAT6A kábeleknél különösen fontos, mivel a CAT6A kábelek
 még nagyobb frekvencia tartományban képesek adatokat továbbítani, mint a CAT5E kábelek,
 ezért jobban érzékenyek a külső interferenciákra.
+Tehát összefoglalva három egymástól teljesen elkülönített hálózatot fogunk kiépíteni a rendszer kiszolgálására.
 
 %----------------------------------------------------------------------------
 \begin{figure}[H]
@@ -375,6 +376,17 @@ Miután már rendelkezünk az összes számunkra szükséges tervezett rendszerr
 A VU-NET szoftver egy olyan alkalmazás, amely lehetővé teszi a Martin Audio hangrendszerek teljes körű vezérlését és monitorozását.
 Jelen esetben az iK42 és iK81 típusú végfokokat fogjuk tudni kezelni. 
 
+
+
+
+
+
+%IDEJÖNA VUNET!!!!
+
+
+
+
+
 %----------------------------------------------------------------------------
 \subsubsection{Mélyláda rendszer}
 %----------------------------------------------------------------------------
@@ -508,7 +520,7 @@ költséghatékonyabban tudjuk kiépíteni a hálózatot, azonban a redundancia 
 \subsubsection{IP kiosztás}
 %----------------------------------------------------------------------------
 A rendszer képes automatikusan IP címeket osztani az egyes eszközöknek,
-így meggyorsítva a munkafolyamatot. Ez azonban nem bizonyul jó megoldásnak.
+ezzel meggyorsítva a munkafolyamatot. Viszont ez nem bizonyul jó megoldásnak.
 Egy fixen előre megtervezett rendszer praktikusabb és
 üzembiztosabb megoldás, ha minden eszköznek manuálisan mi adjuk meg a címét a
 hálózaton. A tervezett rendszerben minden egyes eszköznek fix IP címet adtam,
@@ -517,6 +529,20 @@ A címeket egy online is elérhető Excel táblázatban tároltam, hogy amennyib
 bármikor könnyen elérhető legyen. Ez a táblázat a cégnél dolgozó összes munkatárs számára látható,
 aki a rendszerrel foglalkozik. Így amennyiben új eszköz kerül a hálózatra, vagy egy eszköz IP címét
 valamilyen okból meg kell változtatni, egyszerűen elérhető a szükséges naprakész információ.
+A kiosztás logikája a következőképpen néz ki:
+A Dante Primary hálózat a 192.168.1.X címeket használja, a Secondary hálózat
+pedig a 192.168.2.X címeket. A két hálózat között nincsen semmilyen kapcsolat, és egymástól teljesen függetlenek hardveresen és szoftveresen is.
+A Vu-Net vezérlés a 192.168.100.X címeket használja, és egy switchen keresztül üzemel a secondary hálózaton, viszont a két hálózat között nincsen
+átfedés, az előbbiekben már említett módon függetlenek egymástól.
+Az eszközök egyedi címei pedig az alábbi módon kerültek kiosztásra:
+Vegyük példának a 192.168.1.111-es címet, a 111-ben az első számjegy arra utal, hogy egy végfokról van szó, minden végfok
+1XX címet kap. A második számjegy az eszköz rack száma, a harmadik pedig az eszköz sorszáma a rackben felülről lefelé.
+Tehát az előbbi cím a következőt jelenti számunkra: Az 1-es sorszámú végfokrackben lévő legfelső végfok.
+A keverőpultok a címezés elején 1-től indulva 20-ig kapnak címeket. A stageboxok 30-tól 50-ig kapnak címeket.
+Ezeken felül a háló legvégére vannak kiosztva a speciális eszközök melyek nem mindig vannak a rendszerben, de ha mégis
+akkor azoknak is megvan a saját címük.
+A háló 250-es címén helyezkedik el a Dante Audio szerver.
+
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
