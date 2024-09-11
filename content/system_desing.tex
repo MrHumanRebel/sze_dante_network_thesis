@@ -9,7 +9,7 @@ Az új rendszer tervezésekor a következő szempontokat kellett szem előtt tar
 	\item Redundáns rendszer kialakítása biztosítva a folyamatos működést.
 	\item Rugalmas felépítés, amely lehetővé teszi a könnyű alkalmazkodást változó körülményekhez.
 	\item Könnyen bővíthető struktúra kialakítása a jövőbeli igényekhez való gyors reagálás érdekében.
-	\item Magasabb hangminőség és hangnyomás elérésének lehetősége a korábbi rendszerrel összehasonlítva.
+	\item Magasabb hangminőség és hangnyomás elérése a korábbi rendszerrel összehasonlítva.
 	\item Jobb lefedettség és egyenletes hangvisszaadás biztosítása a közönség területén.
 	\item A piacon lévő termékekhez képest viszonylag költséghatékony megoldás kidolgozása.
 	\item Legyen hosszú távon egy kompetitív és korszerű rendszer.
@@ -18,8 +18,13 @@ Az új rendszer tervezésekor a következő szempontokat kellett szem előtt tar
 %----------------------------------------------------------------------------
 \section{Rendszerterv}
 %----------------------------------------------------------------------------
-A szakdolgozatomban megtervezésre kerülő hangrendszer lelke a Dante protokoll lesz.
-Hangládák szempontjából a Martin Audio Wavefront Precision szériás termékeire esett a választás.
+A cég alapítása óta Martin Audio termékeket használ, a régi W8LM rendszerrel nagyon elégedettek voltunk, 
+ebből kifolyólag a választás márka szempontjából nem is volt kérdéses. A Martin új rendszerei a Wavefront Precision sorozat szériás
+végfokai pedig a Dante hálózatot használja a digitális hangátvitelhez.
+Ebből kifolyólag a választás a Dante protokollra esett, így a szakdolgozatomban 
+megtervezésre kerülő hangrendszer lelke ez a protokoll lesz.
+Hangládák szempontjából a Martin Audio Wavefront Precision szériás termékein belül kétfajta rendszerre is esett választás.
+Ezekről a későbbiekben részletesen lesz szó.
 Mivel teljes mértékben digitális rendszert elérése volt a cél, ezért a Dante modullal
 rendelkező Martin Audio iKON iK42 és iK81 végfokok tökéletesen illeszkedtek a rendszerbe.
 Mindkét végfok csúcskategóriás teljesítményt és hangminőséget nyújt, és a D kategóriás
@@ -46,9 +51,16 @@ két CAT5E kábellel (a redundancia miatt) tudjuk a végfokokat a hálózatra k�
 %----------------------------------------------------------------------------
 A végfokrendszer fő vezérlő protokollja miatt szükség lesz még egy CAT5E alapú
 összeköttetésre, ami az egyes végfokokat köti össze egy hálózatba a switcheken keresztül. (VU-NET protokoll)
-Minden egyes végfokrackben két MikroTik 24 portos switch lesz. Az egyik switch a Dante elsődleges hálózatát fogja kizárólag kezelni.
+Minden egyes végfokrackben két MikroTik 24 portos switch lesz. 
+Ezekre az eszközökre készítettem egy unified konfigurációt, amely minden olyan felesleges biztonsági
+beállítást kikapcsol, amelyekre egy normál internetes hálózatban szükség lenne, de egy zárt hálózatban ahol kizárólag
+a Dante eszközök kommunikálnak egymással, ezek a beállítások csak felesleges terhelést jelentenének a hálózaton.
+Valamint amennyiben még több eszközt szeretnénk a hálózatra kötni, akkor a switchek gyorsan üzembe helyezhetőek,
+mivel a konfiguráció már előre elkészítve, csak fel kell tölteni a beállításokat, valamint firmware-t egyeztetni.
+%----------------------------------------------------------------------------
+Az egyik switch a Dante elsődleges hálózatát fogja kizárólag kezelni.
 A másik switch a Dante másodlagos hálózatát, és a VU-NET hálózatot fogja kezelni.
-Ez a két alhálózat VLAN szegmensekkel lesz elkülönítve, hogy a hálózat biztonságos és stabil legyen.
+Ez a két alhálózat VLAN szegmensekbe lesz elkülönítve, hogy a hálózat biztosan stabil legyen, ne fordulhassanak elő csomagütközések.
 A rendszer kábelezése egyedileg készített Neutrik EtherCon csatlakozóval ellátott CAT5E és CAT6A kábelekből fog állni.
 A kábelek készítésekor a T568B szabvány szerinti kábelrendezést alkalmazom, mivel a T568B jobb átviteli
 teljesítményt és interferencia védelmet nyújt a hosszú távú használat során.
@@ -58,19 +70,40 @@ A csatlakozók felhelyezésekor a szabványnak megfelelően járok el, millimét
 a lehető legjobb minőségűek legyenek. Ez a CAT6A kábeleknél különösen fontos, mivel a CAT6A kábelek
 még nagyobb frekvencia tartományban képesek adatokat továbbítani, mint a CAT5E kábelek,
 ezért jobban érzékenyek a külső interferenciákra.
-Tehát összefoglalva három egymástól teljesen elkülönített hálózatot fogunk kiépíteni a rendszer kiszolgálására.
+A végfokokból egy egyedi patch panel segítségével vezetjük ki a végpontokat, hogy ne az eszköz saját csatlakozóját
+degradáljuk a sokszori csatlakoztatás során, hanem a patch panelen lévőt, melyet amennyiben szükséges könnyen cserélhetünk.
+Valamint az eszközön lévő csatlakozó egy szabványos RJ45 csatlakozó nem pedig egy Neutrik EtherCon csatlakozó.
+Számunkra ez is fontos, mivel a Neutrik csatlakozók strapabíróbbak, és a kábelvégek is jobban védettek a sérülésektől,
+és nehezen vagy egyáltalán nem lehet véletlenül kihúzni a csatlakozót a helyéről.
+%----------------------------------------------------------------------------
+Az egyes végfokrackek összeköttetésért egy hibrid kábel lesz a felelős, amelyben négy darab CAT6A kábel van,
+mindegyik véget külön színkóddal látjuk el, annak érdekében, hogy gyorsan és egyértelműen tudjuk azonosítani a kábeleket,
+amikor egy adott helyszínen építjük össze a felszerelést, akár sok-sok óra munka után fáradtan.
+A zöld szín jelzi majd a Dante elsődleges hálózatot, a kék szín a Dante másodlagos hálózatot, a piros szín a VU-NET hálózatot,
+a fekete vég pedig egy tartalék kábel lesz, amennyiben valamelyik kábel megsérülne, vagy egyéb okból nem működne.
+Mivel az előbbiekben már említett 24 portos switcheket használjuk, ezért ha vendég vagy bérelt eszközöket szeretnénk a hálózatra kötni,
+akkor a switchekben található portokból ki tudjuk választani a megfelelő VLAN szegmenst, és a hozzá tartozó portokat,
+így szabványos RJ45 csatlakozóval ellátott kábeleket Ethercon nélkül is tudunk használni.
+Mindegyik rack hátuljában található még egy Wi-Fi router is, amely általában a VU-NET hálózatra kapcsolódik,
+így a teljes rendszer vezérlése Wi-Fi-n keresztül is lehetséges lesz.
+A Dante patch-et általában vezetékes módon fogjuk elkészíteni, de amennyiben készülékünk nem rendelkezik RJ45 csatlakozóval,
+ami sajnos manapság egyre gyakoribb, akkor a Wi-Fi router segítségével is tudjuk konfigurálni a shared mode bekapcsolásával 
+a Dante vezérlőben.
+%----------------------------------------------------------------------------
+Tehát összefoglalva három egymástól teljesen elkülönített hálózatot fogunk kiépíteni a rendszer kiszolgálására,
+a Dante elsődleges és másodlagos hálózatot, valamint a VU-NET hálózatot.
 
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth, keepaspectratio]{figures/live-analog.jpg}
-	\caption{Hagyományos analóg kábelezés \cite{APPLICATIONDIAGRAMSFORDANTESYSTEMS}}\label{fig:live-analog}
+	\caption{Példa hagyományos analóg kábelezésre \cite{APPLICATIONDIAGRAMSFORDANTESYSTEMS}}\label{fig:live-analog}
 \end{figure}
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth, keepaspectratio]{figures/live-dante.jpg}
-	\caption{Dante digitális kábelezés \cite{APPLICATIONDIAGRAMSFORDANTESYSTEMS}}\label{fig:live-dante}
+	\caption{Példa Dante digitális kábelezésre \cite{APPLICATIONDIAGRAMSFORDANTESYSTEMS}}\label{fig:live-dante}
 \end{figure}
 %----------------------------------------------------------------------------
 
