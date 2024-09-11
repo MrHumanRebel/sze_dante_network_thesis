@@ -285,8 +285,8 @@ Ha már a kiegyensúlyozott hangvisszaadásnál tartunk, akkor a \textit{``Resol
 konfigurációban szeretnénk használni a rendszert. A WPC szériás hangládákat tudjuk akár egyesével hajtani, azaz egy láda egy végfok csatorna
 párral (mivel Bi-Amp hangládáról beszélünk). De a gyártó lehetőséget biztosít arra is, hogy a ládákat párosával vagy hármasával is hajtsuk.
 Ennek költséghatékonysági és rugalmassági előnyei vannak, viszont a hangvisszaadás kevésbé lesz egyenletes. Jelen esetben 
-az arany középutat választottam, és párosával fogom hajtani a ládákat. Így a rendszer összesen 3 darab iK42 végfokot fog igényelni, ami 
-12 darab végfokcsatornát jelent. A WPC rendszer csak iK42 végfokkal hajtható, a 8 csatornás iK81 végfokkal nem kompatibilis.
+az arany középutat választottam, és párosával fogom hajtani a ládákat. Így a WPC rendszer összesen 4 darab iK42 végfokot fog igényelni, ami 
+16 darab végfokcsatornát jelent. A WPC rendszer csak iK42 végfokkal hajtható, a 8 csatornás iK81 végfokkal nem kompatibilis.
 Lehetőség van az optimalizációs algoritmus befolyásolására is, a három előbbiekben már definiált súlyozási tényezők segítségével.
 A fő hangsúlyt a \textit{``Target''} súlyozásra helyeztem, mivel a közönség területén szeretném a lehető legjobb hangvisszaadást elérni,
 ezért 60\%-os súlyozást adtam neki.
@@ -359,7 +359,7 @@ Már a kék színnel jelölt terület első pár méterén radikálisan csökken
 A gyártó a WMP rendszert végfog csatornák szempontjából úgy tervezte, hogy a költség és a rugalmasság szempontjából akár négyesével is hajthatóak legyenek.
 Ez persze nem jár kompromisszumok nélkül, a hangvisszaadás egyenletesebb lenne, ha egyesével hajtanánk a ládákat, de a jelenlegi rendszerben
 hármasával fogom hajtani a ládákat, mivel ez a legköltséghatékonyabb megoldás, és végeredményben így is kielégítő hangvisszaadást fog produkálni mint 
-kiegészítő egység.
+kiegészítő egység. A WPM-eket tudjuk egyesével is hajtani, mivel rendelkezésünkre áll 2 db iK81 végfok.
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
@@ -372,21 +372,44 @@ mentjük az elkészített tervet a WPC rendszerhez hasonlóan.
 %----------------------------------------------------------------------------
 \subsubsection{Martin Audio VU-NET rendszer szoftver \cite{VUNETUSERGUIDE}}
 %----------------------------------------------------------------------------
-Miután már rendelkezünk az összes számunkra szükséges tervezett rendszerrel a rendezvényhez, a következő lépések a VU-NET szoftverben történnek.
+Miután már rendelkezünk az összes számunkra szükséges rendszer patch fájljával,
+el tudjuk kezdeni felütni a végfokparkot amelyek a hangszórókat fogják hajtani.
+Tehát a következő lépések a VU-NET szoftverben történnek a végfokok beállításával.
 A VU-NET szoftver egy olyan alkalmazás, amely lehetővé teszi a Martin Audio hangrendszerek teljes körű vezérlését és monitorozását.
-Jelen esetben az iK42 és iK81 típusú végfokokat fogjuk tudni kezelni. 
-
-
-
-
-
-
-%IDEJÖNA VUNET!!!!
-
-
-
-
-
+Jelen esetben az iK42 és iK81 típusú eszközöket fogjuk tudni kezelni.
+Rendszerünk ha mindent összeszámolunk, akkor 8 darab iK42 és 2 darab iK81 végfokot fog tartalmazni.
+Ebből 4 db iK42 a WPC LineArray rendszert, 2 db iK81 a WPM LineArrayt, 3 db iK42
+az SX218 mélyládákat, és 1 db iK42 a FrontFill hangfalakat (XD12) fogja hajtani.
+Az alábbi képen látható az a felület ahol bele kell tölteni a preseteket az egyes erősítőkbe külön-külön.
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth, keepaspectratio]{figures/vunet_systemdiagram_overall.png}
+	\caption{VU-NET rendszer áttekintő diagram}\label{fig:vunet_systemdiagram_overall}
+\end{figure}
+%----------------------------------------------------------------------------
+Így már szépen látható, hogy a rendszerünk hogyan fog kinézni, és melyik végfok melyik csatornán mit fog hajtani.
+Ez kábelezés és rendszerstruktúra szempontjából is nagyon fontos információ, mivel kizárólag a megfelelő helyre
+kötött hangládákkal fog megszólalni helyesen a rendszer. Ezen felül ha valamit rossz helyre kábelezünk le, tegyük fel egy
+mélyládát hajtó végfokra egy Line Array modult, akkor a benne lévő hangszórók nagy valószínűséggel tönkremennek ha terhelés alá kerülnek.
+Tehát fontos az precíz és átgondolt munkavégzés. A hibák elkerülése után is hasznos számunkra a rendszer áttekintő diagram,
+mivel ha valami nem működik a rendszerben, akkor könnyen és gyorsan megtalálhatjuk a hibát, és azonosíthatjuk a hibás komponenst.
+Miután sikeresen betöltöttük az összes presetet amire szükségünk van, be kell állítanunk, hogy az erősítők milyen forrásból
+fognak jelet kapni. A következő lépésben a routing fülön be kell állítanunk, hogy az input csatorna Dante hálózatról fogja kapni a jelet.
+Ez a beállítás a következőképpen néz ki:
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth, keepaspectratio]{figures/vunet_routing_dante.png}
+	\caption{VU-NET Dante routing}\label{fig:vunet_routing_dante}
+\end{figure}
+%----------------------------------------------------------------------------
+Most, hogy a megfelelő alapbeállításokat elvégeztük, a rendszer készen áll arra, hogy zajjal, például
+Pink Noise-al teszteljük. Ezalatt a rendszer minden egyes komponensét külön-külön lehallgatjuk, és ellenőrizzük,
+hogy minden egyes hangszóró megfelelően működik-e. Ha rendellenességet észlelünk, akkor azonnal kikapcsoljuk a rendszert,
+és megnézzük, hogy mi okozza a problémát. Ha a probléma nem oldható meg, akkor a rendszert nem szabad tovább használni,
+és az adott komponenst cserélni kell. Ha minden rendben van, akkor a rendszer készen áll a további feladatokra, mivel
+még koránt sem értünk a végére a folyamatnak.
 %----------------------------------------------------------------------------
 \subsubsection{Mélyláda rendszer}
 %----------------------------------------------------------------------------
