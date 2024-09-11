@@ -89,6 +89,9 @@ Mindegyik rack hátuljában található még egy Wi-Fi router is, amely általá
 A Dante patch-et általában vezetékes módon fogjuk elkészíteni, de amennyiben készülékünk nem rendelkezik RJ45 csatlakozóval,
 ami sajnos manapság egyre gyakoribb, akkor a Wi-Fi router segítségével is tudjuk konfigurálni a shared mode bekapcsolásával 
 a Dante vezérlőben.
+Az FOH (Front of House) pultot szintén egy hibrid kábel fogja összekötni a végfokrackekkel, amelyben viszont
+már csak két darab CAT5E, két darab DMX és egy darab 230V-os tápkábel lesz. Ezzel a megoldással időt és helyet spórolunk,
+az építésnél, mivel nem kell külön-külön vezetékeket kihúzni, elég egy kábelt, amelyben minden szükséges vezeték benne van.
 %----------------------------------------------------------------------------
 Tehát összefoglalva három egymástól teljesen elkülönített hálózatot fogunk kiépíteni a rendszer kiszolgálására,
 a Dante elsődleges és másodlagos hálózatot, valamint a VU-NET hálózatot.
@@ -405,6 +408,9 @@ mentjük az elkészített tervet a WPC rendszerhez hasonlóan.
 %----------------------------------------------------------------------------
 \subsubsection{Martin Audio VU-NET rendszer szoftver \cite{VUNETUSERGUIDE}}
 %----------------------------------------------------------------------------
+Első és legfontosabb feladatunk, hogy az összes végfoknak egyedi IP címet adjunk a hálózaton.
+Enélkül a rendszerünk használhatatlan lesz, mivel a VU-NET szoftver nem fog tudni kommunikálni a végfokokkal.
+Ezután győződjünk meg, hogy számítógépünk ugyan abban az alhálózatban és cím tartományban van mint a többi eszköz.
 Miután már rendelkezünk az összes számunkra szükséges rendszer patch fájljával,
 el tudjuk kezdeni felütni a végfokparkot amelyek a hangszórókat fogják hajtani.
 Tehát a következő lépések a VU-NET szoftverben történnek a végfokok beállításával.
@@ -413,6 +419,10 @@ Jelen esetben az iK42 és iK81 típusú eszközöket fogjuk tudni kezelni.
 Rendszerünk ha mindent összeszámolunk, akkor 8 darab iK42 és 2 darab iK81 végfokot fog tartalmazni.
 Ebből 4 db iK42 a WPC LineArray rendszert, 2 db iK81 a WPM LineArrayt, 3 db iK42
 az SX218 mélyládákat, és 1 db iK42 a FrontFill hangfalakat (XD12) fogja hajtani.
+A Discover Devices gombra kattintva a szoftver megkeresi az összes végfokot a hálózaton, és megjeleníti azokat a
+cím szerint növekvő sorrendben. Szinkronizáció után szabadon vezérelhetővé válnak az eszközök.
+Egy kiválasztott eszközre jobb egérgombbal kattintva megjelenik egy menü, ahol az Open Preset Manager opcióra kattintva
+betölthetjük az előre elkészített és gyári preseteket.
 Az alábbi képen látható az a felület ahol bele kell tölteni a preseteket az egyes erősítőkbe külön-külön.
 %----------------------------------------------------------------------------
 \begin{figure}[H]
