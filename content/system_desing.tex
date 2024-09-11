@@ -452,9 +452,109 @@ Pink Noise-al teszteljük. Ezalatt a rendszer minden egyes komponensét külön-
 hogy minden egyes hangszóró megfelelően működik-e. Ha rendellenességet észlelünk, akkor azonnal kikapcsoljuk a rendszert,
 és megnézzük, hogy mi okozza a problémát. Ha a probléma nem oldható meg, akkor a rendszert nem szabad tovább használni,
 és az adott komponenst cserélni kell. Ha minden rendben van, akkor a rendszer készen áll a további feladatokra, mivel
-még koránt sem értünk a végére a folyamatnak.
+még koránt sem értünk a végére a folyamatnak. A programba a mérési és optimalizálási folyamat közben még sok beállítást kell
+elvégezni, amelyekről a későbbiekben lesz szó.
 %----------------------------------------------------------------------------
-\subsubsection{Mélyláda rendszer}
+\subsection{Dante hálózat kialakítása és optimalizálása}
+%----------------------------------------------------------------------------
+\subsubsection{Dante Controller}
+%---------------------------------------------------------------------------- 
+% Hálózati mátrix
+%----------------------------------------------------------------------------
+Ezen a felületen tudjuk a hálózaton összekapcsolni a különböző hang vevőket és
+adókat. Egy nagyobb rendszerben a konfigurálása rendkívül nagy odafigyelést és
+precíziót igényel, pontosan tudnunk kell mit, hogyan és miért kötünk össze.
+%----------------------------------------------------------------------------
+% Eszköz nézet
+%----------------------------------------------------------------------------
+Mielőtt neki állnánk konfigurálni az adott eszközt, fontos eldöntenünk, hogy
+milyen módban szeretnénk használni.
+Lehetőségünk van két fő mód közül választani, a redundáns és a
+váltott mód közül. A \textit{``redundant''} mód mint ahogy azt a neve is sugallja
+redundáns kommunikációt valósít meg az eszközök között szoftveresen és
+hardveresen egyaránt. Az összes Dante kártya a jelenlegi rendszerben gyári konfigurációban két RJ45-s
+csatlakozóval rendelkezik. Jelen esetben ezt a módot választjuk az
+üzembiztosság és a kritikus hibák minimalizálása miatt.
+A másik lehetőség a \textit{``switched''} pedig eszközök láncolását
+teszi egyszerűbbé. Amennyiben a redundancia nem elsődleges szempont számunkra, nem kell
+minden egyes eszköz mögé switch, hanem a másodlagos RJ45 port direktbe köti
+az arra csatlakoztatott eszközt az elsődleges hálózatra. Így gyorsabban és
+költséghatékonyabban tudjuk kiépíteni a hálózatot, azonban a redundancia lehetősége megszűnik.
+%----------------------------------------------------------------------------
+\subsubsection{IP kiosztás}
+%----------------------------------------------------------------------------
+A rendszer képes automatikusan IP címeket osztani az egyes eszközöknek,
+ezzel meggyorsítva a munkafolyamatot. Viszont ez nem bizonyul jó megoldásnak.
+Egy fixen előre megtervezett rendszer praktikusabb és
+üzembiztosabb megoldás, ha minden eszköznek manuálisan mi adjuk meg a címét a
+hálózaton. A tervezett rendszerben minden egyes eszköznek fix IP címet adtam,
+hogy könnyen és logikusan átlátható legyen az előbb említett előnyökön kívül.
+A címeket egy online is elérhető Excel táblázatban tároltam, hogy amennyiben szükség van rá
+bármikor könnyen elérhető legyen. Ez a táblázat a cégnél dolgozó összes munkatárs számára látható,
+aki a rendszerrel foglalkozik. Így amennyiben új eszköz kerül a hálózatra, vagy egy eszköz IP címét
+valamilyen okból meg kell változtatni, egyszerűen elérhető a szükséges naprakész információ.
+A kiosztás logikája a következőképpen néz ki:
+A Dante Primary hálózat a 192.168.1.X címeket használja, a Secondary hálózat
+pedig a 192.168.2.X címeket. A két hálózat között nincsen semmilyen kapcsolat, és egymástól teljesen függetlenek hardveresen és szoftveresen is.
+A Vu-Net vezérlés a 192.168.100.X címeket használja, és egy switchen keresztül üzemel a secondary hálózaton, viszont a két hálózat között nincsen
+átfedés, az előbbiekben már említett módon függetlenek egymástól.
+Az eszközök egyedi címei pedig az alábbi módon kerültek kiosztásra:
+Vegyük példának a 192.168.1.111-es címet, a 111-ben az első számjegy arra utal, hogy egy végfokról van szó, minden végfok
+1XX címet kap. A második számjegy az eszköz rack száma, a harmadik pedig az eszköz sorszáma a rackben felülről lefelé.
+Tehát az előbbi cím a következőt jelenti számunkra: Az 1-es sorszámú végfokrackben lévő legfelső végfok.
+A keverőpultok a címezés elején 1-től indulva 20-ig kapnak címeket. A stageboxok 30-tól 50-ig kapnak címeket.
+Ezeken felül a háló legvégére vannak kiosztva a speciális eszközök melyek nem mindig vannak a rendszerben, de ha mégis
+akkor azoknak is megvan a saját címük.
+A háló 250-es címén helyezkedik el a Dante Audio szerver.
+
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth, keepaspectratio]{figures/dante_ips.png}
+	\caption{Dante eszközök IP címei a hálózaton}\label{fig:dante_ips}
+\end{figure}
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+% Órajel nézet és késleltetés
+%----------------------------------------------------------------------------
+Meg kell adnunk az audio hálózatunk master órajelét. Ehhez az órajelhez
+szinkronizál a többi eszköz.
+Az időszinkronizáció kulcsfontosságú élőzenei produkcióknál.
+A mi esetünkben a keverőpult lesz a master órajel, ő fogja a hálózatot
+vezérelni. A felületen egyszerűen bepipáljuk a \textit{``Preferred leader''} opciót
+a keverőpult mellett, és a hálózat többi eszköze automatikusan ehhez az órajelhez szinkronizálódik.
+Az órajelen kívül a késleltetési értékeket is be kell állítanunk. A default érték minden eszköznél jelen esetben
+1 ms, mivel ennél az értéknél a legtöbb eszköz képes probléma nélkül működni. Ez az érték azonban
+nem minden esetben optimális, ezért fontos, hogy minden eszköz késleltetését ellenőrizzük és beállítsuk.
+Amennyiben problémákat, zavaró pattanásokat vagy hangkimaradásokat tapasztalunk, akkor a késleltetési értékeket
+növelni kell mindaddig, amíg a probléma nem szűnik meg. Fontos megjegyezni, hogy a késleltetési értékek
+növelésével egyre több és több időt vesz igénybe a jelek feldolgozása, előzenei produkcióknál ez kritikus.
+A mi esetünkben mivel az útválasztók is kifejezetten csak erre a célra vannak használva és semmiféle más
+adatforgalmat nem bonyolítanak, a 1 ms-os késleltetési érték csökkenthető is akár a felére is.
+Rövid kábelhosszak esetén egyes eszközök között akár 0.25 ms-os késleltetési értéket is beállíthatunk amennyiben
+hosszútávon nagy biztonsággal stabil a hálózat.
+%----------------------------------------------------------------------------
+\subsubsection{Dante rendszer monitorozása}
+%----------------------------------------------------------------------------
+
+
+
+%----------------------------------------------------------------------------
+% Hálózati állapot nézet
+%----------------------------------------------------------------------------
+
+
+
+%----------------------------------------------------------------------------
+% Események nézet
+%----------------------------------------------------------------------------
+
+
+
+
+
+%----------------------------------------------------------------------------
+\subsection{Mélyláda rendszer}
 %----------------------------------------------------------------------------
 A mélyláda hangja hosszabb hullámhosszú, mint a többi komponensé, ezért az
 optimális helymeghatározásuk és elhelyezésük kulcsfontosságú a megfelelő
@@ -551,106 +651,7 @@ A példában szereplő rendszer kifogástalanul képes elvégezni a feladatát, 
 %----------------------------------------------------------------------------
 
 
-
 % !!! Képernyőfotó a szerverről !!! Leírás a pluginokról, singnal chain, hogy működik stb, plusz késés, mérések ilyesmi
-
-
-
-%----------------------------------------------------------------------------
-\subsection{Dante hálózat kialakítása és optimalizálása}
-%----------------------------------------------------------------------------
-\subsubsection{Dante Controller}
-%---------------------------------------------------------------------------- 
-% Hálózati mátrix
-%----------------------------------------------------------------------------
-Ezen a felületen tudjuk a hálózaton összekapcsolni a különböző hang vevőket és
-adókat. Egy nagyobb rendszerben a konfigurálása rendkívül nagy odafigyelést és
-precíziót igényel, pontosan tudnunk kell mit, hogyan és miért kötünk össze.
-%----------------------------------------------------------------------------
-% Eszköz nézet
-%----------------------------------------------------------------------------
-Mielőtt neki állnánk konfigurálni az adott eszközt, fontos eldöntenünk, hogy
-milyen módban szeretnénk használni.
-Lehetőségünk van két fő mód közül választani, a redundáns és a
-váltott mód közül. A \textit{``redundant''} mód mint ahogy azt a neve is sugallja
-redundáns kommunikációt valósít meg az eszközök között szoftveresen és
-hardveresen egyaránt. Az összes Dante kártya a jelenlegi rendszerben gyári konfigurációban két RJ45-s
-csatlakozóval rendelkezik. Jelen esetben ezt a módot választjuk az
-üzembiztosság és a kritikus hibák minimalizálása miatt.
-A másik lehetőség a \textit{``switched''} pedig eszközök láncolását
-teszi egyszerűbbé. Amennyiben a redundancia nem elsődleges szempont számunkra, nem kell
-minden egyes eszköz mögé switch, hanem a másodlagos RJ45 port direktbe köti
-az arra csatlakoztatott eszközt az elsődleges hálózatra. Így gyorsabban és
-költséghatékonyabban tudjuk kiépíteni a hálózatot, azonban a redundancia lehetősége megszűnik.
-%----------------------------------------------------------------------------
-\subsubsection{IP kiosztás}
-%----------------------------------------------------------------------------
-A rendszer képes automatikusan IP címeket osztani az egyes eszközöknek,
-ezzel meggyorsítva a munkafolyamatot. Viszont ez nem bizonyul jó megoldásnak.
-Egy fixen előre megtervezett rendszer praktikusabb és
-üzembiztosabb megoldás, ha minden eszköznek manuálisan mi adjuk meg a címét a
-hálózaton. A tervezett rendszerben minden egyes eszköznek fix IP címet adtam,
-hogy könnyen és logikusan átlátható legyen az előbb említett előnyökön kívül.
-A címeket egy online is elérhető Excel táblázatban tároltam, hogy amennyiben szükség van rá
-bármikor könnyen elérhető legyen. Ez a táblázat a cégnél dolgozó összes munkatárs számára látható,
-aki a rendszerrel foglalkozik. Így amennyiben új eszköz kerül a hálózatra, vagy egy eszköz IP címét
-valamilyen okból meg kell változtatni, egyszerűen elérhető a szükséges naprakész információ.
-A kiosztás logikája a következőképpen néz ki:
-A Dante Primary hálózat a 192.168.1.X címeket használja, a Secondary hálózat
-pedig a 192.168.2.X címeket. A két hálózat között nincsen semmilyen kapcsolat, és egymástól teljesen függetlenek hardveresen és szoftveresen is.
-A Vu-Net vezérlés a 192.168.100.X címeket használja, és egy switchen keresztül üzemel a secondary hálózaton, viszont a két hálózat között nincsen
-átfedés, az előbbiekben már említett módon függetlenek egymástól.
-Az eszközök egyedi címei pedig az alábbi módon kerültek kiosztásra:
-Vegyük példának a 192.168.1.111-es címet, a 111-ben az első számjegy arra utal, hogy egy végfokról van szó, minden végfok
-1XX címet kap. A második számjegy az eszköz rack száma, a harmadik pedig az eszköz sorszáma a rackben felülről lefelé.
-Tehát az előbbi cím a következőt jelenti számunkra: Az 1-es sorszámú végfokrackben lévő legfelső végfok.
-A keverőpultok a címezés elején 1-től indulva 20-ig kapnak címeket. A stageboxok 30-tól 50-ig kapnak címeket.
-Ezeken felül a háló legvégére vannak kiosztva a speciális eszközök melyek nem mindig vannak a rendszerben, de ha mégis
-akkor azoknak is megvan a saját címük.
-A háló 250-es címén helyezkedik el a Dante Audio szerver.
-
-%----------------------------------------------------------------------------
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth, keepaspectratio]{figures/dante_ips.png}
-	\caption{Dante eszközök IP címei a hálózaton}\label{fig:dante_ips}
-\end{figure}
-%----------------------------------------------------------------------------
-%----------------------------------------------------------------------------
-% Órajel nézet és késleltetés
-%----------------------------------------------------------------------------
-Meg kell adnunk az audio hálózatunk master órajelét. Ehhez az órajelhez
-szinkronizál a többi eszköz.
-Az időszinkronizáció kulcsfontosságú élőzenei produkcióknál.
-A mi esetünkben a keverőpult lesz a master órajel, ő fogja a hálózatot
-vezérelni. A felületen egyszerűen bepipáljuk a \textit{``Preferred leader''} opciót
-a keverőpult mellett, és a hálózat többi eszköze automatikusan ehhez az órajelhez szinkronizálódik.
-Az órajelen kívül a késleltetési értékeket is be kell állítanunk. A default érték minden eszköznél jelen esetben
-1 ms, mivel ennél az értéknél a legtöbb eszköz képes probléma nélkül működni. Ez az érték azonban
-nem minden esetben optimális, ezért fontos, hogy minden eszköz késleltetését ellenőrizzük és beállítsuk.
-Amennyiben problémákat, zavaró pattanásokat vagy hangkimaradásokat tapasztalunk, akkor a késleltetési értékeket
-növelni kell mindaddig, amíg a probléma nem szűnik meg. Fontos megjegyezni, hogy a késleltetési értékek
-növelésével egyre több és több időt vesz igénybe a jelek feldolgozása, előzenei produkcióknál ez kritikus.
-A mi esetünkben mivel az útválasztók is kifejezetten csak erre a célra vannak használva és semmiféle más
-adatforgalmat nem bonyolítanak, a 1 ms-os késleltetési érték csökkenthető is akár a felére is.
-Rövid kábelhosszak esetén egyes eszközök között akár 0.25 ms-os késleltetési értéket is beállíthatunk amennyiben
-hosszútávon nagy biztonsággal stabil a hálózat.
-%----------------------------------------------------------------------------
-\subsection{Dante rendszer monitorozása}
-%----------------------------------------------------------------------------
-
-
-
-%----------------------------------------------------------------------------
-% Hálózati állapot nézet
-%----------------------------------------------------------------------------
-
-
-
-%----------------------------------------------------------------------------
-% Események nézet
-%----------------------------------------------------------------------------
-
 
 
 %----------------------------------------------------------------------------
