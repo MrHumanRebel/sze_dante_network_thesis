@@ -219,24 +219,25 @@ Az IP küldők és fogadók szinkronizációja az alacsony késleltetéssel val�
 A hagyományos audio technológiákban az eszközöket vagy külön \textit{word clock} kapcsolattal, 
 vagy szinkronizált audio formátumokkal, például AES/EBU vagy MADI segítségével szinkronizálták.
 
-A fogadók közvetlenül képesek voltak azokból az formátumokból frekvenciájukat és fázisukat kinyerni,
+A fogadók közvetlenül képesek frekvenciájukat és fázisukat kinyerni,
 mivel valamiféle \textit{impulzust} biztosítottak, ami jelzi a pillanatot, amikor egy
-audio minta létrejön vagy lejátszódik, például analóg-digitális konverterek esetében.
+audio minta létrejön vagy lejátszódik, például analóg-digitális konverterek esetében is.
 Az PTP csomagok kicsik és nem tartják fel a forgalmat sokáig, de fontos, hogy a
-kapcsolókban a lehető legmagasabb prioritással továbbítsák őket. 
-Ez végül növelni fogja a szinkronizáció pontosságát. 
+kapcsolókban a lehető legmagasabb prioritással továbbítsuk őket. 
+Ez végül növelni fogja a szinkronizáció pontosságát, így a késleltetési eltérések minimalizálódnak.
 
 A QoS (Quality of service) keretein belül a PTP csomagokat még a hangnál is magasabb prioritással kell
-kezelni. Az összes hálózati eszközt ugyanazon naptári időpontra szinkronizálják a Precision Time Protocol
-(PTP) segítségével. Ennek az időnek a kiindulása egy olyan eszköz, amelyet óraleadernek
+kezelni. Az összes hálózati eszköz ugyanazon naptári időpontra szinkronizálódik a Precision Time Protocol
+(PTP) segítségével. Ennek az időnek a vezérlője egy olyan eszköz, amelyet óraleadernek
 neveznek, míg az ehhez igazodó eszközöket óra követőknek hívják. 
 
-Minden eszköznek meg kell hozzá generálnia a kívánt hagyományos órát, amelyet a PTP-n keresztül kapott
+Minden eszköznek meg le kell hozzá generálnia a hagyományos helyi órát is, amelyet a PTP-n keresztül kapott
 abszolút időből származtat. Ez a belső óra a \textit{médiaóra}. 
 Ha a gyártó megfelelően implementálja, minden eszköz médiaórájának pontosan ugyan annyinak kell lennie a
 frekvencia és fázis terén. A magas pontosság technikailag elérhető, de kihívást
-jelent az audio gyártók számára. Ezért a PTP szinkronizált eszközök közötti
-fázispontosság minőségtől függően változhat. Elfogadható változásnak tekinthető ha az kisebb mint <1 µs, azaz 1 mikroszekundum.
+jelent a gyártók számára. Ezért a PTP szinkronizált eszközök közötti
+fázispontosság minőségtől és árkategóriától függően változhat. Elfogadható változásnak tekinthető ha az
+eltérés kisebb mint <1 µs, azaz 1 mikroszekundum.
 
 Mivel az IT hálózatok nem eléggé determinisztikusak a csomag kézbesítésének időpontját
 illetően, a készülékek pontos szinkronizációja kifinomult megközelítést igényel.
@@ -246,26 +247,27 @@ A PTP követők fő feladata két hatás kompenzálása, amelyek bármilyen hál
 %----------------------------------------------------------------------------
 A PTP vezető által a szinkronizációs üzenetekben megadott jelenlegi időt az összes követőnek egy jól ismert multicast
 cím (224.0.1.129) használatával mutatják be. 
-A hálózat és a kapcsolók sorai természetükből adódóan ez az információ nem mindig érkezik meg állandó
+A hálózat és a kapcsolók természetéből adódóan ez az információ nem mindig érkezik meg tökéletes állandó
 késleltetéssel a vevő számára. 
 Ez a változás a csomag jitter vagy csomag késleltetési változás (PDV) néven ismert effektus,
 ezt az elváltozást minden PTP követőnek kompenzálnia kell. 
 Általában az audio hálózatok 1--8 üzenet/mp szinkronizálási arányt
-használnak. (A 8-as maximális érték csak kompatibilitás érdekében javasolt)
+használnak. A 8-as maximális érték csak kompatibilitás érdekében javasolt, egy ilyen
+magas szinkronizálási arány nem szükséges a legtöbb alkalmazásban.
 %----------------------------------------------------------------------------
 \subsubsection{Késleltetés mérése}
 %----------------------------------------------------------------------------
 A követő második kulcsfontosságú feladata a vezető és a követő közötti
 csomagkésleltetés mérése a vezető által szinkronizációs üzenetekben kapott
-idő kijavításához. Ehhez szükség van arra az időmérésre, amelyek azt mutatja meg számunkra,
+idő kijavításához. Ehhez szükség van arra az időmérésre, amely azt mutatja meg számunkra,
 hogy a hálózati út során mennyi időbe telik egy csomag átvitele.
-Ez a mérés magában foglalja az összes közöttük lévő
-összetevő késleltetését, beleértve a kábeleket és kapcsolókat is. 
-A vezető és a követő közötti kábelhossz és a kapcsolók száma nem számít, csak a végső érték.
+Ez a mérés magába foglalja az összes közöttük lévő
+eszköz késleltetését, beleértve a kábeleket és kapcsolókat is. 
+A vezető és a követő közötti kábelhossz és a kapcsolók száma nem számít, csakis kizárólag a végső érték.
 A PTP időnek az összes követő között ugyanannak kell lennie nanoszekundum pontossággal.
 
 Az egyetlen feltétel a PTP számára, hogy a késleltetés mindkét irányban, a vezetőtől a
-követőig és fordítva, állandó és szimmetrikus maradjon.
+követőig, állandó és szimmetrikus maradjon.
 A késleltetést a követő két üzenet cseréjével méri, a késleltetési kérésből és a késleltetési válaszból következően.
 Ezt a késleltetést általában a szinkronizálási aránnyal azonos gyakorisággal hajtják végre, 
 azaz az előbbiekben már említett 1 és 8 alkalom között.
@@ -275,14 +277,14 @@ az időt az összes követőnek, a szabvány szabályokat hozott létre a vezet�
 kiválasztásához. Ezt a szabályt a Best Master Clock Algorithm (BMCA), vagyis a
 Legjobb Mesteróra Algoritmusnak nevezik. 
 
-Minden vezetőképes eszköz küldhet bejelentő üzeneteket a prioritásairól (amelyeket a felhasználó állít be),
+Minden vezetőképes eszköz küldhet bejelentő üzeneteket a prioritásairól (amelyeket a felhasználó állíthat be),
 valamint az oszcillátor pontosságáról. Ezenkívül figyelnie kell más eszközöket,
 amelyek szintén elküldhetik saját bejelentő üzeneteiket. 
 Ha más bejövő üzenetek jobb minőséget jelentenek, az eszköz leállítja a vezetőként való bejelentkezését.
 Ellenkező esetben rendszeresen küldi saját üzeneteit, mintegy \textit{szívverésként},
 és ezzel jelezve minden másik eszköznek az aktív állapotát. 
 
-Ezeket az üzeneteket az announce intervallumnak nevezett időközönként küldik el. 
+Ezeket az üzeneteket az \textit{announce intervallumnak} nevezett időközönként küldik el. 
 A bejelentő üzenetek szolgálnak \textit{szívverésként} is, hogy mások tudják, a jelenlegi mester még működőképes.
 Ha a kapcsolat megszakad, az összes egység vár egy bizonyos időt (bejelentő időtúllépés),
 amíg elküldik bejelentő üzeneteiket, majd megismétlik a kiválasztási folyamatot. 
@@ -292,7 +294,7 @@ A bejelentő üzenetekben megadott minőség két értéket tartalmaz, amelyeket
 Mindkettő értéke 0 és 255 között változhat, ahol a 0 érték a legjobb és legyőzi a többieket.
 Ha egy prioritás 1 érték kisebb egy eszközön, mint más eszközökön,
 akkor az lesz a vezető. A prioritás 2 alatti érték csak akkor releváns, ha
-minden előző érték, beleértve a prioritás 1-et is, több eszközön ugyanaz. 
+minden előző érték, beleértve a prioritás 1-et is, több eszközön is ugyanaz. 
 Ez előfordulhat két azonos típusú eszköz telepítéseknél, amelyeknek a felhasználó
 azonos értéket állított be a prioritás 1-hez. Ebben az esetben a prioritás 2
 határozza meg, hogy melyik lesz a fő vezető, és melyik a tartalék. 
@@ -312,7 +314,7 @@ megfelelő mintavételi frekvencia és bitmélység meghatározása.
 Ezek a paraméterek alapvetően befolyásolják az audio minőségét és a hálózati teljesítményt.
 Fontos figyelembe venni az átviteli kapacitást, valamint az egyes eszközök maximális mintavételi frekvenciáját és bitmélységét.
 Amennyiben a hálózat nem képes a megfelelő sávszélesség biztosítására, a hálózatunk instabillá válhat, 
-hangkimaradások és megszakadások, legrosszabb esetben a hálózat összeomlása is előfordulhat.
+hangkimaradások és megszakadások, legrosszabb esetben a hálózat teljes összeomlása is előfordulhat.
 A gyakran alkalmazott 48 kHz-es mintavételi frekvencia széles hangsávot biztosít, és kompatibilis a legtöbb
 professzionális hangtechnikai alkalmazással. 
 Nemrégiben kezdett el jobban elterjedni szélesebb körben is a 96 kHz-es mintavételi frekvencia, ami
@@ -333,23 +335,23 @@ akkor a sávszélességünk a következő lesz:
 	96000 * 24 * 64 * 2 = 294912000 bit/s = 294,912 Mbit/s (\text{nyers adatfolyam})
 \end{equation}
 %----------------------------------------------------------------------------
-A hálózatunkat nem centizhetjük ki, mindig kell egy bizonyos tartalékot hagyni a hálózatban. A korábbiakban már említett
-legalább 30 százalékos túlméretezést érdemes alkalmazni nem csak elméletben hanem gyakorlatban is. 
+A hálózatunkat nem centizhetjük ki, mindig kell egy bizonyos tartalékot hagyni a hálózatban. A korábbiakban már említett módon,
+jelen esetben javasolt egy legalább 30 százalékos túlméretezést alkalmazni nem csak elméletben hanem gyakorlatban is. 
 Tehát a fenti példában a sávszélességünk a következő lesz:
 %----------------------------------------------------------------------------
 \begin{equation}
 	\label{eq:teljes-sávszélesség}
-	294912000 bit/s * 1.3 = 383385600 bit/s = 383,3856 Mbit/s (\text{teljes sávszélesség})
+	96000 * 24 * 64 * 2 * 1.3 = 383385600 bit/s = 383,3856 Mbit/s (\text{teljes sávszélesség tartalékkal együtt})
 \end{equation}
 %----------------------------------------------------------------------------
 A számítások alapján egy átlagos 1 Gbit/s (1 Gbit/s = 1000 Mbit/s) sávszélességű hálózaton ez a rendszer már megfelelően működhet.
 A bitmélység a hangsáv digitális reprezentációját határozza meg, és az adatok pontosságát befolyásolja.
 Általában 16 vagy 24 bitmélységű rendszerek használatosak az audio over IP területén, de a Dante rendszerek a 
 32 bites bitmélységet is támogatják. A 16 bites reprezentáció megfelelő lehet olyan alkalmazásokhoz, ahol a nagy
-dinamikatartomány nem kritikus. Ugyanakkor a 24 bites felbontás lehetőséget nyújt a pontosabb és részletesebb hangátvitelhez,
+dinamikatartomány nem kritikus. A 24 bites felbontás lehetőséget nyújt a pontosabb és részletesebb hangátvitelhez,
 általában zenei stúdiókban és élőzenei környezetekben. 
-A 32 bites bitmélység a legmagasabb minőséget biztosítja, de a sokkal nagyobb sávszélesség igénye miatt elsősorban csak
-a kiemelten professzionális stúdiókban használják, de általában a 24 bites bitmélységű rendszerek is tökéletesen megfelelnek.
+Végül a 32 bites bitmélység a legmagasabb jelenleg elérhető minőséget biztosítja, de a sokkal nagyobb sávszélesség igénye miatt elsősorban csak
+a kiemelten professzionális stúdiókban limitáltan használják, de általában a 24 bites bitmélységű rendszerek is tökéletesen megfelelnek.
 %----------------------------------------------------------------------------
 \subsection{Késleltetés}
 %----------------------------------------------------------------------------
@@ -364,15 +366,15 @@ Ezt követi a hálózaton történő utazás ideje az összes kapcsolóval, miel
     \item Fogadási puffer
 \end{enumerate}
 %----------------------------------------------------------------------------
-A gyakorlatban a link offset technikai kifejezés egyenlő a késleltetés fogalmával.
-A felhasználó felelőssége, hogy olyan link offsetet válasszon, amely elég hosszú, hogy a fogadó puffer soha ne ürüljön ki, és
-ezáltal soha ne történjen meg a hang megszakítása. 
+A gyakorlatban a \textit{link offset} technikai kifejezés egyenlő a késleltetés fogalmával.
+A felhasználó felelőssége, hogy olyan \textit{link offsetet} válasszon, amely elég hosszú, hogy a fogadó puffer soha ne ürüljön ki, és
+ezáltal soha ne szakadjon meg a folyamatos hangátvitel. 
 %----------------------------------------------------------------------------
 \subsection{IP címek és maszkok}
 %----------------------------------------------------------------------------
 Egy hálózaton belül minden eszköznek egyedi címre van szüksége annak érdekében,
-hogy a csomagok sikeresen elérjék céljukat és elkerüljük a csomagok ütközését.
-Egy ilyen cím lehet hardverrel kapcsolatos (MAC-cím) vagy konfigurálható cím (IP-cím).
+hogy a csomagok sikeresen elérjék céljukat és elkerüljük a csomagok ütközését egymással.
+Egy ilyen cím lehet kifejezetten a hardverrel kapcsolatos (MAC-cím) vagy egy konfigurálható cím (IP-cím).
 %----------------------------------------------------------------------------
 \section{IP-cím hozzárendelési módszerek}
 %----------------------------------------------------------------------------
@@ -400,10 +402,7 @@ Az IP-címeket háromféleképpen lehet hozzárendelni egy eszközhöz:
 \end{itemize}
 %----------------------------------------------------------------------------
 Egy adott eszköz IP-címéről való információ beszerzése alapvetően kissé nehéz lehet,
-ha az nem jelenik meg egy kijelzőn. 
-Szoftveres eszközök elérhetők az eszközök jelenlétének szkennelésére IP-cím-tartományokban,
-de az IT osztályok gyakran tiltják az ilyen eszközök használatát.
-
+ha az nem jelenik meg egy kijelzőn vagy egy konfigurációs felületen.
 Azonosítani, hogy két IP-cím ugyanabba az alhálózatba tartozik-e, nem lehetséges 
 a hozzájuk tartozó alhálózati maszkok ellenőrzése nélkül.
 Ha egy csomag cél-IP-címe nem ugyanabban az alhálózatban van,
@@ -488,7 +487,7 @@ Az egyik népszerű példa a 2. rétegű hálózatokra a már említett TSN/Mila
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=150mm, keepaspectratio]{figures/osi_modell.jpg}
+	\includegraphics[width=100mm, keepaspectratio]{figures/osi_modell.jpg}
 	\caption{Az OSI modell}
 	\label {fig:osi_modell}
 \end{figure}
