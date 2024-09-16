@@ -1,7 +1,7 @@
 %----------------------------------------------------------------------------
-\chapter{\AudioOverIp~\cite{AHNERT2023}}
+\chapter{\AudioOverIp}
 %----------------------------------------------------------------------------
-\section{Bevezetés az Audio over IP világába}
+\section{Bevezetés az Audio over IP világába~\cite{AHNERT2023}}
 %----------------------------------------------------------------------------
 A 90-es évek vége óta a szakmai hangipar elmozdult a pont-pont digitális
 átviteli formátumoktól mint az AES/EBU vagy a MADI az IP-alapú szabványok felé a példa kedvéért mint az AES67. 
@@ -318,7 +318,7 @@ A sávszélesség kiszámítása a következő képlettel történik:
 %----------------------------------------------------------------------------
 \begin{equation}
 	\label{eq:sávszélesség}
-	Sávszélesség igény = MintavételiFrekvencia * BitMélység * CsatornákSzáma
+	Sávszélesség igény = MintavételiFrekvencia \times BitMélység \times CsatornákSzáma
 \end{equation}
 %----------------------------------------------------------------------------
 Ezzel a formulával könnyen és gyorsan kiszámíthatjuk, hogy a rendszerünknek mekkora sávszélességre lesz szüksége.
@@ -327,7 +327,7 @@ akkor a sávszélességünk a következő lesz:
 %----------------------------------------------------------------------------
 \begin{equation}
 	\label{eq:sávszélesség}
-	96000 * 24 * 64 * 2 = 294912000 bit/s = 294,912 Mbit/s (\text{nyers adatfolyam})
+	96000 \times 24 \times 64 \times 2 = 294912000 bit/s = 294,912 Mbit/s
 \end{equation}
 %----------------------------------------------------------------------------
 A hálózatunkat nem centizhetjük ki, mindig kell egy bizonyos tartalékot hagyni a hálózatban. A korábbiakban már említett módon,
@@ -335,8 +335,8 @@ jelen esetben javasolt egy legalább 30 százalékos túlméretezést alkalmazni
 Tehát a fenti példában a sávszélességünk a következő lesz:
 %----------------------------------------------------------------------------
 \begin{equation}
-	\label{eq:teljes-sávszélesség}
-	96000 * 24 * 64 * 2 * 1.3 = 383385600 bit/s = 383,3856 Mbit/s (\text{teljes sávszélesség tartalékkal együtt})
+    \label{eq:teljes-sávszélesség}
+    96000 \times 24 \times 64 \times 2 \times 1.3 = 383385600 \text{ bit/s} = 383,3856 \text{ Mbit/s}
 \end{equation}
 %----------------------------------------------------------------------------
 A számítások alapján egy átlagos 1 Gbit/s (1 Gbit/s = 1000 Mbit/s) sávszélességű hálózaton ez a rendszer már megfelelően működhet.
@@ -371,7 +371,7 @@ Egy hálózaton belül minden eszköznek egyedi címre van szüksége annak érd
 hogy a csomagok sikeresen elérjék céljukat és elkerüljük a csomagok ütközését egymással.
 Egy ilyen cím lehet kifejezetten a hardverrel kapcsolatos (MAC-cím) vagy egy konfigurálható cím (IP-cím).
 %----------------------------------------------------------------------------
-\section{IP-cím hozzárendelési módszerek}
+\section{IP-cím hozzárendelési módszerek~\cite{AHNERT2023}}
 %----------------------------------------------------------------------------
 Az IP-címeket háromféleképpen lehet hozzárendelni egy eszközhöz:
 %----------------------------------------------------------------------------
@@ -669,7 +669,7 @@ Ezzel a hangkimaradás problémáját is meg lehet oldani, mivel a redundáns cs
 egyikének elvesztése esetén a másik csomagot használja a fogadó, így ez a procedúra
 észrevehetetlen a felhasználó számára.
 %----------------------------------------------------------------------------
-\section{AES67}
+\section{AES67~\cite{AHNERT2023}}
 %----------------------------------------------------------------------------
 Az AES67 szabvány szerint az összes eszköznek meg kell felelnie az
 alábbi minimális specifikációknak: 
@@ -694,7 +694,7 @@ alábbi minimális specifikációknak:
 A szabványban sok további paraméter és érték szerepel, de ezek nem szerepelnek a
 fent felsorolt minimális követelmények között.
 %----------------------------------------------------------------------------
-\section{Audinate Dante}
+\section{Audinate Dante~\cite{AHNERT2023}}
 %----------------------------------------------------------------------------
 \subsection{A cégről~\cite{AUDINATEHISTORY}} %https://www.audinate.com/company/history
 %----------------------------------------------------------------------------
