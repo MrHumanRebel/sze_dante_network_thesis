@@ -31,7 +31,7 @@ Mindkét végfok csúcskategóriás teljesítményt és hangminőséget nyújt, 
 erősítőknek köszönhetően rendkívül kis helyet foglalnak el a rack-ben miközben kiváló hatásfok
 mellett képesek nagy teljesítményt leadni. A két erősítő között két fundamentális különbség van,
 az iK42 négy kimeneti csatornával rendelkezik, 20.000 W teljesítmény leadása mellett. 
-Ezzel szemben az iK81 nyolc kimeneti csatornával rendelkezik, 10.000 W teljesítménnyel. \cite{IKONAMPUSEGUIDE}
+Ezzel szemben az iK81 nyolc kimeneti csatornával rendelkezik, 10.000 W teljesítménnyel.~\cite{IKONAMPUSEGUIDE}
 A végfokokat a Dante hálózaton keresztül fogjuk jellel ellátni, így a hagyományos analóg XLR, vagy AES kábelezés helyett
 két CAT5E kábellel (a redundancia miatt) tudjuk a végfokokat a hálózatra kötni. 
 %----------------------------------------------------------------------------
@@ -96,18 +96,18 @@ a Dante elsődleges és másodlagos hálózatot, valamint a VU-NET hálózatot.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth, keepaspectratio]{figures/live-analog.jpg}
-	\caption{Példa hagyományos analóg kábelezésre \cite{APPLICATIONDIAGRAMSFORDANTESYSTEMS}}\label{fig:live-analog}
+	\caption{Példa hagyományos analóg kábelezésre~\cite{APPLICATIONDIAGRAMSFORDANTESYSTEMS}}\label{fig:live-analog}
 \end{figure}
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth, keepaspectratio]{figures/live-dante.jpg}
-	\caption{Példa Dante digitális kábelezésre \cite{APPLICATIONDIAGRAMSFORDANTESYSTEMS}}\label{fig:live-dante}
+	\caption{Példa Dante digitális kábelezésre~\cite{APPLICATIONDIAGRAMSFORDANTESYSTEMS}}\label{fig:live-dante}
 \end{figure}
 %----------------------------------------------------------------------------
 \subsection{Martin Audio Wavefront Precision hangrendszer}
 %----------------------------------------------------------------------------
-\subsubsection{Martin Audio Display 2.3.4 b1 tervező szoftver \cite{DISPLAY23USERGUIDE}}
+\subsubsection{Martin Audio Display 2.3.4 b1 tervező szoftver~\cite{DISPLAY23USERGUIDE}}
 %----------------------------------------------------------------------------
 Mielőtt bele fognánk a tervezési folyamatba, fontos megemlíteni, hogy a szoftver
 eredetileg Intel alapú processzorokra lett tervezve és MatLab alapú. Ebből fakadóan
@@ -161,7 +161,7 @@ Első lépésben a fő hangrendszert tervezem meg, ami oldalanként (bal és job
 Ez a láda 2 darab 10"-os mélysugárzót (LF), 2 darab 5"-os közép sugárzót (MF) és 4 darab 0.7"-os magassugárzót tartalmaz (HF).
 Három utas Bi-amp meghajtású külső végfokot igénylő rendszer, ahol a mély tartományt (+1,-1) és a középmagas tartományt (+2,-2) külön kezeljük,
 a négy pólusú Neutrik Speakon csatlakozókon keresztül.
-A láda maximális hangnyomás szintje 135 dB, és 65 Hz-től 18 kHz-ig terjed a frekvencia átvitele +- 3 dB pontossággal. \cite{WPCUSERGUIDE}
+A láda maximális hangnyomás szintje 135 dB, és 65 Hz-től 18 kHz-ig terjed a frekvencia átvitele +- 3 dB pontossággal.~\cite{WPCUSERGUIDE}
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
@@ -363,7 +363,7 @@ a WPC rendszer már nem tudja a megfelelő hangnyomás szintet egyenletesen bizt
 Ezt a feladatot a Wavefront Precision sorozatból a WPM típusú hangládák fogják ellátni, oldalanként 6-6 darab LineArray modullal.
 Ez a láda egy két utas passzív hangrendszer, 2 darab 6.5"-os mély hangszóróval (LF) és 3 darab 1.4"-es magas hangszóróval (HF). 
 Maximásan 130 dB hangnyomás szintet tud biztosítani, nagy előnye ennek a fajta rendszernek a súly-teljesítmény aránya, mivel egy
-darab láda mindössze 14 kilogramm. \cite{WPMUSERGUIDE}
+darab láda mindössze 14 kilogramm.~\cite{WPMUSERGUIDE}
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
@@ -400,7 +400,7 @@ kiegészítő egység. A WPM-eket tudjuk egyesével is hajtani, mivel rendelkez�
 Az előbbiekben már tárgyalt exportáló felületen az összes többi optimalizációs lépést követően
 mentjük az elkészített tervet a WPC rendszerhez hasonlóan.
 %----------------------------------------------------------------------------
-\subsubsection{Martin Audio VU-NET rendszer szoftver \cite{VUNETUSERGUIDE}}
+\subsubsection{Martin Audio VU-NET rendszer szoftver~\cite{VUNETUSERGUIDE}}
 %----------------------------------------------------------------------------
 Első és legfontosabb feladatunk, hogy az összes végfoknak egyedi IP címet adjunk a hálózaton.
 Enélkül a rendszerünk használhatatlan lesz, mivel a VU-NET szoftver nem fog tudni kommunikálni a végfokokkal.
@@ -549,7 +549,7 @@ optimális helymeghatározásuk és elhelyezésük kulcsfontosságú a megfelel�
 hangzás érdekében. 
 A rendszerben a Martin Audio SX218 típusú mélyládáit fogjuk használni.
 Ezek a ládák dupla 18"-os mély hangszórókkal vannak felszerelve, 2000W AES és 8000W csúcsteljesítményre képesek, és
-maximálisan 144 dB hangnyomás szintet tudnak biztosítani. \cite{SXSUBWOOFERUSERGUIDE}
+maximálisan 144 dB hangnyomás szintet tudnak biztosítani.~\cite{SXSUBWOOFERUSERGUIDE}
 Jelen esetben 12 darab ilyen láda fogja biztosítani a megfelelő mély tartományt a rendezvényen.
 %----------------------------------------------------------------------------
 \begin{figure}[H]
@@ -560,7 +560,7 @@ Jelen esetben 12 darab ilyen láda fogja biztosítani a megfelelő mély tartom�
 %----------------------------------------------------------------------------
 A \textit{``SUB''} tervezést egy általam készített Excel kalkulátor
 segítségével végzem el. Ez a táblázat egyesíti a Martin Audio és Merlin van Veen által
-készített kalkulátorokat (S.A.D), valamint kiegészítésre került további modulokkal és funkciókkal. \cite{MERLINVANVEEN} \cite{MARTINSUBCALCULATOR}
+készített kalkulátorokat (S.A.D), valamint kiegészítésre került további modulokkal és funkciókkal.~\cite{MERLINVANVEEN}~\cite{MARTINSUBCALCULATOR}
 A egy EndFire konfigurációs mélyláda elrendezést terveztem. 
 (Egy EndFire Pack = két láda egymás előtt adott távolságra és késleltetési értékkel) 
 A táblázatba megadhatjuk, hogy éppen helyileg hol
@@ -585,7 +585,7 @@ A sztereóm mixek testreszabásával tudunk csoportokat is létrehozni.
 A konzolokon 8 sztereó effekt motort is megtalálunk, ezekbe a virtuális effekt processzorokba a pultokon található ingyenes és fizetős 
 pluginokat tudjuk betölteni. (amennyiben megvásároltuk a fizetős csomagokat, jelen rendszerben ezek nincsenek megvásárolva)
 További előnye a platformnak, hogy egy 32x32 csatornás USB audio interfésszel rendelkezik, így a számítógéphez csatlakoztatva
-egy nagy felbontású hangkártyaként is használhatjuk. \cite{AHSQ}
+egy nagy felbontású hangkártyaként is használhatjuk.~\cite{AHSQ}
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering

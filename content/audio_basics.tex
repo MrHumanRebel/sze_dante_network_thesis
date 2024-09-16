@@ -155,8 +155,7 @@ A digitális hangfeldolgozás során jellemző bitmélységek az alábbiak:
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth, keepaspectratio]{figures/pulse _code_modulation.jpg}
-	\caption{Pulse Code Modulation (PCM) folyamat \cite{PULSECODEMODULATION}}
-    \label{fig:pcm}
+	\caption{Pulse Code Modulation (PCM) folyamat~\cite{PULSECODEMODULATION}}\label{fig:pcm}
 \end{figure}
 %----------------------------------------------------------------------------
 A digitális hangfeldolgozás területén fontos szerepet játszik az A/D átalakítók kialakítása, 
@@ -197,6 +196,39 @@ de nagyobb sávszélességet is eredményez.
 Az ADC (Analog-to-Digital Converter) konverter az analóg hangjelet digitális jelekké alakítja át, míg a DAC (Digital-to-Analog Converter) 
 konverter a digitális jeleket visszaalakítja analóg hangjelekké. 
 A professzionális ADC és DAC konverterek nagymértékben befolyásolják a hangminőséget.
+%----------------------------------------------------------------------------
+\section{Hangerősség és hangnyomásszint} % Mi a hangerősség és a hangnyomásszint? Hogyan mérjük őket? Mi a különbség közöttük?
+%----------------------------------------------------------------------------
+Hangerőség (Intenzitás):
+A hangerőség az a szubjektív hangosságérzet, amely a fizikai hangnyomás szintjétől függ. 
+Ennek mértéke phonban van kifejezve, ahol a hangerőség értéke annyi phon, ahány dB-t mérünk 
+egy 1 kHz-es szinuszhang hangnyomásszintjén, amely azonos hangosságérzetet kelt.
+
+Hangosság (Hangnyomásszint):
+A hangosság az egyidejűleg megszólaló hangok összefoglaló mértékét jelöli, amelyet a sone egységében mérünk. 
+A kiszámítása során, ha a hangerőség meghaladja a 40 phon értéket, a hangosságot sone-ban adják meg.
+
+A dB-skála a hangnyomásszint logaritmikus kifejezésére szolgál. Az emberi hallás érzékenysége különböző 
+frekvenciákon eltérő, és a decibelskála lehetővé teszi, hogy az emberi hallás által 
+érzékelhető hangnyomás tartományát pontosan ábrázoljuk.
+A hangosság és a hangerőség közötti eltérés abban rejlik, hogy míg a hangosság az emberi érzékelésre, 
+vagyis az érzékelhető hangnyomásra vonatkozik, addig a hangerőség a hanghullámok 
+fizikai tulajdonságait, vagyis a hullámokban terjedő energiát méri.
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth, keepaspectratio]{figures/db_scale.jpg}
+    \caption{Decibel skála~\cite{DECIBELSCALE}}\label{fig:db_scale}
+\end{figure}
+%----------------------------------------------------------------------------
+A legkisebb észlelhető hangerő 0 dB, amelyet az emberi fül éppen hogy észlel. 
+Kellemesnek találjuk a körülbelül 50 dB-es hangerőt, míg a 100 dB-es szint már kellemetlennek számít. 
+A fájdalomküszöb körülbelül 120 dB-nél található. Fontos megjegyezni, hogy a 100 dB nem 
+kétszer olyan hangos, mint az 50 dB; a hangerő érzékelése szubjektív, és az egyéni hallóképességtől függ. 
+Általánosságban elmondható, hogy minden 10 dB-es növekedés körülbelül kétszer olyan 
+hangosnak érzékelhető, így a 60 dB-es hangerő kétszer hangosabbnak tűnik, mint az 50 dB-es.
+A decibelskála logaritmikus alapú, így a decibelben megadott értékek nem lineárisan arányosak. 
+Például 120 dB nem kétszer olyan hangos, mint 60 dB, hanem annak hangnyomása körülbelül 1000-szer nagyobb. 
 %----------------------------------------------------------------------------
 \section{Pontsugárzó hangforrás}
 %----------------------------------------------------------------------------
