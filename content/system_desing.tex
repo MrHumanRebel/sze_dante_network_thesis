@@ -57,7 +57,6 @@ beállítást kikapcsol, amelyekre egy normál internetes hálózatban szükség
 a Dante eszközök kommunikálnak egymással, ezek a beállítások csak felesleges terhelést jelentenének a hálózaton.
 Valamint amennyiben még több eszközt szeretnénk a hálózatra kötni, akkor a switchek gyorsan üzembe helyezhetőek,
 mivel a konfiguráció már előre elkészítve, csak fel kell tölteni a beállításokat, valamint firmware-t egyeztetni.
-%----------------------------------------------------------------------------
 Az egyik switch a Dante elsődleges hálózatát fogja kizárólag kezelni.
 A másik switch a Dante másodlagos hálózatát, és a VU-NET hálózatot fogja kezelni.
 Ez a két alhálózat VLAN szegmensekbe lesz elkülönítve, hogy a hálózat biztosan stabil legyen, ne fordulhassanak elő csomagütközések.
@@ -75,7 +74,6 @@ degradáljuk a sokszori csatlakoztatás során, hanem a patch panelen lévőt, m
 Valamint az eszközön lévő csatlakozó egy szabványos RJ45 csatlakozó nem pedig egy Neutrik EtherCon csatlakozó.
 Számunkra ez is fontos, mivel a Neutrik csatlakozók strapabíróbbak, és a kábelvégek is jobban védettek a sérülésektől,
 és nehezen vagy egyáltalán nem lehet véletlenül kihúzni a csatlakozót a helyéről.
-%----------------------------------------------------------------------------
 Az egyes végfokrackek összeköttetésért egy hibrid kábel lesz a felelős, amelyben négy darab CAT6A kábel van,
 mindegyik véget külön színkóddal látjuk el, annak érdekében, hogy gyorsan és egyértelműen tudjuk azonosítani a kábeleket,
 amikor egy adott helyszínen építjük össze a felszerelést, akár sok-sok óra munka után fáradtan.
@@ -92,10 +90,8 @@ a Dante vezérlőben.
 Az FOH (Front of House) pultot szintén egy hibrid kábel fogja összekötni a végfokrackekkel, amelyben viszont
 már csak két darab CAT5E, két darab DMX és egy darab 230V-os tápkábel lesz. Ezzel a megoldással időt és helyet spórolunk,
 az építésnél, mivel nem kell külön-külön vezetékeket kihúzni, elég egy kábelt, amelyben minden szükséges vezeték benne van.
-%----------------------------------------------------------------------------
 Tehát összefoglalva három egymástól teljesen elkülönített hálózatot fogunk kiépíteni a rendszer kiszolgálására,
 a Dante elsődleges és másodlagos hálózatot, valamint a VU-NET hálózatot.
-
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
@@ -108,8 +104,6 @@ a Dante elsődleges és másodlagos hálózatot, valamint a VU-NET hálózatot.
 	\includegraphics[width=\linewidth, keepaspectratio]{figures/live-dante.jpg}
 	\caption{Példa Dante digitális kábelezésre \cite{APPLICATIONDIAGRAMSFORDANTESYSTEMS}}\label{fig:live-dante}
 \end{figure}
-%----------------------------------------------------------------------------
-
 %----------------------------------------------------------------------------
 \subsection{Martin Audio Wavefront Precision hangrendszer}
 %----------------------------------------------------------------------------
@@ -506,7 +500,6 @@ A keverőpultok a címezés elején 1-től indulva 20-ig kapnak címeket. A stag
 Ezeken felül a háló legvégére vannak kiosztva a speciális eszközök melyek nem mindig vannak a rendszerben, de ha mégis
 akkor azoknak is megvan a saját címük.
 A háló 250-es címén helyezkedik el a Dante Audio szerver.
-
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
@@ -537,19 +530,14 @@ hosszútávon nagy biztonsággal stabil a hálózat.
 \subsubsection{Dante rendszer monitorozása}
 %----------------------------------------------------------------------------
 
-
-
 %----------------------------------------------------------------------------
 % Hálózati állapot nézet
 %----------------------------------------------------------------------------
 
 
-
 %----------------------------------------------------------------------------
 % Események nézet
 %----------------------------------------------------------------------------
-
-
 
 
 
@@ -623,7 +611,6 @@ Jelen esetben ez teljes mértékben felesleges, mivel a rendszerben kizárólag 
         \caption{A\&H DT168 Dante stagebox}\label{fig:dt168}
     \end{minipage}
 \end{figure}
-
 %----------------------------------------------------------------------------
 \subsection{Dante audio szerver}
 %----------------------------------------------------------------------------
@@ -679,7 +666,6 @@ Tehát a példa kedvéért még egyszer:
 Local Input 1: Behringer ECM8000 mérőmikrofon, majd Direct Out Output USB 1-re.
 USB Input 1: Smaart szoftver referencia jele, majd Direct Out Output USB 2-re.
 
-
 Az első mérés amit végezni fogok a rendszeren a mélyláda rendszer mérése lesz.
 Az EndFire konfigurációban elhelyezett mélyláda rendszer mérése során a cél az, hogy maximalizáljuk a hangnyomást a közönség távolabbi részein is,
 miközben hátrafelé kioltást érünk el. Ezen felül fontos a rendszer nyitása is, ha túl keskeny sávban működik, akkor a középső területek
@@ -706,7 +692,6 @@ Az ábrán a következőket láthatjuk különböző színekkel jelölve:
 - A kék szín a teljes rendszer viselkedése mérés nélkül.
 - A zöld szín a teljes rendszer viselkedése mérés után.
 - A magenta szín csak a main PA rendszer viselkedése.
-
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
@@ -727,11 +712,6 @@ fázishelyes és időben is helyes már, készen áll a produkcióra.
 
 
 
-
-
-
-
-
 %----------------------------------------------------------------------------
 \subsection{A rendszer monitorozása}
 %----------------------------------------------------------------------------
@@ -744,7 +724,6 @@ Többféle módszerrel lehet a hangnyomás szintet monitorozni, jelen esetben h�
 - dB SPL C Slow => A frekvencia súlyozott hangnyomás szintet mutatja, a mikrofon érzékenységéhez igazítva.
 - dB SPL A Slow => A frekvencia súlyozott hangnyomás szintet mutatja, az emberi hallás érzékenységéhez igazítva.
 - dB Leq 1 => A hangnyomás szint átlagértékét mutatja 1 perces időtartamra.
-
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering

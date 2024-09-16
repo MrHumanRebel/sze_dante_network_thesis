@@ -92,8 +92,6 @@ A hangrendszerek technológiai hátterét tekintve, az analóg rendszerekben a t
 Ezek az alkatrészek feleltek a jel szűréséért, erősítéséért és átalakításáért. 
 Azonban ezek az elemek gyakran voltak érzékenyek a környezeti hatásokra, mint például a hőmérséklet-ingadozások és a páratartalom, 
 amelyek további kihívások elé állították a hangmérnököket.
-
-
 %----------------------------------------------------------------------------
 \section{Digitális térhódítás} % Miért digitális irányba fejlesztünk és halad az ipar? Miért jobb mint az analog? 
 %----------------------------------------------------------------------------
@@ -115,7 +113,6 @@ Az analóg rendszerek által okozott torzulások elkerülhetőek, így nincs jel
 Képesek kezelni az együttfutás és hangmagasság-ingadozás problémáit, amelyeket az analóg rendszerek nehezebben tudnak kezelni.
 A digitális rendszerek emellett képesek visszaállítani az egyenfeszültségű jelkomponenseket, és biztosítják 
 a lineáris frekvenciamenetet, amely pontos hangátvitelt eredményez. 
-
 %----------------------------------------------------------------------------
 \subsection{PCM - Pulse Code Modulation}
 %----------------------------------------------------------------------------
@@ -134,24 +131,26 @@ Az analóg jelben előforduló maximális frekvenciát Nyquist frekvenciának ne
 Ennek megfelelően a mintavételi frekvencia határozza meg a digitális hangfeldolgozó rendszer sávszélességét. 
 Figyelembe véve, hogy a hangfrekvenciás jel felső határa 20 kHz, a hifi hangminőség eléréséhez a 
 mintavételi frekvencia minimálisan 40 kHz-nél nagyobb kell hogy legyen. A digitális hangfeldolgozás során jellemző mintavételi frekvenciák az alábbiak:
+%----------------------------------------------------------------------------
 \begin{itemize}
     \item CD minőség: 44.1 kHz
     \item DVD minőség: 48 kHz
     \item Studio minőség: 96 kHz
     \item Ultra minőség: 192 kHz
 \end{itemize}
+%----------------------------------------------------------------------------
 A digitális hangfelvételek bitmélysége az analóg jelből származó egyes minták tárolásához 
 felhasznált számjegyek számát jelöli. A CD hangformátum esetében a szabványos bitmélység 16 bit, 
 míg a mintavételi frekvencia 44,1 kHz. Ez azt jelenti, hogy másodpercenként 44 100 hangmintát rögzítenek, 
 és minden egyes minta 16 bitnyi információt tartalmaz. 
 Bár a nagyobb bitmélység általában jobb hangminőséget biztosít, ez egyúttal nagyobb fájlmérettel is jár.
 A digitális hangfeldolgozás során jellemző bitmélységek az alábbiak:
+%----------------------------------------------------------------------------
 \begin{itemize}
     \item CD minőség: 16 bit
     \item Studio/live minőség: 24 bit
     \item Ultra minőség: 32 bit
 \end{itemize}
-
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
@@ -160,7 +159,6 @@ A digitális hangfeldolgozás során jellemző bitmélységek az alábbiak:
     \label{fig:pcm}
 \end{figure}
 %----------------------------------------------------------------------------
-
 A digitális hangfeldolgozás területén fontos szerepet játszik az A/D átalakítók kialakítása, 
 a kódolás folyamata, a D/A (digitális-analóg) átalakítás, valamint a hibafelismerés és hibajavítás.
 
@@ -188,11 +186,9 @@ digitális jel dinamikatartományának növelése. Amennyiben a kvantálási pon
 egy bittel növeljük, a jel-zaj viszony javulhat, és ezzel együtt a dinamika is +6 dB-el növekedhet. 
 Továbbá, a zajcsökkentő algoritmusok alkalmazása és a magas felbontású digitális konverterek használata szintén hozzájárulhat a kvantálási zaj mérsékléséhez.
 A kódolás során a hangszintek szerint kvantált pontok kódkombinációk sorozataként, digitális jelekként jelennek meg.
-
 %----------------------------------------------------------------------------
 \subsection{ADC és DAC konverterek - mintavételezés}
 %----------------------------------------------------------------------------
-
 A mintavételezés olyan folyamat, amely során egy analóg hangjelet digitális formába alakítanak át, azaz mintákat vesznek az időben folytonos hanghullámokból. 
 Ez az alapja annak, hogy a hangot számítógépes rendszerekben kezelni lehessen. A hangminták gyakorisága meghatározza a mintavételi frekvenciát, 
 ami meghatározza a digitális hangminőséget és a frekvencia tartományt. Általában minél magasabb a mintavételi frekvencia, annál jobb a hangminőség, 
@@ -201,39 +197,26 @@ de nagyobb sávszélességet is eredményez.
 Az ADC (Analog-to-Digital Converter) konverter az analóg hangjelet digitális jelekké alakítja át, míg a DAC (Digital-to-Analog Converter) 
 konverter a digitális jeleket visszaalakítja analóg hangjelekké. 
 A professzionális ADC és DAC konverterek nagymértékben befolyásolják a hangminőséget.
-
-
 %----------------------------------------------------------------------------
 \section{Pontsugárzó hangforrás}
 %----------------------------------------------------------------------------
-
 A pontsugárzó hangforrások azok a hangfalak, amelyeket olyan módon modelleznek, mintha a hang egyetlen pontból származna, és a hangnyomás arányosan csökken a távolsággal. 
 Ez a modell elsősorban olyan hangfalak esetében alkalmazható, amelyek önállóan működnek, például hangfalak dobozokban vagy mennyezetbe szerelve. 
 Ezt a modellt főként olyan helyeken használják, ahol könnyen kell elérni a hangerősítést, például előadótermekben vagy kis koncerttermekben. 
 Amikor több hangforrás kombinálódik, például kétutas hangfalrendszerekben, a transzducerek közötti kombináció bonyolultabb irányítottságot eredményez
 a fizikai távolság és a szűrők kölcsönhatása miatt. 
 Ennek eredményeként az irányítottság frekvenciától függően változik, ami kihívást jelent a hangrendszer tervezése során.
-
 %----------------------------------------------------------------------------
 \section{LineArray hangforrás}
 %----------------------------------------------------------------------------
-
 A LineArray hangforrások olyan hangfalrendszerek, amelyekben több hangdoboz egymás fölött van elrendezve, 
 hogy egy közös lineáris hangforrást alkossanak. Ezt a technikát használják nagyobb hangosítási telepítéseknél, 
 mivel egyetlen hangfal nem elegendő a szükséges hangteljesítmény eléréséhez és a közönségterület lefedéséhez. 
-
-
-
-
 %----------------------------------------------------------------------------
 \subsection{DSP-vezérelt irányítás}
 %----------------------------------------------------------------------------
-
-
 Az új generációs LineArray rendszereket DSP-kkel finomhangolják az egyes hangdobozok válaszának beállításához, lehetővé téve például
 a függőleges irányítottság változtatását. Ez segít a hangot pontosan irányítani a közönség felé. 
 A DSP-vezérelt hangszórórendszerek tervezése számítógépes eszközöket igényel, 
 amelyek lehetővé teszik a hangszórók viselkedésének részletes szimulációját a teremmel összefüggésben, 
 és optimalizálják a hangeloszlást a kívánt irányban.
-
-

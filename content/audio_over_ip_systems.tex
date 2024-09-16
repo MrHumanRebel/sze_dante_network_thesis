@@ -43,8 +43,6 @@ Ez egy specifikus TSN verzió, amely az audio/video szolgáltatók közötti int
 Fontos, hogy nem a TSN alapján készült, mivel a TSN-hez speciális IT hardver szükséges az audio
 követelmények kezeléséhez, és csak korlátozott számú kapcsoló támogatja a TSN-t.
 
-%----------------------------------------------------------------------------
-
 Az átmenet az IP hálózatokra összehasonlítható az analóg hangról a digitális
 hangra való átmenettel. Először csak néhány kezdeti telepítés, amelyek az új technológiát
 használják, majd esetleg hiányosságokat mutathatnak a kezelés vagy a megbízhatóság
@@ -75,8 +73,6 @@ megérkezzen, anélkül, hogy további extrém finomításra lenne szükség a k
 konfigurációjában. Konkrétan ez azt jelenti, hogy olyan IT hálózatokat kell
 építeni melyek elegendő sávszélességgel rendelkeznek, és kizárólag az audio alkalmazások számára
 legyen használatos, tehát ne keveredjenek általános mindennapi alkalmazásokkal.
-
-%----------------------------------------------------------------------------
 
 A legtöbb audio-over-IP technológia abból indul ki, hogy az alapul szolgáló
 hálózat megfelelően fog működni, hibamentesen végzi a dolgát. Gondolva itt arra, hogy nincsen csomagvesztés, 
@@ -192,7 +188,6 @@ Minden vevő két feltétel mellett érheti el egymás között a fázispontoss�
 	\item Azonos linkeltolási érték beállítása a felhasználó által az összes vevőeszközön.
 \end{itemize}
 %----------------------------------------------------------------------------
-
 Ezért a linkeltolást az érintett összes kapcsolat legrosszabb esetű késleltetése alapján kell kiválasztani. 
 Javasolt bizonyos engedményt hozzáadni az esetleges csomagkiszállítási idők váratlan eltéréseinek esetére.
 Ez azt jelenti, hogy kicsivel nagyobb időt hagyunk az átlagos csomagfeldolgozási időnél, 
@@ -457,7 +452,6 @@ Ez a jelölés az alhálózati maszk bináris formájára utal, tehát a `255' a
 A fenti példákban az alhálózati maszkok tehát bináris formájukban 24
 `1'-t tartalmaznak. 
 A fenti példában szereplő hosztok CIDR jelölése:
-
 %----------------------------------------------------------------------------
 \begin{itemize}
     \item \textbf{Host A:} 192.168.020.182/24
@@ -465,7 +459,6 @@ A fenti példában szereplő hosztok CIDR jelölése:
     \item \textbf{Host C:} 192.168.134.61/24
 \end{itemize}
 %----------------------------------------------------------------------------
-
 A routereket használó és több alhálózatot összekapcsoló telepítések a
 az OSI modell 3. rétegén működnek. Ez a modell hét rétegre osztja a
 hálózatok általános funkcionalitását, mindegyik egy adott készletet ír le a hálózati
@@ -483,7 +476,6 @@ szállítják, és nem tartalmaznak alhálózati információkat. Ennek eredmén
 2. rétegű hálózatokat nem lehet több alhálózatokra bontani, a csomagjaikat nem
 lehet routerek által továbbítani, és ezáltal a skálázhatóságuk korlátozott. 
 Az egyik népszerű példa a 2. rétegű hálózatokra a már említett TSN/Milan, valamint a CobraNet.
-
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
@@ -492,7 +484,6 @@ Az egyik népszerű példa a 2. rétegű hálózatokra a már említett TSN/Mila
 	\label {fig:osi_modell}
 \end{figure}
 %----------------------------------------------------------------------------
-
 Egy alhálózat egy logikai szegmens egy adott hálózaton belül. Az ilyen szegmenseket
 különféle okokból hoznak létre, ideértve elsősorban az adminisztratív és biztonsági
 szempontokat. A hálózati adminisztrátor egy készlet szabályt alkalmazhat egy
@@ -504,7 +495,6 @@ Ezzel szemben egy tipikus kapcsoló nem képes összekapcsolni az alhálózatoka
 Virtuális LAN készítése (VLAN) egy másik módszer a hálózat szegmentálására. 
 Rugalmasabbá teszi a rendszereket, csökkenti a kapcsolatlan rendszerek közötti fölösleges kommunikációt.
 Szemben az alhálózatokkal, ez egy biztonságosabb módja is a hosztok elkülönítésére egymástól.
-
 %----------------------------------------------------------------------------
 \subsection{Hálózati topológiák}
 %----------------------------------------------------------------------------
@@ -533,11 +523,9 @@ eszközhöz hozzáférhetünk, még akkor is, ha egy kapcsolat elszakad.
 A megfelelő hálózat kialakításához még elengedhetetlenek a nem blokkoló kapcsolók.
 A nem blokkoló architektúra egészében azt jelenti, hogy nem a kapcsolók a szűk keresztmetszet.
 Tehát képesek kezelni az összes rájuk táplált forgalmat, csak a szabvány port sebessége a korlát.
-
 %----------------------------------------------------------------------------
 \subsection{Unicast és Multicast} %Egyedi és Csoportos Küldés
 %----------------------------------------------------------------------------
-
 Amikor egy eszköz csomagot küld egy másik eszköznek, ezt unicast mechanizmusnak
 nevezzük. Egy ilyen kapcsolatnak pontosan egy küldője és egy fogadója van. Az
 unicast használhatja a Transmission Control Protocol (TCP)-t, ahol a fogadó
@@ -576,7 +564,6 @@ Amennyiben a hálózatunk nem kizárólag az audio jelek továbbítására
 készült speciálisan, néhány eszköz lehet a hálózaton, amelyeknek semmi közük az audiohoz.
 Ezért fontos, hogy a multicast forgalom csak
 azokhoz a hosztokhoz jusson el, amelyek érdeklődnek iránta. 
-%----------------------------------------------------------------------------
 Ennek a megoldása az IGMP snooping, tehát az Internet Csoportkezelési Protokoll. 
 Az összes tárgyalt audio hálózati technológia alapértelmezetten
 támogatja az IGMP snooping-ot. Ha be van kapcsolva a kapcsolóban, akkor a
@@ -593,11 +580,9 @@ felesleges forgalmat eredményez, ezzel szennyezve a hálózatot.
 Tehát a unicast a legjobb késleltetési teljesítményt nyújtja, és a
 kapcsolók számára a legkönnyebben mozgatható.
 A multicast pedig jobb sávszélesség-kezelést kínál, ahogy a csatornaszám és a sávszélességünk is nő.
-
 %----------------------------------------------------------------------------
 \subsection{Eszköz- és Adatfolyam-felfedezés}
 %----------------------------------------------------------------------------
-
 Az AES67 audió szabvány nem határozza meg, hogyan fedezhetik fel egymást a
 hálózati eszközök, vagy hogy mely adatfolyamok érhetők el a hálózaton.
 Az összes ismert technológia a bonjour vagy mDNS mechanizmust használja eszközeik számára
@@ -612,7 +597,6 @@ Az audio adatfolyamokat a gyártótól függően két mechanizmus egyikével fed
 az eszközök felfedezésénél, mindkettő előre meghatározott multicast címet
 használ az adatfolyam-információk terjesztésére, hogy a címzettek megtalálják az
 elérhető adatfolyamokat és azok paramétereit:
-
 %----------------------------------------------------------------------------
 \begin{itemize}
 	\item Session Announcement Protocol (SAP) - minden Dante termék által használt (Multicast cím: 239.255.255.255)
@@ -625,7 +609,6 @@ elérhető adatfolyamokat és azok paramétereit:
 Szerencsére a jelenlegi termékek többsége
 lehetővé teszi mindkét protokoll egyidejű aktiválását, így egy adott audio
 adatfolyam mindkét mechanizmuson keresztül párhuzamosan bejelenthető.
-
 %----------------------------------------------------------------------------
 \subsection{Redundancia}
 %----------------------------------------------------------------------------
@@ -634,7 +617,6 @@ hardverek megbízhatóságában. Annak ellenére, hogy ezek a széles körben el
 IT-berendezések jól beváltak és gyakran megbízhatóbbnak viszonyulnak, mint a hagyományos
 audioberendezések. Emellett a legtöbb hálózati komponens több diagnosztikai és monitorozási
 mechanizmust kínál a berendezések hibájának gyors felismeréséhez és megoldásához.
-
 %----------------------------------------------------------------------------
 \subsubsection{Spanning Tree Protocol (STP)}
 %----------------------------------------------------------------------------
@@ -652,7 +634,6 @@ az időszakban az audio néhány másodpercig ugyan megszakad, de még mindig so
 gyorsabb, mint a manuális hibakeresés és az új kábel telepítése, ha arra egyáltalán van lehetőségünk.
 A legtöbb rendszerben az STP alapértelmezetten engedélyezve van. 
 Nélküle broadcast 'viharok' alakulnának ki, ami konkrétan felemészti a sávszélességet.
-
 %----------------------------------------------------------------------------
 \subsubsection{Link Aggregáció}
 %----------------------------------------------------------------------------
@@ -692,7 +673,6 @@ egyikének elvesztése esetén a másik csomagot használja a fogadó, így ez a
 %----------------------------------------------------------------------------
 Az AES67 szabvány szerint az összes eszköznek meg kell felelnie az
 alábbi minimális specifikációknak: 
-
 %----------------------------------------------------------------------------
 \begin{itemize}
 	\item Unicast és multicast támogatása
@@ -710,13 +690,11 @@ alábbi minimális specifikációknak:
 	\item 48 kHz mintavételi frekvencia 1 ms csomagidő (48 minta)
 	\item A multicast címek 239.0.0.0 és 239.255.255.255 között vannak 
 \end{itemize}
-
+%----------------------------------------------------------------------------
 A szabványban sok további paraméter és érték szerepel, de ezek nem szerepelnek a
 fent felsorolt minimális követelmények között.
-
 %----------------------------------------------------------------------------
 \section{Audinate Dante}
-%----------------------------------------------------------------------------
 %----------------------------------------------------------------------------
 \subsection{A cégről \cite{AUDINATEHISTORY}} %https://www.audinate.com/company/history
 %----------------------------------------------------------------------------
@@ -737,7 +715,6 @@ A csapat 2008-ban talált rá egy korai támogatóra Bruce Jackson személyében
 a Dolby Labs élő hangosztályának alelnöke volt. A Dante technológia gyorsan 
 elterjedt a professzionális audioiparban, számos jelentős eseményen és helyszínen, 
 köztük az olimpiai játékokon és nagy zenei koncerteken alkalmazták.
-
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
@@ -746,7 +723,6 @@ köztük az olimpiai játékokon és nagy zenei koncerteken alkalmazták.
 	\label {fig:audinate_logo}
 \end{figure}
 %----------------------------------------------------------------------------
-
 2014-re már több mint 170 gyártó használta a Dante technológiát, és a termékek 
 száma meghaladta a 675-öt. 2016-ra az Audinate új termékeket mutatott be, például 
 a Dante Analog Output Module-t, amely lehetővé tette az analóg eszközök 
@@ -762,11 +738,9 @@ otthoni munkavégzés és biztonságos konferenciatermi megoldások számára.
 2024-re az Audinate több mint 600 gyártóval kötött licencszerződést, és a Dante 
 technológiát több mint 4000 termékben használják, beleértve az AV és IT rendszerek 
 teljes integrálását és kezelését, világszerte.
-
 %----------------------------------------------------------------------------
 \subsection{A Dante hálózatok áttekintése}
 %----------------------------------------------------------------------------
-
 A 2020-2021-es Covid-19 járvány során lehetőségem volt részt venni egy átfogó Dante
 kurzuson, amelyet a Dante technológia fejlesztője, az Audinate szervezett. A kurzus
 részletes betekintést nyújtott a Dante hálózatok működésébe. E fejezetben a belsős
@@ -790,12 +764,9 @@ stúdiófelvételek, vállalati környezetek és konferenciaközpontok terület�
 hangformátumokat és mintavételi rátákat, és lehetővé teszi akár több száz hangcsatorna egyidejű 
 átvitelét egyetlen hálózaton keresztül. Továbbá, a Dante rendszerek távolról vezérelhetők és 
 monitorozhatók, ami jelentősen megkönnyíti a komplex hangrendszerek beállítását és kezelését.
-
-
 %----------------------------------------------------------------------------
 \subsection{Dante hálózatok technikai részletei}
 %----------------------------------------------------------------------------
-
 A Dante hanghálózatok két alapvető elemből épülnek fel: a Dante eszközökből és a Dante hálózatokból. 
 A Dante eszközök speciálisan a Dante protokollhoz készült hangeszközök, mint például hangkártyák, erősítők és hangládák. 
 Ezek az eszközök szabványos Ethernet kábeleken és kapcsolókon keresztül csatlakoznak a Dante hálózathoz. 
@@ -813,18 +784,14 @@ amely a prioritások kezelését biztosítja. Ezáltal a hangátvitel előnyt é
 a hálózati torlódás esélyét és biztosítva a minimális késleltetést valamint a magas minőséget. Körülbelül 70 százalékos 
 hálózati szaturációnál már javasolt a QoS alkalmazása, míg 100 Mbps sebességű hálózatok esetén a jitter csökkentésére is 
 segít.
-
-
 %----------------------------------------------------------------------------
 \subsubsection{Több mintavételi ráta és bitmélység}
 %----------------------------------------------------------------------------
-
 A rendszer képes egyidejűleg több bitmélységet kezelni. Ennek informatikai háttere a
 a következő képpen néz ki:
 Ha egy 32 bites hangforrásunk van, de a másik eszköz
 csak 24 bites hangot tud fogadni, akkor a Dante a 32 bites hangot 24 bitesre tudja 
 alakítani.
-
 %----------------------------------------------------------------------------
 \begin{align*}
 	\begin{array}{|c|c|}
@@ -838,11 +805,9 @@ alakítani.
 	\end{array}
 \end{align*}
 %----------------------------------------------------------------------------
-	
 Amint a példában látszik, 32 bites hangból úgy kaptunk 24 bites hangot, 
 hogy egyszerűen csak elhagytuk az utolsó 8 bitet. Ez a folyamat visszafelé is működik,
 ha 24 bites hangot kell 32 bites hanggá alakítani, akkor az utolsó 8 bitet 0-val kell feltölteni.
-
 %----------------------------------------------------------------------------	
 \begin{align*}
 	\begin{array}{|c|c|}
@@ -856,7 +821,6 @@ ha 24 bites hangot kell 32 bites hanggá alakítani, akkor az utolsó 8 bitet 0-
 	\end{array}
 \end{align*}
 %----------------------------------------------------------------------------
-
 A mintavételezési frekvencia eltérése csak akkor kezelhető, ha a bitmélység is különbözik. 
 Amennyiben a bitmélység megegyezik, de a mintavételezési frekvencia eltér, a rendszer nem 
 képes a hang megfelelő továbbítására. Ez a mechanizmus egy egyszerű mechanikai példával 
@@ -867,7 +831,6 @@ fogaskerekek nem illeszthetőek egymásba, így a hang továbbítása lehetetlen
 Ebben az esetben szükség van egy konverterre, amely képes a két fogaskereket összeilleszteni. 
 Fontos megjegyezni, hogy a több mintavételi ráta együttes működése érdekében egységes 
 órajel szükséges minden mintavételi frekvenciához.
-
 %----------------------------------------------------------------------------
 \subsubsection{Hálózati topológiák}
 %----------------------------------------------------------------------------
@@ -877,7 +840,6 @@ hálózatot alkot. Ebben a módban lehetőséget biztosítunk Daisy Chain (füz�
 topológia kialakítására, ahol az egyik eszköz a következőhöz csatlakozik, és így tovább. 
 Emellett csillagtopológia is létrehozható, ahol minden eszköz egy központi kapcsolóhoz 
 csatlakozik.
-
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\begin{minipage}{0.5\textwidth}
@@ -893,7 +855,6 @@ csatlakozik.
 		\label{fig:dante_redundant}
 	\end{minipage}
 \end{figure}
-
 %----------------------------------------------------------------------------
 A másik üzemmód a redundant (redundáns) üzemmód, amelyben az eszközök két 
 Ethernet portja két különálló hálózatot alkot. Ez a konfiguráció biztosítja, hogy 
@@ -901,20 +862,17 @@ a hálózat redundáns módon van kialakítva, így ha az egyik rész meghibáso
 a másik automatikusan átvállalja annak szerepét. 
 Bizonyos Dante eszközök rendelkeznek egy harmadik Ethernet porttal, 
 amelyet konfigurálási és vezérlési feladatokra használnak.
-
 %----------------------------------------------------------------------------
 \subsubsection{Késleltetés}
 %----------------------------------------------------------------------------
 A késleltetés az az időtartam, amely szükséges egy folyamat végrehajtásához, 
 például a bemeneti oldalon beérkező hangjel feldolgozásához és annak megjelenéséhez 
 a kimeneti oldalon. A késleltetés mérésére két fő mértékegységet használunk:
-
 %----------------------------------------------------------------------------
 \begin{equation}
 	\label{eq:milliseconds}
 	1 \text{ másodperc} = 1000 \text{ milli másodperc}, \quad \text{azaz} \quad 1 \text{ ms} = 0.001 \text{ s}
 \end{equation}
-%----------------------------------------------------------------------------
 %----------------------------------------------------------------------------
 \begin{equation}
 	\label{eq:microseconds}
@@ -927,11 +885,9 @@ kapcsoló lépést. Ha két eszköz késleltetése eltérő, akkor a nagyobb ér
 irányadónak. Egy megfelelően beállított modern Dante hálózatban a késleltetés 
 körülbelül 1 ms értéket vesz fel, ami azt jelenti, hogy például egy dobos 
 először hallja a hangszerét a fülmonitoron, mint a saját dobját.
-
 %----------------------------------------------------------------------------
 \subsubsection{Órajel}
 %----------------------------------------------------------------------------
-
 Minden eszköz egy rendkívül pontos Dátum/Idő órát követ, amely biztosítja az 
 idő szinkronizációját és az egységes sebességet. De mi a helyzet a terjedési 
 késéssel? Miért vannak szinkronban a Dante eszközök? A PTP (Precision Time Protocol) 
@@ -943,8 +899,6 @@ vezetőt is beállíthatunk. A rendszer nem szinkronizál újra, hanem beállít
 a sebességet és kompenzálja a hálózati késést. A Dante által végzett tesztelések 
 és tapasztalatok alapján igazolt, hogy az időzítés szinkronban marad, még akkor 
 is, ha az óra perceken keresztül teljesen eltűnik.
-
-
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
@@ -952,8 +906,6 @@ is, ha az óra perceken keresztül teljesen eltűnik.
 	\caption{Dante órajel}
 	\label{fig:dante-clock}
 \end{figure}
-%----------------------------------------------------------------------------
-
 %----------------------------------------------------------------------------
 \subsection{Összehasonlítás a hagyományos hangrendszerekkel}
 %----------------------------------------------------------------------------
@@ -969,7 +921,6 @@ továbbítani a hangot anélkül, hogy a minőség romlana. Ezzel szemben a hagy
 analóg rendszerek hosszú kábelek használata során hajlamosak zajra és jelveszteségre, 
 míg a digitális hangjelek, amelyeket Ethernet hálózatokon továbbítanak, minimális 
 minőségveszteséggel érhetők el nagy távolságokra.
-
 %----------------------------------------------------------------------------
 \begin{table}[htbp]
     \centering
@@ -1000,7 +951,6 @@ minőségveszteséggel érhetők el nagy távolságokra.
 	\label {fig:dante-solution}
 \end{figure}
 %----------------------------------------------------------------------------
-
 A rugalmasság és a skálázhatóság tovbbi kulcsfontosságú előnye a Dante
 hanghálózatoknak a hagyományos analóg hangrendszerekkel szemben.
 Képesek alkalmazkodni különböző hangkonfigurációkhoz és követelményekhez. 
@@ -1008,11 +958,9 @@ Könnyű eszközöket hozzáadni vagy eltávolítani, megváltoztatni a hangjele
 konfigurálni szükség esetén. Ez lehetővé teszi testreszabott audio-megoldások
 létrehozását, amelyeket az adott alkalmazás vagy környezet speciális igényeihez
 lehet igazítani. 
-
 %----------------------------------------------------------------------------
 \subsection{Firmware frissítés}
 %----------------------------------------------------------------------------
-
 A Dante eszközök két típusú firmware-rel rendelkeznek: a Dante Firmware-rel és az 
 Eszköz Firmware-rel. A rendszer megfelelő működése érdekében előfordulhat, hogy mindkét 
 firmware-t frissíteni kell. A frissítések összehangolt verziói biztosítják a legjobb 
@@ -1034,12 +982,9 @@ az eszköz biztonságos helyreállítását.
 A Dante eszközök támogatják a vegyes firmware verziókat, lehetővé téve az eltérő 
 verziók együttműködését. Ezt a funkciót rendszeres automatizált regressziós tesztelés 
 biztosítja, amely a különböző firmware verziók közötti kompatibilitást ellenőrzi.
-
-
 %----------------------------------------------------------------------------
 \subsection{Chipek}
 %----------------------------------------------------------------------------
-
 A Dante hálózatok különféle chipekkel építhetők fel. Az Audinate széles választékot 
 kínál a Dante rendszerhez tervezett chipekből, amelyek eltérő hangcsatorna-számot 
 és további funkciókat támogatnak. A Dante chipek különböző méretekben és árkategóriákban 
@@ -1047,8 +992,6 @@ kínál a Dante rendszerhez tervezett chipekből, amelyek eltérő hangcsatorna-
 eszközöket fejlesszenek ki, így kielégítve a változatos piaci igényeket. A Dante chipek 
 elősegítik a gyártók munkáját azáltal, hogy lehetővé teszik a Dante-kompatibilis eszközök 
 gyors és hatékony létrehozását, valamint egyszerű integrációjukat a meglévő termékekbe.
-
-
 %----------------------------------------------------------------------------
 \begin{center}
 	\begin{tabular}{|c|p{10cm}|}
@@ -1072,9 +1015,3 @@ gyors és hatékony létrehozását, valamint egyszerű integrációjukat a megl
 	\end{tabular}
 \end{center}
 %----------------------------------------------------------------------------
-	
-
-
-
-
-
