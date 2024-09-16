@@ -2,9 +2,9 @@
 \chapter{\AudioBasics}
 %----------------------------------------------------------------------------
 
+\begin{comment} 
 Annak érdekében, hogy a későbbi fejezetekben a hangtechnikai rendszerek működését és tervezését megérthessük,
 először szükséges a hangtechnikai alapok ismerete. Ez a fejezet a későbbi fejezetekben használt alapfogalmakat definiálja röviden és tömören.
-
 
 %----------------------------------------------------------------------------
 \section{Mikrofon típusok}
@@ -70,19 +70,120 @@ Egy példa a kondenzátor mikrofonra a Shure SM137 kondenzátor mikrofon, amely 
     \label{fig:shure_sm137}
 \end{figure}
 % ----------------------------------------------------------------------------
- 
+\end{comment}
+
 %----------------------------------------------------------------------------
-\section{ADC és DAC konverterek - mintavételezés}
+\section{Az analóg kezdetek} % Kezdeti analóg rendszerek, skálázhatósági hátrányok, analog rendszerek korlátai, működési alapelvek, technológiai háttér  
+%----------------------------------------------------------------------------
+Az analóg hangrendszerek története az audio technológia hajnalára nyúlik vissza. 
+Az ilyen rendszerek alapját az elektromos analóg jelek képezik, amelyek az akusztikus hangot elektromos árammá alakítják,
+a hangjelet közvetlenül, torzítás nélkül próbálják átadni az erősítőnek majd ezáltal hangszóróknak.
+Az analóg rendszerek egyik legfontosabb alapelve az elektromos jelek folyamatos feldolgozása. 
+A hangot analóg módon rögzítik, és az áramkörök szigorú tervezése biztosítja, hogy az eredeti akusztikus jel minél pontosabban tükröződjön az outputban.
+A legnagyobb hátrány az analóg rendszerek skálázhatóságában rejlik. 
+Ahogy a rendszer bonyolultsága nőtt, úgy a karbantartás és az állandó finomhangolás is egyre több problémát okozott. 
+Az analóg technológiáknál a jel erősítése és kezelése gyakran jelentős torzulásokat és zajokat okozott, amelyeket nehéz volt kezelni.
+A kábelezést tekintve sem volt egy leányálom az analóg rendszerek használata, mivel a nagyobb távolságokon a jel torzulása és a zajok könnyen bekerülhettek a rendszerbe.
+Egy sokcsatornás produkciónál szép spagettiláncokat is eredményezett, még a legtapasztaltabb hangmérnökök számára is kihívást jelentett. 
+Továbbá, a rendszer hibái nem mindig voltak könnyen diagnosztizálhatók, ami a szervizelési időket jelentősen megnövelte.
+A hangrendszerek technológiai hátterét tekintve, az analóg rendszerekben a transzformátorok, kondenzátorok és ellenállások kulcsszerepet játszottak. 
+Ezek az alkatrészek feleltek a jel szűréséért, erősítéséért és átalakításáért. 
+Azonban ezek az elemek gyakran voltak érzékenyek a környezeti hatásokra, mint például a hőmérséklet-ingadozások és a páratartalom, 
+amelyek további kihívások elé állították a hangmérnököket.
+
+
+%----------------------------------------------------------------------------
+\section{Digitális térhódítás} % Miért digitális irányba fejlesztünk és halad az ipar? Miért jobb mint az analog? 
+%----------------------------------------------------------------------------
+A digitális technológia térhódítása a professzionális audio rendszerekben jelentős paradigmaváltást hozott az audioiparban. 
+Az utóbbi évtizedekben a digitális rendszerek folyamatosan felváltották az analóg megoldásokat, számos előnnyel rendelkezve, 
+amelyek hozzájárultak a hangtechnikai rendszerek fejlődéséhez. 
+Az egyik legfontosabb tényező, amely a digitális technológia előnyére szolgál, a jelminőség és a stabilitás drasztikus javulása. 
+A digitális rendszerekben a hangjelek bitstream formájában kerülnek feldolgozásra, amely lehetővé teszi a zajok és torzítások minimalizálását,
+a jelfeldolgozás során. 
+
+A digitális rendszerek jelentős előnye, hogy magasabb jel-zaj viszonyt biztosítanak, amely fokozza a jel tisztaságát és mérsékli a zavaró hatásokat. 
+Ezáltal a hangminőség jelentős javuláson megy keresztül, mivel a digitális feldolgozás során a hasznos jel és a 
+háttérzaj közötti különbség egyértelműbbé válik.
+Szélesebb dinamikatartományt nyújt, amely lehetővé teszi a nagyobb hangerő eltérések hatékony kezelését. 
+A digitális rendszerek egyik további előnye, hogy a digitális adatok másolása során nem történik minőségromlás. 
+A másolatok pontosan ugyanolyan minőséget képviselnek, mint az eredeti felvétel, így garantált a tökéletes reprodukálás.
+Stabil működést biztosítanak változó hőmérsékleti és tápfeszültség-ingadozások mellett. 
+Az analóg rendszerek által okozott torzulások elkerülhetőek, így nincs jelen jeltorzulás a digitális rendszerekben.
+Képesek kezelni az együttfutás és hangmagasság-ingadozás problémáit, amelyeket az analóg rendszerek nehezebben tudnak kezelni.
+A digitális rendszerek emellett képesek visszaállítani az egyenfeszültségű jelkomponenseket, és biztosítják 
+a lineáris frekvenciamenetet, amely pontos hangátvitelt eredményez. 
+
+%----------------------------------------------------------------------------
+\subsection{ADC és DAC konverterek - mintavételezés}
 %----------------------------------------------------------------------------
 
 A mintavételezés olyan folyamat, amely során egy analóg hangjelet digitális formába alakítanak át, azaz mintákat vesznek az időben folytonos hanghullámokból. 
 Ez az alapja annak, hogy a hangot számítógépes rendszerekben kezelni lehessen. A hangminták gyakorisága meghatározza a mintavételi frekvenciát, 
 ami meghatározza a digitális hangminőséget és a frekvencia tartományt. Általában minél magasabb a mintavételi frekvencia, annál jobb a hangminőség, 
-de nagyobb sávszélességet is eredményez. 
+de nagyobb sávszélességet is eredményez.
 
 Az ADC (Analog-to-Digital Converter) konverter az analóg hangjelet digitális jelekké alakítja át, míg a DAC (Digital-to-Analog Converter) 
 konverter a digitális jeleket visszaalakítja analóg hangjelekké. 
-A professzionális ADC és DAC konverterek fontosak a hangminőség szempontjából, mivel ezek nagymértékben befolyásolják azt.
+A professzionális ADC és DAC konverterek nagymértékben befolyásolják a hangminőséget.
+
+%----------------------------------------------------------------------------
+\subsection{PCM - Pulse Code Modulation}
+%----------------------------------------------------------------------------
+A hangfrekvenciás jelek digitális feldolgozása a PCM (Pulse Code Modulation, impulzuskód-moduláció) elvén alapul. 
+Ennek során az analóg jelet diszkrét impulzusok sorozatára bontják, ahol az impulzusok 
+amplitúdóértékei bináris kódokkal kifejezett információt hordoznak.
+
+A PCM jel előállítása az A/D (analóg-digitális) átalakításon keresztül történik. 
+Az analóg jelek időbeli és értékbeli folytonossága diszkrét minták sorozatává alakul, 
+miközben az információtartalom megőrzi az eredeti jelhez hasonló értékét. 
+Ezt a mintavételi tételt (C. E. Shannon) bizonyította, amely alapján az eredeti jel 
+visszaállítható információveszteség nélkül, ha a mintavételi frekvencia legalább 
+kétszerese az analóg jel legmagasabb frekvenciájának.
+
+Az analóg jelben előforduló maximális frekvenciát Nyquist frekvenciának nevezik. 
+Ennek megfelelően a mintavételi frekvencia határozza meg a digitális hangfeldolgozó rendszer sávszélességét. 
+Figyelembe véve, hogy a hangfrekvenciás jel felső határa 20 kHz, a hifi hangminőség eléréséhez a 
+mintavételi frekvencia minimálisan 40 kHz-nél nagyobb kell hogy legyen. A digitális hangfeldolgozás során jellemző mintavételi frekvenciák az alábbiak:
+\begin{itemize}
+    \item CD minőség: 44.1 kHz
+    \item DVD minőség: 48 kHz
+    \item Studio minőség: 96 kHz
+    \item Ultra minőség: 192 kHz
+\end{itemize}
+
+A digitális hangfeldolgozás során jellemző bitmélységek az alábbiak:
+\begin{itemize}
+    \item CD minőség: 16 bit
+    \item Studio/live minőség: 24 bit
+    \item Ultra minőség: 32 bit
+\end{itemize}
+
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth, keepaspectratio]{figures/pulse _code_modulation.jpg}
+	\caption{Pulse Code Modulation (PCM) folyamat \cite{PULSECODEMODULATION}}
+    \label{fig:pcm}
+\end{figure}
+%----------------------------------------------------------------------------
+
+A digitális hangfeldolgozás területén fontos szerepet játszik az A/D átalakítók kialakítása, 
+a kódolás folyamata, a D/A (digitális-analóg) átalakítás, valamint a hibafelismerés és hibajavítás.
+
+A digitalizálási folyamat során az időbeli mintavételezés történik. 
+Folyamatos mintavételezéskor a hang intenzitásával arányos diszkrét értékek, azaz feszültségimpulzusok jönnek létre. 
+A mintavétel során az impulzusok a beérkező amplitúdó értékek alapján végtelen számú értéket vehetnek fel, 
+ám a rendelkezésre álló bináris adatszók száma véges. Ezt a jelenséget kvantálásnak vagy tartományokba 
+való felosztásnak nevezzük.
+
+A kvantálás során a hangtartomány véges számú lépcsőre oszlik. 
+A kvantálás finomsága, amely a mintavételi frekvenciával együtt a digitális jelfeldolgozás 
+egyik legfontosabb paramétere, meghatározza a hang digitalizálásának részletességét. Gyakorlatilag a 
+hangfrekvenciás jelek digitalizálásánál általában 14 vagy 16 bites kvantálást alkalmaznak. 
+A kvantálásnál figyelembe kell venni a kvantálási zajt is, amely a tartományok növelésével csökkenthető.
+A kódolás során a hangszintek szerint kvantált pontok kódkombinációk sorozataként, digitális jelekként jelennek meg.
+
 
 %----------------------------------------------------------------------------
 \section{Pontsugárzó hangforrás}
@@ -102,6 +203,14 @@ Ennek eredményeként az irányítottság frekvenciától függően változik, a
 A LineArray hangforrások olyan hangfalrendszerek, amelyekben több hangdoboz egymás fölött van elrendezve, 
 hogy egy közös lineáris hangforrást alkossanak. Ezt a technikát használják nagyobb hangosítási telepítéseknél, 
 mivel egyetlen hangfal nem elegendő a szükséges hangteljesítmény eléréséhez és a közönségterület lefedéséhez. 
+
+
+
+
+
+
+
+
 Ezeket a rendszereket DSP-kkel finomhangolják az egyes hangdobozok válaszának beállításához, lehetővé téve például
 a függőleges irányítottság változtatását. Ez segít a hangot pontosan irányítani a közönség felé. 
 A DSP-vezérelt hangszórórendszerek tervezése számítógépes eszközöket igényel, 
