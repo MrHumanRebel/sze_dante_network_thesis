@@ -72,6 +72,8 @@ Egy példa a kondenzátor mikrofonra a Shure SM137 kondenzátor mikrofon, amely 
 % ----------------------------------------------------------------------------
 \end{comment}
 
+% ⛔📝 TODO: Merge text formatting and content integration check
+
 %----------------------------------------------------------------------------
 \section{Az analóg kezdetek} % Kezdeti analóg rendszerek, skálázhatósági hátrányok, analog rendszerek korlátai, működési alapelvek, technológiai háttér  
 %----------------------------------------------------------------------------
@@ -151,7 +153,11 @@ mintavételi frekvencia minimálisan 40 kHz-nél nagyobb kell hogy legyen. A dig
     \item Studio minőség: 96 kHz
     \item Ultra minőség: 192 kHz
 \end{itemize}
-
+A digitális hangfelvételek bitmélysége az analóg jelből származó egyes minták tárolásához 
+felhasznált számjegyek számát jelöli. A CD hangformátum esetében a szabványos bitmélység 16 bit, 
+míg a mintavételi frekvencia 44,1 kHz. Ez azt jelenti, hogy másodpercenként 44 100 hangmintát rögzítenek, 
+és minden egyes minta 16 bitnyi információt tartalmaz. 
+Bár a nagyobb bitmélység általában jobb hangminőséget biztosít, ez egyúttal nagyobb fájlmérettel is jár.
 A digitális hangfeldolgozás során jellemző bitmélységek az alábbiak:
 \begin{itemize}
     \item CD minőség: 16 bit
@@ -182,6 +188,18 @@ A kvantálás finomsága, amely a mintavételi frekvenciával együtt a digitál
 egyik legfontosabb paramétere, meghatározza a hang digitalizálásának részletességét. Gyakorlatilag a 
 hangfrekvenciás jelek digitalizálásánál általában 14 vagy 16 bites kvantálást alkalmaznak. 
 A kvantálásnál figyelembe kell venni a kvantálási zajt is, amely a tartományok növelésével csökkenthető.
+A kvantálási zaj olyan zavaró tényező, amely a digitális hangrögzítés vagy -lejátszás során jelentkezik, 
+és a kerekítési hibák következményeként alakul ki. Ez a zaj a különbség az eredeti analóg jel és a 
+digitális formában ábrázolt jel értékei között, amit a digitális eszközök kvantálási folyamatában jelentkező pontatlanságok okoznak.
+A kvantálási zaj keletkezése a digitális jel analóg formából történő diszkrét értékekre (kvantumokra) 
+történő átalakítása során jelentkező kerekítési hibákra vezethető vissza. 
+E hibák következtében a kvantálási zaj nemlineáris, hanem zavaró zajként észlelhető, 
+amely nem harmonikus torzítás formájában jelenik meg, hanem inkább a hangminőség romlásához vezető zavaró tényezőként.
+
+A kvantálási zaj csökkentésére több módszer létezik. Az egyik lehetséges megoldás a 
+digitális jel dinamikatartományának növelése. Amennyiben a kvantálási pontosságot 
+egy bittel növeljük, a jel-zaj viszony javulhat, és ezzel együtt a dinamika is +6 dB-el növekedhet. 
+Továbbá, a zajcsökkentő algoritmusok alkalmazása és a magas felbontású digitális konverterek használata szintén hozzájárulhat a kvantálási zaj mérsékléséhez.
 A kódolás során a hangszintek szerint kvantált pontok kódkombinációk sorozataként, digitális jelekként jelennek meg.
 
 
@@ -207,11 +225,12 @@ mivel egyetlen hangfal nem elegendő a szükséges hangteljesítmény elérésé
 
 
 
+%----------------------------------------------------------------------------
+\subsection{DSP-vezérelt irányítás}
+%----------------------------------------------------------------------------
 
 
-
-
-Ezeket a rendszereket DSP-kkel finomhangolják az egyes hangdobozok válaszának beállításához, lehetővé téve például
+Az új generációs LineArray rendszereket DSP-kkel finomhangolják az egyes hangdobozok válaszának beállításához, lehetővé téve például
 a függőleges irányítottság változtatását. Ez segít a hangot pontosan irányítani a közönség felé. 
 A DSP-vezérelt hangszórórendszerek tervezése számítógépes eszközöket igényel, 
 amelyek lehetővé teszik a hangszórók viselkedésének részletes szimulációját a teremmel összefüggésben, 
