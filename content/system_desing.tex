@@ -629,13 +629,13 @@ Jelen esetben ez teljes mértékben felesleges, mivel a rendszerben kizárólag 
 %----------------------------------------------------------------------------
 Ez a kiegészítő szerver egység lehetővé teszi bármilyen alacsony késleltetéssel dolgozó VST3 plugin használatát a rendszerben elő környezetben.
 Olyan komplex funkcionalitásokat is elérhetünk, amelyek a keverőpulton csak limitáltan, vagy egyáltalán nem elérhetőek.
-Gondolva itt a dinamikus EQ használatára, különböző kompressziós technikákra (például Opto, Multiband), 
+Gondolva itt a dinamikus EQ használatára, különböző kompressziós technikákra (például Opto, Multiband Compressor), 
 A legnagyobb előnye ennek a fajta megoldásnak, hogy költségek szempontjából egy magasabb kategóriás keverőpult rendszer sokkal drágább lenne,
 valamint nem vagyunk korlátozva a keverőpult által biztosított funkcionalitásokkal, bármikor tudunk igényeink szerint újabb és újabb pluginokat
 telepíteni a rendszerbe, amíg a számítógép hardveres erőforrásai ezt lehetővé teszik.
 Az általam épített szerver egy AMD Ryzen 7950X processzorral és 32 GB DDR5 memóriával, és a Focusrite RedNet PCIe kártya veszi fel a harcot a
 komplex hangfeldolgozási feladatokkal. Ezekre a hardverekre azért esett a választás, mert mivel a Dante kártya 128 csatornát tud kezelni, 
-(az épített rendszer 64 csatornás, de a bővítés lehetősége fent áll) erős számítási kapacitásra van szükség, hogy a rendszer a beállított
+(az épített rendszer 64 csatornás, de a bővítés lehetősége fent áll) erős számítási kapacitásra van szükség, hogy a rendszer a beállított rendkívül alacsony
 késleltetési értékek mellett is képes legyen késés nélkül a csatornák feldolgozására. Amennyiben nem sikerül a jelet a beállított időn belül
 produkálni, furcsa zavaró pattogó hangokat hallhatunk, vagy rosszabb esetben hangkimaradás is előfordulhat. Ezért fontos a megfelelő hardveres
 erőforrások biztosítása, és a pontos beállítások elvégzése.
@@ -647,6 +647,14 @@ A példában szereplő rendszer kifogástalanul képes elvégezni a feladatát, 
 	\caption{Focusrite RedNet PCIe kártya}\label{fig:rednet_pcie}
 \end{figure}
 %----------------------------------------------------------------------------
+Szoftveres oldalról a gépen egy speciális Windows 11 rendszer került telepítésre. A neve \textit{Ghost Spectre Windows 11 Superlite SE}, amely egy
+teljesítmény és tárhely optimalizált Windows 11 verzió. A szakdolgozat írásakor elérhető legfrissebb stabil verzióját használtam fel, ami a
+23H2-es 22631.3593 verziószámú.
+A rendszerben csak a legszükségesebb alap szoftverek vannak telepítve, és a többi 
+alkalmazás, amely nem szükséges a rendszer működéséhez, törölve lett. A lehető legkevesebb erőforrást használja, miközben egy stabil és megbízható
+munkakörnyezetet biztosít. A frissítések automatikusan letiltásra kerültek, hogy a rendszer ne legyen kitéve a Windows frissítések által okozott
+esetleges hibáknak, valamint a világhálóra való csatlakozás is letiltásra került. Kizárólag külső adathordozókról lehet adatokat átvinni a rendszerbe.
+A számunkra szükséges drivereket és programokat kizárólag így tudjuk telepíteni a rendszerbe. 
 
 %----------------------------------------------------------------------------
 
