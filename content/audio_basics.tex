@@ -160,6 +160,13 @@ A digitális hangfeldolgozás során jellemző bitmélységek az alábbiak:
 %----------------------------------------------------------------------------
 A digitális hangfeldolgozás területén fontos szerepet játszik az A/D átalakítók kialakítása, 
 a kódolás folyamata, a D/A (digitális-analóg) átalakítás, valamint a hibafelismerés és hibajavítás.
+%----------------------------------------------------------------------------
+\subsection{ADC és DAC konverterek - mintavételezés}
+%----------------------------------------------------------------------------
+A mintavételezés olyan folyamat, amely során egy analóg hangjeleket digitális formába alakítanak át, azaz mintákat vesznek az időben folytonos hanghullámokból. 
+Ez az alapja annak, hogy a hangot számítógépes rendszerekben kezelni lehessen. A hangminták gyakorisága meghatározza a mintavételi frekvenciát, 
+ami meghatározza a digitális hangminőséget és a frekvencia tartományt. Általában minél magasabb a mintavételi frekvencia, annál jobb a hangminőség, 
+de nagyobb sávszélességet is eredményez.
 
 A digitalizálási folyamat során az időbeli mintavételezés történik. 
 Folyamatos mintavételezéskor a hang intenzitásával arányos diszkrét értékek, azaz feszültségimpulzusok jönnek létre. 
@@ -185,15 +192,8 @@ digitális jel dinamikatartományának növelése. Amennyiben a kvantálási pon
 egy bittel növeljük, a jel-zaj viszony javulhat, és ezzel együtt a dinamika is +6 dB-el növekedhet. 
 Továbbá, a zajcsökkentő algoritmusok alkalmazása és a magas felbontású digitális konverterek használata szintén hozzájárulhat a kvantálási zaj mérsékléséhez.
 A kódolás során a hangszintek szerint kvantált pontok kódkombinációk sorozataként, digitális jelekként jelennek meg.
-%----------------------------------------------------------------------------
-\subsection{ADC és DAC konverterek - mintavételezés}
-%----------------------------------------------------------------------------
-A mintavételezés olyan folyamat, amely során egy analóg hangjelet digitális formába alakítanak át, azaz mintákat vesznek az időben folytonos hanghullámokból. 
-Ez az alapja annak, hogy a hangot számítógépes rendszerekben kezelni lehessen. A hangminták gyakorisága meghatározza a mintavételi frekvenciát, 
-ami meghatározza a digitális hangminőséget és a frekvencia tartományt. Általában minél magasabb a mintavételi frekvencia, annál jobb a hangminőség, 
-de nagyobb sávszélességet is eredményez.
 
-Az ADC (Analog-to-Digital Converter) konverter az analóg hangjelet digitális jelekké alakítja át, míg a DAC (Digital-to-Analog Converter) 
+Az ADC (Analog-to-Digital Converter) konverter az analóg hangjeleket digitális jelekké alakítja át, míg a DAC (Digital-to-Analog Converter) 
 konverter a digitális jeleket visszaalakítja analóg hangjelekké. 
 A professzionális ADC és DAC konverterek nagymértékben befolyásolják a hangminőséget.
 %----------------------------------------------------------------------------

@@ -543,6 +543,55 @@ időkésleltetést. Az élő redszernél csomagvesztés esetén a legjobb, ha fo
 következő audio minták lejátszását, anélkül hogy megpróbálnánk helyreállítani az
 előzőt. A menedzselhető switchek és végpontok tudják logolni a csomagvesztéseket, így
 monitorozható a hálózat állapota amennyiben probléma merülne fel.
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=100mm, keepaspectratio]{figures/tcp_udp.png}
+	\caption{TCP és UDP összehasonlítás~\cite{TCPUDPPICS}}
+	\label {fig:tcp_udp}
+\end{figure}
+%----------------------------------------------------------------------------
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|l|p{5cm}|p{5cm}|}
+	\hline
+	\textbf{Jellemző} & \textbf{Transmission Control Protocol (TCP)} & \textbf{User Datagram Protocol (UDP)} \\
+	\hline
+	\textbf{Szolgáltatási típus} & Kapcsolatorientált protokoll; kapcsolat létesítése és lezárása szükséges az adatátvitel előtt és után. & Adatgramm-orientált protokoll; nincs szükség kapcsolat létesítésére vagy fenntartására, ideális broadcast és multicast esetén. \\
+	\hline
+	\textbf{Megbízhatóság} & Garantálja az adatok célba jutását. & Nem garantálja az adatok célba jutását. \\
+	\hline
+	\textbf{Hibajavító mechanizmus} & Kiterjedt hibajavító mechanizmusok, áramlás-ellenőrzés és adat-elismerés. & Alapvető hibajavító mechanizmus, ellenőrző összegeken alapul. \\
+	\hline
+	\textbf{Elismerés} & Van elismerési szegmens. & Nincs elismerési szegmens. \\
+	\hline
+	\textbf{Szekvenálás} & Garantálja a csomagok sorrendben érkezését. & Nincs adatcsomagok sorrendjének kezelése; ezt az alkalmazásrétegnek kell megoldania. \\
+	\hline
+	\textbf{Sebesség} & Lassabb, mint az UDP. & Gyorsabb, egyszerűbb és hatékonyabb. \\
+	\hline
+	\textbf{Csomagok újraküldése} & Lehetővé teszi az elveszett csomagok újraküldését. & Nincs újraküldés az elveszett csomagok esetén. \\
+	\hline
+	\textbf{Fejléc hossz} & 20-60 bájt között változhat. & Fix 8 bájt. \\
+	\hline
+	\textbf{Súly} & Nehéz súlyú. & Könnyű súlyú. \\
+	\hline
+	\textbf{Kézfogási technikák} & Kézfogások: SYN, ACK, SYN-ACK. & Kapcsolatmentes; nincs kézfogás. \\
+	\hline
+	\textbf{Broadcast támogatás} & Nem támogatja. & Támogatja. \\
+	\hline
+	\textbf{Protokollok} & HTTP, HTTPS, FTP, SMTP, Telnet. & DNS, DHCP, TFTP, SNMP, RIP, VoIP. \\
+	\hline
+	\textbf{Adatáram típus} & Bájtáram. & Üzenetáram. \\
+	\hline
+	\textbf{Túlterhelés} & Alacsony, de magasabb, mint az UDP. & Nagyon alacsony. \\
+	\hline
+	\textbf{Alkalmazások} & Biztonságos és megbízható kommunikáció, pl. e-mail, webes böngészés, katonai szolgáltatások. & Gyors kommunikáció, pl. VoIP, játékstreaming, video- és zene-streaming. \\
+	\hline
+	\end{tabular}
+	\caption{A TCP és UDP összehasonlítása~\cite{UDP}}
+	\label{tab:tcp_udp_comparison}
+\end{table}
+%----------------------------------------------------------------------------
 Audio alkalmazásokban gyakran szükség van arra, hogy egy audio jelet
 több helyre párhuzamosan fogadjanak, például egy mikrofonjel, amelyet
 párhuzamosan továbbítanak a front-of-house és a monitoring keverőpultoknak. Akár
