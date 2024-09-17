@@ -246,25 +246,64 @@ frekvenciaválaszának leírására.
     \caption{A-, C- és Z-súlyozás~\cite{DBWEIGHTS}}\label{fig:db_weights}
 \end{figure}
 %----------------------------------------------------------------------------
-\section{Pontsugárzó hangforrás}
+\newpage
+\section{Pontsugárzó és LineArray hangforrások} % Mi a különbség a pontsugárzó és LineArray hangforrások között? Milyen alkalmazási területeken használjuk őket?
 %----------------------------------------------------------------------------
-A pontsugárzó hangforrások azok a hangfalak, amelyeket olyan módon modelleznek, mintha a hang egyetlen pontból származna, és a hangnyomás arányosan csökken a távolsággal. 
-Ez a modell elsősorban olyan hangfalak esetében alkalmazható, amelyek önállóan működnek, például hangfalak dobozokban vagy mennyezetbe szerelve. 
-Ezt a modellt főként olyan helyeken használják, ahol könnyen kell elérni a hangerősítést, például előadótermekben vagy kis koncerttermekben. 
-Amikor több hangforrás kombinálódik, például kétutas hangfalrendszerekben, a transzducerek közötti kombináció bonyolultabb irányítottságot eredményez
-a fizikai távolság és a szűrők kölcsönhatása miatt. 
-Ennek eredményeként az irányítottság frekvenciától függően változik, ami kihívást jelent a hangrendszer tervezése során.
+Hangládák kiválasztásakor a legelterjedtebb formátumok a pontsugárzó és a Line Array rendszerek.
+Ez a két típusú hangforrás eltérő működési elvekkel rendelkezik, 
+amelyek befolyásolják megfelelő alkalmazási területeiket és a hangzás minőségét.
+A pontsugárzó hangszórók, jellemzően kisebb eseményeken, 
+otthoni környezetben és egyes konferenciákon találhatók meg. Ezek a hangszórók egyetlen 
+dobozból állnak, amelyben minden szükséges komponens elhelyezésre került a hang előállításához. 
+A pontsugárzók a hangot minden irányba terjesztik, olyan módon, mintha a hang egyetlen pontból áramlana ki. 
+Könnyen telepíthetők és jól alkalmazhatók kisebb rendezvényekhez. Különböző méretűek 
+lehetnek, a kis asztali hangszóróktól kezdve a nagyobb DJ-rendszerekig.
 %----------------------------------------------------------------------------
-\section{LineArray hangforrás}
+\begin{figure}[H]
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\includegraphics[width=200px, keepaspectratio]{figures/point_source.jpg}
+        \caption{Pontsugárzó rendszer}
+        \label{fig:point_source}
+	\end{minipage}%
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\includegraphics[width=200px, keepaspectratio]{figures/line_array.jpg}
+		\caption{Line Array rendszer}
+        \label{fig:line_array}
+	\end{minipage}
+\end{figure}
 %----------------------------------------------------------------------------
-A LineArray hangforrások olyan hangfalrendszerek, amelyekben több hangdoboz egymás fölött van elrendezve, 
-hogy egy közös lineáris hangforrást alkossanak. Ezt a technikát használják nagyobb hangosítási telepítéseknél, 
-mivel egyetlen hangfal nem elegendő a szükséges hangteljesítmény eléréséhez és a közönségterület lefedéséhez. 
+A Line Array rendszerek ezzel szemben több dobozból állnak, amelyek egymáshoz képest függőlegesen vannak elrendezve.
+Minden doboz több kisebb hangszórót tartalmaz. Amikor ezek a dobozok sorba vannak állítva, 
+együtt működnek egy hatékony és kontrollált hangzás előállításában, amely sokkal könnyebben irányítható. 
+A Line Array rendszerek ideálisak nagyobb eseményekhez vagy szabadtéri koncertekhez, mivel képesek 
+nagyobb területet lefedni. Az ilyen rendszerek vezérlése lehetővé 
+teszi olyan okos megoldások alkalmazását is, mint például a 'kizárási zónák' létrehozása, vagy a 
+hang egy adott területre való fókuszálása a helyszínen.
+Összefoglalva, a pontsugárzó és a Line Array hangszórók közötti alapvető különbség a hangterjesztés módjában rejlik. 
+Míg a pontsugárzó hangszórók a hangot minden irányba szórják, addig a Line Array hangszórók a hangot meghatározott területekre irányítják. 
+A pontsugárzók inkább kisebb rendezvényekhez ajánlottak, míg a Line Array rendszerek nagyobb helyszínekhez vagy szabadtéri eseményekhez ideálisak.
 %----------------------------------------------------------------------------
-\subsection{DSP-vezérelt irányítás}
+\subsection{LineArray DSP-vezérelt irányítás~\cite{AHNERT2023}}
 %----------------------------------------------------------------------------
-Az új generációs LineArray rendszereket DSP-kkel finomhangolják az egyes hangdobozok válaszának beállításához, lehetővé téve például
-a függőleges irányítottság változtatását. Ez segít a hangot pontosan irányítani a közönség felé. 
-A DSP-vezérelt hangszórórendszerek tervezése számítógépes eszközöket igényel, 
-amelyek lehetővé teszik a hangszórók viselkedésének részletes szimulációját a teremmel összefüggésben, 
-és optimalizálják a hangeloszlást a kívánt irányban.
+A hangosító rendszerek tervezésének fő célja, hogy a közönség számára kiváló minőségű hangzást biztosítson. 
+A kiváló hangzás alatt egyenletes hangerejű, homogén frekvenciaválaszú, alacsony torzítással rendelkező és mindenhol jól érthető hangot értünk. 
+E célok elérése érdekében a modern lesugárzó rendszerek elektronikus úton állítható irányokkal rendelkeznek. 
+Ehhez egyedi digitális jelkezelést (DSP) és egyedi erősítést alkalmaznak minden egyes meghajtóhoz.
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth, keepaspectratio]{figures/dsp_arrays.png}
+    \caption{DSP-vezérelt Line Array~\cite{AHNERT2023}}
+    \label{fig:dsp_arrays}
+\end{figure}
+%----------------------------------------------------------------------------
+A DSP-vezérelt line array hangszórók találmánya az 1990-es évekre nyúlik vissza, és azóta folyamatosan fejlődött.
+Ma már számos gyártó kínál különböző méretű és felbontású DSP-vezérelt irányítható rendszereket, 
+amelyek igyekeznek minden hangosítási igényt kielégíti. 
+Különösen akusztikailag nehéz helyszíneken, ahol sok a reflektáló felület és nagy a visszhang effektus. 
+Itt az ilyen vezérléssel rendelkező rendszerek teljesítménye egyértelműen felülmúlja a hagyományosak eredményeit. 
+A DSP programozása speciális szoftvert igényel, amelyet a gyártó biztosít, és lehetővé tesz különböző szűrő paraméterek optimalizálását a kívánt irányítottság eléréséhez. 
+Általában a cél egy keresztmetszeti tervként van meghatározva, és a line array rendszer irányítása ennek a célzott terület egyenletes lefedésére irányul.
+A rendszerek tervezése számítógépes eszközöket igényel, amelyek lehetővé teszik a hangszórók viselkedésének részletes szimulációját, például hogyan reagál a térben egy bizonyos rendszer.
