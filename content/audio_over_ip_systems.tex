@@ -842,33 +842,39 @@ Ha egy 32 bites hangforrásunk van, de a másik eszköz
 csak 24 bites hangot tud fogadni, akkor a Dante a 32 bites hangot 24 bitesre tudja 
 alakítani.
 %----------------------------------------------------------------------------
-\begin{align*}
-	\begin{array}{|c|c|}
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c|c|}
 	\hline
-	\text{Hangminták} & \text{Bitmélység} \\
+	\textbf{Hangminták} & \textbf{Bitmélység} \\
 	\hline
-	\text{11110000 11110000 11110000 11110000} & \text{32 bites} \\
+	\texttt{11110000 11110000 11110000 11110000} & 32 bites \\
 	\hline
-	\text{11110000 11110000 11110000} & \text{24 bites} \\
+	\texttt{11110000 11110000 11110000} & 24 bites \\
 	\hline
-	\end{array}
-\end{align*}
+	\end{tabular}
+	\caption{32 bites és 24 bites hangminták}
+	\label{tab:bit_depth_example}
+\end{table}
 %----------------------------------------------------------------------------
 Amint a példában látszik, 32 bites hangból úgy kaptunk 24 bites hangot, 
 hogy egyszerűen csak elhagytuk az utolsó 8 bitet. Ez a folyamat visszafelé is működik,
 ha 24 bites hangot kell 32 bites hanggá alakítani, akkor az utolsó 8 bitet 0-val kell feltölteni.
 %----------------------------------------------------------------------------	
-\begin{align*}
-	\begin{array}{|c|c|}
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c|c|}
 	\hline
-	\text{Hangminták} & \text{Bitmélység} \\
+	\textbf{Hangminták} & \textbf{Bitmélység} \\
 	\hline
-	\text{11110000 11110000 11110000} & \text{24 bites} \\
+	\texttt{11110000 11110000 11110000} & 24 bites \\
 	\hline
-	\text{11110000 11110000 11110000 00000000} & \text{32 bites} \\
+	\texttt{11110000 11110000 11110000 00000000} & 32 bites \\
 	\hline
-	\end{array}
-\end{align*}
+	\end{tabular}
+	\caption{24 bites hangból 32 bites hang}
+	\label{tab:bit_depth_conversion}
+\end{table}
 %----------------------------------------------------------------------------
 A mintavételezési frekvencia eltérése csak akkor kezelhető, ha a bitmélység is különbözik. 
 Amennyiben a bitmélység megegyezik, de a mintavételezési frekvencia eltér, a rendszer nem 
@@ -918,15 +924,11 @@ A késleltetés az az időtartam, amely szükséges egy folyamat végrehajtásá
 például a bemeneti oldalon beérkező hangjel feldolgozásához és annak megjelenéséhez 
 a kimeneti oldalon. A késleltetés mérésére két fő mértékegységet használunk:
 %----------------------------------------------------------------------------
-\begin{equation}
-	\label{eq:milliseconds}
-	1 \text{ másodperc} = 1000 \text{ milli másodperc}, \quad \text{azaz} \quad 1 \text{ ms} = 0.001 \text{ s}
-\end{equation}
-%----------------------------------------------------------------------------
-\begin{equation}
-	\label{eq:microseconds}
-	1 \text{ másodperc} = 1000000 \text{ mikro másodperc}, \quad \text{azaz} \quad 1 \mu\text{s} = 0.000001 \text{ s}
-\end{equation}
+\begin{align}
+    1 \text{ másodperc} &= 1000 \text{ milli másodperc}, \quad \text{azaz} \quad 1 \text{ ms} = 0.001 \text{ s} \\
+    1 \text{ másodperc} &= 1000000 \text{ mikro másodperc}, \quad \text{azaz} \quad 1 \mu\text{s} = 0.000001 \text{ s}
+    \label{eq:microseconds}
+\end{align}
 %----------------------------------------------------------------------------
 A Dante eszközök lehetőséget biztosítanak a késleltetés teljesítményének 
 meghatározására. A 0.1 milliszekundumos késleltetés az, amely már biztosítja a 
@@ -1042,7 +1044,8 @@ eszközöket fejlesszenek ki, így kielégítve a változatos piaci igényeket. 
 elősegítik a gyártók munkáját azáltal, hogy lehetővé teszik a Dante-kompatibilis eszközök 
 gyors és hatékony létrehozását, valamint egyszerű integrációjukat a meglévő termékekbe.
 %----------------------------------------------------------------------------
-\begin{center}
+\begin{table}[h!]
+	\centering
 	\begin{tabular}{|c|p{10cm}|}
 		\hline
 		\textbf{Chip} & \textbf{Leírás} \\
@@ -1062,5 +1065,7 @@ gyors és hatékony létrehozását, valamint egyszerű integrációjukat a megl
 		\includegraphics[width=40px,height=40px,keepaspectratio]{figures/dante-av.jpg} & \textbf{Dante AV} - V:1, A:8 \\
 		\hline
 	\end{tabular}
-\end{center}
+	\caption{Különböző Dante chipek}
+	\label{tab:dante_chips}
+\end{table}
 %----------------------------------------------------------------------------
