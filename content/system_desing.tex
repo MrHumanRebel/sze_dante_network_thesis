@@ -459,6 +459,31 @@ Ezen a felületen tudjuk a hálózaton összekapcsolni a különböző hang vev�
 adókat. Egy nagyobb rendszerben a konfigurálása rendkívül nagy odafigyelést és
 precíziót igényel, pontosan tudnunk kell mit, hogyan és miért kötünk össze.
 %----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth, keepaspectratio]{figures/dante_pa_patch.jpg}
+	\caption{Hálózati mátrix - Végfok patch}\label{fig:dante_pa_patch}
+\end{figure}
+%----------------------------------------------------------------------------
+
+
+
+
+
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth, keepaspectratio]{figures/dante_audioserver_patch.jpg}
+	\caption{Hálózati mátrix - Audioserver patch}\label{fig:dante_audioserver_patch}
+\end{figure}
+%----------------------------------------------------------------------------
+
+
+
+
+
+
+%----------------------------------------------------------------------------
 % Eszköz nézet
 %----------------------------------------------------------------------------
 Mielőtt neki állnánk konfigurálni az adott eszközt, fontos eldöntenünk, hogy
@@ -474,6 +499,13 @@ teszi egyszerűbbé. Amennyiben a redundancia nem elsődleges szempont számunkr
 minden egyes eszköz mögé switch, hanem a másodlagos RJ45 port direktbe köti
 az arra csatlakoztatott eszközt az elsődleges hálózatra. Így gyorsabban és
 költséghatékonyabban tudjuk kiépíteni a hálózatot, azonban a redundancia lehetősége megszűnik.
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth, keepaspectratio]{figures/dante_devices.jpg}
+	\caption{Dante hálózat állapot nézet}\label{fig:dante_devices}
+\end{figure}
+%----------------------------------------------------------------------------
 %----------------------------------------------------------------------------
 \subsubsection{IP kiosztás}
 %----------------------------------------------------------------------------
@@ -525,7 +557,20 @@ növelésével egyre több és több időt vesz igénybe a jelek feldolgozása, 
 A mi esetünkben mivel az útválasztók is kifejezetten csak erre a célra vannak használva és semmiféle más
 adatforgalmat nem bonyolítanak, a 1 ms-os késleltetési érték csökkenthető is akár a felére is.
 Rövid kábelhosszak esetén egyes eszközök között akár 0.25 ms-os késleltetési értéket is beállíthatunk amennyiben
-hosszútávon nagy biztonsággal stabil a hálózat.
+hosszútávon nagy biztonsággal stabil a hálózat. Jelen esetben a stabil működés érdekében 1 ms-os késleltetési értéket
+tartottam meg.
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth, keepaspectratio]{figures/dante_latency.jpg}
+	\caption{DT 168 stagebox késleltetési értékeinek monitorozása}\label{fig:dante_latency}
+\end{figure}
+%----------------------------------------------------------------------------
+
+
+
+
+
 %----------------------------------------------------------------------------
 \subsubsection{Dante rendszer monitorozása}
 %----------------------------------------------------------------------------
@@ -535,9 +580,10 @@ hosszútávon nagy biztonsággal stabil a hálózat.
 %----------------------------------------------------------------------------
 
 
-%----------------------------------------------------------------------------
-% Események nézet
-%----------------------------------------------------------------------------
+
+
+
+
 
 
 
@@ -644,9 +690,36 @@ esetleges hibáknak, valamint a világhálóra való csatlakozás is letiltásra
 A számunkra szükséges drivereket és programokat kizárólag így tudjuk telepíteni a rendszerbe. 
 
 %----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth, keepaspectratio]{figures/dt_preamp_control.jpg}
+	\caption{DT 168 stagebox előerősítő szabályozó felülete}\label{fig:dt_preamp_control}
+\end{figure}
+%----------------------------------------------------------------------------
 
 
-% !!! Képernyőfotó a szerverről !!! Leírás a pluginokról, singnal chain, hogy működik stb, plusz késés, mérések ilyesmi
+
+
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth, keepaspectratio]{figures/waves_plugins.jpg}
+	\caption{Waves és FabFilter Audio pluginok}\label{fig:waves_plugins}
+\end{figure}
+%----------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth, keepaspectratio]{figures/waves_latency.jpg}
+	\caption{Live Professor késése}\label{fig:waves_latency}
+\end{figure}
+%----------------------------------------------------------------------------
+
+
+
+
 
 
 %----------------------------------------------------------------------------
@@ -708,6 +781,16 @@ fázishelyes és időben is helyes már, készen áll a produkcióra.
 % FrontFill - TOP Align
 %----------------------------------------------------------------------------
 
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth, keepaspectratio]{figures/nearfill_smaart.jpg}
+	\caption{FrontFill - TOP mérések}\label{fig:nearfill_smaart}
+\end{figure}
+%----------------------------------------------------------------------------
+
+
+
 
 
 
@@ -735,4 +818,29 @@ Többféle módszerrel lehet a hangnyomás szintet monitorozni, jelen esetben h�
 
 %----------------------------------------------------------------------------
 \section{Végeredmény} % Konkrétan mely helyszíneken, hogyan zajlott, több tapasztalat megosztása, mi működött jól, és mi kevésbé.
+%----------------------------------------------------------------------------
+Ahogy már a modellezés során a korábbiakban említettem, a budapesti Millenáris B csarnoka volt a referencia helyszín, ahol a rendszert élesben telepítettem egy rendezvény idejére.
+
+
+
+%----------------------------------------------------------------------------
+\begin {figure}[h!]
+    \centering
+    \includegraphics[width=300px]{figures/danci_wpc.jpg}
+    \caption{A szakdolgozat szerzője a megépített WPC Line Array mögött emelés előtt}
+\end {figure}
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\begin {figure}[h!]
+    \centering
+	\includegraphics[width=300px]{figures/wpc_deployed.jpg}
+	\caption{A megépített WPC Line Array}
+\end {figure}
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\begin {figure}[h!]
+	\centering
+	\includegraphics[width=300px]{figures/system_deployed.jpg}
+	\caption{A teljes rendszer}
+\end {figure}
 %----------------------------------------------------------------------------
