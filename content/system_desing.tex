@@ -613,9 +613,17 @@ maximálisan 144 dB hangnyomás szintet tudnak biztosítani.~\cite{SXSUBWOOFERUS
 Jelen esetben 12 darab ilyen láda fogja biztosítani a megfelelő mély tartományt a rendezvényen.
 %----------------------------------------------------------------------------
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=75mm, keepaspectratio]{figures/sx218_front_view.jpg}
-	\caption{Martin Audio SX218 mélyláda}\label{fig:sx218}
+    \centering
+    \begin{minipage}{0.45\textwidth}
+		\centering
+		\includegraphics[width=150px, keepaspectratio]{figures/sx218_front_view.jpg}
+		\caption{Martin Audio SX218}\label{fig:sx218}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth, keepaspectratio]{figures/sub_array_63hz.jpg}
+        \caption{SX218 mélyláda rendszer}\label{fig:sub_array_63hz}
+    \end{minipage}
 \end{figure}
 %----------------------------------------------------------------------------
 A \textit{``SUB''} tervezést egy általam készített Excel kalkulátor
@@ -626,18 +634,21 @@ A egy EndFire konfigurációs mélyláda elrendezést terveztem.
 A táblázatba megadhatjuk, hogy éppen helyileg hol
 van a rendezvény, és egy időjárás API segítségével megkapjuk az adott napra/napokra a
 teljes időjárás előrejelzést. Majd ezekből egy adott időintervallumra átlagolva
-megkapjuk az optimális értékeket a tervezéshez. 
+megkapjuk az éppen aktuális hőmérsékletet, páratartalmat, légnyomást, amiből kiszámolható
+a hangsebesség, ezáltal még tovább optimalizálható a rendszer, mivel nem egy előre átlagot fix értéket
+használunk, hanem az aktuális körülményekhez igazítjuk a rendszert.
+Amennyiben a helyszínen rendelkezünk mérőeszközökkel, melyek képesek pontosan mérni a hőmérsékletet,
+páratartalmat és légnyomást, akkor ezeket az értékeket is be tudjuk állítani a táblázatban.
 A program kiszámolja, hogy milyen távolságra kell a ládákat helyezni egymástól előrefelé,
 valamint mekkora \textit{``delay''} értéket kell alkalmazni. 
 Majd az egyes EndFire Pack-ok egymáshoz képesti távolságot oldalirányban és azok
 közötti delay értéket is megkapjuk. A \textit{``SUB array''}-t 63 Hz-re optimalizáltam, mivel
 ez az a frekvenciatartomány, ahol a mélyláda rendszer a legtöbb energiát tudja leadni.
-
-
-
-
-
-
+A program pontosan kiszámolja számunkra a beállított paramértereknek megfelelően hogyan kell megépíteni, 
+vagyis fizikailag elhelyezni a ládákat, valamint az összes időzítési értéket is megkapjuk mellé.
+A program hosszútávú használata során kiderült, hogy szinte század milliszekundum pontossággal
+megkapjuk a várt eredményt amit méréssel is ellenőriztünk, és a két eredmény között aligha volt eltérés.
+Ezzel a munkafolyamatunkat nagyban felgyorsítottuk, és a munkánk precizitását is megtartottuk.
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
@@ -653,33 +664,33 @@ A pultok 96 kHz-es mintavételezési frekvenciával operálnak és 48 csatornát
 24 csatornával rendelkezik fizikailag beépített mikrofon előerősítővel. A konzolokon található 16 programozható gomb,
 25 fader melyek 6 rétegben helyezkednek el és a felhasználó személyre szabhatja őket a saját igényei szerint. 
 Emellett 12 sztereó mix áll a rendelkezésünkre, melyeket szintén a felhasználó konfigurálhat saját igényei szerint.
-A sztereóm mixek testreszabásával tudunk csoportokat is létrehozni.
-A konzolokon 8 sztereó effekt motort is megtalálunk, ezekbe a virtuális effekt processzorokba a pultokon található ingyenes és fizetős 
+A sztereó mixek testreszabásával tudunk csoportokat is létrehozni.
+A konzolokon 8 sztereó effekt motort is megtalálunk, ezekbe a virtuális effekt processzorokba a pulton található ingyenes és fizetős 
 pluginokat tudjuk betölteni. (amennyiben megvásároltuk a fizetős csomagokat, jelen rendszerben ezek nincsenek megvásárolva)
 További előnye a platformnak, hogy egy 32x32 csatornás USB audio interfésszel rendelkezik, így a számítógéphez csatlakoztatva
 egy nagy felbontású hangkártyaként is használhatjuk.~\cite{AHSQ}
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=75mm, keepaspectratio]{figures/sq6.jpg}
+	\includegraphics[width=70mm, keepaspectratio]{figures/sq6.jpg}
 	\caption{Allen \& Heath SQ-6 digitális keverőpult}\label{fig:sq6}
 \end{figure}
 %----------------------------------------------------------------------------
 Az I/O bővítőkártyák közül a rendszerben mindkét pultban megtalálható egy darab SQ Dante kártya ami 64x64 csatorna
 kezelésére képes. Az A\&H SQ szériás pultjai csak egy darab I/O bővítőkártyát tudnak kezelni, de léteznek
-olyan rendszerek mint például az Avantis és a DLive szériás pultok, amelyek több I/O bővítőkártyát is tudnak kezelni.
+olyan rendszerek mint például az Avantis és a dLive szériás pultok, amelyek több I/O bővítőkártyát is tudnak kezelni.
 Jelen esetben ez teljes mértékben felesleges, mivel a rendszerben kizárólag a Dante protokollra támaszkodunk.
 %----------------------------------------------------------------------------
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.45\textwidth}
         \centering
-        \includegraphics[width=55mm, keepaspectratio]{figures/sq_dante.jpg}
+        \includegraphics[width=50mm, keepaspectratio]{figures/sq_dante.jpg}
         \caption{A\&H SQ Dante kártya}\label{fig:sq_dante}
     \end{minipage}\hfill
     \begin{minipage}{0.45\textwidth}
         \centering
-        \includegraphics[width=55mm, keepaspectratio]{figures/dt168.jpg}
+        \includegraphics[width=50mm, keepaspectratio]{figures/dt168.jpg}
         \caption{A\&H DT168 Dante stagebox}\label{fig:dt168}
     \end{minipage}
 \end{figure}
@@ -714,7 +725,12 @@ alkalmazás, amely nem szükséges a rendszer működéséhez, törölve lett. A
 munkakörnyezetet biztosít. A frissítések automatikusan letiltásra kerültek, hogy a rendszer ne legyen kitéve a Windows frissítések által okozott
 esetleges hibáknak, valamint a világhálóra való csatlakozás is letiltásra került. Kizárólag külső adathordozókról lehet adatokat átvinni a rendszerbe.
 A számunkra szükséges drivereket és programokat kizárólag így tudjuk telepíteni a rendszerbe. 
-
+Mivel az FOH pult Dante patchet nézve nem csatlakozik direktben a stageboxokhoz, hanem az audioserveren keresztül, ezért a stageboxok
+előerősítőit az audioserveren keresztül tudjuk szabályozni. Erre a célra az Allen \& Heath DT Preamp Control nevű szoftverét használjuk,
+amely a stageboxokat tudja szabályozni, valamint a stageboxok firmware frissítését is lehetővé teszi.
+Minden egyes csatornára beállíthatjuk a kívánt Gain értéket, tudunk PAD-et kapcsolni, valamint a Phantom tápot is tudjuk be és kikapcsolni.
+(A PAD egy olyan kapcsoló, amely a 20 dB-es csillapítást kapcsol a bemeneten, ha a bemeneti jel túl erős lenne, és ezáltal
+elkerülhető a torzítás. A Phantom táp pedig a tápellátást igénylő mikrofonok számára szükséges 48V-ot biztosítja.)
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
@@ -722,32 +738,15 @@ A számunkra szükséges drivereket és programokat kizárólag így tudjuk tele
 	\caption{DT 168 stagebox előerősítő szabályozó felülete}\label{fig:dt_preamp_control}
 \end{figure}
 %----------------------------------------------------------------------------
-
-
-
-
+Az alábbi képen látható egy minta plugin lánc, melyet egy vokál csatornát képvisel. A láncban található egy 
+SSLG Channel Strip, egy Primary Source Expander, egy CLA-76 Compressor, egy Waves Tune Real-Time és egy FabFilter Pro-Q3.
+Ezek a pluginok együttesen képesek egy vokál csatornát teljesen átalakítani, és a kívánt hangzást elérni.
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth, keepaspectratio]{figures/waves_plugins.jpg}
 	\caption{Waves és FabFilter Audio pluginok}\label{fig:waves_plugins}
 \end{figure}
-%----------------------------------------------------------------------------
-
-
-%----------------------------------------------------------------------------
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=300px, keepaspectratio]{figures/waves_latency.jpg}
-	\caption{Live Professor késése}\label{fig:waves_latency}
-\end{figure}
-%----------------------------------------------------------------------------
-
-
-
-
-
-
 %----------------------------------------------------------------------------
 \subsection{A rendszer mérése}
 %----------------------------------------------------------------------------
@@ -817,7 +816,18 @@ fázishelyes és időben is helyes már, készen áll a produkcióra.
 
 
 
+%----------------------------------------------------------------------------
+% Audioserver latency mérés
+%----------------------------------------------------------------------------
 
+
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=300px, keepaspectratio]{figures/waves_latency.jpg}
+	\caption{Live Professor késése}\label{fig:waves_latency}
+\end{figure}
+%----------------------------------------------------------------------------
 
 
 
