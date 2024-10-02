@@ -713,7 +713,7 @@ A példában szereplő rendszer kifogástalanul képes elvégezni a feladatát, 
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=67mm, keepaspectratio]{figures/rednet_pcie.jpg}
+	\includegraphics[width=55mm, keepaspectratio]{figures/rednet_pcie.jpg}
 	\caption{Focusrite RedNet PCIe kártya}\label{fig:rednet_pcie}
 \end{figure}
 %----------------------------------------------------------------------------
@@ -738,9 +738,31 @@ elkerülhető a torzítás. A Phantom táp pedig a tápellátást igénylő mikr
 	\caption{DT 168 stagebox előerősítő szabályozó felülete}\label{fig:dt_preamp_control}
 \end{figure}
 %----------------------------------------------------------------------------
-Az alábbi képen látható egy minta plugin lánc, melyet egy vokál csatornát képvisel. A láncban található egy 
+A DAW szoftverek közül a rendszerben az audioström által fejlesztett Live Professor szoftver található, amely egy
+VST host szoftver, amely képes több VST plugin egyidejű futtatására, és a pluginokat a felhasználó igényei szerint
+rendszerezni, csoportosítani. Kifejezetten live használatra lett tervezve a kezdetektől fogva, ezáltal sok olyan
+funkciót tartalmaz, amelyek egy FOH mérnök számára könnyebbé teszik a használatot. Például a pluginokat láncokba tudjuk
+rendezni, és ezeket a láncokat egy gombnyomással be és kikapcsolni, automatizálni. MIDI vezérlésre is képes, így
+például a keverőpulttal egy USB kábellel való összekötés után tudjuk vezérelni a szoftvertben lévő paramétereket a keverőpult soft gombjaival. (ezek személyre szabható gombok)
+Mielőtt azonban használnánk a programot, fontos a megfelelő beállítások elvégzése, hogy a rendszerünk stabilan működjön.
+Első és legfontosabb feladat az audio hardver és driver kiválasztása, valamint a megfelelő buffer méret beállítása a mintavételezési frekvenciával együtt.
+Jelen esetben ez a RedNet PCIe kártya lesz, és a buffer méret a lehető legkisebb, 32 minta lesz, ASIO driverrel, 96 kHz-es mintavételezési frekvenciával.
+Így mind a 128x128 csatorna máris a rendelkezésünkre áll a használatra.
+A buffer méret azért lehet ennyire alacsony, mivel a számítógép hardveres erőforrásai ezt lehetővé teszik, és a rendszer
+képes a 32 minta buffer méretet stabilan tartani. A buffer méret csökkentésével a késleltetés is csökken, 
+azonban a processzor terhelése is nő, ezért fontos a megfelelő hardveres erőforrások biztosítása. 
+A szoftverben beállíthatjuk hány párhuzamos szálon történjenek a számítások, mivel a rendszerben lévő processzor 24 szálas,
+ezért a programot 24-re konfiguráljuk, így a processzor kihasználtsága optimális lesz. Valamint a Windows Scheduler Prioritását is
+a legmagasabbra állítjuk, ami a Realtime Prioritás, így a rendszer a lehető legnagyobb prioritással fogja kezelni a programot.
+Az alábbi képen látható egy minta plugin lánc, melyet egy vokál csatornát képvisel. A láncban található egy
 SSLG Channel Strip, egy Primary Source Expander, egy CLA-76 Compressor, egy Waves Tune Real-Time és egy FabFilter Pro-Q3.
 Ezek a pluginok együttesen képesek egy vokál csatornát teljesen átalakítani, és a kívánt hangzást elérni.
+A felső sávban látható a Processing Time, ami azt mutatja, hogy a rendszer mennyi idő alatt képes a jelet feldolgozni.
+Mellette látható a már említett 32 minta buffer méret, és a 96 kHz-es mintavételezési frekvencia.
+Ami viszont számunkra a legfontosabb, a mellette lévő két kis téglalap. A Live Professor képes észlelni a hangkimaradásokat,
+és ezeket a téglalapokat pirosra váltani, ha a rendszer nem képes a beállított buffer méretet stabilan tartani.
+(Elsőnek narancssárga figyelmeztetést kapunk, ha a közel járunk a buffer méret határához.)
+Mivel jelen esetben a rendszer stabilan működik, a téglalapok zöld színűek, és a Processing Time is a beállított értéken belül van.
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
@@ -785,7 +807,7 @@ Aggodalomra azonban nincs ok, mivel megfelelő szakértelemmel és a megfelelő 
 a kiváló hangminőséget a rendezvényen.
 Az alábbiakban a mérési eredmények láthatóak.
 Fontos megjegyezni, hogy a mérési eredmények csak a mérés helyszínén érvényesek, és a mérési körülményektől függően változhatnak.
-A reflexiók és a mérési bizonytalanság mennyisége infidecimális a mérési eredményben.
+%A reflexiók és a mérési bizonytalanság mennyisége infidecimális a mérési eredményben.
 Az ábrán a következőket láthatjuk különböző színekkel jelölve:
 - A kék szín a teljes rendszer viselkedése mérés nélkül.
 - A zöld szín a teljes rendszer viselkedése mérés után.
@@ -805,32 +827,19 @@ fázishelyes és időben is helyes már, készen áll a produkcióra.
 %----------------------------------------------------------------------------
 % FrontFill - TOP Align
 %----------------------------------------------------------------------------
-
+A frontfill mérését a Smaart-ba beépített delay finder segítségével fogom elvégezni.
+Elsőnek elhelyezzük a mérőmikrofont a megfelelő helyen, ahová a main PA és a frontfill rendszer hangja is érkezik.
+Ezután a delay finder segítségével elsőnek megmérjük a main PA rendszer hangját, majd ezek után
+a frontfill rendszer hangját. A delay finder segítségével a két rendszer közötti késleltetési értéket
+automatikusan kiszámolja a szoftver, és megkapjuk mint idő delta értéket.
+Az alábbi képen látható, hogy a késleltetés delat értéke 15.41 ms, tehát a frontfill rendszert kell
+15.41 ms-el késleltetni, hogy a két rendszer fázisban és időben is helyes legyen.
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=300px, keepaspectratio]{figures/nearfill_smaart.jpg}
 	\caption{FrontFill - TOP mérések}\label{fig:nearfill_smaart}
 \end{figure}
-%----------------------------------------------------------------------------
-
-
-
-%----------------------------------------------------------------------------
-% Audioserver latency mérés
-%----------------------------------------------------------------------------
-
-
-%----------------------------------------------------------------------------
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=300px, keepaspectratio]{figures/waves_latency.jpg}
-	\caption{Live Professor késése}\label{fig:waves_latency}
-\end{figure}
-%----------------------------------------------------------------------------
-
-
-
 %----------------------------------------------------------------------------
 \subsection{A rendszer monitorozása}
 %----------------------------------------------------------------------------
