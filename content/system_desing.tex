@@ -453,37 +453,6 @@ elvégezni, amelyekről a későbbiekben lesz szó.
 %----------------------------------------------------------------------------
 \subsubsection{Dante Controller}
 %---------------------------------------------------------------------------- 
-% Hálózati mátrix
-%----------------------------------------------------------------------------
-Ezen a felületen tudjuk a hálózaton összekapcsolni a különböző hang vevőket és
-adókat. Egy nagyobb rendszerben a konfigurálása rendkívül nagy odafigyelést és
-precíziót igényel, pontosan tudnunk kell mit, hogyan és miért kötünk össze.
-%----------------------------------------------------------------------------
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth, keepaspectratio]{figures/dante_pa_patch.jpg}
-	\caption{Hálózati mátrix - Végfok patch}\label{fig:dante_pa_patch}
-\end{figure}
-%----------------------------------------------------------------------------
-
-
-
-
-
-%----------------------------------------------------------------------------
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth, keepaspectratio]{figures/dante_audioserver_patch.jpg}
-	\caption{Hálózati mátrix - Audioserver patch}\label{fig:dante_audioserver_patch}
-\end{figure}
-%----------------------------------------------------------------------------
-
-
-
-
-
-
-%----------------------------------------------------------------------------
 % Eszköz nézet
 %----------------------------------------------------------------------------
 Mielőtt neki állnánk konfigurálni az adott eszközt, fontos eldöntenünk, hogy
@@ -505,7 +474,6 @@ költséghatékonyabban tudjuk kiépíteni a hálózatot, azonban a redundancia 
 	\includegraphics[width=\textwidth, keepaspectratio]{figures/dante_devices.jpg}
 	\caption{Dante hálózat állapot nézet}\label{fig:dante_devices}
 \end{figure}
-%----------------------------------------------------------------------------
 %----------------------------------------------------------------------------
 \subsubsection{IP kiosztás}
 %----------------------------------------------------------------------------
@@ -539,13 +507,55 @@ A háló 250-es címén helyezkedik el a Dante Audio szerver.
 	\caption{Dante eszközök IP címei a hálózaton}\label{fig:dante_ips}
 \end{figure}
 %----------------------------------------------------------------------------
+% Hálózati mátrix
+%----------------------------------------------------------------------------
+Ezen a felületen tudjuk a hálózaton összekapcsolni a különböző hang vevőket és
+adókat. Egy nagy rendszerben a konfigurálása rendkívül nagy odafigyelést és
+precíziót igényel, pontosan tudnunk kell mit, hogyan és miért kötünk össze.
+Amennyiben hibásan konfiguráljuk a hálózatot, rendellenességek léphetnek fel a
+hangrendszerben, amelyeket később nagyon nehéz és időigényes lehet kijavítani.
+Hibás konfiguráció esetén előfordulhat, hogy egyes kimenetek máshol, vagy egyáltalán nem érkeznek meg a
+végpontokhoz. Amint az alábbi képen látható, és a korábbiakban már említett 64x64-es kimeneti és bemeneti
+mátrix-al tudunk garázdálkodni. Mivel egy általam tervezett produkcióban mindig szükség van 
+egy L-R, egy SUB, és egy mono mátrixra, ezért a hálózatot a végéről kezdem el szaturálni.
+A L a 61-es, a R a 62-es, a SUB a 63-as, a mono mátrix pedig a 64-es kimenetekre lesz kötve.
+Így az állandó kimenetek átláthatóan és logikusan lesznek elrendezve, és nem kell
+mindig keresgélni, hogy melyik kimenet melyik eszközhöz tartozik.
+Mivel a jelenlegi rendszerben 2 darab DT 168-es stagebox található, ezért az 
+1-16 kimeneteket a két stageboxra kötöm, logikusan 1-8 a 02-es sorszámúra és 8-16 a 03-as sorszámúra.
+Ezek lesznek majd a fülmonitorok kimeneti pontjai, és a színpadon lévő zenészeknek fogják a jelet továbbítani.
+(A fülmonitorokat ezen a rendezvényen a zenészek saját maguk biztosították, és  csak a jelet kellett továbbítani.)
+Ezzel az FOH keverőnket sikeresen összekötöttük végfokokkal, és a monitor keverőnket a fülmonitorokkal.
+Viszont még nem tudunk egyetlen egy bementet sem kezelni, mivel a keverők bemeneti mátrixa még üres.
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth, keepaspectratio]{figures/dante_pa_patch.jpg}
+	\caption{Hálózati mátrix - Végfok patch}\label{fig:dante_pa_patch}
+\end{figure}
+%----------------------------------------------------------------------------
+A rendszerbe integrált audioserver felelős a jelek elsődleges fogadásáráért és továbbításáért.
+A DT168-as stageboxokba beérkező hangot először továbbítjuk az audioserverre, ahol aztán a
+szükséges feldolgozásokat elvégezve továbbítja a jelet az FOH keverő felé.
+A monitor keverőnek is szüksége van a jelekre, ezért a stageboxokból érkező jeleket szintén továbbítjuk
+de ebben az esetben direktben a monitor keverőbe, az audioserver közbeiktatása nélkül.
+Ez azért fontos mert az audioserver egy minimálisan késleltetett jelet továbbít, ami a monitor keverőnél
+nem kívánatos, mivel a zenészeknek a lehető legkevesebb késleltetésre van szükségük. Erről a későbbiekben a méréseknél
+bővebben lesz szó. 
+Így most már a 32 bemenetünket is tudjuk használni, és a rendszerünk készen áll a további konfigurációkra.
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth, keepaspectratio]{figures/dante_audioserver_patch.jpg}
+	\caption{Hálózati mátrix - Audioserver patch}\label{fig:dante_audioserver_patch}
+\end{figure}
 %----------------------------------------------------------------------------
 % Órajel nézet és késleltetés
 %----------------------------------------------------------------------------
-Meg kell adnunk az audio hálózatunk master órajelét. Ehhez az órajelhez
-szinkronizál a többi eszköz.
-Az időszinkronizáció kulcsfontosságú élőzenei produkcióknál.
-A mi esetünkben a keverőpult lesz a master órajel, ő fogja a hálózatot
+A következőkben meg kell adnunk az audio hálózatunk master órajelét. Ehhez az órajelhez
+szinkronizál a többi eszközünk a hálózaton.
+Az időszinkronizáció kulcsfontosságú élőzenei produkcióknál,
+a mi esetünkben a keverőpult lesz a master órajel, ő fogja a hálózatot
 vezérelni. A felületen egyszerűen bepipáljuk a \textit{``Preferred leader''} opciót
 a keverőpult mellett, és a hálózat többi eszköze automatikusan ehhez az órajelhez szinkronizálódik.
 Az órajelen kívül a késleltetési értékeket is be kell állítanunk. A default érték minden eszköznél jelen esetben
@@ -560,28 +570,16 @@ Rövid kábelhosszak esetén egyes eszközök között akár 0.25 ms-os késlelt
 hosszútávon nagy biztonsággal stabil a hálózat. Jelen esetben a stabil működés érdekében 1 ms-os késleltetési értéket
 tartottam meg.
 %----------------------------------------------------------------------------
+\subsubsection{Dante rendszer monitorozása}
+%----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth, keepaspectratio]{figures/dante_latency.jpg}
 	\caption{DT 168 stagebox késleltetési értékeinek monitorozása}\label{fig:dante_latency}
 \end{figure}
 %----------------------------------------------------------------------------
-
-
-
-
-
-%----------------------------------------------------------------------------
-\subsubsection{Dante rendszer monitorozása}
-%----------------------------------------------------------------------------
-
-%----------------------------------------------------------------------------
-% Hálózati állapot nézet
-%----------------------------------------------------------------------------
-
-
-
-
+Miután végeztünk a hálózat konfigurációjával, a munkánk nem ér véget, hiszen
+a rendszer működését folyamatosan monitorozni kell. 
 
 
 
@@ -600,7 +598,7 @@ Jelen esetben 12 darab ilyen láda fogja biztosítani a megfelelő mély tartom�
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=80mm, keepaspectratio]{figures/sx218_front_view.jpg}
+	\includegraphics[width=75mm, keepaspectratio]{figures/sx218_front_view.jpg}
 	\caption{Martin Audio SX218 mélyláda}\label{fig:sx218}
 \end{figure}
 %----------------------------------------------------------------------------
@@ -635,7 +633,7 @@ egy nagy felbontású hangkártyaként is használhatjuk.~\cite{AHSQ}
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=80mm, keepaspectratio]{figures/sq6.jpg}
+	\includegraphics[width=75mm, keepaspectratio]{figures/sq6.jpg}
 	\caption{Allen \& Heath SQ-6 digitális keverőpult}\label{fig:sq6}
 \end{figure}
 %----------------------------------------------------------------------------
@@ -648,12 +646,12 @@ Jelen esetben ez teljes mértékben felesleges, mivel a rendszerben kizárólag 
     \centering
     \begin{minipage}{0.45\textwidth}
         \centering
-        \includegraphics[width=60mm, keepaspectratio]{figures/sq_dante.jpg}
+        \includegraphics[width=55mm, keepaspectratio]{figures/sq_dante.jpg}
         \caption{A\&H SQ Dante kártya}\label{fig:sq_dante}
     \end{minipage}\hfill
     \begin{minipage}{0.45\textwidth}
         \centering
-        \includegraphics[width=60mm, keepaspectratio]{figures/dt168.jpg}
+        \includegraphics[width=55mm, keepaspectratio]{figures/dt168.jpg}
         \caption{A\&H DT168 Dante stagebox}\label{fig:dt168}
     \end{minipage}
 \end{figure}
@@ -692,7 +690,7 @@ A számunkra szükséges drivereket és programokat kizárólag így tudjuk tele
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth, keepaspectratio]{figures/dt_preamp_control.jpg}
+	\includegraphics[width=350px, keepaspectratio]{figures/dt_preamp_control.jpg}
 	\caption{DT 168 stagebox előerősítő szabályozó felülete}\label{fig:dt_preamp_control}
 \end{figure}
 %----------------------------------------------------------------------------
@@ -712,7 +710,7 @@ A számunkra szükséges drivereket és programokat kizárólag így tudjuk tele
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth, keepaspectratio]{figures/waves_latency.jpg}
+	\includegraphics[width=300px, keepaspectratio]{figures/waves_latency.jpg}
 	\caption{Live Professor késése}\label{fig:waves_latency}
 \end{figure}
 %----------------------------------------------------------------------------
@@ -784,7 +782,7 @@ fázishelyes és időben is helyes már, készen áll a produkcióra.
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth, keepaspectratio]{figures/nearfill_smaart.jpg}
+	\includegraphics[width=300px, keepaspectratio]{figures/nearfill_smaart.jpg}
 	\caption{FrontFill - TOP mérések}\label{fig:nearfill_smaart}
 \end{figure}
 %----------------------------------------------------------------------------
