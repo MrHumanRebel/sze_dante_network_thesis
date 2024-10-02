@@ -1,35 +1,54 @@
 %----------------------------------------------------------------------------
 \chapter{\FurtherDevelopment}
 %----------------------------------------------------------------------------
-
+\section{Üzemeltetési tapasztalatok és a végeredmény} % Konkrétan mely helyszíneken, hogyan zajlott, több tapasztalat megosztása, mi működött jól, és mi kevésbé.
 %----------------------------------------------------------------------------
-\section{Üzemeltetési tapasztalatok}
-%----------------------------------------------------------------------------
-
-A megvalósított rendszer üzemeltetése a tervezett módon történt. A rendszer
-tökéletesen megfelelt a kitett elvárásoknak, és üzemeltetése során nem
-tapasztaltunk semmilyen rendellenességet. A teljesítménye és megbízhatósága is megfelelőnek bizonyult, nem 
-voltak csomagvesztések a hálózaton, egyetlen egyszer sem kellett a másodlagos redundáns hálózatra
-váltani, nem fordultak elő kiugró késések, minden eszköz bőven a beállított buffer méretben belül maradt.
-Minden komponens megfelelően végezte a rá bízott feladatot, és a rendszer
+Ahogy már a modellezés során a korábbiakban említettem, a budapesti Millenáris B csarnoka 
+volt a referencia helyszín, ahol a rendszert élesben telepítettem egy rendezvény idejére.
+A képek magukért beszélnek, a rendszer tökéletesen működött, a hangminőség kiváló volt, a hangnyomás szint pedig
+a tervezett értékeknek megfelelően alakult. A mélyláda rendszer és a Main PA rendszer fázishelyes és időben is helyes
+volt, a frontfill rendszer késleltetése is megfelelően beállításra került, a rendszer hangja kiegyensúlyozott volt.
+A rendszer működése során nem voltak hibák, a rendszer stabilan működött
+a teljes rendezvény alatt. 
+Nem voltak csomagvesztések a hálózaton, egyetlen egyszer sem kellett a másodlagos redundáns hálózatra váltani probléma miatt.
+A szoftveres megoldások is kiválóan működtek, a számítógép stabilan futott a
+rendelkezésre álló hardveres erőforrásokkal. A mérések is pontosak voltak, a rendszer minden egységét
+sikerült beállítani a megfelelő értékekre. 
+A terem akusztikája alapvetően visszhangosnak mondható, mivel a teremben sok kemény felület található,
+beton, fém és üveg felületek, amelyek a hangot visszaverik. Ehhez még hozzá járul a rendkívül magas belmagaasság is,
+ami szintén nem könnyítette meg a munkát. A rendszer azonban jól teljesített, a visszhangot sikerült minimalizálni,
+és a legutolsó sorban is tisztán és egyenletesen hallható volt.
+A fellépő zenekar és lemezlovas is meg volt elégedve a rendszerrel, dicsérték a rendszert minden aspektusból.
+Végül a megrendelő teljes mértékben elégedett volt a szolgáltatással, ezáltal 
+a projekt sikeresnek mondható.
+Összefoglalva minden komponens megfelelően végezte a rá bízott feladatot, és a rendszer
 stabilan kihagyás nélkül működött a teljes üzemidő alatt. 
-
-
-
+%----------------------------------------------------------------------------
+\begin {figure}[H]
+    \centering
+    \includegraphics[width=300px]{figures/danci_wpc.jpg}
+    \caption{A szakdolgozat szerzője a megépített WPC Line Array mögött emelés előtt}
+\end {figure}
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\begin {figure}[H]
+    \centering
+	\includegraphics[width=250px]{figures/wpc_deployed.jpg}
+	\caption{A megépített WPC Line Array}
+\end {figure}
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\begin {figure}[H]
+	\centering
+	\includegraphics[width=300px]{figures/system_deployed.jpg}
+	\caption{A teljes rendszer}
+\end {figure}
+%----------------------------------------------------------------------------
 % Plusz ötletek:
-% mitől  a legjobb a dante, mire képes a szoftver, milyen  limitációk vannak benne, milyen fejlesztési irányelveket fogalmaznál meg, 
-
-% miben könnyíti meg a munkád?
-
- 
- 
-
-
+% Mitől  a legjobb a dante, mire képes a szoftver, milyen limitációk vannak benne, milyen fejlesztési irányelveket fogalmaznál meg, 
+% Miben könnyíti meg a munkád?
 %----------------------------------------------------------------------------
 \section{Továbbfejlesztési lehetőségek}
-%----------------------------------------------------------------------------
-
-
 %----------------------------------------------------------------------------
 \subsection{További eszközök integrálása}
 %----------------------------------------------------------------------------
