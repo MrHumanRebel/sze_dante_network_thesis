@@ -168,7 +168,7 @@ Ez az alapja annak, hogy a hangot számítógépes rendszerekben kezelni lehesse
 ami meghatározza a digitális hangminőséget és a frekvencia tartományt. Általában minél magasabb a mintavételi frekvencia, annál jobb a hangminőség, 
 de nagyobb sávszélességet is eredményez.
 
-A digitalizálási folyamat során az időbeli mintavételezés történik. 
+A digitalizálási folyamat során időbeli mintavételezés történik. 
 Folyamatos mintavételezéskor a hang intenzitásával arányos diszkrét értékek, azaz feszültségimpulzusok jönnek létre. 
 A mintavétel során az impulzusok a beérkező amplitúdó értékek alapján végtelen számú értéket vehetnek fel, 
 ám a rendelkezésre álló bináris adatszók száma véges. Ezt a jelenséget kvantálásnak vagy tartományokba 
@@ -176,16 +176,14 @@ való felosztásnak nevezzük.
 
 A kvantálás során a hangtartomány véges számú lépcsőre oszlik. 
 A kvantálás finomsága, amely a mintavételi frekvenciával együtt a digitális jelfeldolgozás 
-egyik legfontosabb paramétere, meghatározza a hang digitalizálásának részletességét. Gyakorlatilag a 
-hangfrekvenciás jelek digitalizálásánál általában 14 vagy 16 bites kvantálást alkalmaznak. 
+egyik legfontosabb paramétere, meghatározza a hang digitalizálásának részletességét. 
 A kvantálásnál figyelembe kell venni a kvantálási zajt is, amely a tartományok növelésével csökkenthető.
-A kvantálási zaj olyan zavaró tényező, amely a digitális hangrögzítés vagy -lejátszás során jelentkezik, 
+A kvantálási zaj olyan zavaró tényező, amely a digitális hangrögzítés vagy lejátszás során jelentkezik, 
 és a kerekítési hibák következményeként alakul ki. Ez a zaj a különbség az eredeti analóg jel és a 
 digitális formában ábrázolt jel értékei között, amit a digitális eszközök kvantálási folyamatában jelentkező pontatlanságok okoznak.
 A kvantálási zaj keletkezése a digitális jel analóg formából történő diszkrét értékekre (kvantumokra) 
 történő átalakítása során jelentkező kerekítési hibákra vezethető vissza. 
-E hibák következtében a kvantálási zaj nemlineáris, hanem zavaró zajként észlelhető, 
-amely nem harmonikus torzítás formájában jelenik meg, hanem inkább a hangminőség romlásához vezető zavaró tényezőként.
+E hibák következtében a kvantálási zaj nemlineáris harmonikus torzítás formájában jelenik meg, ez a hangminőség romlásához vezető zavaró tényező.
 
 A kvantálási zaj csökkentésére több módszer létezik. Az egyik lehetséges megoldás a 
 digitális jel dinamikatartományának növelése. Amennyiben a kvantálási pontosságot 
@@ -223,7 +221,7 @@ fizikai tulajdonságait, vagyis a hullámokban terjedő energiát méri.
 %----------------------------------------------------------------------------
 Az emberi fül által észlelt legkisebb hangerősség 0 dB, amely alig érzékelhető. 
 A 50 dB körüli hangerőt kellemesnek találjuk, míg a 100 dB-es szint már kellemetlenséget 
-okozhat. A fájdalomküszöb nagyjából 120 dB-nél helyezkedik el. Érdemes megjegyezni, hogy 
+okozhat. A fájdalomküszöb nagyjából 140 dB-nél helyezkedik el. Érdemes megjegyezni, hogy 
 a 100 dB nem kétszerese az 50 dB-nek hangerősség szempontjából. A hangerő érzékelése 
 szubjektív, és az egyéni hallási képességek határozzák meg. Általában egy 10 dB-es 
 növekedést körülbelül kétszer olyan hangosnak érzékelünk, tehát egy 60 dB-es hangerőt 
@@ -298,7 +296,7 @@ Ehhez egyedi digitális jelkezelést (DSP) és egyedi erősítést alkalmaznak m
     \label{fig:dsp_arrays}
 \end{figure}
 %----------------------------------------------------------------------------
-A DSP-vezérelt line array hangszórók találmánya az 1990-es évekre nyúlik vissza, és azóta folyamatosan fejlődött.
+A DSP-vezérelt line array hangszórók találmánya az 1990-es évekre nyúlik vissza, és azóta folyamatosan fejlődik.
 Ma már számos gyártó kínál különböző méretű és felbontású DSP-vezérelt irányítható rendszereket, 
 amelyek igyekeznek minden hangosítási igényt kielégíti. 
 Különösen akusztikailag nehéz helyszíneken, ahol sok a reflektáló felület és nagy a visszhang effektus. 

@@ -19,12 +19,12 @@ A csomagorientált átvitel jellegéből adódik, hogy az audiojelek automatikus
 a kívánt helyre a hálózaton keresztül.
 
 A Cirrus Logic által 1996-ban bevezetett CobraNetet
-tekintik általában az első sikeres audio-over-ethernet hálózat-implementációnak.
+tekintik általában az első sikeres audio-over-ethernet hálózat implementációnak.
 Bár még ma is sok CobraNet telepítés létezik, magas késleltetési problémák és korlátozott skálázhatóság
 miatt nem ideális élő hang, stúdiók és rádióállomások számára.
 
 A mintegy tíz évvel később megjelent egy ausztrál cég az Audinate, és az általuk kifejlesztett
-Dante a `Digital Audio Network Through Ethernet'. Dante sok jelentős
+Dante a Digital Audio Network Through Ethernet. Dante sok jelentős
 előnnyel rendelkezik az első generációs audio-over-IP technológiákhoz viszonyítva.
 Ezek közé értve a jobb használhatóságot és magasabb kompatibilitást a szabványos
 IT infrastruktúrával. A Dante egy hatalmas hardveres ökoszisztémából is profitál, 
@@ -52,7 +52,7 @@ Vannak területek, ahol az IT hálózatok alapvetően más módon működnek, mi
 Először is, egy szabványos IT hálózat nem arra van kialakítva, hogy szigorú időzítési követelményeket kelljen teljesítenie, 
 azonban ez általában az audio esetében nagyon is szükséges.
 Egy hálózati környezetben az adatcsomagok útját más csomagok is akadályozhatják, ami jelentős
-időbeli változást eredményezhet az csomagok érkezési idejénben.
+időbeli változást eredményezhet a csomagok érkezési idejénben.
 A hagyományos audio kábelek esetében az adatok továbbításának időzítése nem változott meg a kábel által.
 Egyig végponttól a másikig a hangminták zavar nélkül (feltételezve, hogy a kábel jó minőségű és nincsen interferencia) 
 érkeznek meg. Az IT hálózatokban azonban a csomagok útja nem garantált, és a csomagok késleltetése változhat.
@@ -400,7 +400,7 @@ Egy adott eszköz IP-címéről való információ beszerzése alapvetően kiss�
 ha az nem jelenik meg egy kijelzőn vagy egy konfigurációs felületen.
 Azonosítani, hogy két IP-cím ugyanabba az alhálózatba tartozik-e, nem lehetséges 
 a hozzájuk tartozó alhálózati maszkok ellenőrzése nélkül.
-Ha egy csomag cél-IP-címe nem ugyanabban az alhálózatban van,
+Ha egy csomag cél IP-címe nem ugyanabban az alhálózatban van,
 a küldő eszköznek a router IP-címére kell irányítania, ahelyett hogy
 közvetlenül a fogadó eszközhöz küldené. 
 Két hoszt ugyanabban az alhálózaton belül hasonló IP-címekkel rendelkezik, csak az utolsó számjegyekben
@@ -580,8 +580,6 @@ monitorozható a hálózat állapota amennyiben probléma merülne fel.
 	\textbf{Broadcast támogatás} & Nem támogatja. & Támogatja. \\
 	\hline
 	\textbf{Protokollok} & HTTP, HTTPS, FTP, SMTP, Telnet. & DNS, DHCP, TFTP, SNMP, RIP, VoIP. \\
-	\hline
-	\textbf{Adatáram típus} & Bájtáram. & Üzenetáram. \\
 	\hline
 	\textbf{Túlterhelés} & Alacsony, de magasabb, mint az UDP. & Nagyon alacsony. \\
 	\hline
