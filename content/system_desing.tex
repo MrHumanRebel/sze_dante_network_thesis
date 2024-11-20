@@ -122,7 +122,7 @@ Miután rájöttem a probléma gyökerére, ezt megosztottam velük, hogy a jöv
 ezzel a problémával szembesülniük.
 A hiba az alábbi volt. Az új AMD Ryzen processzorok másfajta utasításkészletet használnak.
 Ebből kifolyólag a MatLab 2015-s runtime alapú szoftver adta alaputasításokat nem tudta értelmezni a CPU.
-A vezető szoftvermérnökkel való e-mail-es beszélgetésünk során megköszönte a probléma
+A szoftvermérnökkel való e-mail-es beszélgetésünk során megköszönte a probléma
 megoldását, és nemsokkal a megoldásom megosztása után a hivatalos oldalra is felekerült
 az indító parancsfájl. Az e-mailben további kollaborációra is adott lehetőséget.
 A kompatibilitási problémát rögtön a script elején megoldottam,
@@ -150,7 +150,7 @@ a rendelkezésre álló hardver erőforrásokat.\newpage
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth, keepaspectratio]{figures/ambrose_email.png}
-	\caption{E-mail a Martin Audio vezető szoftvermérnökétől}
+	\caption{E-mail a Martin Audio szoftvermérnökétől}
 	\label{fig:ambrose_email}
 \end{figure}
 %----------------------------------------------------------------------------
@@ -160,7 +160,7 @@ tervezni, mivel a terem hosszúsága és a lefedettség növelése miatt szüks�
 Első lépésben a fő hangrendszert tervezem meg, ami oldalanként (bal és jobb) 8 darab WPC LineArray modulból fog állni.
 Ez a láda 2 darab 10"-os mélysugárzót (LF), 2 darab 5"-os közép sugárzót (MF) és 4 darab 0.7"-os magassugárzót tartalmaz (HF).
 Három utas Bi-amp meghajtású külső végfokot igénylő rendszer, ahol a mély tartományt (+1,-1) és a középmagas tartományt (+2,-2) külön kezeljük,
-a négy pólusú Neutrik Speakon csatlakozókon keresztül.
+négy pólusú Neutrik Speakon csatlakozókon keresztül.
 A láda maximális hangnyomás szintje 135 dB, és 65 Hz-től 18 kHz-ig terjed a frekvencia átvitele +- 3 dB pontossággal.~\cite{WPCUSERGUIDE}
 %----------------------------------------------------------------------------
 \begin{figure}[H]
@@ -254,7 +254,7 @@ Jelen esetben mivel a teremben alapból is meleg van, a mérés időpontjában 2
 ezért a hőmérsékletet harminc fokra állítottam.
 A páratartalom értéke a méréskor 57\%-os volt, de én 65\%-ra állítottam, mivel a rendezvény során a közönség által kibocsátott
 vízgőz miatt a páratartalom nagy valószínűséggel magasabb lesz ennél. A légnyomás értékét pedig a helyi időjárás jelentésből vettem, ami
-azon a napon 101800 Pa volt. Ezek beállítása után mivel az adott hangládához a gyári beállítások nagyon jók, ezért nem változtattam rajtuk,
+azon a napon 101800 Pa volt. Ezek beállítása után mivel az adott hangládához a gyári levegő veszteség kompenzációs beállítások nagyon jók, ezért nem változtattam rajtuk,
 a 14-es érték egyenletes és dinamikus hangvisszaadást biztosít.
 %----------------------------------------------------------------------------
 \begin{figure}[H]
@@ -387,9 +387,9 @@ Ebből kifolyólag, szépen látható, hogy a program pontosan úgy optimalizál
 hangnyomás jusson.
 Már a kék színnel jelölt terület első pár méterén radikálisan csökken a hangnyomás, és a rendszer a lehető legkevesebb energiát fordítja erre a területre.
 A gyártó a WMP rendszert végfog csatornák szempontjából úgy tervezte, hogy a költség és a rugalmasság szempontjából akár négyesével is hajthatóak legyenek.
-Ez persze nem jár kompromisszumok nélkül, a hangvisszaadás egyenletesebb lenne, ha egyesével hajtanánk a ládákat, de a jelenlegi rendszerben
-hármasával fogom hajtani a ládákat, mivel ez a legköltséghatékonyabb megoldás, és végeredményben így is kielégítő hangvisszaadást fog produkálni mint 
-kiegészítő egység. A WPM-eket tudjuk egyesével is hajtani, mivel rendelkezésünkre áll 2 db iK81 végfok.
+Ez persze nem jár kompromisszumok nélkül, a hangvisszaadás egyenletesebb ha egyesével hajtjuk a ládákat, és ezt meg is tudjuk tenni,
+mivel rendelkezésünkre áll 2 db iK81 végfok erre a célra. 
+Végeredményben tökéletesen kielégítő hangvisszaadást fog produkálni mint kiegészítő egység.
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
@@ -413,9 +413,9 @@ Jelen esetben az iK42 és iK81 típusú eszközöket fogjuk tudni kezelni.
 Rendszerünk ha mindent összeszámolunk, akkor 8 darab iK42 és 2 darab iK81 végfokot fog tartalmazni.
 Ebből 4 db iK42 a WPC LineArray rendszert, 2 db iK81 a WPM LineArrayt, 3 db iK42
 az SX218 mélyládákat, és 1 db iK42 a FrontFill hangfalakat (XD12) fogja hajtani.
-A Discover Devices gombra kattintva a szoftver megkeresi az összes végfokot a hálózaton, és megjeleníti azokat a
+A \textit{``Discover Devices''} gombra kattintva a szoftver megkeresi az összes végfokot a hálózaton, és megjeleníti azokat a
 cím szerint növekvő sorrendben. Szinkronizáció után szabadon vezérelhetővé válnak az eszközök.
-Egy kiválasztott eszközre jobb egérgombbal kattintva megjelenik egy menü, ahol az Open Preset Manager opcióra kattintva
+Egy kiválasztott eszközre jobb egérgombbal kattintva megjelenik egy menü, ahol az \textit{``Open Preset Manager''} opcióra kattintva
 betölthetjük az előre elkészített és gyári preseteket.
 Az alábbi képen látható az a felület ahol bele kell tölteni a preseteket az egyes erősítőkbe külön-külön.
 %----------------------------------------------------------------------------
@@ -432,7 +432,7 @@ mélyládát hajtó végfokra egy Line Array modult, akkor a benne lévő hangsz
 Tehát fontos az precíz és átgondolt munkavégzés. A hibák elkerülése után is hasznos számunkra a rendszer áttekintő diagram,
 mivel ha valami nem működik a rendszerben, akkor könnyen és gyorsan megtalálhatjuk a hibát, és azonosíthatjuk a hibás komponenst.
 Miután sikeresen betöltöttük az összes presetet amire szükségünk van, be kell állítanunk, hogy az erősítők milyen forrásból
-fognak jelet kapni. A következő lépésben a routing fülön be kell állítanunk, hogy az input csatorna Dante hálózatról fogja kapni a jelet.
+fognak jelet kapni. A következő lépésben a \textit{``Routing''} fülön be kell állítanunk, hogy az input csatorna Dante hálózatról fogja kapni a jelet.
 Ez a beállítás a következőképpen néz ki:
 %----------------------------------------------------------------------------
 \begin{figure}[H]
