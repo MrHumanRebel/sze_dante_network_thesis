@@ -56,6 +56,8 @@ tervezése, építése, optimalizálása, beüzemelése} % Cím
 %--------------------------------------------------------------------------------------
 % Itt kezdődik a dolgozat
 %--------------------------------------------------------------------------------------
+\newcommand{\masfelessorkoz}{\renewcommand{\baselinestretch}{1.24}\small\normalsize}
+
 \begin{document}
 
 \selectthesislanguage
@@ -74,6 +76,7 @@ tervezése, építése, optimalizálása, beüzemelése} % Cím
 
 % Nyilatkozat és Kivonat
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\masfelessorkoz{
 \include{include/declaration} % ez legenerálódik magától a fentebb megadott adatok alapján
 \include{content/abstract} %TODO ezt át kell írnod
 
@@ -88,11 +91,13 @@ tervezése, építése, optimalizálása, beüzemelése} % Cím
 \setcounter{page}{1}
 
 % Saját munka
+
 \include{content/introduction}
 \include{content/audio_basics}
 \include{content/audio_over_ip_systems}
 \include{content/system_desing}
 \include{content/further_development}
+}
 
 
 % Köszönetnyilvánítás - opcionális

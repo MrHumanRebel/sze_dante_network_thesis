@@ -201,12 +201,14 @@ Szerencsére ez a koncepció elterjedt és jelenleg minden audiohálózati szabv
 	\label {fig:link_offset_latency}
 \end{figure}
 %----------------------------------------------------------------------------
+\begin{comment}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth, keepaspectratio]{figures/phase_coherence_link_offset.png}
 	\caption{Fáziskoherencia azonos kapcsolati eltolással~\cite{AHNERT2023}}
 	\label {fig:phase_coherence_link_offset}
 \end{figure}
+\end{comment}
 %----------------------------------------------------------------------------
 \subsection{Szinkronizáció}
 %----------------------------------------------------------------------------
@@ -477,12 +479,14 @@ szállítják, és nem tartalmaznak alhálózati információkat. Ennek eredmén
 lehet routerek által továbbítani, és ezáltal a skálázhatóságuk korlátozott. 
 Az egyik népszerű példa a 2. rétegű hálózatokra a már említett TSN/Milan, valamint a CobraNet.
 %----------------------------------------------------------------------------
+\begin{comment}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=100mm, keepaspectratio]{figures/osi_modell.jpg}
 	\caption{Az OSI modell}
 	\label {fig:osi_modell}
 \end{figure}
+\end{comment}
 %----------------------------------------------------------------------------
 Egy alhálózat egy logikai szegmens egy adott hálózaton belül. Az ilyen szegmenseket
 különféle okokból hoznak létre, ideértve elsősorban az adminisztratív és biztonsági
@@ -551,6 +555,7 @@ monitorozható a hálózat állapota amennyiben probléma merülne fel.
 	\label {fig:tcp_udp}
 \end{figure}
 %----------------------------------------------------------------------------
+\begin{comment}
 \begin{table}[h!]
 	\centering
 	\begin{tabular}{|l|p{5cm}|p{5cm}|}
@@ -589,6 +594,7 @@ monitorozható a hálózat állapota amennyiben probléma merülne fel.
 	\caption{A TCP és UDP összehasonlítása~\cite{UDP}}
 	\label{tab:tcp_udp_comparison}
 \end{table}
+\end{comment}
 %----------------------------------------------------------------------------
 Audio alkalmazásokban gyakran szükség van arra, hogy egy audio jelet
 több helyre párhuzamosan fogadjanak, például egy mikrofonjel, amelyet
@@ -949,12 +955,14 @@ a sebességet és kompenzálja a hálózati késést. A Dante által végzett te
 és tapasztalatok alapján igazolt, hogy az időzítés szinkronban marad, még akkor 
 is, ha az óra perceken keresztül teljesen eltűnik.
 %----------------------------------------------------------------------------
+\begin{comment}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=400px, keepaspectratio] {figures/dante-clocking.jpg}
 	\caption{Dante órajel}
 	\label{fig:dante-clock}
 \end{figure}
+\end{comment}
 %----------------------------------------------------------------------------
 \subsection{Összehasonlítás a hagyományos hangrendszerekkel}
 %----------------------------------------------------------------------------
@@ -1031,6 +1039,7 @@ az eszköz biztonságos helyreállítását.
 A Dante eszközök támogatják a vegyes firmware verziókat, lehetővé téve az eltérő 
 verziók együttműködését. Ezt a funkciót rendszeres automatizált regressziós tesztelés 
 biztosítja, amely a különböző firmware verziók közötti kompatibilitást ellenőrzi.
+\begin{comment}	
 %----------------------------------------------------------------------------
 \newpage
 %----------------------------------------------------------------------------
@@ -1068,5 +1077,6 @@ gyors és hatékony létrehozását, valamint egyszerű integrációjukat a megl
     \caption{Különböző Dante chipek és interfészeik}
     \label{tab:dante_chips}
 \end{table}
+\end{comment}
 %----------------------------------------------------------------------------
 

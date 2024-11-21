@@ -93,6 +93,7 @@ az építésnél, mivel nem kell külön-külön vezetékeket kihúzni, elég eg
 Tehát összefoglalva három egymástól teljesen elkülönített hálózatot fogunk kiépíteni a rendszer kiszolgálására,
 a Dante elsődleges és másodlagos hálózatot, valamint a VU-NET hálózatot.
 %----------------------------------------------------------------------------
+\begin{comment}	
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth, keepaspectratio]{figures/live-analog.jpg}
@@ -104,6 +105,7 @@ a Dante elsődleges és másodlagos hálózatot, valamint a VU-NET hálózatot.
 	\includegraphics[width=\linewidth, keepaspectratio]{figures/live-dante.jpg}
 	\caption{Példa Dante digitális kábelezésre~\cite{APPLICATIONDIAGRAMSFORDANTESYSTEMS}}\label{fig:live-dante}
 \end{figure}
+\end{comment}
 %----------------------------------------------------------------------------
 \subsection{Martin Audio Wavefront Precision hangrendszer}
 %----------------------------------------------------------------------------
@@ -546,7 +548,7 @@ bővebben lesz szó.
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth, keepaspectratio]{figures/dante_audioserver_patch.jpg}
+	\includegraphics[width=350px, keepaspectratio]{figures/dante_audioserver_patch.jpg}
 	\caption{Hálózati mátrix - Audioserver patch}\label{fig:dante_audioserver_patch}
 \end{figure}
 %----------------------------------------------------------------------------
@@ -575,6 +577,13 @@ tartottam meg.
 Miután végeztünk a hálózat konfigurációjával, a munkánk nem ér véget, hiszen
 a rendszer működését folyamatosan monitorozni kell. 
 Minden egyes eszköznél a \textit{``Lantecy''} oldalon láthatjuk az aktuális és átlagos késleltetési értékeket.
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth, keepaspectratio]{figures/dante_latency.jpg}
+	\caption{DT 168 stagebox késleltetési értékeinek monitorozása}\label{fig:dante_latency}
+\end{figure}
+%----------------------------------------------------------------------------
 Amennyiben ez az érték a konfigurált késésnél alacsonyabb, akkor a rendszerünk
 stabilan működik. Ha azonban magasabb, vagy néha drasztikusan közel kerül ehhez az értékhez akkor azonnal cselekednünk kell, mivel
 azt kockáztatjuk, hogy a rendszerünk instabil lesz, és a produkció közben problémák léphetnek fel.
@@ -588,12 +597,6 @@ metrikák:
     \item Voltak-e csomagvesztések
     \item Egyes eszközök kapcsolásának állapota
 \end{itemize}
-%----------------------------------------------------------------------------
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth, keepaspectratio]{figures/dante_latency.jpg}
-	\caption{DT 168 stagebox késleltetési értékeinek monitorozása}\label{fig:dante_latency}
-\end{figure}
 %----------------------------------------------------------------------------
 \newpage
 %----------------------------------------------------------------------------
@@ -616,7 +619,7 @@ Jelen esetben 12 darab ilyen láda fogja biztosítani a megfelelő mély tartom�
     \end{minipage}\hfill
     \begin{minipage}{0.45\textwidth}
         \centering
-        \includegraphics[width=\linewidth, keepaspectratio]{figures/sub_array_63hz.jpg}
+        \includegraphics[width=150px, keepaspectratio]{figures/sub_array_63hz.jpg}
         \caption{SX218 mélyláda rendszer}\label{fig:sub_array_63hz}
     \end{minipage}
 \end{figure}
@@ -667,7 +670,7 @@ egy nagy felbontású hangkártyaként is használhatjuk.~\cite{AHSQ}
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=70mm, keepaspectratio]{figures/sq6.jpg}
+	\includegraphics[width=60mm, keepaspectratio]{figures/sq6.jpg}
 	\caption{Allen \& Heath SQ-6 digitális keverőpult}\label{fig:sq6}
 \end{figure}
 %----------------------------------------------------------------------------
@@ -680,12 +683,12 @@ Jelen esetben ez teljes mértékben felesleges, mivel a rendszerben kizárólag 
     \centering
     \begin{minipage}{0.45\textwidth}
         \centering
-        \includegraphics[width=50mm, keepaspectratio]{figures/sq_dante.jpg}
+        \includegraphics[width=45mm, keepaspectratio]{figures/sq_dante.jpg}
         \caption{A\&H SQ Dante kártya}\label{fig:sq_dante}
     \end{minipage}\hfill
     \begin{minipage}{0.45\textwidth}
         \centering
-        \includegraphics[width=50mm, keepaspectratio]{figures/dt168.jpg}
+        \includegraphics[width=45mm, keepaspectratio]{figures/dt168.jpg}
         \caption{A\&H DT168 Dante stagebox}\label{fig:dt168}
     \end{minipage}
 \end{figure}
@@ -708,7 +711,7 @@ A példában szereplő rendszer kifogástalanul képes elvégezni a feladatát, 
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=55mm, keepaspectratio]{figures/rednet_pcie.jpg}
+	\includegraphics[width=50mm, keepaspectratio]{figures/rednet_pcie.jpg}
 	\caption{Focusrite RedNet PCIe kártya}\label{fig:rednet_pcie}
 \end{figure}
 %----------------------------------------------------------------------------
@@ -729,7 +732,7 @@ elkerülhető a torzítás. A Phantom táp pedig a tápellátást igénylő mikr
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=350px, keepaspectratio]{figures/dt_preamp_control.jpg}
+	\includegraphics[width=300px, keepaspectratio]{figures/dt_preamp_control.jpg}
 	\caption{DT 168 stagebox előerősítő szabályozó felülete}\label{fig:dt_preamp_control}
 \end{figure}
 %----------------------------------------------------------------------------
@@ -831,7 +834,7 @@ Az alábbi képen látható, hogy a késleltetés delat értéke 15.41 ms, tehá
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=300px, keepaspectratio]{figures/nearfill_smaart.jpg}
+	\includegraphics[width=250px, keepaspectratio]{figures/nearfill_smaart.jpg}
 	\caption{FrontFill - TOP mérések}\label{fig:nearfill_smaart}
 \end{figure}
 %----------------------------------------------------------------------------
@@ -849,6 +852,6 @@ Többféle módszerrel lehet a hangnyomás szintet monitorozni, jelen esetben h�
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=100mm, keepaspectratio]{figures/smaart_spl_meter.jpg}
+	\includegraphics[width=80mm, keepaspectratio]{figures/smaart_spl_meter.jpg}
 	\caption{SPL monitorozás a produkciók közben}\label{fig:smaart_spl_meter}
 \end{figure}

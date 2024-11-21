@@ -212,6 +212,7 @@ frekvenciákon eltérő, és a decibelskála lehetővé teszi, hogy az emberi ha
 A hangosság és a hangerőség közötti eltérés abban rejlik, hogy míg a hangosság az emberi érzékelésre, 
 vagyis az érzékelhető hangnyomásra vonatkozik, addig a hangerőség a hanghullámok 
 fizikai tulajdonságait, vagyis a hullámokban terjedő energiát méri.
+\begin{comment}
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
@@ -219,6 +220,7 @@ fizikai tulajdonságait, vagyis a hullámokban terjedő energiát méri.
     \caption{Decibel skála~\cite{DECIBELSCALE}}\label{fig:db_scale}
 \end{figure}
 %----------------------------------------------------------------------------
+\end{comment}
 Az emberi fül által észlelt legkisebb hangerősség 0 dB, amely alig érzékelhető. 
 A 50 dB körüli hangerőt kellemesnek találjuk, míg a 100 dB-es szint már kellemetlenséget 
 okozhat. A fájdalomküszöb nagyjából 140 dB-nél helyezkedik el. Érdemes megjegyezni, hogy 
@@ -227,8 +229,15 @@ szubjektív, és az egyéni hallási képességek határozzák meg. Általában 
 növekedést körülbelül kétszer olyan hangosnak érzékelünk, tehát egy 60 dB-es hangerőt 
 körülbelül kétszer hangosabbnak érzünk, mint az 50 dB-eset. Mivel a decibelskála logaritmikus 
 alapú, a dB-ben megadott értékek nem lineárisan arányosak. Például a 120 dB nem kétszerese 
-a 60 dB-nek, hanem a hangnyomása hozzávetőlegesen ezerszer nagyobb. A hangnyomás mérésére 
-különböző súlyozási görbéket alkalmazhatunk, például A, C és Z súlyozást. Mit is jelentenek 
+a 60 dB-nek, hanem a hangnyomása hozzávetőlegesen ezerszer nagyobb. 
+%----------------------------------------------------------------------------
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=350px, keepaspectratio]{figures/db_weights.jpg}
+    \caption{A-, C- és Z-súlyozás~\cite{DBWEIGHTS}}\label{fig:db_weights}
+\end{figure}
+%----------------------------------------------------------------------------
+A hangnyomás mérésére különböző súlyozási görbéket alkalmazhatunk, például A, C és Z súlyozást. Mit is jelentenek 
 ezek? Ha egy hang az összes frekvenciatartományban egyenlő hangnyomással rendelkezik, azt a 
 Z-súlyozási görbe segítségével ábrázolhatjuk. Az emberi fül által észlelt hangokat az 
 A-súlyozási görbe írja le, amely pontosan tükrözi az emberi hallás frekvenciatartományát, mivel 
@@ -236,13 +245,7 @@ az emberi hallás nem érzékel minden frekvenciát egyformán. A C-súlyozás a
 reprezentálja, amikor a hangerő növekedésével az alacsonyabb frekvenciák iránti érzékenység is 
 fokozódik. Az A- és C-súlyozás tehát a leginkább megfelelő az emberi hallás valósághű 
 frekvenciaválaszának modellezésére.
-%----------------------------------------------------------------------------
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\linewidth, keepaspectratio]{figures/db_weights.jpg}
-    \caption{A-, C- és Z-súlyozás~\cite{DBWEIGHTS}}\label{fig:db_weights}
-\end{figure}
-%----------------------------------------------------------------------------
+
 \newpage
 \section{Pontsugárzó és LineArray hangforrások} % Mi a különbség a pontsugárzó és LineArray hangforrások között? Milyen alkalmazási területeken használjuk őket?
 %----------------------------------------------------------------------------
@@ -259,13 +262,13 @@ lehetnek, a kis asztali hangszóróktól kezdve a nagyobb DJ-rendszerekig.
 \begin{figure}[H]
 	\begin{minipage}{0.5\textwidth}
 		\centering
-		\includegraphics[width=200px, keepaspectratio]{figures/point_source.jpg}
+		\includegraphics[width=150px, keepaspectratio]{figures/point_source.jpg}
         \caption{Pontsugárzó rendszer}
         \label{fig:point_source}
 	\end{minipage}%
 	\begin{minipage}{0.5\textwidth}
 		\centering
-		\includegraphics[width=200px, keepaspectratio]{figures/line_array.jpg}
+		\includegraphics[width=150px, keepaspectratio]{figures/line_array.jpg}
 		\caption{Line Array rendszer}
         \label{fig:line_array}
 	\end{minipage}
@@ -291,7 +294,7 @@ Ehhez egyedi digitális jelkezelést (DSP) és egyedi erősítést alkalmaznak m
 %----------------------------------------------------------------------------
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth, keepaspectratio]{figures/dsp_arrays.png}
+    \includegraphics[width=350px, keepaspectratio]{figures/dsp_arrays.png}
     \caption{DSP-vezérelt Line Array~\cite{AHNERT2023}}
     \label{fig:dsp_arrays}
 \end{figure}
