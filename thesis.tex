@@ -17,6 +17,43 @@
 \usepackage{ragged2e}
 \usepackage{array}
 \usepackage{times}
+\usepackage{fancyhdr}
+% Oldalmargók beállítása
+\usepackage[a4paper, left=3cm, right=2.54cm, top=2.54cm, bottom=2.54cm]{geometry}
+
+% Fejléc és lábléc
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textnormal{\thetitle}}
+\fancyhead[C]{\szerzoNeptun}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Címek stílusa
+\usepackage{titlesec}
+\titleformat{\chapter}[hang]{\normalfont\LARGE\bfseries}{\thechapter}{1em}{}
+\titleformat{\section}[hang]{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}[hang]{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}[runin]{\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
+
+% Objektumok képaláírása
+\usepackage[labelfont=bf,labelsep=period]{caption}
+\captionsetup[figure]{justification=centering, font=normalsize, skip=18pt}
+\captionsetup[table]{justification=centering, font=normalsize, skip=18pt}
+\captionsetup[listing]{justification=centering, font=normalsize, skip=18pt}
+
+% A normál szöveg sorköze 1.5
+\renewcommand{\baselinestretch}{1.5}
+
+% A címsorok számjegy nélküli, de a tartalomjegyzékben szereplő címek formázása
+\titleformat{\chapter}[display]{\normalfont\Huge\bfseries}{\thechapter}{1em}{}
+\titleformat{\section}[block]{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}[block]{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
+% Kép és táblázat képaláírása középre igazítva
+\captionsetup[figure]{justification=centering}
+\captionsetup[table]{justification=centering}
 %--------------------------------------------------------------------------------------
 \newcommand{\szerzoVezeteknev}{Székely}
 \newcommand{\szerzoKeresztnev}{Dániel}
