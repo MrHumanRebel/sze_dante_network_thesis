@@ -72,7 +72,7 @@ Ettől függetlenül érdemes túlbiztosítani a hálózatot oly mértékben, ho
 megérkezzen, anélkül, hogy további extrém finomításra lenne szükség a kapcsolók
 konfigurációjában. Konkrétan ez azt jelenti, hogy olyan IT hálózatokat kell
 építeni melyek elegendő sávszélességgel rendelkeznek, és kizárólag az audio alkalmazások számára
-legyen használatos, tehát ne keveredjenek általános mindennapi alkalmazásokkal.
+legyenek használatosak, tehát ne keveredjenek általános mindennapi alkalmazásokkal.
 
 A legtöbb audio-over-IP technológia abból indul ki, hogy az alapul szolgáló
 hálózat megfelelően fog működni, hibamentesen végzi a dolgát. Gondolva itt arra, hogy nincsen csomagvesztés, 
@@ -299,7 +299,7 @@ határozza meg, hogy melyik lesz a fő vezető, és melyik a tartalék.
 Fontos megjegyezni, hogy néhány eszköz nem kínál lehetőséget a felhasználónak ezen értékének megadására.
 Ehelyett egyszerűen a \textit{Preferált Vezető} megjelölésével rendelkeznek.
 Technikailag ezek a termékek rögzített értéket használnak bejelentő üzeneteikben, amit a gyártó határoz meg.
-Ezért még mindig lehetséges, hogy egy másik PTP vezetőnél beírva egy még alacsonyabb értéket, felül bírálhatja az ilyen típusú eszközt.
+Ezért még mindig lehetséges, hogy egy másik PTP vezetőnél beírva egy még alacsonyabb értéket, felülbírálhatja az ilyen típusú eszközt.
 Néhány eszköz támogatja azt a beállítást is, amit \textit{Csak Követő} néven ismerünk. Ebben az esetben amikor ez engedélyezve van,
 az adott eszköz sosem próbálja meg átvenni a vezetői szerepet az PTP hálózaton.
 %----------------------------------------------------------------------------
@@ -472,7 +472,7 @@ meghatározott absztrakciós rétegkoncepciót, hogy elősegítse a gyártók k�
 interoperabilitást. A 3. rétegen működő telepítések értelmezhetik az IP-címeket,
 az alhálózati maszkokat, és így továbbítani tudják a csomagokat az
 alhálózatok között. Az itt tárgyalt összes technológia képes ilyen
-forgatókönyvel működni. Ezzel szemben néhány technológia korlátozott a 2.
+forgatókönyvvel működni. Ezzel szemben néhány technológia korlátozott a 2.
 rétegre. Ez azt jelenti, hogy a csomagjaikat kizárólag MAC-címek alapján
 szállítják, és nem tartalmaznak alhálózati információkat. Ennek eredményeként a
 2. rétegű hálózatokat nem lehet több alhálózatokra bontani, a csomagjaikat nem
@@ -518,7 +518,7 @@ Legalább kettőre van szükség egy gyűrű topológia megvalósításához. Mi
 csomópont közötti kapcsolat teljes sávszélességet kínál, és a csomópontokra
 hárul a feladat, hogy továbbítsák a csomagokat a gyűrűn belül. Ebben az
 értelemben mindegyik csomópont úgy működik, mint egy kapcsoló, csomagokat
-továbbítva két interfésze között. A gyűrű topológia választása gyakran ésszerű,
+továbbítva a két interfésze között. A gyűrű topológia választása gyakran ésszerű,
 amikor nagy távolságokat kell áthidalni, és a kapcsolatok költségesek.
 Gyakorlati példák a különböző helyszínek közötti hálózatok, de gyűrűket alkotnak
 olyan eszközök csatlakoztatására is, amelyek esetében nincs hely egy további
@@ -798,7 +798,7 @@ A 2020-2021-es Covid-19 járvány során lehetőségem volt részt venni egy át
 kurzuson, amelyet a Dante technológia fejlesztője, az Audinate szervezett. A kurzus
 részletes betekintést nyújtott a Dante hálózatok működésébe. E fejezetben a belsős
 oktatóanyagokat is fel fogom felhasználni, amelyeket a kurzus alatt kaptam. Ezek a dokumentumok
-csak a kurzus résztvevői számára elérhetők, így konkrét dokumentumként nem publikálhatóak. 
+csak a kurzus résztvevői számára elérhetőek, így konkrét dokumentumként nem publikálhatóak. 
 %Ebből következően ezen írásokat konkrét hivatkozások nélkül fogom felhasználni, mivel
 %hivatkozásuk nem lehetséges.
 %Viszont fontos megjegyezni, hogy a fejezetben szereplő ábrák és információk az Audinate tulajdonát képezik.
@@ -971,7 +971,7 @@ A hagyományos hangrendszerek általában analóg kábeleken és csatlakozókon 
 a hangjelek eszközök közötti továbbítására. E rendszerek gyakran korlátozottak 
 a rugalmasság, a skálázhatóság, valamint az egyidejűleg kezelhető hangcsatornák 
 számát tekintve. Továbbá, a beállításuk és kezelési folyamatuk bonyolultabb lehet, 
-mivel minden egyes hangcsatorna külön kábel és csatlakozás igényel. Ezzel szemben 
+mivel minden egyes hangcsatorna külön kábel és csatlakozást igényel. Ezzel szemben 
 a Dante hanghálózatok jelentős előnyöket kínálnak: lényegesen több hangcsatorna 
 támogatására képesek, lehetővé téve a nagy és összetett hangrendszerek egyszerű 
 beállítását és kezelését. A Dante rendszer emellett képes hosszú távolságokon 

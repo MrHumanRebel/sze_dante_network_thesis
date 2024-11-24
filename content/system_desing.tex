@@ -19,13 +19,14 @@ Az új rendszer tervezésekor a következő szempontokat kellett szem előtt tar
 \section{Rendszerterv és kivitelezés}
 %----------------------------------------------------------------------------
 A cég alapítása óta Martin Audio termékeket használ, a régi W8LM rendszerrel nagyon elégedettek voltunk, 
-ebből kifolyólag a választás márka szempontjából nem is volt kérdéses. A Martin új rendszerei a Wavefront Precision sorozat szériás
+ebből kifolyólag, a választás márka szempontjából nem is volt kérdéses. A Martin új rendszerei a Wavefront Precision sorozat szériás
 végfokai pedig a Dante hálózatot használja a digitális hangátvitelhez.
-Ebből kifolyólag a választás a Dante protokollra esett, így a szakdolgozatomban 
+Így a választás a Dante protokollra esett, ezért a szakdolgozatomban 
 megtervezésre kerülő hangrendszer lelke ez a protokoll lesz.
-Hangládák szempontjából a Martin Audio Wavefront Precision szériás termékein belül kétfajta rendszerre is esett választás.
+Hangládák szempontjából a Martin Audio Wavefront Precision szériás 
+termékein belül kétfajta rendszerre is esett választás.
 Ezekről a későbbiekben részletesen lesz szó.
-Mivel teljes mértékben digitális rendszert elérése volt a cél, ezért a Dante modullal
+Mivel teljes mértékben digitális rendszer elérése volt a cél, ezért a Dante modullal
 rendelkező Martin Audio iKON iK42 és iK81 végfokok tökéletesen illeszkedtek a rendszerbe.
 Mindkét végfok csúcskategóriás teljesítményt és hangminőséget nyújt, és a D kategóriás
 erősítőknek köszönhetően rendkívül kis helyet foglalnak el a rack-ben miközben kiváló hatásfok
@@ -177,7 +178,7 @@ Jelen esetben az előbbiekben említett WPC-t. A produkció igényei, a nagy lé
 A helyszín felmérése után a hangrendszer \textit{``riggelése''} lehetséges, mivel a csarnokban található tartószerkezet biztonságosan
 és tartósan képes elviselni a rendszer súlyát.
 A telepítés módja kiválasztása után megadjuk a szoftvernek a tervezni való hangláda mennyiséget, ez az esetünkben már említett 8 darab.
-A hozzáadás gombra kattintva a elénk kerül a fő kezelőfelület, ahol a hangrendszert tudjuk lépésről lépésre tervezni.
+A hozzáadás gombra kattintva elénk kerül a fő kezelőfelület, ahol a hangrendszert tudjuk lépésről lépésre tervezni.
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
@@ -247,7 +248,7 @@ Magas frekvenciák csökkennek ahogy a távolság nő a forrástól, azaz a hang
 Ha egyenletes frekvencia választást szeretnénk elérni nagyobb távolságokon, akkor a rendszernek nagyobb energiára lenne szüksége
 a magas frekvenciákon, és kifutna a dinamika tartalékból, ezért jobb megoldás, ha a magas frekvenciák fokozatosan csökkennek a távolság növekedésével.
 Beállíthatjuk a levegő veszteség kompenzációját, teljesen balra állítva nincs kompenzáció (figyelmen kívül hagyva a levegő abszorpcióját).
-Teljesen jobbra állítva a maximális kompenzáció (a rendszernek 17dB headroom-ra van szüksége, hogy egyenes választ kapjunk).
+Teljesen jobbra állítva kapunk maximális kompenzációt, de a rendszernek legalább 17dB headroom-ra van szüksége, hogy egyenes response-t kapjunk.
 Viszont ezekből az következik, hogyha túlságosan sok a kompenzáció, akkor a rendszernek nem lesz elég dinamika tartaléka, és a hang torzulni fog.
 A változások hatását a \textit{``Target Response''} ábrán láthatjuk.
 Ahhoz, hogy a számítások pontosak legyenek, elengedhetetlen, hogy pontosan megadjuk a környezeti változókat,
@@ -270,9 +271,9 @@ Az optimalizáció ezen részén a hangrendszert fogjuk a hallgatóság terület
 A szoftver által biztosított optimalizációs algoritmus a lehető legjobb lefedettségre törekszik a tervezett területen.
 Lehetőség van az optimalizáció súlyozási tényezőinek beállítására, de jelen esetben a gyári beállításokat használtam.
 Amennyiben módosítani szeretnénk a súlyozást a \textit{``Target'} és a \textit{``Leakage''} mezőkben tudjuk megadni a súlyozási tényezőket.
-A \textit{``Target''} mezőben megadott érték a közönség terület súlyozása,
+A \textit{``Target''} mezőben megadott érték a közönség területének súlyozása,
 a \textit{``Leakage''} mezőben megadott érték pedig a közönség területén kívül eső szivárgás súlyozása.
-Az \textit{``Alow Polish''} opció engedélyezi a szoftvernek, hogy egy második körben finom hangolja a splay szögeket az első próbálkozás után.
+Az \textit{``Alow Polish''} opció engedélyezi a szoftvernek, hogy egy második körben finomhangolja a splay szögeket az első próbálkozás után.
 Ezt az opciót előnyös bekapcsolni, mivel a szoftver így pontosabb eredményt tud produkálni, ezért ezt a beállítást mindig használom.
 A \textit{``Max Time''} mezőben megadhatjuk, hogy a szoftvernek mennyi idő álljon rendelkezésére az optimalizáció elvégzéséhez.
 Mivel a mai modern számítógépek olyan gyorsak, hogy a szoftver általában 1-2 perc alatt elvégzi az optimalizációt, ezért ezt az értéket
@@ -295,7 +296,7 @@ a ládák közti szögekre, a rendszer legfelső és legalsó pontjára.
 Ezeken az információkon kívül még a rendszer súlyát és súlypontját is megkapjuk.
 Esetünkben a teljes súly 289 kilogramm, amit a csarnok tartószerkezete biztonságosan elbír, valamint az egy tonnás emelőkapacitású
 láncos emelők is képesek biztonságosan emelni. A súlypont a rendszer relatíve közepén helyezkedik el, ami stabil függesztést tesz lehetővé.
-Ezek után a rendszert az említett paraméterek alapján össze építjük, figyelve az összes program által megadott információra.
+Ezek után a rendszert az említett paraméterek alapján összeépítjük, figyelve az összes program által megadott információra.
 %----------------------------------------------------------------------------
 \begin{figure}[H]
 	\centering
@@ -374,7 +375,7 @@ darab láda mindössze 14 kilogramm.~\cite{WPMUSERGUIDE}
 \end{figure}
 %----------------------------------------------------------------------------
 A tervezési fázisok nagy része megegyezik az előbbi rendszer tervezésével, ezért ezeket a részeket nem ismétlem meg.
-A hangsúlyt a eltérésekre helyezem, és azokat fogom részletezni.
+A hangsúlyt az eltérésekre helyezem, és azokat fogom részletezni.
 A fő különbség a \textit{``Cover''} kezelőfelületen történik, ahol a \textit{``Hard Avoid''} területet kell megjelölni.
 Ezen a rajzon már radikálisan szükség van erre a funkcióra, mivel a közönség területén kívül eső területen beton nagy felületek találhatóak,
 amelyek jelentős hangvisszaverődést okoznának. 
@@ -431,7 +432,7 @@ Az alábbi képen látható az a felület ahol bele kell tölteni a preseteket a
 Ez kábelezés és rendszerstruktúra szempontjából is nagyon fontos információ, mivel kizárólag a megfelelő helyre
 kötött hangládákkal fog megszólalni helyesen a rendszer. Ezen felül ha valamit rossz helyre kábelezünk le, tegyük fel egy
 mélyládát hajtó végfokra egy Line Array modult, akkor a benne lévő hangszórók nagy valószínűséggel tönkremennek ha terhelés alá kerülnek.
-Tehát fontos az precíz és átgondolt munkavégzés. A hibák elkerülése után is hasznos számunkra a rendszer áttekintő diagram,
+Tehát fontos a precíz és átgondolt munkavégzés. A hibák elkerülése után is hasznos számunkra a rendszer áttekintő diagram,
 mivel ha valami nem működik a rendszerben, akkor könnyen és gyorsan megtalálhatjuk a hibát, és azonosíthatjuk a hibás komponenst.
 Miután sikeresen betöltöttük az összes presetet amire szükségünk van, be kell állítanunk, hogy az erősítők milyen forrásból
 fognak jelet kapni. A következő lépésben a \textit{``Routing''} fülön be kell állítanunk, hogy az input csatorna Dante hálózatról fogja kapni a jelet.
@@ -629,13 +630,13 @@ Jelen esetben 12 darab ilyen láda fogja biztosítani a megfelelő mély tartom�
 A \textit{``SUB''} tervezést egy általam készített Excel kalkulátor
 segítségével végzem el. Ez a táblázat egyesíti a Martin Audio és Merlin van Veen által
 készített kalkulátorokat (S.A.D), valamint kiegészítésre került további modulokkal és funkciókkal.~\cite{MERLINVANVEEN}~\cite{MARTINSUBCALCULATOR}
-A egy EndFire konfigurációs mélyláda elrendezést terveztem. 
+Egy EndFire konfigurációs mélyláda elrendezést terveztem. 
 (Egy EndFire Pack = két láda egymás előtt adott távolságra és késleltetési értékkel) 
 A táblázatba megadhatjuk, hogy éppen helyileg hol
 van a rendezvény, és egy időjárás API segítségével megkapjuk az adott napra/napokra a
 teljes időjárás előrejelzést. Majd ezekből egy adott időintervallumra átlagolva
 megkapjuk az éppen aktuális hőmérsékletet, páratartalmat, légnyomást, amiből kiszámolható
-a hangsebesség, ezáltal még tovább optimalizálható a rendszer, mivel nem egy előre átlagot fix értéket
+a hangsebesség, ezáltal még tovább optimalizálható a rendszer, mivel nem egy előre átlagos fix értéket
 használunk, hanem az aktuális körülményekhez igazítjuk a rendszert.
 Amennyiben a helyszínen rendelkezünk mérőeszközökkel, melyek képesek pontosan mérni a hőmérsékletet,
 páratartalmat és légnyomást, akkor ezeket az értékeket is be tudjuk állítani a táblázatban.
@@ -658,7 +659,7 @@ Ezzel a munkafolyamatunkat nagyban felgyorsítottuk, és a munkánk precizitás�
 %----------------------------------------------------------------------------
 \subsection{Allen \& Heath digitális keverőrendszer}
 %----------------------------------------------------------------------------
-A jelenlegi rendszer két keverőpultot fog tartalmazni, egyet a fő hangrendszerhez, és egyet a monitor rendszerhez.
+A jelenlegi rendszer két keverőpultot fog tartalmazni, egyet a fő hangrendszerhez, és egyet a monitorrendszerhez.
 Mindkét keverőpult Allen \& Heath SQ-6 típusú digitális keverőpult lesz.
 A pultok 96 kHz-es mintavételezési frekvenciával operálnak és 48 csatornát képesek maximálisan kezelni, melyek közül 
 24 csatornával rendelkezik fizikailag beépített mikrofon előerősítővel. A konzolokon található 16 programozható gomb,
@@ -697,7 +698,7 @@ Jelen esetben ez teljes mértékben felesleges, mivel a rendszerben kizárólag 
 %----------------------------------------------------------------------------
 \subsection{Dante audio szerver}
 %----------------------------------------------------------------------------
-Ez a kiegészítő szerver egység lehetővé teszi bármilyen alacsony késleltetéssel dolgozó VST3 plugin használatát a rendszerben elő környezetben.
+Ez a kiegészítő szerver egység lehetővé teszi bármilyen alacsony késleltetéssel dolgozó VST3 plugin használatát a rendszerben élő környezetben.
 Olyan komplex funkcionalitásokat is elérhetünk, amelyek a keverőpulton csak limitáltan, vagy egyáltalán nem elérhetőek.
 Gondolva itt a dinamikus EQ használatára, különböző kompressziós technikákra (például Opto, Multiband Compressor).
 A legnagyobb előnye ennek a fajta megoldásnak, hogy költségek szempontjából egy magasabb kategóriás keverőpult rendszer sokkal drágább lenne,
@@ -739,15 +740,15 @@ elkerülhető a torzítás. A Phantom táp pedig a tápellátást igénylő mikr
 \end{figure}
 %----------------------------------------------------------------------------
 A DAW szoftverek közül a rendszerben az audioström által fejlesztett Live Professor szoftver található, amely egy
-VST host szoftver, amely képes több VST plugin egyidejű futtatására, és a pluginokat a felhasználó igényei szerint
+VST host szoftver. Képes több VST plugin egyidejű futtatására, és a pluginokat a felhasználó igényei szerint
 rendszerezni, csoportosítani. Kifejezetten live használatra lett tervezve a kezdetektől fogva, ezáltal sok olyan
-funkciót tartalmaz, amelyek egy FOH mérnök számára könnyebbé teszik a használatot. Például a pluginokat láncokba tudjuk
+funkciót tartalmaz, mi egy FOH mérnök számára könnyebbé teszi a használatot. Például a pluginokat láncokba tudjuk
 rendezni, és ezeket a láncokat egy gombnyomással be és kikapcsolni, automatizálni. MIDI vezérlésre is képes, így
 például a keverőpulttal egy USB kábellel való összekötés után tudjuk vezérelni a szoftvertben lévő paramétereket a keverőpult soft gombjaival. (ezek személyre szabható gombok)
 Mielőtt azonban használnánk a programot, fontos a megfelelő beállítások elvégzése, hogy a rendszerünk stabilan működjön.
 Első és legfontosabb feladat az audio hardver és driver kiválasztása, valamint a megfelelő buffer méret beállítása a mintavételezési frekvenciával együtt.
 Jelen esetben ez a RedNet PCIe kártya lesz, és a buffer méret a lehető legkisebb, 32 minta lesz, ASIO driverrel, 96 kHz-es mintavételezési frekvenciával.
-Így mind a 128x128 csatorna máris a rendelkezésünkre áll a használatra.
+Így mind a 128x128 csatorna máris rendelkezésünkre áll a használatra.
 A buffer méret azért lehet ennyire alacsony, mivel a számítógép hardveres erőforrásai ezt lehetővé teszik, és a rendszer
 képes a 32 minta buffer méretet stabilan tartani. A buffer méret csökkentésével a késleltetés is csökken, 
 azonban a processzor terhelése is nő, ezért fontos a megfelelő hardveres erőforrások biztosítása. 
@@ -761,7 +762,7 @@ A felső sávban látható a Processing Time, ami azt mutatja, hogy a rendszer m
 Mellette látható a már említett 32 minta buffer méret, és a 96 kHz-es mintavételezési frekvencia.
 Ami viszont számunkra a legfontosabb, a mellette lévő két kis téglalap. A Live Professor képes észlelni a hangkimaradásokat,
 és ezeket a téglalapokat pirosra váltani, ha a rendszer nem képes a beállított buffer méretet stabilan tartani.
-(Elsőnek narancssárga figyelmeztetést kapunk, ha a közel járunk a buffer méret határához.)
+(Elsőnek narancssárga figyelmeztetést kapunk, ha közel járunk a buffer méret határához.)
 Mivel jelen esetben a rendszer stabilan működik, a téglalapok zöld színűek, és a Processing Time is a beállított értéken belül van.
 %----------------------------------------------------------------------------
 \begin{figure}[H]
@@ -788,7 +789,7 @@ USB Input 1: Smaart szoftver referencia jele, majd Direct Out Output USB 2-re.
 Az első mérés amit végezni fogok a rendszeren a mélyláda rendszer mérése lesz.
 Az EndFire konfigurációban elhelyezett mélyláda rendszer mérése során a cél az, hogy maximalizáljuk a hangnyomást a közönség távolabbi részein is,
 miközben hátrafelé kioltást érünk el. Ezen felül fontos a rendszer nyitása is, ha túl keskeny sávban működik, akkor a középső területek
-hangnyomása túl magas lesz, a szélső területeken pedig túl alacsony. Tehát fel van adva a lecke, hogy a rendszer a lehetőségekhez mérten
+hangnyomása túl magas lesz, a szélső területeken pedig túl alacsony. Tehát a feladat adott, hogy a rendszer a lehetőségekhez mérten
 egyenletes hangnyomást biztosítson a teljes területen.
 Fontos, hogy a mérési környezet a lehetőségekhez mérten minél csendesebb legyen, valamint
 ne legyenek olyan tárgyak a nézőtéren, amelyek a rendszer elő működése közben
@@ -829,7 +830,7 @@ fázishelyes és időben is helyes már, készen áll a produkcióra.
 A frontfill mérését a Smaart-ba beépített delay finder segítségével fogom elvégezni.
 Elsőnek elhelyezzük a mérőmikrofont a megfelelő helyen, ahová a main PA és a frontfill rendszer hangja is érkezik.
 Ezután a delay finder segítségével elsőnek megmérjük a main PA rendszer hangját, majd ezek után
-a frontfill rendszer hangját. A delay finder segítségével a két rendszer közötti késleltetési értéket
+a frontfill rendszert. A delay finder segítségével a két rendszer közötti késleltetési értéket
 automatikusan kiszámolja a szoftver, és megkapjuk mint idő delta értéket.
 Az alábbi képen látható, hogy a késleltetés delat értéke 15.41 ms, tehát a frontfill rendszert kell
 15.41 ms-el késleltetni, hogy a két rendszer fázisban és időben is helyes legyen.

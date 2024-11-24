@@ -5,20 +5,19 @@
 %----------------------------------------------------------------------------
 Ahogy már a modellezés során a korábbiakban említettem, a budapesti Millenáris B csarnoka 
 volt a referencia helyszín, ahol a rendszert élesben telepítettem egy rendezvény idejére.
-A képek magukért beszélnek, a rendszer tökéletesen működött, a hangminőség kiváló volt, a hangnyomás szint pedig
-a tervezett értékeknek megfelelően alakult. A mélyláda rendszer és a Main PA rendszer fázishelyes és időben is helyes
-volt, a frontfill rendszer késleltetése is megfelelően beállításra került, a rendszer hangja kiegyensúlyozott volt.
-A rendszer működése során nem voltak hibák, a rendszer stabilan működött
-a teljes rendezvény alatt. 
+A képek magukért beszélnek, tökéletesen működött, a hangminőség kiváló volt, a hangnyomás szint pedig
+a tervezett értékeknek megfelelően alakult. A mélyláda részegység és a Main PA LineArray fázishelyes és időben is helyes
+volt, a frontfill kiegészítő késleltetése is megfelelően beállításra került, a teljes hangkép kiegyensúlyozott volt.
+A rendszer működése során nem voltak hibák, stabilan működött a teljes rendezvény alatt. 
 Nem voltak csomagvesztések a hálózaton, egyetlen egyszer sem kellett a másodlagos redundáns hálózatra váltani probléma miatt.
 A szoftveres megoldások is kiválóan működtek, a számítógép stabilan futott a
-rendelkezésre álló hardveres erőforrásokkal. A mérések is pontosak voltak, a rendszer minden egységét
+rendelkezésre álló hardveres erőforrásokkal. A mérések is pontosak voltak, minden egységét
 sikerült beállítani a megfelelő értékekre. 
 A terem akusztikája alapvetően visszhangosnak mondható, mivel a teremben sok kemény felület található,
-beton, fém és üveg felületek, amelyek a hangot visszaverik. Ehhez még hozzá járul a rendkívül magas belmagaasság is,
-ami szintén nem könnyítette meg a munkát. A rendszer azonban jól teljesített, a visszhangot sikerült minimalizálni,
+beton, fém és üveg felületek, amelyek a hangot visszaverik. Ehhez méghozzá járul a rendkívül magas belmagasság is,
+ami szintén nem könnyítette meg a munkát. A tervezett rendszer azonban jól teljesített, a visszhangot sikerült minimalizálni,
 és a legutolsó sorban is tisztán és egyenletesen hallható volt.
-A fellépő zenekar és lemezlovas is meg volt elégedve a rendszerrel, dicsérték a rendszert minden aspektusból.
+A fellépő zenekar és lemezlovas is meg volt elégedve, dicsérték nagy örömömre minden aspektusból.
 Végül a megrendelő teljes mértékben elégedett volt a szolgáltatással, ezáltal 
 a projekt sikeresnek mondható.
 Összefoglalva minden komponens megfelelően végezte a rá bízott feladatot, és a rendszer
@@ -34,29 +33,29 @@ stabilan kihagyás nélkül működött a teljes üzemidő alatt.
 %----------------------------------------------------------------------------
 \subsection{További eszközök integrálása}
 %----------------------------------------------------------------------------
-A Dante networking keresztrendszer lehetővé teszi a rendszer folyamatos bővítését a
-hálózati limitációk megfelelő kezelésével. A rendszer bővítésekor figyelembe kell venni a
+A Dante networking keresztrendszer lehetővé teszi a rendszerünk folyamatos bővítését a
+hálózati limitációk megfelelő kezelésével. Bővítésekor figyelembe kell venni a
 még rendelkezésre álló, a sávszélességet és a késleltetést mértékét. Amennyiben
-tarjuk magunkat ezekhez a paraméterekhez, a rendszer bővítése nem okozhat problémát,
+tarjuk magunkat ezekhez a paraméterekhez, bővítése nem okozhat problémát,
 és megfelelő overhead mellett elméletileg a teljes hálózatot is szaturálhatjuk mindenféle probléma nélkül.
 A Martin Audio Wavefront sorozatú hangfalak skálázható felbontása lehetővé teszi, hogy
-a rendszer bővítésekor a már meglévő hangrendszerünket több végfokkal hajtva tovább
-növeljük a rendszer teljesítőképességét. A korábbiakban már említett felbontás növelés
+bővítésekor a már meglévő hangrendszerünket több végfokkal hajtva tovább
+növeljük az egyenletes hangzást, a térbeli teljesítőképességet. Ez
 javítja a rendszer hangminőségét, frekvenciafelbontását és az adott területen való
-pontosabb hangeloszlást. Ebből kifolyólag nagy fejlesztés lehet a jövőben a rendszer egy ládás
-felbontásra való kibővítése. Ez azt jelenti, hogy az összes Line Array egységet külön-külön
+pontosabb hangeloszlást. Ebből kifolyólag nagy fejlesztés lehet a jövőben az egy ládás
+felbontásra való kibővítés. Ez azt jelenti, hogy az összes Line Array egységet külön-külön
 végfok csatornával hajtjuk meg.
 További fejlesztés a rendszerben a LineArray hangfalak számának növelése megfelelő számú végfok egységgel,
-amely tovább növeli a rendszer teljesítményét és a maximálisan lefedhető területet.
+amely tovább növeli az összeteljesítményt és a maximálisan lefedhető területet.
 %----------------------------------------------------------------------------
 \subsubsection{Shure Axient Digital rendszer} % A jel egyből a Dante hálózaton keresztül érkezik a keverőbe nincs A/D konverzió
 %----------------------------------------------------------------------------
-A Shure Axient Digital vezeték nélküli mikrofon rendszer a szakma egyik legjobb vezeték nélküli
-mikrofon rendszere. A rendszer kiváló hangminőséget, megbízhatóságot és rugalmasságot kínál,
+A Shure Axient Digital vezeték nélküli mikrofon szett a szakma egyik legjobb vezeték nélküli
+mikrofonrendszere. Kiváló hangminőséget, megbízhatóságot és rugalmasságot kínál,
 és a Dante hálózaton keresztül könnyen integrálható a már meglévő rendszerbe. A jelenlegi
-Shure ULXD vezeték nélküli mikrofon rendszerünk is kiváló minőségű, azonban sajnálatos módon 
+Shure ULXD vezeték nélküli mikrofonjaink is kiváló minőségűek, azonban sajnálatos módon 
 csak 48 kHz-es mintavételezési frekvenciával rendelkezik, míg az Axient Digital rendszer 96 kHz-es
-mintavételezési frekvenciával rendelkezik. Ezáltal a hangminőség jelentősen javulna a rendszerben,
+mintavételezési frekvencián működik. Ezáltal a hangminőség jelentősen javulna a rendszerben,
 valamint így integrálhatóvá válna direkt módon a Dante hálózaton keresztül a keverőbe, így
 nem lenne szükség a hangot analóg jelekké alakítani, majd vissza. Ezáltal a hangminőség még 
 kevésbé romlik.
@@ -64,7 +63,7 @@ Mint ez eddigi Dante eszközünket, ezt is a Dante Controller segítségével k�
 kijelölt csatornatartományban, amelyet a keverőpulton is könnyen beállíthatunk. Így mikor rendezvényre érkezünk,
 plug and play módon azonnal használhatjuk a mikrofonokat, nem kell a csatornákat újra össze párosítani.
 A Shure Wireless Workbench segítségével a mikrofonokat könnyen monitorozhatjuk, és a rendszer
-állapotát is ellenőrizhetjük távolról is. A rendszer bővítése jelentős költségekkel jár, így a
+állapotát is ellenőrizhetjük távolról is. Ez a bővítés jelentős költségekkel jár, így a
 bővítés előtt alaposan mérlegelni kell, hogy valóban szükséges-e.
 %----------------------------------------------------------------------------
 \begin
@@ -148,13 +147,12 @@ a Dante alapú hálózati audió rendszerekkel.
 \subsubsection{Martin Audio WPL LineArray rendszer} % Nagyobb rendezvényekre
 %----------------------------------------------------------------------------
 Amennyiben egy sokkal nagyobb rendezvényről van szó, és a jelenlegi rendszerünk már nem
-tudná lefedni a területet, akkor a rendszer bővítése mellett egy nagyobb szériás LineArray
-rendszer beszerzése is szükséges lehet. A Martin Audio WPL sorozatú ládái a jelenleg
+tudná lefedni a területet, akkor a egy nagyobb szériás LineArray beszerzése is szükséges lehet. A
+ Martin Audio WPL sorozatú ládái a jelenleg
 elérhető legnagyobb terméke a Wavefront Precision sorozatban. 
-Ebben az esetben a fő rendszert a WPL képviselné és WPC lenne az in-out fill rendszer.
+Ebben az esetben a fő rendszert a WPL képviselné és WPC lenne az in-out fill.
 A WPM szériás ládák pedig delayként szolgálnának a terület hátsó részén.
-Viszont az említett teljes rendszerbővítésnek jelentős költségei vannak, így a rendszer
-bővítése előtt alaposan mérlegelni kell, megtérül-e a befektetés hosszabb távon.
+Viszont az említett teljes rendszerbővítésnek óriási költségei vannak, így bővítése előtt alaposan mérlegelni kell, megtérül-e a befektetés hosszabb távon.
 %----------------------------------------------------------------------------
 \begin
     {figure}[H]
