@@ -69,16 +69,16 @@
   {6pt}
 
 % 4. és további szintek: egyéni meghatározás
-\titleformat{\paragraph}[runin]
-  {\normalfont\normalsize\selectfont}
-  {}
-  {0em}
+\titleformat{\subsubsubsection}[block]
+  {\normalfont\fontsize{14pt}{16.8pt}\selectfont} % Normál, 14pt betűméret
+  {\thesubsubsubsection.}
+  {1em}
   {}
 
-\titlespacing{\paragraph}
+\titlespacing{\subsubsubsection}
   {0pt}
+  {12pt}
   {6pt}
-  {3pt}
 
 % Alapértelmezett képaláírás beállítás
 \captionsetup{
@@ -92,24 +92,11 @@
   %belowskip=18pt % Cím utáni térköz
 }
 
-% Képek és ábrák képaláírásai (objektum alatt)
-\captionsetup[figure]{position=below}
+% Képeknél és ábráknál a ”képaláírás” az objektum alá, táblázatoknál és kódrészleteknél az objektum fölé kerüljön
+%\captionsetup[figure]{position=bottom}
+%\captionsetup[table]{position=top}
+%\captionsetup[lstlisting]{position=top}
 
-% Táblázatok és kódrészletek képaláírásai (objektum felett)
-\captionsetup[table]{position=above}
-\captionsetup[lstlisting]{position=above}
-
-% Példa betűtípus módosításra (Times New Roman)
-\renewcommand{\rmdefault}{ptm}
-
-% Kódrészlet környezet konfigurálása
-\lstset{
-  basicstyle=\ttfamily\small, % Alap betűtípus
-  captionpos=t, % Képaláírás fent
-  frame=single, % Keret
-  numbers=left, % Sorok számozása
-  numberstyle=\tiny
-}
 
 %--------------------------------------------------------------------------------------
 \newcommand{\szerzoVezeteknev}{Székely}
