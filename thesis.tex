@@ -137,7 +137,9 @@ tervezése, építése, optimalizálása, beüzemelése} % Cím
 %--------------------------------------------------------------------------------------
 % Itt kezdődik a dolgozat
 %--------------------------------------------------------------------------------------
+% Másfeles sorköz
 \newcommand{\masfelessorkoz}{\renewcommand{\baselinestretch}{1.24}\small\normalsize}
+%--------------------------------------------------------------------------------------
 
 \begin{document}
 
@@ -178,33 +180,28 @@ tervezése, építése, optimalizálása, beüzemelése} % Cím
 \include{content/audio_over_ip_systems}
 \include{content/system_desing}
 \include{content/further_development}
-}
-
 
 % Köszönetnyilvánítás - opcionális
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \include{content/acknowledgement}
 
-
 % Ábrák listája - a word-ös sablon szerint szükséges
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \listoffigures\addcontentsline{toc}{chapter}{\listfigurename}
 
-
 % Táblázatok listája - opcionális
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \listoftables\addcontentsline{toc}{chapter}{\listtablename}
-
 
 % Irodalomjegyzék
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \addcontentsline{toc}{chapter}{\bibname}
 \bibliography{bib/references}
 
-
 % Függelékek
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %\include{content/appendices}
 
 %\label{page:last}
+}
 \end{document}
